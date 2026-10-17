@@ -1,0 +1,41 @@
+# Development scaffold. Pin names describe the planned instrument;
+# src/project.v currently ties outputs low and leaves uio pins as inputs.
+project:
+  title: "Metastability measurement"
+  author: "Benjamin J. Eisenberg and Roshan"
+  discord: ""
+  description: "GF180 early/late metastability measurement instrument"
+  language: "Verilog"
+  clock_hz: 20000000
+  tiles: "1x1" # Provisional until the implemented design is hardened.
+  top_module: "tt_um_metastability"
+  source_files:
+    - "project.v"
+
+pinout:
+  ui[0]: "delay_code[0]"
+  ui[1]: "delay_code[1]"
+  ui[2]: "delay_code[2]"
+  ui[3]: "dut_select[0]"
+  ui[4]: "start"
+  ui[5]: "source_select"
+  ui[6]: "external_data"
+  ui[7]: "mode"
+  uo[0]: "result[0]"
+  uo[1]: "result[1]"
+  uo[2]: "result[2]"
+  uo[3]: "result[3]"
+  uo[4]: "result[4]"
+  uo[5]: "result[5]"
+  uo[6]: "result[6]"
+  uo[7]: "result[7]"
+  uio[0]: "ring_enable"
+  uio[1]: "busy"
+  uio[2]: "done"
+  uio[3]: "fault"
+  uio[4]: "source_monitor"
+  uio[5]: "trial_monitor"
+  uio[6]: "dut_select[1]"
+  uio[7]: "delay_code[3]"
+
+yaml_version: 6
