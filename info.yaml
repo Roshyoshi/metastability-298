@@ -11,6 +11,7 @@ project:
   top_module: "tt_um_metastability"
   source_files:
     - "project.v"
+    - "gf180/ring_osc.v"
 
 pinout:
   ui[0]: "delay_code[0]"
