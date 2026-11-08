@@ -1,0 +1,321 @@
+** sch_path: ~/ece298a/round2/benches/tb_duts.sch
+**.subckt tb_duts
+vvdd VDD GND 3.3
+vcap capture GND PWL(0 0 1n 0 1.05n 3.3 2n 3.3 2.05n 0 5n 0 5.05n 3.3)
+vd ui_in_6 GND PWL(0 0 2.975n 0 3.025n 3.3)
+xdata ui_in_6 data_local data_input
+xcapd capture capture_local capture_drivers
+xduts capture_local data_local q_0 q_1 q_2 q_3 duts
+cl0 q_0 0 2f m=1
+cl1 q_1 0 2f m=1
+cl2 q_2 0 2f m=1
+cl3 q_3 0 2f m=1
+**** begin user architecture code
+
+.include /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice diode_typical
+.global VDD
+.param sw_stat_global=0 sw_stat_mismatch=0
+.control
+set filetype=ascii
+tran 1p 8n
+meas tran tcq0 trig v(capture_local) val=1.65 td=4n rise=1 targ v(q_0) val=1.65 td=4n rise=1
+let tcq0ps=tcq0*1e12
+echo RESULT tcq_lib_ps $&tcq0ps
+meas tran tcq1 trig v(capture_local) val=1.65 td=4n rise=1 targ v(q_1) val=1.65 td=4n rise=1
+let tcq1ps=tcq1*1e12
+echo RESULT tcq_base_ps $&tcq1ps
+meas tran tcq2 trig v(capture_local) val=1.65 td=4n rise=1 targ v(q_2) val=1.65 td=4n rise=1
+let tcq2ps=tcq2*1e12
+echo RESULT tcq_keeper_ps $&tcq2ps
+meas tran tcq3 trig v(capture_local) val=1.65 td=4n rise=1 targ v(q_3) val=1.65 td=4n rise=1
+let tcq3ps=tcq3*1e12
+echo RESULT tcq_forward_ps $&tcq3ps
+wrdata tb_duts.dat v(capture_local) v(data_local) v(q_0) v(q_1) v(q_2) v(q_3)
+.endc
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  ~/ece298a/round2/blocks/data_input.sym # of pins=2
+** sym_path: ~/ece298a/round2/blocks/data_input.sym
+** sch_path: ~/ece298a/round2/blocks/data_input.sch
+.subckt data_input ui_in_6 data_local
+*.ipin ui_in_6
+*.opin data_local
+xdata0 ui_in_6 data_b inv_2
+xdata1 data_b data_local inv_2
+.ends
+
+
+* expanding   symbol:  ~/ece298a/round2/blocks/capture_drivers.sym # of pins=2
+** sym_path: ~/ece298a/round2/blocks/capture_drivers.sym
+** sch_path: ~/ece298a/round2/blocks/capture_drivers.sch
+.subckt capture_drivers capture capture_local
+*.ipin capture
+*.opin capture_local
+xcap0 capture capture_b inv_2
+xcap1 capture_b capture_local inv_2
+.ends
+
+
+* expanding   symbol:  ~/ece298a/round2/blocks/duts.sym # of pins=6
+** sym_path: ~/ece298a/round2/blocks/duts.sym
+** sch_path: ~/ece298a/round2/blocks/duts.sch
+.subckt duts capture_local data_local q_0 q_1 q_2 q_3
+*.ipin capture_local
+*.ipin data_local
+*.opin q_0
+*.opin q_1
+*.opin q_2
+*.opin q_3
+xu_dut1 data_local capture_local q_0 dffq_1
+xu_dut2 data_local capture_local q_1 meta_dut_baseline
+xu_dut3 data_local capture_local q_2 meta_dut_keeper
+xu_dut4 data_local capture_local q_3 meta_dut_forward
+.ends
+
+
+* expanding   symbol:  ~/ece298a/round2/cells_tx/inv_2.sym # of pins=2
+** sym_path: ~/ece298a/round2/cells_tx/inv_2.sym
+** sch_path: ~/ece298a/round2/cells_tx/inv_2.sch
+.subckt inv_2 I ZN
+*.ipin I
+*.opin ZN
+XM_i_0_0 ZN I 0 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06 nrd=0
++ nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_0_1 ZN I 0 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06 nrd=0
++ nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_1_0 ZN I VDD VDD pfet_05v0 L=0.5u W=1.22u nf=1 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_1_1 ZN I VDD VDD pfet_05v0 L=0.5u W=1.22u nf=1 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+.ends
+
+
+* expanding   symbol:  ~/ece298a/round2/cells_tx/dffq_1.sym # of pins=3
+** sym_path: ~/ece298a/round2/cells_tx/dffq_1.sym
+** sch_path: ~/ece298a/round2/cells_tx/dffq_1.sch
+.subckt dffq_1 D CLK Q
+*.ipin D
+*.ipin CLK
+*.opin Q
+XM_tn3 net1 CLK 0 0 nfet_05v0 L=0.6u W=0.405u nf=1 ad=2.025e-13 as=2.025e-13 pd=1.81e-06 ps=1.81e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tn4 net2 net1 0 0 nfet_05v0 L=0.6u W=0.405u nf=1 ad=2.025e-13 as=2.025e-13 pd=1.81e-06
++ ps=1.81e-06 nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tn5 net7 net1 0 0 nfet_05v0 L=0.6u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tn8 net4 D net7 0 nfet_05v0 L=0.6u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tn6 net4 net2 net8 0 nfet_05v0 L=0.6u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tn7 net8 net6 0 0 nfet_05v0 L=0.6u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tn0 net6 net4 0 0 nfet_05v0 L=0.6u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tn9 net5 net2 net6 0 nfet_05v0 L=0.6u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tn11 net5 net1 net9 0 nfet_05v0 L=0.6u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tn12 net9 net3 0 0 nfet_05v0 L=0.6u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tn10 net3 net5 0 0 nfet_05v0 L=0.6u W=0.4u nf=1 ad=2e-13 as=2e-13 pd=1.8e-06 ps=1.8e-06 nrd=0
++ nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tn1 Q net3 0 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06 nrd=0
++ nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp3 net1 CLK VDD VDD pfet_05v0 L=0.5u W=0.865u nf=1 ad=4.325e-13 as=4.325e-13 pd=2.73e-06
++ ps=2.73e-06 nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp4 net2 net1 VDD VDD pfet_05v0 L=0.5u W=0.865u nf=1 ad=4.325e-13 as=4.325e-13 pd=2.73e-06
++ ps=2.73e-06 nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp12 net10 net2 VDD VDD pfet_05v0 L=0.5u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06
++ ps=1.72e-06 nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp11 net4 D net10 VDD pfet_05v0 L=0.5u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp6 net4 net1 net11 VDD pfet_05v0 L=0.5u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06
++ ps=1.72e-06 nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp5 net11 net6 VDD VDD pfet_05v0 L=0.5u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06
++ ps=1.72e-06 nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp0 net6 net4 VDD VDD pfet_05v0 L=0.5u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp7 net5 net1 net6 VDD pfet_05v0 L=0.5u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06
++ ps=1.72e-06 nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp9 net5 net2 net12 VDD pfet_05v0 L=0.5u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06
++ ps=1.72e-06 nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp10 net12 net3 VDD VDD pfet_05v0 L=0.5u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06
++ ps=1.72e-06 nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp8 net3 net5 VDD VDD pfet_05v0 L=0.5u W=0.8u nf=1 ad=4e-13 as=4e-13 pd=2.6e-06 ps=2.6e-06 nrd=0
++ nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp1 Q net3 VDD VDD pfet_05v0 L=0.5u W=1.22u nf=1 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+.ends
+
+
+* expanding   symbol:  ~/ece298a/round2/blocks/meta_dut_baseline.sym # of pins=3
+** sym_path: ~/ece298a/round2/blocks/meta_dut_baseline.sym
+** sch_path: ~/ece298a/round2/blocks/meta_dut_baseline.sch
+.subckt meta_dut_baseline d clk q
+*.ipin d
+*.ipin clk
+*.opin q
+xu_cki clk clkn inv_1
+xu_mg1 d clkn g1 nand2_1
+xu_mg2 g1 clkn g2 nand2_1
+xu_mfw mqb g1 mq nand2_2
+xu_mkp mq g2 mqb nand2_1
+xu_sg1 mq clk s1 nand2_1
+xu_sg2 s1 clk s2 nand2_1
+xu_sfw sqb s1 q nand2_1
+xu_skp q s2 sqb nand2_1
+Cmq mq 0 0.25f m=1
+Cmqb mqb 0 0.25f m=1
+Cmut mq mqb 0.05f m=1
+.ends
+
+
+* expanding   symbol:  ~/ece298a/round2/blocks/meta_dut_keeper.sym # of pins=3
+** sym_path: ~/ece298a/round2/blocks/meta_dut_keeper.sym
+** sch_path: ~/ece298a/round2/blocks/meta_dut_keeper.sch
+.subckt meta_dut_keeper d clk q
+*.ipin d
+*.ipin clk
+*.opin q
+xu_cki clk clkn inv_1
+xu_mg1 d clkn g1 nand2_1
+xu_mg2 g1 clkn g2 nand2_1
+xu_mfw mqb g1 mq nand2_2
+xu_mkp mq g2 mqb nand2_2
+xu_sg1 mq clk s1 nand2_1
+xu_sg2 s1 clk s2 nand2_1
+xu_sfw sqb s1 q nand2_1
+xu_skp q s2 sqb nand2_1
+Cmq mq 0 0.25f m=1
+Cmqb mqb 0 0.25f m=1
+Cmut mq mqb 0.05f m=1
+.ends
+
+
+* expanding   symbol:  ~/ece298a/round2/blocks/meta_dut_forward.sym # of pins=3
+** sym_path: ~/ece298a/round2/blocks/meta_dut_forward.sym
+** sch_path: ~/ece298a/round2/blocks/meta_dut_forward.sch
+.subckt meta_dut_forward d clk q
+*.ipin d
+*.ipin clk
+*.opin q
+xu_cki clk clkn inv_1
+xu_mg1 d clkn g1 nand2_1
+xu_mg2 g1 clkn g2 nand2_1
+xu_mfw mqb g1 mq nand2_4
+xu_mkp mq g2 mqb nand2_1
+xu_sg1 mq clk s1 nand2_1
+xu_sg2 s1 clk s2 nand2_1
+xu_sfw sqb s1 q nand2_1
+xu_skp q s2 sqb nand2_1
+Cmq mq 0 0.25f m=1
+Cmqb mqb 0 0.25f m=1
+Cmut mq mqb 0.05f m=1
+.ends
+
+
+* expanding   symbol:  ~/ece298a/round2/cells_tx/inv_1.sym # of pins=2
+** sym_path: ~/ece298a/round2/cells_tx/inv_1.sym
+** sch_path: ~/ece298a/round2/cells_tx/inv_1.sch
+.subckt inv_1 I ZN
+*.ipin I
+*.opin ZN
+XM_i_0 ZN I 0 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06 nrd=0
++ nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_1 ZN I VDD VDD pfet_05v0 L=0.5u W=1.22u nf=1 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+.ends
+
+
+* expanding   symbol:  ~/ece298a/round2/cells_tx/nand2_1.sym # of pins=3
+** sym_path: ~/ece298a/round2/cells_tx/nand2_1.sym
+** sch_path: ~/ece298a/round2/cells_tx/nand2_1.sch
+.subckt nand2_1 A1 A2 ZN
+*.ipin A1
+*.ipin A2
+*.opin ZN
+XM_i_1 net1 A2 0 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06 nrd=0
++ nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_0 ZN A1 net1 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_3 ZN A2 VDD VDD pfet_05v0 L=0.5u W=1.13u nf=1 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_2 ZN A1 VDD VDD pfet_05v0 L=0.5u W=1.13u nf=1 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+.ends
+
+
+* expanding   symbol:  ~/ece298a/round2/cells_tx/nand2_2.sym # of pins=3
+** sym_path: ~/ece298a/round2/cells_tx/nand2_2.sym
+** sch_path: ~/ece298a/round2/cells_tx/nand2_2.sch
+.subckt nand2_2 A1 A2 ZN
+*.ipin A1
+*.ipin A2
+*.opin ZN
+XM_i_1_1 net1 A2 0 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_0_1 ZN A1 net1 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_0_0 ZN A1 net2 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_1_0 net2 A2 0 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_3_1 ZN A2 VDD VDD pfet_05v0 L=0.5u W=1.13u nf=1 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_2_1 ZN A1 VDD VDD pfet_05v0 L=0.5u W=1.13u nf=1 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_2_0 ZN A1 VDD VDD pfet_05v0 L=0.5u W=1.13u nf=1 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_3_0 ZN A2 VDD VDD pfet_05v0 L=0.5u W=1.13u nf=1 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+.ends
+
+
+* expanding   symbol:  ~/ece298a/round2/cells_tx/nand2_4.sym # of pins=3
+** sym_path: ~/ece298a/round2/cells_tx/nand2_4.sym
+** sch_path: ~/ece298a/round2/cells_tx/nand2_4.sch
+.subckt nand2_4 A1 A2 ZN
+*.ipin A1
+*.ipin A2
+*.opin ZN
+XM_i_1_3 net1 A2 0 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_0_3 ZN A1 net1 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_0_2 ZN A1 net2 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_1_2 net2 A2 0 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_1_1 net3 A2 0 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_0_1 ZN A1 net3 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_0_0 ZN A1 net4 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_1_0 net4 A2 0 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_3_3 ZN A2 VDD VDD pfet_05v0 L=0.5u W=1.13u nf=1 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_2_3 ZN A1 VDD VDD pfet_05v0 L=0.5u W=1.13u nf=1 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_2_2 ZN A1 VDD VDD pfet_05v0 L=0.5u W=1.13u nf=1 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_3_2 ZN A2 VDD VDD pfet_05v0 L=0.5u W=1.13u nf=1 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_3_1 ZN A2 VDD VDD pfet_05v0 L=0.5u W=1.13u nf=1 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_2_1 ZN A1 VDD VDD pfet_05v0 L=0.5u W=1.13u nf=1 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_2_0 ZN A1 VDD VDD pfet_05v0 L=0.5u W=1.13u nf=1 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_3_0 ZN A2 VDD VDD pfet_05v0 L=0.5u W=1.13u nf=1 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+.ends
+
+.GLOBAL GND
+.GLOBAL VDD
+.end

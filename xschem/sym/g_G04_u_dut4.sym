@@ -1,0 +1,24 @@
+v {xschem version=3.4.4 file_version=1.2}
+G {}
+K {type=subcircuit
+format="@name @pinlist meta_dut_forward"
+template="name=x1"
+}
+V {}
+S {}
+E {}
+L 4 -80 -60 80 -60 {}
+L 4 80 -60 80 90 {}
+L 4 80 90 -80 90 {}
+L 4 -80 90 -80 -60 {}
+L 4 -100 10 -80 10 {}
+B 5 -102.5 7.5 -97.5 12.5 {name=d dir=in}
+T {d} -75 3 0 0 0.2 0.2 {}
+L 4 -100 50 -80 50 {}
+B 5 -102.5 47.5 -97.5 52.5 {name=clk dir=in}
+T {clk} -75 43 0 0 0.2 0.2 {}
+L 4 80 30 100 30 {}
+B 5 97.5 27.5 102.5 32.5 {name=q dir=out}
+T {q} 75 23 0 1 0.2 0.2 {}
+T {@name} -70 -54 0 0 0.3 0.3 {}
+T {meta_dut_forward} -70 -32 0 0 0.22 0.22 {layer=13}

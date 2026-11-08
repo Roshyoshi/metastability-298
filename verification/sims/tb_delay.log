@@ -1,0 +1,393 @@
+Using SPARSE 1.3 as Direct Linear Solver
+
+Note: No compatibility mode selected!
+
+
+Circuit: ** sch_path: ~/ece298a/round2/benches/tb_delay.sch
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+Warning: IKK too small - model effect disabled!
+Warning: IKK too small - model effect disabled!
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vdd                                        3.3
+capture                                      0
+ua_0                                       1.1
+xcapd.capture_b                            3.3
+capture_local                       1.0467e-08
+xdelay.capture_iso_b                       3.3
+xdelay.capture_iso                  1.0467e-08
+xdelay.xdelay.slow                         3.3
+xdelay.xdelay.foot                 1.64397e-09
+xdelay.xdelay.r0                    1.0467e-08
+xdelay.xdelay.r1                           3.3
+early_clk                           1.0467e-08
+xearly.xearly_observer.net1                3.3
+xearly.xearly_observer.net2        2.03757e-08
+xearly.xearly_observer.net7        2.46641e-09
+xearly.xearly_observer.net4                3.3
+xearly.xearly_observer.net8          0.0342719
+xearly.xearly_observer.net6        4.70226e-08
+xearly.xearly_observer.net5                3.3
+xearly.xearly_observer.net9             2.5439
+xearly.xearly_observer.net3         2.0569e-08
+early_q                                    3.3
+xearly.xearly_observer.net10               3.3
+xearly.xearly_observer.net11               3.3
+xearly.xearly_observer.net12               3.3
+isob_r                                     3.3
+iso_r                               1.0467e-08
+slow_r                                     3.3
+foot_r                             1.64397e-09
+r0_r                                1.0467e-08
+r1_r                                       3.3
+early_r                             1.0467e-08
+xer.net1                                   3.3
+xer.net2                           2.03757e-08
+xer.net7                           2.46641e-09
+xer.net4                                   3.3
+xer.net8                             0.0342719
+xer.net6                           4.70226e-08
+xer.net5                                   3.3
+xer.net9                                2.5439
+xer.net3                            2.0569e-08
+q_r                                        3.3
+xer.net10                                  3.3
+xer.net11                                  3.3
+xer.net12                                  3.3
+vbias#branch                           1.1e-12
+vcap#branch                                  0
+vvdd#branch                       -1.57978e-10
+
+ Reference value :  1.92250e-09 Reference value :  5.03750e-09 Reference value :  8.14250e-09 Reference value :  1.12975e-08
+No. of Data Rows : 2826
+dly                 =  2.258591e-09 targ=  7.437686e-09 trig=  5.179096e-09
+Using SPARSE 1.3 as Direct Linear Solver
+dlr                 =  2.251212e-09 targ=  7.430308e-09 trig=  5.179096e-09
+RESULT d_ns_at_ua0 1.1 2.25859
+RESULT d_ideal_ns_at_ua0 1.1 2.25121
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vdd                                        3.3
+capture                                      0
+ua_0                                       1.3
+xcapd.capture_b                            3.3
+capture_local                       1.0467e-08
+xdelay.capture_iso_b                       3.3
+xdelay.capture_iso                  1.0467e-08
+xdelay.xdelay.slow                         3.3
+xdelay.xdelay.foot                 1.23254e-09
+xdelay.xdelay.r0                    1.0467e-08
+xdelay.xdelay.r1                           3.3
+early_clk                           1.0467e-08
+xearly.xearly_observer.net1                3.3
+xearly.xearly_observer.net2        2.03757e-08
+xearly.xearly_observer.net7        2.46641e-09
+xearly.xearly_observer.net4                3.3
+xearly.xearly_observer.net8          0.0342719
+xearly.xearly_observer.net6        4.70226e-08
+xearly.xearly_observer.net5                3.3
+xearly.xearly_observer.net9             2.5439
+xearly.xearly_observer.net3         2.0569e-08
+early_q                                    3.3
+xearly.xearly_observer.net10               3.3
+xearly.xearly_observer.net11               3.3
+xearly.xearly_observer.net12               3.3
+isob_r                                     3.3
+iso_r                               1.0467e-08
+slow_r                                     3.3
+foot_r                             1.23254e-09
+r0_r                                1.0467e-08
+r1_r                                       3.3
+early_r                             1.0467e-08
+xer.net1                                   3.3
+xer.net2                           2.03757e-08
+xer.net7                           2.46641e-09
+xer.net4                                   3.3
+xer.net8                             0.0342719
+xer.net6                           4.70226e-08
+xer.net5                                   3.3
+xer.net9                                2.5439
+xer.net3                            2.0569e-08
+q_r                                        3.3
+xer.net10                                  3.3
+xer.net11                                  3.3
+xer.net12                                  3.3
+vbias#branch                       6.99999e-13
+vcap#branch                                  0
+vvdd#branch                       -1.57778e-10
+
+ Reference value :  2.31400e-10 Reference value :  3.20750e-09 Reference value :  6.29750e-09 Reference value :  9.46750e-09 Reference value :  1.26825e-08
+No. of Data Rows : 2826
+dly                 =  1.613289e-09 targ=  6.792385e-09 trig=  5.179096e-09
+Using SPARSE 1.3 as Direct Linear Solver
+dlr                 =  1.608833e-09 targ=  6.787928e-09 trig=  5.179096e-09
+RESULT d_ns_at_ua0 1.3 1.61329
+RESULT d_ideal_ns_at_ua0 1.3 1.60883
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vdd                                        3.3
+capture                                      0
+ua_0                                       1.5
+xcapd.capture_b                            3.3
+capture_local                       1.0467e-08
+xdelay.capture_iso_b                       3.3
+xdelay.capture_iso                  1.0467e-08
+xdelay.xdelay.slow                         3.3
+xdelay.xdelay.foot                 1.00002e-09
+xdelay.xdelay.r0                    1.0467e-08
+xdelay.xdelay.r1                           3.3
+early_clk                           1.0467e-08
+xearly.xearly_observer.net1                3.3
+xearly.xearly_observer.net2        2.03757e-08
+xearly.xearly_observer.net7        2.46641e-09
+xearly.xearly_observer.net4                3.3
+xearly.xearly_observer.net8          0.0342719
+xearly.xearly_observer.net6        4.70226e-08
+xearly.xearly_observer.net5                3.3
+xearly.xearly_observer.net9             2.5439
+xearly.xearly_observer.net3         2.0569e-08
+early_q                                    3.3
+xearly.xearly_observer.net10               3.3
+xearly.xearly_observer.net11               3.3
+xearly.xearly_observer.net12               3.3
+isob_r                                     3.3
+iso_r                               1.0467e-08
+slow_r                                     3.3
+foot_r                             1.00002e-09
+r0_r                                1.0467e-08
+r1_r                                       3.3
+early_r                             1.0467e-08
+xer.net1                                   3.3
+xer.net2                           2.03757e-08
+xer.net7                           2.46641e-09
+xer.net4                                   3.3
+xer.net8                             0.0342719
+xer.net6                           4.70226e-08
+xer.net5                                   3.3
+xer.net9                                2.5439
+xer.net3                            2.0569e-08
+q_r                                        3.3
+xer.net10                                  3.3
+xer.net11                                  3.3
+xer.net12                                  3.3
+vbias#branch                       2.99999e-13
+vcap#branch                                  0
+vvdd#branch                       -1.57578e-10
+
+ Reference value :  1.66250e-09 Reference value :  4.75250e-09 Reference value :  7.83750e-09 Reference value :  1.10275e-08
+No. of Data Rows : 2826
+dly                 =  1.289635e-09 targ=  6.468731e-09 trig=  5.179096e-09
+Using SPARSE 1.3 as Direct Linear Solver
+dlr                 =  1.286771e-09 targ=  6.465867e-09 trig=  5.179096e-09
+RESULT d_ns_at_ua0 1.5 1.28964
+RESULT d_ideal_ns_at_ua0 1.5 1.28677
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vdd                                        3.3
+capture                                      0
+ua_0                                       1.8
+xcapd.capture_b                            3.3
+capture_local                       1.0467e-08
+xdelay.capture_iso_b                       3.3
+xdelay.capture_iso                  1.0467e-08
+xdelay.xdelay.slow                         3.3
+xdelay.xdelay.foot                 7.92245e-10
+xdelay.xdelay.r0                    1.0467e-08
+xdelay.xdelay.r1                           3.3
+early_clk                           1.0467e-08
+xearly.xearly_observer.net1                3.3
+xearly.xearly_observer.net2        2.03757e-08
+xearly.xearly_observer.net7        2.46641e-09
+xearly.xearly_observer.net4                3.3
+xearly.xearly_observer.net8          0.0342719
+xearly.xearly_observer.net6        4.70226e-08
+xearly.xearly_observer.net5                3.3
+xearly.xearly_observer.net9             2.5439
+xearly.xearly_observer.net3         2.0569e-08
+early_q                                    3.3
+xearly.xearly_observer.net10               3.3
+xearly.xearly_observer.net11               3.3
+xearly.xearly_observer.net12               3.3
+isob_r                                     3.3
+iso_r                               1.0467e-08
+slow_r                                     3.3
+foot_r                             7.92245e-10
+r0_r                                1.0467e-08
+r1_r                                       3.3
+early_r                             1.0467e-08
+xer.net1                                   3.3
+xer.net2                           2.03757e-08
+xer.net7                           2.46641e-09
+xer.net4                                   3.3
+xer.net8                             0.0342719
+xer.net6                           4.70226e-08
+xer.net5                                   3.3
+xer.net9                                2.5439
+xer.net3                            2.0569e-08
+q_r                                        3.3
+xer.net10                                  3.3
+xer.net11                                  3.3
+xer.net12                                  3.3
+vbias#branch                      -3.00001e-13
+vcap#branch                                  0
+vvdd#branch                       -1.57278e-10
+
+ Reference value :  1.01400e-10 Reference value :  3.06250e-09 Reference value :  6.14250e-09 Reference value :  9.33250e-09 Reference value :  1.25125e-08
+No. of Data Rows : 2826
+dly                 =  1.035174e-09 targ=  6.214270e-09 trig=  5.179096e-09
+Using SPARSE 1.3 as Direct Linear Solver
+dlr                 =  1.033895e-09 targ=  6.212992e-09 trig=  5.179096e-09
+RESULT d_ns_at_ua0 1.8 1.03517
+RESULT d_ideal_ns_at_ua0 1.8 1.0339
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vdd                                        3.3
+capture                                      0
+ua_0                                       2.4
+xcapd.capture_b                            3.3
+capture_local                       1.0467e-08
+xdelay.capture_iso_b                       3.3
+xdelay.capture_iso                  1.0467e-08
+xdelay.xdelay.slow                         3.3
+xdelay.xdelay.foot                 5.79047e-10
+xdelay.xdelay.r0                    1.0467e-08
+xdelay.xdelay.r1                           3.3
+early_clk                           1.0467e-08
+xearly.xearly_observer.net1                3.3
+xearly.xearly_observer.net2        2.03757e-08
+xearly.xearly_observer.net7        2.46641e-09
+xearly.xearly_observer.net4                3.3
+xearly.xearly_observer.net8          0.0342719
+xearly.xearly_observer.net6        4.70226e-08
+xearly.xearly_observer.net5                3.3
+xearly.xearly_observer.net9             2.5439
+xearly.xearly_observer.net3         2.0569e-08
+early_q                                    3.3
+xearly.xearly_observer.net10               3.3
+xearly.xearly_observer.net11               3.3
+xearly.xearly_observer.net12               3.3
+isob_r                                     3.3
+iso_r                               1.0467e-08
+slow_r                                     3.3
+foot_r                             5.79047e-10
+r0_r                                1.0467e-08
+r1_r                                       3.3
+early_r                             1.0467e-08
+xer.net1                                   3.3
+xer.net2                           2.03757e-08
+xer.net7                           2.46641e-09
+xer.net4                                   3.3
+xer.net8                             0.0342719
+xer.net6                           4.70226e-08
+xer.net5                                   3.3
+xer.net9                                2.5439
+xer.net3                            2.0569e-08
+q_r                                        3.3
+xer.net10                                  3.3
+xer.net11                                  3.3
+xer.net12                                  3.3
+vbias#branch                          -1.5e-12
+vcap#branch                                  0
+vvdd#branch                       -1.56678e-10
+
+ Reference value :  1.44250e-09 Reference value :  4.46250e-09 Reference value :  7.52250e-09 Reference value :  1.06425e-08 Reference value :  1.38475e-08
+No. of Data Rows : 2826
+dly                 =  8.233611e-10 targ=  6.002457e-09 trig=  5.179096e-09
+Using SPARSE 1.3 as Direct Linear Solver
+dlr                 =  8.237112e-10 targ=  6.002807e-09 trig=  5.179096e-09
+RESULT d_ns_at_ua0 2.4 0.823361
+RESULT d_ideal_ns_at_ua0 2.4 0.823711
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vdd                                        3.3
+capture                                      0
+ua_0                                         3
+xcapd.capture_b                            3.3
+capture_local                       1.0467e-08
+xdelay.capture_iso_b                       3.3
+xdelay.capture_iso                  1.0467e-08
+xdelay.xdelay.slow                         3.3
+xdelay.xdelay.foot                 4.70804e-10
+xdelay.xdelay.r0                    1.0467e-08
+xdelay.xdelay.r1                           3.3
+early_clk                           1.0467e-08
+xearly.xearly_observer.net1                3.3
+xearly.xearly_observer.net2        2.03757e-08
+xearly.xearly_observer.net7        2.46641e-09
+xearly.xearly_observer.net4                3.3
+xearly.xearly_observer.net8          0.0342719
+xearly.xearly_observer.net6        4.70226e-08
+xearly.xearly_observer.net5                3.3
+xearly.xearly_observer.net9             2.5439
+xearly.xearly_observer.net3         2.0569e-08
+early_q                                    3.3
+xearly.xearly_observer.net10               3.3
+xearly.xearly_observer.net11               3.3
+xearly.xearly_observer.net12               3.3
+isob_r                                     3.3
+iso_r                               1.0467e-08
+slow_r                                     3.3
+foot_r                             4.70804e-10
+r0_r                                1.0467e-08
+r1_r                                       3.3
+early_r                             1.0467e-08
+xer.net1                                   3.3
+xer.net2                           2.03757e-08
+xer.net7                           2.46641e-09
+xer.net4                                   3.3
+xer.net8                             0.0342719
+xer.net6                           4.70226e-08
+xer.net5                                   3.3
+xer.net9                                2.5439
+xer.net3                            2.0569e-08
+q_r                                        3.3
+xer.net10                                  3.3
+xer.net11                                  3.3
+xer.net12                                  3.3
+vbias#branch                          -2.7e-12
+vcap#branch                                  0
+vvdd#branch                       -1.56078e-10
+
+ Reference value :  2.68250e-09 Reference value :  5.71750e-09 Reference value :  8.86250e-09 Reference value :  1.20425e-08
+No. of Data Rows : 2826
+dly                 =  7.482015e-10 targ=  5.927297e-09 trig=  5.179096e-09
+dlr                 =  7.491615e-10 targ=  5.928257e-09 trig=  5.179096e-09
+RESULT d_ns_at_ua0 3.0 0.748202
+RESULT d_ideal_ns_at_ua0 3.0 0.749162
+Note: Simulation executed from .control section 

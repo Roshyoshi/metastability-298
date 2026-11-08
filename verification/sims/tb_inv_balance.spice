@@ -1,0 +1,59 @@
+** sch_path: ~/ece298a/round2/benches/tb_inv_balance.sch
+**.subckt tb_inv_balance
+vvdd VDD GND 3.3
+vin vin GND 0
+xinv vin vout_inv inv_1
+xnand vin VDD vout_nand nand2_1
+**** begin user architecture code
+
+.include /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice diode_typical
+.global VDD
+.param sw_stat_global=0 sw_stat_mismatch=0
+.control
+set filetype=ascii
+dc vin 0 3.3 0.001
+meas dc sw_inv find v(vin) when v(vout_inv)=v(vin)
+meas dc sw_nand find v(vin) when v(vout_nand)=v(vin)
+echo RESULT inv1_switch_V $&sw_inv
+echo RESULT nand2_switch_V $&sw_nand
+wrdata tb_inv_balance.dat v(vout_inv) v(vout_nand)
+.endc
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  ~/ece298a/round2/cells_tx/inv_1.sym # of pins=2
+** sym_path: ~/ece298a/round2/cells_tx/inv_1.sym
+** sch_path: ~/ece298a/round2/cells_tx/inv_1.sch
+.subckt inv_1 I ZN
+*.ipin I
+*.opin ZN
+XM_i_0 ZN I 0 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06 nrd=0
++ nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_1 ZN I VDD VDD pfet_05v0 L=0.5u W=1.22u nf=1 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+.ends
+
+
+* expanding   symbol:  ~/ece298a/round2/cells_tx/nand2_1.sym # of pins=3
+** sym_path: ~/ece298a/round2/cells_tx/nand2_1.sym
+** sch_path: ~/ece298a/round2/cells_tx/nand2_1.sch
+.subckt nand2_1 A1 A2 ZN
+*.ipin A1
+*.ipin A2
+*.opin ZN
+XM_i_1 net1 A2 0 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06 nrd=0
++ nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_0 ZN A1 net1 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_3 ZN A2 VDD VDD pfet_05v0 L=0.5u W=1.13u nf=1 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_2 ZN A1 VDD VDD pfet_05v0 L=0.5u W=1.13u nf=1 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+.ends
+
+.GLOBAL GND
+.GLOBAL VDD
+.end

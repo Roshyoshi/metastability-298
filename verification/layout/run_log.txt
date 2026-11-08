@@ -1,0 +1,20 @@
+== Sat Nov  7 11:57:53 AM EST 2026  PDK directory: /usr/local/share/pdk/gf180mcuD
+klayout  /usr/bin/klayout
+magic    /usr/local/bin/magic
+netgen   /usr/local/bin/netgen
+ngspice  /usr/bin/ngspice
+python3  /usr/bin/python3
+KLayout 0.30.5
+8.3.573
+Netgen 1.5.314 compiled on Tue Jan  6 11:16:30 AM EST 2026
+Warning: netgen command 'format' use fully-qualified name '::netgen::format'
+irsim
+klayout
+magic
+netgen
+ngspice
+openlane
+qflow
+xcircuit
+xschem
+xyce

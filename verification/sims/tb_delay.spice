@@ -1,0 +1,200 @@
+** sch_path: ~/ece298a/round2/benches/tb_delay.sch
+**.subckt tb_delay
+vvdd VDD GND 3.3
+vcap capture GND PWL(0 0 1n 0 1.05n 3.3 2n 3.3 2.05n 0 5n 0 5.05n 3.3)
+vbias ua_0 GND 3.0
+xcapd capture capture_local capture_drivers
+xdelay capture_local ua_0 early_clk delay
+xearly early_clk 0 early_q early_observer
+**** begin user architecture code
+
+.include /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice diode_typical
+.global VDD
+.param sw_stat_global=0 sw_stat_mismatch=0
+* ideal-capacitor reference copy of the delay line
+xri0 capture_local isob_r inv_1
+xri1 isob_r iso_r inv_2
+xmp_r slow_r iso_r VDD VDD pfet_05v0 w=1.22u l=0.5u ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+xmn_r slow_r iso_r foot_r 0 nfet_05v0 w=0.82u l=0.6u ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+xmc_r foot_r ua_0 0 0 nfet_05v0 w=0.36u l=0.6u ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+cct_r slow_r 0 2f
+xrr0 slow_r r0_r inv_1
+xrr1 r0_r r1_r inv_2
+xrr2 r1_r early_r inv_2
+xer 0 early_r q_r dffq_1
+.control
+set filetype=ascii
+foreach vb 1.1 1.3 1.5 1.8 2.4 3.0
+ alter vbias $vb
+ tran 5p 14n
+ meas tran dly trig v(capture_local) val=1.65 td=4n rise=1 targ v(early_clk) val=1.65 td=4n rise=1
+ meas tran dlr trig v(capture_local) val=1.65 td=4n rise=1 targ v(early_r) val=1.65 td=4n rise=1
+ let dns=dly*1e9
+ let dnr=dlr*1e9
+ echo RESULT d_ns_at_ua0 $vb $&dns
+ echo RESULT d_ideal_ns_at_ua0 $vb $&dnr
+end
+.endc
+
+**** end user architecture code
+**.ends
+
+* expanding   symbol:  ~/ece298a/round2/blocks/capture_drivers.sym # of pins=2
+** sym_path: ~/ece298a/round2/blocks/capture_drivers.sym
+** sch_path: ~/ece298a/round2/blocks/capture_drivers.sch
+.subckt capture_drivers capture capture_local
+*.ipin capture
+*.opin capture_local
+xcap0 capture capture_b inv_2
+xcap1 capture_b capture_local inv_2
+.ends
+
+
+* expanding   symbol:  ~/ece298a/round2/blocks/delay.sym # of pins=3
+** sym_path: ~/ece298a/round2/blocks/delay.sym
+** sch_path: ~/ece298a/round2/blocks/delay.sch
+.subckt delay capture_local ua_0 early_clk
+*.ipin capture_local
+*.ipin ua_0
+*.opin early_clk
+xiso0 capture_local capture_iso_b inv_1
+xiso1 capture_iso_b capture_iso inv_2
+xant_ctrl ua_0 antenna
+xdelay capture_iso ua_0 early_clk delay_line
+.ends
+
+
+* expanding   symbol:  ~/ece298a/round2/blocks/early_observer.sym # of pins=3
+** sym_path: ~/ece298a/round2/blocks/early_observer.sym
+** sch_path: ~/ece298a/round2/blocks/early_observer.sch
+.subckt early_observer early_clk selected_q early_q
+*.ipin early_clk
+*.ipin selected_q
+*.opin early_q
+xearly_observer selected_q early_clk early_q dffq_1
+.ends
+
+
+* expanding   symbol:  ~/ece298a/round2/cells_tx/inv_2.sym # of pins=2
+** sym_path: ~/ece298a/round2/cells_tx/inv_2.sym
+** sch_path: ~/ece298a/round2/cells_tx/inv_2.sch
+.subckt inv_2 I ZN
+*.ipin I
+*.opin ZN
+XM_i_0_0 ZN I 0 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06 nrd=0
++ nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_0_1 ZN I 0 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06 nrd=0
++ nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_1_0 ZN I VDD VDD pfet_05v0 L=0.5u W=1.22u nf=1 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_1_1 ZN I VDD VDD pfet_05v0 L=0.5u W=1.22u nf=1 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+.ends
+
+
+* expanding   symbol:  ~/ece298a/round2/cells_tx/inv_1.sym # of pins=2
+** sym_path: ~/ece298a/round2/cells_tx/inv_1.sym
+** sch_path: ~/ece298a/round2/cells_tx/inv_1.sch
+.subckt inv_1 I ZN
+*.ipin I
+*.opin ZN
+XM_i_0 ZN I 0 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06 nrd=0
++ nrs=0 sa=0 sb=0 sd=0 m=1
+XM_i_1 ZN I VDD VDD pfet_05v0 L=0.5u W=1.22u nf=1 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+.ends
+
+
+* expanding   symbol:  ~/ece298a/round2/cells_tx/antenna.sym # of pins=1
+** sym_path: ~/ece298a/round2/cells_tx/antenna.sym
+** sch_path: ~/ece298a/round2/cells_tx/antenna.sch
+.subckt antenna I
+*.ipin I
+D0 0 I diode_nd2ps_06v0 area=0.2052p pj=1.86u
+D1 I VDD diode_pd2nw_06v0 area=0.2052p pj=1.86u
+.ends
+
+
+* expanding   symbol:  ~/ece298a/round2/blocks/delay_line.sym # of pins=3
+** sym_path: ~/ece298a/round2/blocks/delay_line.sym
+** sch_path: ~/ece298a/round2/blocks/delay_line.sch
+.subckt delay_line launch control sample_clk
+*.ipin launch
+*.ipin control
+*.opin sample_clk
+XMP slow launch VDD VDD pfet_05v0 L=0.5u W=1.22u nf=1 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XMN slow launch foot 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XMC foot control 0 0 nfet_05v0 L=0.6u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XMCT 0 slow 0 0 nfet_06v0 L=1u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06 nrd=0
++ nrs=0 sa=0 sb=0 sd=0 m=1
+xXR0 slow r0 inv_1
+xXR1 r0 r1 inv_2
+xXR2 r1 sample_clk inv_2
+.ends
+
+
+* expanding   symbol:  ~/ece298a/round2/cells_tx/dffq_1.sym # of pins=3
+** sym_path: ~/ece298a/round2/cells_tx/dffq_1.sym
+** sch_path: ~/ece298a/round2/cells_tx/dffq_1.sch
+.subckt dffq_1 D CLK Q
+*.ipin D
+*.ipin CLK
+*.opin Q
+XM_tn3 net1 CLK 0 0 nfet_05v0 L=0.6u W=0.405u nf=1 ad=2.025e-13 as=2.025e-13 pd=1.81e-06 ps=1.81e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tn4 net2 net1 0 0 nfet_05v0 L=0.6u W=0.405u nf=1 ad=2.025e-13 as=2.025e-13 pd=1.81e-06
++ ps=1.81e-06 nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tn5 net7 net1 0 0 nfet_05v0 L=0.6u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tn8 net4 D net7 0 nfet_05v0 L=0.6u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tn6 net4 net2 net8 0 nfet_05v0 L=0.6u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tn7 net8 net6 0 0 nfet_05v0 L=0.6u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tn0 net6 net4 0 0 nfet_05v0 L=0.6u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tn9 net5 net2 net6 0 nfet_05v0 L=0.6u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tn11 net5 net1 net9 0 nfet_05v0 L=0.6u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tn12 net9 net3 0 0 nfet_05v0 L=0.6u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tn10 net3 net5 0 0 nfet_05v0 L=0.6u W=0.4u nf=1 ad=2e-13 as=2e-13 pd=1.8e-06 ps=1.8e-06 nrd=0
++ nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tn1 Q net3 0 0 nfet_05v0 L=0.6u W=0.82u nf=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06 nrd=0
++ nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp3 net1 CLK VDD VDD pfet_05v0 L=0.5u W=0.865u nf=1 ad=4.325e-13 as=4.325e-13 pd=2.73e-06
++ ps=2.73e-06 nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp4 net2 net1 VDD VDD pfet_05v0 L=0.5u W=0.865u nf=1 ad=4.325e-13 as=4.325e-13 pd=2.73e-06
++ ps=2.73e-06 nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp12 net10 net2 VDD VDD pfet_05v0 L=0.5u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06
++ ps=1.72e-06 nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp11 net4 D net10 VDD pfet_05v0 L=0.5u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp6 net4 net1 net11 VDD pfet_05v0 L=0.5u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06
++ ps=1.72e-06 nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp5 net11 net6 VDD VDD pfet_05v0 L=0.5u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06
++ ps=1.72e-06 nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp0 net6 net4 VDD VDD pfet_05v0 L=0.5u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp7 net5 net1 net6 VDD pfet_05v0 L=0.5u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06
++ ps=1.72e-06 nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp9 net5 net2 net12 VDD pfet_05v0 L=0.5u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06
++ ps=1.72e-06 nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp10 net12 net3 VDD VDD pfet_05v0 L=0.5u W=0.36u nf=1 ad=1.8e-13 as=1.8e-13 pd=1.72e-06
++ ps=1.72e-06 nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp8 net3 net5 VDD VDD pfet_05v0 L=0.5u W=0.8u nf=1 ad=4e-13 as=4e-13 pd=2.6e-06 ps=2.6e-06 nrd=0
++ nrs=0 sa=0 sb=0 sd=0 m=1
+XM_tp1 Q net3 VDD VDD pfet_05v0 L=0.5u W=1.22u nf=1 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
++ nrd=0 nrs=0 sa=0 sb=0 sd=0 m=1
+.ends
+
+.GLOBAL GND
+.GLOBAL VDD
+.end

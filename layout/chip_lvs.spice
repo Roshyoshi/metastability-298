@@ -1,0 +1,544 @@
+* LVS reference netlist of tt_um_metastability_characterizer (generated; PDK cell subcircuits with junction geometry)
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__and2_1 A1 A2 Z VDD VNW VPW VSS
+X_i_2 net_0 A1 Z_neg VPW nfet_05v0 W=3.65e-07 L=6e-07 ad=1.825e-13 as=1.825e-13 pd=1.73e-06 ps=1.73e-06
+X_i_3 VSS A2 net_0 VPW nfet_05v0 W=3.65e-07 L=6e-07 ad=1.825e-13 as=1.825e-13 pd=1.73e-06 ps=1.73e-06
+X_i_0 Z Z_neg VSS VPW nfet_05v0 W=8.15e-07 L=6e-07 ad=4.075e-13 as=4.075e-13 pd=2.63e-06 ps=2.63e-06
+X_i_4 Z_neg A1 VDD VNW pfet_05v0 W=6e-07 L=5e-07 ad=3e-13 as=3e-13 pd=2.2e-06 ps=2.2e-06
+X_i_5 VDD A2 Z_neg VNW pfet_05v0 W=6e-07 L=5e-07 ad=3e-13 as=3e-13 pd=2.2e-06 ps=2.2e-06
+X_i_1 Z Z_neg VDD VNW pfet_05v0 W=1.215e-06 L=5e-07 ad=6.075e-13 as=6.075e-13 pd=3.43e-06 ps=3.43e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__and3_1 A1 A2 A3 Z VDD VNW VPW VSS
+X_i_2 net_0 A1 Z_neg VPW nfet_05v0 W=3.8e-07 L=6e-07 ad=1.9e-13 as=1.9e-13 pd=1.76e-06 ps=1.76e-06
+X_i_3 net_1 A2 net_0 VPW nfet_05v0 W=3.8e-07 L=6e-07 ad=1.9e-13 as=1.9e-13 pd=1.76e-06 ps=1.76e-06
+X_i_4 VSS A3 net_1 VPW nfet_05v0 W=3.8e-07 L=6e-07 ad=1.9e-13 as=1.9e-13 pd=1.76e-06 ps=1.76e-06
+X_i_0 Z Z_neg VSS VPW nfet_05v0 W=7.75e-07 L=6e-07 ad=3.875e-13 as=3.875e-13 pd=2.55e-06 ps=2.55e-06
+X_i_5 VDD A1 Z_neg VNW pfet_05v0 W=5.35e-07 L=5e-07 ad=2.675e-13 as=2.675e-13 pd=2.07e-06 ps=2.07e-06
+X_i_6 Z_neg A2 VDD VNW pfet_05v0 W=5.35e-07 L=5e-07 ad=2.675e-13 as=2.675e-13 pd=2.07e-06 ps=2.07e-06
+X_i_7 VDD A3 Z_neg VNW pfet_05v0 W=5.35e-07 L=5e-07 ad=2.675e-13 as=2.675e-13 pd=2.07e-06 ps=2.07e-06
+X_i_1 Z Z_neg VDD VNW pfet_05v0 W=1.215e-06 L=5e-07 ad=6.075e-13 as=6.075e-13 pd=3.43e-06 ps=3.43e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__and4_1 A1 A2 A3 A4 Z VDD VNW VPW VSS
+X_i_2 net_0 A1 Z_neg VPW nfet_05v0 W=4.2e-07 L=6e-07 ad=2.1e-13 as=2.1e-13 pd=1.84e-06 ps=1.84e-06
+X_i_3 net_1 A2 net_0 VPW nfet_05v0 W=4.2e-07 L=6e-07 ad=2.1e-13 as=2.1e-13 pd=1.84e-06 ps=1.84e-06
+X_i_4 net_2 A3 net_1 VPW nfet_05v0 W=4.2e-07 L=6e-07 ad=2.1e-13 as=2.1e-13 pd=1.84e-06 ps=1.84e-06
+X_i_5 VSS A4 net_2 VPW nfet_05v0 W=4.2e-07 L=6e-07 ad=2.1e-13 as=2.1e-13 pd=1.84e-06 ps=1.84e-06
+X_i_0 Z Z_neg VSS VPW nfet_05v0 W=8.15e-07 L=6e-07 ad=4.075e-13 as=4.075e-13 pd=2.63e-06 ps=2.63e-06
+X_i_6 Z_neg A1 VDD VNW pfet_05v0 W=6e-07 L=5e-07 ad=3e-13 as=3e-13 pd=2.2e-06 ps=2.2e-06
+X_i_7 VDD A2 Z_neg VNW pfet_05v0 W=6e-07 L=5e-07 ad=3e-13 as=3e-13 pd=2.2e-06 ps=2.2e-06
+X_i_8 Z_neg A3 VDD VNW pfet_05v0 W=6e-07 L=5e-07 ad=3e-13 as=3e-13 pd=2.2e-06 ps=2.2e-06
+X_i_9 VDD A4 Z_neg VNW pfet_05v0 W=6e-07 L=5e-07 ad=3e-13 as=3e-13 pd=2.2e-06 ps=2.2e-06
+X_i_1 Z Z_neg VDD VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__antenna I VDD VNW VPW VSS
+D0 VPW I diode_nd2ps_06v0 AREA=0.2052p PJ=1.86u M=1
+D1 I VNW diode_pd2nw_06v0 AREA=0.2052p PJ=1.86u M=1
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__aoi21_1 A1 A2 B ZN VDD VNW VPW VSS
+X_i_1 net_0 A2 VSS VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_0 ZN A1 net_0 VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_2 VSS B ZN VPW nfet_05v0 W=5.1e-07 L=6e-07 ad=2.55e-13 as=2.55e-13 pd=2.02e-06 ps=2.02e-06
+X_i_4 ZN A2 net_1 VNW pfet_05v0 W=1.215e-06 L=5e-07 ad=6.075e-13 as=6.075e-13 pd=3.43e-06 ps=3.43e-06
+X_i_3 net_1 A1 ZN VNW pfet_05v0 W=1.215e-06 L=5e-07 ad=6.075e-13 as=6.075e-13 pd=3.43e-06 ps=3.43e-06
+X_i_5 VDD B net_1 VNW pfet_05v0 W=1.215e-06 L=5e-07 ad=6.075e-13 as=6.075e-13 pd=3.43e-06 ps=3.43e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__aoi22_1 A1 A2 B1 B2 ZN VDD VNW VPW VSS
+X_i_3 net_1 B2 VSS VPW nfet_05v0 W=8.15e-07 L=6e-07 ad=4.075e-13 as=4.075e-13 pd=2.63e-06 ps=2.63e-06
+X_i_2 ZN B1 net_1 VPW nfet_05v0 W=8.15e-07 L=6e-07 ad=4.075e-13 as=4.075e-13 pd=2.63e-06 ps=2.63e-06
+X_i_0 net_0 A1 ZN VPW nfet_05v0 W=8.15e-07 L=6e-07 ad=4.075e-13 as=4.075e-13 pd=2.63e-06 ps=2.63e-06
+X_i_1 VSS A2 net_0 VPW nfet_05v0 W=8.15e-07 L=6e-07 ad=4.075e-13 as=4.075e-13 pd=2.63e-06 ps=2.63e-06
+X_i_7 VDD B2 net_2 VNW pfet_05v0 W=1.215e-06 L=5e-07 ad=6.075e-13 as=6.075e-13 pd=3.43e-06 ps=3.43e-06
+X_i_6 net_2 B1 VDD VNW pfet_05v0 W=1.215e-06 L=5e-07 ad=6.075e-13 as=6.075e-13 pd=3.43e-06 ps=3.43e-06
+X_i_4 ZN A1 net_2 VNW pfet_05v0 W=1.215e-06 L=5e-07 ad=6.075e-13 as=6.075e-13 pd=3.43e-06 ps=3.43e-06
+X_i_5 net_2 A2 ZN VNW pfet_05v0 W=1.215e-06 L=5e-07 ad=6.075e-13 as=6.075e-13 pd=3.43e-06 ps=3.43e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__buf_1 I Z VDD VNW VPW VSS
+X_i_2 VSS I Z_neg VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_i_0 Z Z_neg VSS VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_3 VDD I Z_neg VNW pfet_05v0 W=5.65e-07 L=5e-07 ad=2.825e-13 as=2.825e-13 pd=2.13e-06 ps=2.13e-06
+X_i_1 Z Z_neg VDD VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__dffq_1 D CLK Q VDD VNW VPW VSS
+X_tn3 VSS CLK ncki VPW nfet_05v0 W=4.05e-07 L=6e-07 ad=2.025e-13 as=2.025e-13 pd=1.81e-06 ps=1.81e-06
+X_tn4 cki ncki VSS VPW nfet_05v0 W=4.05e-07 L=6e-07 ad=2.025e-13 as=2.025e-13 pd=1.81e-06 ps=1.81e-06
+X_tn5 net5 ncki VSS VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tn8 net4 D net5 VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tn6 net6 cki net4 VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tn7 VSS net0 net6 VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tn0 net0 net4 VSS VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tn9 net2 cki net0 VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tn11 net1 ncki net2 VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tn12 VSS net3 net1 VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tn10 net3 net2 VSS VPW nfet_05v0 W=4e-07 L=6e-07 ad=2e-13 as=2e-13 pd=1.8e-06 ps=1.8e-06
+X_tn1 Q net3 VSS VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_tp3 VDD CLK ncki VNW pfet_05v0 W=8.65e-07 L=5e-07 ad=4.325e-13 as=4.325e-13 pd=2.73e-06 ps=2.73e-06
+X_tp4 cki ncki VDD VNW pfet_05v0 W=8.65e-07 L=5e-07 ad=4.325e-13 as=4.325e-13 pd=2.73e-06 ps=2.73e-06
+X_tp12 net7 cki VDD VNW pfet_05v0 W=3.6e-07 L=5e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tp11 net4 D net7 VNW pfet_05v0 W=3.6e-07 L=5e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tp6 net8 ncki net4 VNW pfet_05v0 W=3.6e-07 L=5e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tp5 VDD net0 net8 VNW pfet_05v0 W=3.6e-07 L=5e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tp0 net0 net4 VDD VNW pfet_05v0 W=3.6e-07 L=5e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tp7 net2 ncki net0 VNW pfet_05v0 W=3.6e-07 L=5e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tp9 net1x cki net2 VNW pfet_05v0 W=3.6e-07 L=5e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tp10 VDD net3 net1x VNW pfet_05v0 W=3.6e-07 L=5e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tp8 net3 net2 VDD VNW pfet_05v0 W=8e-07 L=5e-07 ad=4e-13 as=4e-13 pd=2.6e-06 ps=2.6e-06
+X_tp1 Q net3 VDD VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__dffrnq_1 D RN CLK Q VDD VNW VPW VSS
+X_tn10 ncki CLK VSS VPW nfet_05v0 W=4.05e-07 L=6e-07 ad=2.025e-13 as=2.025e-13 pd=1.81e-06 ps=1.81e-06
+X_tn13 cki ncki VSS VPW nfet_05v0 W=4.05e-07 L=6e-07 ad=2.025e-13 as=2.025e-13 pd=1.81e-06 ps=1.81e-06
+X_tn11 net10 D VSS VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tn15 net10 ncki net1 VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tn14 net1 cki net15 VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tn8 net12 net2 net15 VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tn9 VSS RN net12 VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tn18 VSS net1 net2 VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tn0 net8 cki net2 VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tn1 net11 ncki net8 VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tn12 net11 net4 VSS VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tn5 net0 RN VSS VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_tn4 net4 net8 net0 VPW nfet_05v0 W=4e-07 L=6e-07 ad=2e-13 as=2e-13 pd=1.8e-06 ps=1.8e-06
+X_tn3 Q net4 VSS VPW nfet_05v0 W=8.15e-07 L=6e-07 ad=4.075e-13 as=4.075e-13 pd=2.63e-06 ps=2.63e-06
+X_tp8 ncki CLK VDD VNW pfet_05v0 W=8.65e-07 L=5e-07 ad=4.325e-13 as=4.325e-13 pd=2.73e-06 ps=2.73e-06
+X_tp11 cki ncki VDD VNW pfet_05v0 W=8.65e-07 L=5e-07 ad=4.325e-13 as=4.325e-13 pd=2.73e-06 ps=2.73e-06
+X_tp9 VDD D net10 VNW pfet_05v0 W=7.8e-07 L=5e-07 ad=3.9e-13 as=3.9e-13 pd=2.56e-06 ps=2.56e-06
+X_tp15 net1 cki net10 VNW pfet_05v0 W=7.8e-07 L=5e-07 ad=3.9e-13 as=3.9e-13 pd=2.56e-06 ps=2.56e-06
+X_tp7 net9 ncki net1 VNW pfet_05v0 W=7.8e-07 L=5e-07 ad=3.9e-13 as=3.9e-13 pd=2.56e-06 ps=2.56e-06
+X_tp6 VDD net2 net9 VNW pfet_05v0 W=7.8e-07 L=5e-07 ad=3.9e-13 as=3.9e-13 pd=2.56e-06 ps=2.56e-06
+X_tp12 net9 RN VDD VNW pfet_05v0 W=7.8e-07 L=5e-07 ad=3.9e-13 as=3.9e-13 pd=2.56e-06 ps=2.56e-06
+X_tp18 VDD net1 net2 VNW pfet_05v0 W=5.05e-07 L=5e-07 ad=2.525e-13 as=2.525e-13 pd=2.01e-06 ps=2.01e-06
+X_tp2 net2 ncki net8 VNW pfet_05v0 W=5.05e-07 L=5e-07 ad=2.525e-13 as=2.525e-13 pd=2.01e-06 ps=2.01e-06
+X_tp3 net8 cki net11 VNW pfet_05v0 W=5.05e-07 L=5e-07 ad=2.525e-13 as=2.525e-13 pd=2.01e-06 ps=2.01e-06
+X_tp10 net11 net4 VDD VNW pfet_05v0 W=5.05e-07 L=5e-07 ad=2.525e-13 as=2.525e-13 pd=2.01e-06 ps=2.01e-06
+X_tp5 net4 RN VDD VNW pfet_05v0 W=1e-06 L=5e-07 ad=5e-13 as=5e-13 pd=3e-06 ps=3e-06
+X_tp4 VDD net8 net4 VNW pfet_05v0 W=1e-06 L=5e-07 ad=5e-13 as=5e-13 pd=3e-06 ps=3e-06
+X_tp1 Q net4 VDD VNW pfet_05v0 W=1.215e-06 L=5e-07 ad=6.075e-13 as=6.075e-13 pd=3.43e-06 ps=3.43e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__inv_1 I ZN VDD VNW VPW VSS
+X_i_0 ZN I VSS VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_1 ZN I VDD VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__inv_2 I ZN VDD VNW VPW VSS
+X_i_0_0 ZN I VSS VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_0_1 VSS I ZN VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_1_0 ZN I VDD VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+X_i_1_1 VDD I ZN VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__mux2_1 I0 I1 S Z VDD VNW VPW VSS
+X_MN2 VSS int04 Z VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_MN4 net_1 I1 VSS VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_MN8 int04 S net_1 VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_MN7 net_3 sel1_n int04 VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_MN3 VSS I0 net_3 VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_MN1 sel1_n S VSS VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_MP5 VDD int04 Z VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+X_MP4 net_0 I1 VDD VNW pfet_05v0 W=6.15e-07 L=5e-07 ad=3.075e-13 as=3.075e-13 pd=2.23e-06 ps=2.23e-06
+X_MP8 int04 sel1_n net_0 VNW pfet_05v0 W=6.15e-07 L=5e-07 ad=3.075e-13 as=3.075e-13 pd=2.23e-06 ps=2.23e-06
+X_MP7 net_2 S int04 VNW pfet_05v0 W=6.15e-07 L=5e-07 ad=3.075e-13 as=3.075e-13 pd=2.23e-06 ps=2.23e-06
+X_MP3 VDD I0 net_2 VNW pfet_05v0 W=6.15e-07 L=5e-07 ad=3.075e-13 as=3.075e-13 pd=2.23e-06 ps=2.23e-06
+X_MP1 sel1_n S VDD VNW pfet_05v0 W=6.15e-07 L=5e-07 ad=3.075e-13 as=3.075e-13 pd=2.23e-06 ps=2.23e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__mux4_1 I0 I1 I2 I3 S0 S1 Z VDD VNW VPW VSS
+X_MN5 int01 I2 VSS VPW nfet_05v0 W=3.65e-07 L=6e-07 ad=1.825e-13 as=1.825e-13 pd=1.73e-06 ps=1.73e-06
+X_MN9 int02 sel1_n int01 VPW nfet_05v0 W=3.65e-07 L=6e-07 ad=1.825e-13 as=1.825e-13 pd=1.73e-06 ps=1.73e-06
+X_MN10 int07 S0 int02 VPW nfet_05v0 W=3.65e-07 L=6e-07 ad=1.825e-13 as=1.825e-13 pd=1.73e-06 ps=1.73e-06
+X_MN6 VSS I3 int07 VPW nfet_05v0 W=3.65e-07 L=6e-07 ad=1.825e-13 as=1.825e-13 pd=1.73e-06 ps=1.73e-06
+X_instance_22 Z int03 VSS VPW nfet_05v0 W=3.8e-07 L=6e-07 ad=1.9e-13 as=1.9e-13 pd=1.76e-06 ps=1.76e-06
+X_MN12 int03 S1 int02 VPW nfet_05v0 W=3.65e-07 L=6e-07 ad=1.825e-13 as=1.825e-13 pd=1.73e-06 ps=1.73e-06
+X_MN11 int04 sel2_n int03 VPW nfet_05v0 W=3.65e-07 L=6e-07 ad=1.825e-13 as=1.825e-13 pd=1.73e-06 ps=1.73e-06
+X_MN2 VSS S1 sel2_n VPW nfet_05v0 W=3.65e-07 L=6e-07 ad=1.825e-13 as=1.825e-13 pd=1.73e-06 ps=1.73e-06
+X_MN4 int06 I1 VSS VPW nfet_05v0 W=3.65e-07 L=6e-07 ad=1.825e-13 as=1.825e-13 pd=1.73e-06 ps=1.73e-06
+X_MN8 int04 S0 int06 VPW nfet_05v0 W=3.65e-07 L=6e-07 ad=1.825e-13 as=1.825e-13 pd=1.73e-06 ps=1.73e-06
+X_MN7 int05 sel1_n int04 VPW nfet_05v0 W=3.65e-07 L=6e-07 ad=1.825e-13 as=1.825e-13 pd=1.73e-06 ps=1.73e-06
+X_MN3 VSS I0 int05 VPW nfet_05v0 W=3.65e-07 L=6e-07 ad=1.825e-13 as=1.825e-13 pd=1.73e-06 ps=1.73e-06
+X_MN1 sel1_n S0 VSS VPW nfet_05v0 W=3.65e-07 L=6e-07 ad=1.825e-13 as=1.825e-13 pd=1.73e-06 ps=1.73e-06
+X_MP2 int01 I2 VDD VNW pfet_05v0 W=5.65e-07 L=5e-07 ad=2.825e-13 as=2.825e-13 pd=2.13e-06 ps=2.13e-06
+X_MP9 int02 S0 int01 VNW pfet_05v0 W=5.65e-07 L=5e-07 ad=2.825e-13 as=2.825e-13 pd=2.13e-06 ps=2.13e-06
+X_MP10 int07 sel1_n int02 VNW pfet_05v0 W=5.65e-07 L=5e-07 ad=2.825e-13 as=2.825e-13 pd=2.13e-06 ps=2.13e-06
+X_MP6 VDD I3 int07 VNW pfet_05v0 W=5.65e-07 L=5e-07 ad=2.825e-13 as=2.825e-13 pd=2.13e-06 ps=2.13e-06
+X_instance_1 Z int03 VDD VNW pfet_05v0 W=7.8e-07 L=5e-07 ad=3.9e-13 as=3.9e-13 pd=2.56e-06 ps=2.56e-06
+X_MP12 int03 sel2_n int02 VNW pfet_05v0 W=5.65e-07 L=5e-07 ad=2.825e-13 as=2.825e-13 pd=2.13e-06 ps=2.13e-06
+X_MP11 int04 S1 int03 VNW pfet_05v0 W=5.65e-07 L=5e-07 ad=2.825e-13 as=2.825e-13 pd=2.13e-06 ps=2.13e-06
+X_MP5 VDD S1 sel2_n VNW pfet_05v0 W=5.65e-07 L=5e-07 ad=2.825e-13 as=2.825e-13 pd=2.13e-06 ps=2.13e-06
+X_MP4 int06 I1 VDD VNW pfet_05v0 W=5.65e-07 L=5e-07 ad=2.825e-13 as=2.825e-13 pd=2.13e-06 ps=2.13e-06
+X_MP8 int04 sel1_n int06 VNW pfet_05v0 W=5.65e-07 L=5e-07 ad=2.825e-13 as=2.825e-13 pd=2.13e-06 ps=2.13e-06
+X_MP7 int05 S0 int04 VNW pfet_05v0 W=5.65e-07 L=5e-07 ad=2.825e-13 as=2.825e-13 pd=2.13e-06 ps=2.13e-06
+X_MP3 VDD I0 int05 VNW pfet_05v0 W=5.65e-07 L=5e-07 ad=2.825e-13 as=2.825e-13 pd=2.13e-06 ps=2.13e-06
+X_MP1 sel1_n S0 VDD VNW pfet_05v0 W=5.65e-07 L=5e-07 ad=2.825e-13 as=2.825e-13 pd=2.13e-06 ps=2.13e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__nand2_1 A1 A2 ZN VDD VNW VPW VSS
+X_i_1 net_0 A2 VSS VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_0 ZN A1 net_0 VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_3 ZN A2 VDD VNW pfet_05v0 W=1.13e-06 L=5e-07 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
+X_i_2 VDD A1 ZN VNW pfet_05v0 W=1.13e-06 L=5e-07 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__nand2_2 A1 A2 ZN VDD VNW VPW VSS
+X_i_1_1 net_0_0 A2 VSS VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_0_1 ZN A1 net_0_0 VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_0_0 net_0_1 A1 ZN VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_1_0 VSS A2 net_0_1 VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_3_1 ZN A2 VDD VNW pfet_05v0 W=1.13e-06 L=5e-07 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
+X_i_2_1 VDD A1 ZN VNW pfet_05v0 W=1.13e-06 L=5e-07 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
+X_i_2_0 ZN A1 VDD VNW pfet_05v0 W=1.13e-06 L=5e-07 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
+X_i_3_0 VDD A2 ZN VNW pfet_05v0 W=1.13e-06 L=5e-07 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__nand2_4 A1 A2 ZN VDD VNW VPW VSS
+X_i_1_3 net_0_0 A2 VSS VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_0_3 ZN A1 net_0_0 VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_0_2 net_0_1 A1 ZN VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_1_2 VSS A2 net_0_1 VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_1_1 net_0_2 A2 VSS VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_0_1 ZN A1 net_0_2 VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_0_0 net_0_3 A1 ZN VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_1_0 VSS A2 net_0_3 VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_3_3 ZN A2 VDD VNW pfet_05v0 W=1.13e-06 L=5e-07 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
+X_i_2_3 VDD A1 ZN VNW pfet_05v0 W=1.13e-06 L=5e-07 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
+X_i_2_2 ZN A1 VDD VNW pfet_05v0 W=1.13e-06 L=5e-07 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
+X_i_3_2 VDD A2 ZN VNW pfet_05v0 W=1.13e-06 L=5e-07 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
+X_i_3_1 ZN A2 VDD VNW pfet_05v0 W=1.13e-06 L=5e-07 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
+X_i_2_1 VDD A1 ZN VNW pfet_05v0 W=1.13e-06 L=5e-07 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
+X_i_2_0 ZN A1 VDD VNW pfet_05v0 W=1.13e-06 L=5e-07 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
+X_i_3_0 VDD A2 ZN VNW pfet_05v0 W=1.13e-06 L=5e-07 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__nand3_1 A1 A2 A3 ZN VDD VNW VPW VSS
+X_i_2 net_1 A3 VSS VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_1 net_0 A2 net_1 VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_0 ZN A1 net_0 VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_5 ZN A3 VDD VNW pfet_05v0 W=9.85e-07 L=5e-07 ad=4.925e-13 as=4.925e-13 pd=2.97e-06 ps=2.97e-06
+X_i_4 VDD A2 ZN VNW pfet_05v0 W=9.85e-07 L=5e-07 ad=4.925e-13 as=4.925e-13 pd=2.97e-06 ps=2.97e-06
+X_i_3 ZN A1 VDD VNW pfet_05v0 W=9.85e-07 L=5e-07 ad=4.925e-13 as=4.925e-13 pd=2.97e-06 ps=2.97e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__nand4_1 A1 A2 A3 A4 ZN VDD VNW VPW VSS
+X_i_3 net_2 A4 VSS VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_2 net_1 A3 net_2 VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_1 net_0 A2 net_1 VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_0 ZN A1 net_0 VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_7 ZN A4 VDD VNW pfet_05v0 W=8.45e-07 L=5e-07 ad=4.225e-13 as=4.225e-13 pd=2.69e-06 ps=2.69e-06
+X_i_6 VDD A3 ZN VNW pfet_05v0 W=8.45e-07 L=5e-07 ad=4.225e-13 as=4.225e-13 pd=2.69e-06 ps=2.69e-06
+X_i_5 ZN A2 VDD VNW pfet_05v0 W=8.45e-07 L=5e-07 ad=4.225e-13 as=4.225e-13 pd=2.69e-06 ps=2.69e-06
+X_i_4 VDD A1 ZN VNW pfet_05v0 W=8.45e-07 L=5e-07 ad=4.225e-13 as=4.225e-13 pd=2.69e-06 ps=2.69e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__nor2_1 A1 A2 ZN VDD VNW VPW VSS
+X_i_1 ZN A2 VSS VPW nfet_05v0 W=5.65e-07 L=6e-07 ad=2.825e-13 as=2.825e-13 pd=2.13e-06 ps=2.13e-06
+X_i_0 VSS A1 ZN VPW nfet_05v0 W=5.65e-07 L=6e-07 ad=2.825e-13 as=2.825e-13 pd=2.13e-06 ps=2.13e-06
+X_i_3 net_0 A2 VDD VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+X_i_2 ZN A1 net_0 VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__nor3_1 A1 A2 A3 ZN VDD VNW VPW VSS
+X_i_2 ZN A3 VSS VPW nfet_05v0 W=4.65e-07 L=6e-07 ad=2.325e-13 as=2.325e-13 pd=1.93e-06 ps=1.93e-06
+X_i_1 VSS A2 ZN VPW nfet_05v0 W=4.65e-07 L=6e-07 ad=2.325e-13 as=2.325e-13 pd=1.93e-06 ps=1.93e-06
+X_i_0 ZN A1 VSS VPW nfet_05v0 W=4.65e-07 L=6e-07 ad=2.325e-13 as=2.325e-13 pd=1.93e-06 ps=1.93e-06
+X_i_5 net_1 A3 VDD VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+X_i_4 net_0 A2 net_1 VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+X_i_3 ZN A1 net_0 VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__nor4_1 A1 A2 A3 A4 ZN VDD VNW VPW VSS
+X_i_3 ZN A4 VSS VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_i_2 VSS A3 ZN VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_i_1 ZN A2 VSS VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_i_0 VSS A1 ZN VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_i_7 net_2 A4 VDD VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+X_i_6 net_1 A3 net_2 VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+X_i_5 net_0 A2 net_1 VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+X_i_4 ZN A1 net_0 VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__oai21_1 A1 A2 B ZN VDD VNW VPW VSS
+X_i_1 ZN A2 net_0 VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_0 net_0 A1 ZN VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_2 VSS B net_0 VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_4 net_1 A2 VDD VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+X_i_3 ZN A1 net_1 VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+X_i_5 VDD B ZN VNW pfet_05v0 W=1.13e-06 L=5e-07 ad=5.65e-13 as=5.65e-13 pd=3.26e-06 ps=3.26e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__oai22_1 A1 A2 B1 B2 ZN VDD VNW VPW VSS
+X_i_3 VSS B2 net_0 VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_2 net_0 B1 VSS VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_0 ZN A1 net_0 VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_1 net_0 A2 ZN VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_7 net_2 B2 VDD VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+X_i_6 ZN B1 net_2 VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+X_i_4 net_1 A1 ZN VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+X_i_5 VDD A2 net_1 VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__or2_1 A1 A2 Z VDD VNW VPW VSS
+X_i_2 Z_neg A1 VSS VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_i_3 VSS A2 Z_neg VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_i_0 Z Z_neg VSS VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_4 net_0 A1 Z_neg VNW pfet_05v0 W=5.65e-07 L=5e-07 ad=2.825e-13 as=2.825e-13 pd=2.13e-06 ps=2.13e-06
+X_i_5 VDD A2 net_0 VNW pfet_05v0 W=5.65e-07 L=5e-07 ad=2.825e-13 as=2.825e-13 pd=2.13e-06 ps=2.13e-06
+X_i_1 Z Z_neg VDD VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__tieh Z VDD VNW VPW VSS
+X_n_tran_1 VSS A A VPW nfet_05v0 W=0.82U L=0.600000U ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_p_tran_2 VDD A Z VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__tiel ZN VDD VNW VPW VSS
+X_n_tran_1 VSS A ZN VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_transistor_0 VDD A A VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__xnor2_1 A1 A2 ZN VDD VNW VPW VSS
+X_i_6 net_2 A2 I VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_i_7 VSS A1 net_2 VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_i_2 net_0 I VSS VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_0 ZN A1 net_0 VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_1 net_0 A2 ZN VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_8 I A2 VDD VNW pfet_05v0 W=5.6e-07 L=5e-07 ad=2.8e-13 as=2.8e-13 pd=2.12e-06 ps=2.12e-06
+X_i_9 VDD A1 I VNW pfet_05v0 W=5.6e-07 L=5e-07 ad=2.8e-13 as=2.8e-13 pd=2.12e-06 ps=2.12e-06
+X_i_5 ZN I VDD VNW pfet_05v0 W=1.095e-06 L=5e-07 ad=5.475e-13 as=5.475e-13 pd=3.19e-06 ps=3.19e-06
+X_i_3 net_1 A1 ZN VNW pfet_05v0 W=1.095e-06 L=5e-07 ad=5.475e-13 as=5.475e-13 pd=3.19e-06 ps=3.19e-06
+X_i_4 VDD A2 net_1 VNW pfet_05v0 W=1.095e-06 L=5e-07 ad=5.475e-13 as=5.475e-13 pd=3.19e-06 ps=3.19e-06
+.ENDS
+.SUBCKT gf180mcu_fd_sc_mcu7t5v0__xor2_1 A1 A2 Z VDD VNW VPW VSS
+X_i_6 I A2 VSS VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_i_7 VSS A1 I VPW nfet_05v0 W=3.6e-07 L=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+X_i_2 Z I VSS VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_0 net_0 A1 Z VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_1 VSS A2 net_0 VPW nfet_05v0 W=8.2e-07 L=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+X_i_8 net_2 A2 I VNW pfet_05v0 W=5.6e-07 L=5e-07 ad=2.8e-13 as=2.8e-13 pd=2.12e-06 ps=2.12e-06
+X_i_9 VDD A1 net_2 VNW pfet_05v0 W=5.6e-07 L=5e-07 ad=2.8e-13 as=2.8e-13 pd=2.12e-06 ps=2.12e-06
+X_i_5 net_1 I VDD VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+X_i_3 Z A1 net_1 VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+X_i_4 net_1 A2 Z VNW pfet_05v0 W=1.22e-06 L=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+.ENDS
+
+
+.SUBCKT meta_dut_baseline d clk q VDPWR VGND
+Xu_cki clk clkn VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_1
+Xu_mg1 d clkn g1 VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+Xu_mg2 g1 clkn g2 VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+Xu_mfw mqb g1 mq VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_2
+Xu_mkp mq g2 mqb VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+Xu_sg1 mq clk s1 VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+Xu_sg2 s1 clk s2 VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+Xu_sfw sqb s1 q VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+Xu_skp q s2 sqb VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+.ENDS
+
+.SUBCKT meta_dut_keeper d clk q VDPWR VGND
+Xu_cki clk clkn VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_1
+Xu_mg1 d clkn g1 VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+Xu_mg2 g1 clkn g2 VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+Xu_mfw mqb g1 mq VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_2
+Xu_mkp mq g2 mqb VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_2
+Xu_sg1 mq clk s1 VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+Xu_sg2 s1 clk s2 VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+Xu_sfw sqb s1 q VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+Xu_skp q s2 sqb VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+.ENDS
+
+.SUBCKT meta_dut_forward d clk q VDPWR VGND
+Xu_cki clk clkn VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_1
+Xu_mg1 d clkn g1 VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+Xu_mg2 g1 clkn g2 VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+Xu_mfw mqb g1 mq VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_4
+Xu_mkp mq g2 mqb VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+Xu_sg1 mq clk s1 VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+Xu_sg2 s1 clk s2 VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+Xu_sfw sqb s1 q VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+Xu_skp q s2 sqb VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+.ENDS
+
+.SUBCKT meta_delay_analog launch control sample_clk VDPWR VGND
+XMMP slow launch VDPWR VDPWR pfet_05v0 w=1.22e-06 l=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
+XMMN slow launch foot VGND nfet_05v0 w=8.2e-07 l=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+XMMC foot control VGND VGND nfet_05v0 w=3.6e-07 l=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
+XMMCT VGND slow VGND VGND nfet_06v0 w=8.2e-07 l=1e-06 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+XXR0 slow r0 VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_1
+XXR1 r0 r1 VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_2
+XXR2 r1 sample_clk VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_2
+.ENDS
+
+.SUBCKT meta_controller clk rst_n enable_i start_i config_i[0] config_i[1] dut_q_i early_sample_i capture_o config_o[0] config_o[1] events_o[0] events_o[1] events_o[2] events_o[3] events_o[4] events_o[5] events_o[6] events_o[7] trials_o[0] trials_o[1] trials_o[2] trials_o[3] trials_o[4] trials_o[5] trials_o[6] trials_o[7] busy_o done_o fault_o VDPWR VGND
+X_125_ capture_o _094_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_1
+X_126_ events_o[2] _095_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_1
+X_127_ trials_o[7] _096_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_1
+X_128_ state[0] _097_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_1
+X_129_ state[1] _098_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_1
+X_130_ state[2] _099_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_1
+X_131_ start_previous _100_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_1
+X_132_ reset_release[1] enable_i _101_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__and2_1
+X_133_ reset_release[1] enable_i _102_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+X_134_ _097_ state[1] _103_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor2_1
+X_135_ state[2] _103_ _104_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+X_136_ _101_ _104_ _105_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+X_137_ late1 late2 _101_ _106_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__oai21_1
+X_138_ late1 late2 _106_ _107_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+X_139_ reference_fault _107_ _105_ _010_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__mux2_1
+X_140_ state[0] state[1] _108_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor2_1
+X_141_ state[0] state[1] state[2] _109_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor3_1
+X_142_ _101_ _109_ _110_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+X_143_ start_sync[1] _100_ _110_ _111_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+X_144_ _097_ state[1] _099_ _112_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand3_1
+X_145_ state[0] _098_ _099_ _113_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor3_1
+X_146_ _102_ _113_ _114_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor2_1
+X_147_ _102_ _109_ _113_ _115_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor3_1
+X_148_ _112_ _115_ _111_ _116_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+X_149_ _102_ _112_ _116_ _094_ _011_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__oai22_1
+X_150_ state[0] _098_ _099_ _102_ _117_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor4_1
+X_151_ _101_ _113_ _118_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+X_152_ _111_ _115_ _119_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__or2_1
+X_153_ reference_fault _117_ _120_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__and2_1
+X_154_ reference_fault _117_ _121_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+X_155_ _111_ _115_ _120_ _122_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor3_1
+X_156_ _119_ _120_ _123_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__or2_1
+X_157_ reference_fault _118_ _124_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor2_1
+X_158_ trials_o[2] trials_o[3] trials_o[4] trials_o[5] _029_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand4_1
+X_159_ trials_o[1] trials_o[6] _030_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+X_160_ trials_o[0] _096_ _029_ _030_ _031_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor4_1
+X_161_ _031_ _032_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_1
+X_162_ _124_ _032_ _119_ _033_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+X_163_ _117_ _119_ _034_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor2_1
+X_164_ _118_ _122_ _035_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+X_165_ config_o[0] _035_ _036_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+X_166_ config_i[0] _101_ _034_ _037_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand3_1
+X_167_ _036_ _037_ _012_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+X_168_ config_o[1] _035_ _038_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+X_169_ config_i[1] _101_ _034_ _039_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand3_1
+X_170_ _038_ _039_ _013_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+X_171_ event_pending _122_ events_o[0] _040_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+X_172_ events_o[0] event_pending _122_ _041_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__and3_1
+X_173_ _034_ _040_ _041_ _014_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor3_1
+X_174_ events_o[0] events_o[1] event_pending _122_ _042_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand4_1
+X_175_ events_o[1] _041_ _042_ _043_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__oai21_1
+X_176_ _034_ _043_ _015_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor2_1
+X_177_ events_o[0] events_o[1] events_o[2] event_pending _044_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__and4_1
+X_178_ _095_ _042_ _044_ _122_ _045_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__aoi22_1
+X_179_ _035_ _045_ _016_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__and2_1
+X_180_ _122_ _044_ events_o[3] _046_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+X_181_ events_o[3] _044_ _047_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+X_182_ _111_ _115_ _120_ _047_ _048_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor4_1
+X_183_ _034_ _046_ _048_ _017_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor3_1
+X_184_ events_o[4] _048_ _035_ _049_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__oai21_1
+X_185_ events_o[4] _048_ _049_ _018_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+X_186_ events_o[4] events_o[5] _048_ _050_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand3_1
+X_187_ events_o[4] _048_ events_o[5] _051_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+X_188_ _034_ _051_ _052_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor2_1
+X_189_ _050_ _052_ _019_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__and2_1
+X_190_ events_o[4] events_o[5] events_o[6] _048_ _053_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand4_1
+X_191_ events_o[6] _050_ _054_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__xor2_1
+X_192_ _034_ _054_ _020_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor2_1
+X_193_ events_o[7] _053_ _055_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__xor2_1
+X_194_ _034_ _055_ _021_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor2_1
+X_195_ trials_o[0] _122_ _056_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+X_196_ _124_ _123_ trials_o[0] _022_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__mux2_1
+X_197_ trials_o[1] _056_ _057_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__xnor2_1
+X_198_ _035_ _057_ _023_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__and2_1
+X_199_ trials_o[0] trials_o[1] trials_o[2] _058_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+X_200_ trials_o[0] trials_o[1] trials_o[2] _059_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand3_1
+X_201_ trials_o[2] _123_ _124_ _059_ _060_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__aoi22_1
+X_202_ _058_ _060_ _024_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor2_1
+X_203_ _119_ _120_ _059_ _061_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor3_1
+X_204_ trials_o[3] _061_ _035_ _062_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__oai21_1
+X_205_ trials_o[3] _061_ _062_ _025_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+X_206_ trials_o[0] trials_o[1] trials_o[2] trials_o[3] _063_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__and4_1
+X_207_ trials_o[4] _063_ _064_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor2_1
+X_208_ trials_o[4] _063_ _065_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+X_209_ trials_o[4] _123_ _124_ _065_ _066_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__aoi22_1
+X_210_ _064_ _066_ _026_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor2_1
+X_211_ _119_ _120_ _065_ _067_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor3_1
+X_212_ trials_o[5] _067_ _035_ _068_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__oai21_1
+X_213_ trials_o[5] _067_ _068_ _027_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+X_214_ trials_o[4] trials_o[5] _063_ _069_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__and3_1
+X_215_ trials_o[6] _069_ _070_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor2_1
+X_216_ trials_o[6] _069_ _071_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+X_217_ trials_o[6] _123_ _124_ _071_ _072_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__aoi22_1
+X_218_ _070_ _072_ _028_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor2_1
+X_219_ trials_o[6] _122_ _069_ _073_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand3_1
+X_220_ _096_ _073_ _035_ _074_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__oai21_1
+X_221_ _096_ _073_ _074_ _000_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+X_222_ busy_o _114_ _033_ _001_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__mux2_1
+X_223_ done_o _033_ _075_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor2_1
+X_224_ _034_ _075_ _002_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor2_1
+X_225_ _119_ _124_ fault_o _076_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__oai21_1
+X_226_ _121_ _076_ _003_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+X_227_ _099_ start_sync[1] _101_ _103_ _077_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand4_1
+X_228_ _102_ _111_ _078_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor2_1
+X_229_ _077_ _078_ _079_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+X_230_ reference_fault _031_ _080_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor2_1
+X_231_ _113_ _080_ _081_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+X_232_ _098_ _099_ _097_ _082_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__oai21_1
+X_233_ _081_ _082_ _083_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__and2_1
+X_234_ _079_ _083_ _077_ _004_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__oai21_1
+X_235_ _098_ state[2] state[0] _084_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__oai21_1
+X_236_ _112_ _081_ _084_ _085_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__and3_1
+X_237_ _079_ _085_ _005_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor2_1
+X_238_ state[0] state[1] _099_ _086_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand3_1
+X_239_ _081_ _086_ _087_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+X_240_ _098_ state[2] _087_ _088_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+X_241_ _102_ _088_ _006_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nor2_1
+X_242_ _101_ _086_ _089_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
+X_243_ dut_q_i _101_ _090_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__and2_1
+X_244_ late1 _090_ _089_ _007_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__mux2_1
+X_245_ state[2] _108_ _102_ _091_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+X_246_ _090_ late2 _091_ _008_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__mux2_1
+X_247_ late2 early_sample_i _101_ _092_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__oai21_1
+X_248_ late2 early_sample_i _092_ _093_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__aoi21_1
+X_249_ event_pending _093_ _105_ _009_ VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__mux2_1
+X_250_ _010_ rst_n clk reference_fault VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_251_ tie_hi_z rst_n clk reset_release[0] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_252_ reset_release[0] rst_n clk reset_release[1] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_253_ start_i rst_n clk start_sync[0] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_254_ start_sync[0] rst_n clk start_sync[1] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_255_ start_sync[1] rst_n clk start_previous VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_256_ _011_ rst_n clk capture_o VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_257_ _012_ rst_n clk config_o[0] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_258_ _013_ rst_n clk config_o[1] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_259_ _014_ rst_n clk events_o[0] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_260_ _015_ rst_n clk events_o[1] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_261_ _016_ rst_n clk events_o[2] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_262_ _017_ rst_n clk events_o[3] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_263_ _018_ rst_n clk events_o[4] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_264_ _019_ rst_n clk events_o[5] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_265_ _020_ rst_n clk events_o[6] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_266_ _021_ rst_n clk events_o[7] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_267_ _022_ rst_n clk trials_o[0] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_268_ _023_ rst_n clk trials_o[1] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_269_ _024_ rst_n clk trials_o[2] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_270_ _025_ rst_n clk trials_o[3] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_271_ _026_ rst_n clk trials_o[4] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_272_ _027_ rst_n clk trials_o[5] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_273_ _028_ rst_n clk trials_o[6] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_274_ _000_ rst_n clk trials_o[7] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_275_ _001_ rst_n clk busy_o VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_276_ _002_ rst_n clk done_o VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_277_ _003_ rst_n clk fault_o VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_278_ _004_ rst_n clk state[0] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_279_ _005_ rst_n clk state[1] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_280_ _006_ rst_n clk state[2] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_281_ _007_ rst_n clk late1 VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_282_ _008_ rst_n clk late2 VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+X_283_ _009_ rst_n clk event_pending VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+Xtie_hi tie_hi_z VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__tieh
+.ENDS
+
+.SUBCKT tt_um_metastability_characterizer VDPWR VGND ui_in[0] ui_in[1] ui_in[2] ui_in[3] ui_in[4] ui_in[5] ui_in[6] ui_in[7] uo_out[0] uo_out[1] uo_out[2] uo_out[3] uo_out[4] uo_out[5] uo_out[6] uo_out[7] uio_in[0] uio_in[1] uio_in[2] uio_in[3] uio_in[4] uio_in[5] uio_in[6] uio_in[7] uio_out[0] uio_out[1] uio_out[2] uio_out[3] uio_out[4] uio_out[5] uio_out[6] uio_out[7] uio_oe[0] uio_oe[1] uio_oe[2] uio_oe[3] uio_oe[4] uio_oe[5] uio_oe[6] uio_oe[7] ua[0] ua[1] ua[2] ua[3] ua[4] ua[5] ua[6] ua[7] ena clk rst_n
+Xcontroller clk rst_n ena ui_in[4] ui_in[3] uio_in[6] selected_q early_q capture cfg[0] cfg[1] uo_out[0] uo_out[1] uo_out[2] uo_out[3] uo_out[4] uo_out[5] uo_out[6] uo_out[7] trials[0] trials[1] trials[2] trials[3] trials[4] trials[5] trials[6] trials[7] uio_out[1] uio_out[2] uio_out[3] VDPWR VGND meta_controller
+Xdata0 ui_in[6] data_b VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_2
+Xdata1 data_b data_local VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_2
+Xcap0 capture capture_b VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_2
+Xcap1 capture_b capture_local VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_2
+Xu_dut1 data_local capture_local q[0] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffq_1
+Xselect_dut q[0] q[1] q[2] q[3] cfg[0] cfg[1] selected_q VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__mux4_1
+Xiso0 capture_local capture_iso_b VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_1
+Xiso1 capture_iso_b capture_iso VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_2
+Xant_ctrl ua[0] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__antenna
+Xearly_observer selected_q early_clk early_q VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffq_1
+Xmonitor_capture_a capture_local capmon_n VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_1
+Xmonitor_capture_b capmon_n uio_out[4] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_2
+Xmonitor_early_a early_clk earlymon_n VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_1
+Xmonitor_early_b earlymon_n uio_out[5] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_2
+Xoe_buf1 ena uio_oe[1] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__buf_1
+Xoe_buf2 ena uio_oe[2] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__buf_1
+Xoe_buf3 ena uio_oe[3] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__buf_1
+Xoe_buf4 ena uio_oe[4] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__buf_1
+Xoe_buf5 ena uio_oe[5] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__buf_1
+Xtielo_uio_oe0 uio_oe[0] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__tiel
+Xtielo_uio_oe6 uio_oe[6] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__tiel
+Xtielo_uio_oe7 uio_oe[7] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__tiel
+Xtielo_uio_out0 uio_out[0] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__tiel
+Xtielo_uio_out6 uio_out[6] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__tiel
+Xtielo_uio_out7 uio_out[7] VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__tiel
+Xu_dut2 data_local capture_local q[1] VDPWR VGND meta_dut_baseline
+Xu_dut3 data_local capture_local q[2] VDPWR VGND meta_dut_keeper
+Xu_dut4 data_local capture_local q[3] VDPWR VGND meta_dut_forward
+Xdelay capture_iso ua[0] early_clk VDPWR VGND meta_delay_analog
+.ENDS
