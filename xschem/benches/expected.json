@@ -1,0 +1,53 @@
+{
+ "tb_inv_balance": {
+  "inv1_switch_V": "1.39 (earlier inv_1 reference)",
+  "nand2_switch_V": "about 1.44 (master-latch balance 1.442 V)"
+ },
+ "tb_tau": {
+  "tau_base_ps": 88.9,
+  "tau_keeper_ps": 80.5,
+  "tau_forward_ps": 102.3
+ },
+ "tb_duts": {
+  "tcq_lib_ps": 712,
+  "tcq_base_ps": 406,
+  "tcq_keeper_ps": 406,
+  "tcq_forward_ps": 405
+ },
+ "tb_delay": {
+  "d_ideal_ns_at_ua0 1.1": 2.244,
+  "d_ideal_ns_at_ua0 1.3": 1.601,
+  "d_ideal_ns_at_ua0 1.5": 1.279,
+  "d_ideal_ns_at_ua0 1.8": 1.026,
+  "d_ideal_ns_at_ua0 2.4": 0.816,
+  "d_ideal_ns_at_ua0 3.0": 0.741,
+  "d_ns_at_ua0 1.1": "within about 10% of 2.244",
+  "d_ns_at_ua0 1.3": "within about 10% of 1.601",
+  "d_ns_at_ua0 1.5": "within about 10% of 1.279",
+  "d_ns_at_ua0 1.8": "within about 10% of 1.026",
+  "d_ns_at_ua0 2.4": "within about 10% of 0.816",
+  "d_ns_at_ua0 3.0": "within about 10% of 0.741"
+ },
+ "tb_frontend": {
+  "d_short_ps": "795 (bench without monitors; monitors add a few ps)",
+  "arrive_ps": 901,
+  "early_short_V": 0.0,
+  "final_short_V": 3.3,
+  "d_allowed_ps": "1448 to 1458",
+  "early_allowed_V": 3.3,
+  "final_allowed_V": 3.3
+ },
+ "tb_selector": {
+  "sel0_V": 3.3,
+  "sel1_V": 0.0,
+  "sel2_V": 3.3,
+  "sel3_V": 0.0
+ },
+ "tb_controller": {
+  "events_after_6_trials": 6,
+  "busy_V": 3.3,
+  "done_V": 0.0,
+  "fault_V": 0.0,
+  "first_capture_ns": "about 676 (clock edge at 675 ns plus clock-to-output)"
+ }
+}

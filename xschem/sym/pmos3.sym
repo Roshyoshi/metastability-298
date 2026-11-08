@@ -1,0 +1,25 @@
+v {xschem version=3.4.4 file_version=1.2}
+G {}
+K {type=pmos
+format="@spiceprefix@name @pinlist VDD @model L=@L W=@W nf=1 m=1"
+template="name=M1 L=0.5u W=1u model=pfet_05v0 spiceprefix=X"
+}
+V {}
+S {}
+E {}
+L 4 7.5 -22.5 7.5 22.5 {}
+L 4 20 -30 20 -17.5 {}
+L 4 20 17.5 20 30 {}
+L 4 -2.5 -15 -2.5 15 {}
+L 4 7.5 17.5 20 17.5 {}
+L 4 12.5 -17.5 20 -17.5 {}
+L 4 -20 0 -12.5 0 {}
+B 5 17.5 27.5 22.5 32.5 {name=D dir=inout}
+B 5 -22.5 -2.5 -17.5 2.5 {name=G dir=in}
+B 5 17.5 -32.5 22.5 -27.5 {name=S dir=inout}
+A 4 -7.5 0 5 180 360 {}
+P 4 4 12.5 -20 7.5 -17.5 12.5 -15 12.5 -20 {fill=true}
+T {D} 22.5 17.5 0 0 0.15 0.15 {layer=7}
+T {S} 22.5 -17.5 2 1 0.15 0.15 {layer=7}
+T {G} -12.5 -12.5 0 1 0.15 0.15 {layer=7}
+T {@name} 30 -6 0 0 0.2 0.2 {}

@@ -1,0 +1,3 @@
+07-Nov-2026 12:08:50 | INFO    | Your Klayout version is: KLayout 0.30.5
+07-Nov-2026 12:08:50 | INFO    | Running Global Foundries 180nm MCU ~/ece298a/round2/layout/tt_um_metastability_characterizer.gds checks on design antenna on cell tt_um_metastability_characterizer:
+07-Nov-2026 12:08:54 | INFO    | ## Completed running Antenna checks only.

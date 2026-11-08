@@ -1,0 +1,150 @@
+Using SPARSE 1.3 as Direct Linear Solver
+
+Note: No compatibility mode selected!
+
+
+Circuit: ** sch_path: ~/ece298a/round2/benches/tb_tau.sch
+
+Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
+
+
+Initial Transient Solution
+--------------------------
+
+Node                                   Voltage
+----                                   -------
+vdd                                        3.3
+xbaseline0.clkn                     1.0467e-08
+xbaseline0.xu_mg1.net1               0.0158826
+xbaseline0.g1                              3.3
+xbaseline0.xu_mg2.net1                 2.47069
+xbaseline0.g2                              3.3
+xbaseline0.xu_mfw.net1               0.0896693
+xbaseline0.mq                          1.44264
+xbaseline0.mqb                         1.44164
+xbaseline0.xu_mfw.net2               0.0896693
+xbaseline0.xu_mkp.net1                0.089829
+xbaseline0.xu_sg1.net1               0.0897404
+xbaseline0.s1                          1.43226
+xbaseline0.xu_sg2.net1               0.0898317
+xbaseline0.s2                          1.63799
+xbaseline0.xu_sfw.net1                0.497834
+qbaseline0                            0.621597
+xbaseline0.sqb                         3.29803
+xbaseline0.xu_skp.net1              0.00189963
+qobaseline0                            3.29708
+xbaseline1.clkn                     1.0467e-08
+xbaseline1.xu_mg1.net1               0.0158826
+xbaseline1.g1                              3.3
+xbaseline1.xu_mg2.net1                 2.47069
+xbaseline1.g2                              3.3
+xbaseline1.xu_mfw.net1               0.0897483
+xbaseline1.mq                          1.44215
+xbaseline1.mqb                         1.44214
+xbaseline1.xu_mfw.net2               0.0897483
+xbaseline1.xu_mkp.net1               0.0897499
+xbaseline1.xu_sg1.net1                0.089749
+xbaseline1.s1                          1.44204
+xbaseline1.xu_sg2.net1               0.0897509
+xbaseline1.s2                          1.44424
+xbaseline1.xu_sfw.net1                0.443682
+qbaseline1                            0.561979
+xbaseline1.sqb                         3.29946
+xbaseline1.xu_skp.net1             0.000688443
+qobaseline1                            3.29917
+xkeeper0.clkn                       1.0467e-08
+xkeeper0.xu_mg1.net1                 0.0158826
+xkeeper0.g1                                3.3
+xkeeper0.xu_mg2.net1                   2.47069
+xkeeper0.g2                                3.3
+xkeeper0.xu_mfw.net1                 0.0896693
+xkeeper0.mq                            1.44264
+xkeeper0.mqb                           1.44164
+xkeeper0.xu_mfw.net2                 0.0896693
+xkeeper0.xu_mkp.net1                  0.089829
+xkeeper0.xu_mkp.net2                  0.089829
+xkeeper0.xu_sg1.net1                 0.0897404
+xkeeper0.s1                            1.43226
+xkeeper0.xu_sg2.net1                 0.0898317
+xkeeper0.s2                            1.63799
+xkeeper0.xu_sfw.net1                  0.497834
+qkeeper0                              0.621597
+xkeeper0.sqb                           3.29803
+xkeeper0.xu_skp.net1                0.00189963
+qokeeper0                              3.29708
+xkeeper1.clkn                       1.0467e-08
+xkeeper1.xu_mg1.net1                 0.0158826
+xkeeper1.g1                                3.3
+xkeeper1.xu_mg2.net1                   2.47069
+xkeeper1.g2                                3.3
+xkeeper1.xu_mfw.net1                 0.0897483
+xkeeper1.mq                            1.44215
+xkeeper1.mqb                           1.44214
+xkeeper1.xu_mfw.net2                 0.0897483
+xkeeper1.xu_mkp.net1                 0.0897499
+xkeeper1.xu_mkp.net2                 0.0897499
+xkeeper1.xu_sg1.net1                  0.089749
+xkeeper1.s1                            1.44204
+xkeeper1.xu_sg2.net1                 0.0897509
+xkeeper1.s2                            1.44424
+xkeeper1.xu_sfw.net1                  0.443682
+qkeeper1                              0.561979
+xkeeper1.sqb                           3.29946
+xkeeper1.xu_skp.net1               0.000688443
+qokeeper1                              3.29917
+xforward0.clkn                      1.0467e-08
+xforward0.xu_mg1.net1                0.0158826
+xforward0.g1                               3.3
+xforward0.xu_mg2.net1                  2.47069
+xforward0.g2                               3.3
+xforward0.xu_mfw.net1                0.0896693
+xforward0.mq                           1.44264
+xforward0.mqb                          1.44164
+xforward0.xu_mfw.net2                0.0896693
+xforward0.xu_mfw.net3                0.0896693
+xforward0.xu_mfw.net4                0.0896693
+xforward0.xu_mkp.net1                 0.089829
+xforward0.xu_sg1.net1                0.0897404
+xforward0.s1                           1.43226
+xforward0.xu_sg2.net1                0.0898317
+xforward0.s2                           1.63799
+xforward0.xu_sfw.net1                 0.497834
+qforward0                             0.621597
+xforward0.sqb                          3.29803
+xforward0.xu_skp.net1               0.00189963
+qoforward0                             3.29708
+xforward1.clkn                      1.0467e-08
+xforward1.xu_mg1.net1                0.0158826
+xforward1.g1                               3.3
+xforward1.xu_mg2.net1                  2.47069
+xforward1.g2                               3.3
+xforward1.xu_mfw.net1                0.0897483
+xforward1.mq                           1.44215
+xforward1.mqb                          1.44214
+xforward1.xu_mfw.net2                0.0897483
+xforward1.xu_mfw.net3                0.0897483
+xforward1.xu_mfw.net4                0.0897483
+xforward1.xu_mkp.net1                0.0897499
+xforward1.xu_sg1.net1                 0.089749
+xforward1.s1                           1.44204
+xforward1.xu_sg2.net1                0.0897509
+xforward1.s2                           1.44424
+xforward1.xu_sfw.net1                 0.443682
+qforward1                             0.561979
+xforward1.sqb                          3.29946
+xforward1.xu_skp.net1              0.000688443
+qoforward1                             3.29917
+vvdd#branch                        -0.00121303
+
+ Reference value :  8.02800e-11 Reference value :  2.87280e-10 Reference value :  5.21280e-10 Reference value :  7.49499e-10 Reference value :  9.78499e-10 Reference value :  1.20843e-09 Reference value :  1.44384e-09 Reference value :  1.61184e-09 Reference value :  1.84884e-09 Reference value :  2.08784e-09 Reference value :  2.32484e-09 Reference value :  2.56384e-09 Reference value :  2.80184e-09
+No. of Data Rows : 3011
+t_baseline0         =  6.819447e-10
+t_baseline1         =  1.091324e-09
+t_keeper0           =  6.413158e-10
+t_keeper1           =  1.011881e-09
+t_forward0          =  7.538889e-10
+t_forward1          =  1.225059e-09
+RESULT tau_base_ps 88.8956
+RESULT tau_keeper_ps 80.4672
+RESULT tau_forward_ps 102.313
+Note: Simulation executed from .control section 

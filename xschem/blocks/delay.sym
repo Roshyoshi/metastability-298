@@ -1,0 +1,24 @@
+v {xschem version=3.4.4 file_version=1.2}
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+template="name=x1"
+}
+V {}
+S {}
+E {}
+L 4 -60 -30 60 -30 {}
+L 4 -60 30 60 30 {}
+L 4 -60 -30 -60 30 {}
+L 4 60 -30 60 30 {}
+L 4 -80 -10 -60 -10 {}
+B 5 -82.5 -12.5 -77.5 -7.5 {name=capture_local dir=in}
+T {capture_local} -57 -16 0 0 0.15 0.15 {}
+L 4 -80 10 -60 10 {}
+B 5 -82.5 7.5 -77.5 12.5 {name=ua_0 dir=in}
+T {ua_0} -57 4 0 0 0.15 0.15 {}
+L 4 60 -10 80 -10 {}
+B 5 77.5 -12.5 82.5 -7.5 {name=early_clk dir=out}
+T {early_clk} 57 -16 0 1 0.15 0.15 {}
+T {delay} -58 -46 0 0 0.2 0.2 {}
+T {@name} -58 34 0 0 0.15 0.15 {}

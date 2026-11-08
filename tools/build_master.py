@@ -1,0 +1,345 @@
+#!/usr/bin/env python3
+"""Build the master netlist and inventory for the metastability characterizer.
+
+Single source of truth for every diagram, schematic and layout:
+  * the GF180 standard-cell CDL netlists in pdk_cells/cdl/
+  * the synthesized controller netlist netlist/controller_synth.v (Yosys 0.33)
+  * the front end, described below exactly as in rtl/meta_top.v and rtl/meta_duts.v
+    (including the isolation buffer iso0/iso1)
+
+Outputs (netlist/):
+  chip.cdl            hierarchical CDL netlist of the whole tile (LVS reference)
+  inventory.csv       every cell instance: flow box, block, instance, cell, transistors
+  transistors.csv     every transistor, flattened: path, type, W, L, D, G, S, B
+  flowbox_summary.csv transistor and cell counts per flow box
+"""
+import csv, re, sys
+from collections import Counter, defaultdict, OrderedDict
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent.parent
+CDL_DIR = ROOT / 'pdk_cells' / 'cdl'
+OUT = ROOT / 'netlist'
+LIB = 'gf180mcu_fd_sc_mcu7t5v0__'
+
+# ------------------------------------------------------------------ standard cells
+def _num(v):
+    v = v.strip().lower()
+    mult = {'u': 1e-6, 'n': 1e-9, 'p': 1e-12, 'f': 1e-15, 'm': 1e-3}
+    if v and v[-1] in mult:
+        return float(v[:-1]) * mult[v[-1]]
+    return float(v)
+
+def parse_cdl(path):
+    text = path.read_text().replace('\n+', ' ')
+    cells = {}
+    cur = None
+    for line in text.splitlines():
+        s = line.strip()
+        if not s or s.startswith('*'):
+            continue
+        tok = s.split()
+        if tok[0].upper() == '.SUBCKT':
+            cur = {'name': tok[1], 'pins': tok[2:], 'devices': []}
+        elif tok[0].upper() == '.ENDS':
+            cells[cur['name']] = cur
+            cur = None
+        elif cur is not None and tok[0][0] in 'Mm':
+            d, g, s_, b, model = tok[1:6]
+            prm = {k.upper(): _num(v) for k, v in (t.split('=') for t in tok[6:] if '=' in t)}
+            cur['devices'].append({'name': tok[0], 'd': d, 'g': g, 's': s_, 'b': b, 'model': model,
+                                   'W': prm.get('W'), 'L': prm.get('L'), 'm': prm.get('M', 1.0)})
+        elif cur is not None and tok[0][0] in 'Dd':
+            # diode: name anode cathode model area perimeter
+            cur.setdefault('diodes', []).append({'name': tok[0], 'a': tok[1], 'c': tok[2], 'model': tok[3],
+                                                 'area': _num(tok[4]), 'pj': _num(tok[5])})
+    for c in cells.values():
+        c.setdefault('diodes', [])
+    return cells
+
+CELLS = {}
+for p in sorted(CDL_DIR.glob('*.cdl')):
+    CELLS.update(parse_cdl(p))
+
+def ntran(cell):
+    return sum(int(d['m']) for d in CELLS[cell]['devices'])
+
+# Supply pins of every mcu7t5v0 cell: VDD VNW -> VDPWR, VPW VSS -> VGND
+SUPPLY = {'VDD': 'VDPWR', 'VNW': 'VDPWR', 'VPW': 'VGND', 'VSS': 'VGND'}
+
+# ------------------------------------------------------------------ controller (Yosys)
+def parse_yosys(path):
+    txt = path.read_text()
+    inst = []
+    for m in re.finditer(r'(' + LIB + r'\w+)\s+(\S+)\s*\((.*?)\);', txt, re.S):
+        cell, name, body = m.groups()
+        conns = OrderedDict()
+        for pm in re.finditer(r'\.(\w+)\(([^)]*)\)', body):
+            net = pm.group(2).strip()
+            net = {"1'h1": 'VDPWR', "1'h0": 'VGND'}.get(net, net)
+            conns[pm.group(1)] = net
+        inst.append({'cell': cell, 'name': name.strip('\\'), 'conns': conns})
+    return inst
+
+CTRL = parse_yosys(OUT / 'controller_synth.v')
+# Synthesis tied one flip-flop input (reset_release[0].D) to logic 1. A gate must not connect straight to the
+# supply rail, so a tie-high cell drives it, as the digital flow would insert.
+_tied = [(i, p) for i in CTRL for p, n in i['conns'].items() if n == 'VDPWR']
+if _tied:
+    CTRL.append({'cell': LIB + 'tieh', 'name': 'tie_hi', 'conns': OrderedDict([('Z', 'tie_hi_z')])})
+    for i, p in _tied:
+        i['conns'][p] = 'tie_hi_z'
+
+# Register -> flow box, from the RTL (rtl/meta_controller.v)
+REG_BOX = [
+    (r'^(state|reset_release|start_sync|start_previous|capture_o|config_o)', 'Sequencer'),
+    (r'^late[12]$', 'Late observers'),
+    (r'^(event_pending|reference_fault)$', 'Compare'),
+    (r'^(events_o|trials_o)', 'Counters K and N'),
+    (r'^(busy_o|done_o|fault_o)$', 'Hold results + readout'),
+]
+
+def reg_box(net):
+    for pat, box in REG_BOX:
+        if re.match(pat, net):
+            return box
+    raise ValueError('unmapped register output ' + net)
+
+OUTPUT_PINS = {'Q', 'Z', 'ZN'}
+def outputs(i):
+    return [n for p, n in i['conns'].items() if p in OUTPUT_PINS]
+def inputs(i):
+    return [n for p, n in i['conns'].items() if p not in OUTPUT_PINS]
+
+flops = [i for i in CTRL if 'dff' in i['cell']]
+comb = [i for i in CTRL if 'dff' not in i['cell']]
+for f in flops:
+    f['box'] = reg_box(f['conns']['Q'])
+
+# Forward cone: which flops (and therefore boxes) each combinational cell feeds.
+readers = defaultdict(list)
+for i in CTRL:
+    for n in inputs(i):
+        readers[n].append(i)
+
+def boxes_fed(cell, seen=None):
+    seen = seen if seen is not None else set()
+    res = set()
+    for n in outputs(cell):
+        for r in readers[n]:
+            if 'dff' in r['cell']:
+                res.add(r['box'])
+            elif id(r) not in seen:
+                seen.add(id(r))
+                res |= boxes_fed(r, seen)
+    return res
+
+shared = []
+for c in comb:
+    fed = boxes_fed(c)
+    c['feeds'] = sorted(fed)
+    if len(fed) == 1:
+        c['box'] = next(iter(fed))
+    else:
+        # Logic that decodes the state for several blocks is control logic.
+        c['box'] = 'Sequencer'
+        shared.append(c)
+
+# ------------------------------------------------------------------ front end (rtl/meta_top.v, meta_duts.v)
+def X(name, cell, **pins):
+    return {'name': name, 'cell': LIB + cell, 'conns': OrderedDict(pins)}
+
+def nand_dut(fw, kp):
+    return [
+        X('u_cki', 'inv_1', I='clk', ZN='clkn'),
+        X('u_mg1', 'nand2_1', A1='d', A2='clkn', ZN='g1'),
+        X('u_mg2', 'nand2_1', A1='g1', A2='clkn', ZN='g2'),
+        X('u_mfw', fw, A1='mqb', A2='g1', ZN='mq'),
+        X('u_mkp', kp, A1='mq', A2='g2', ZN='mqb'),
+        X('u_sg1', 'nand2_1', A1='mq', A2='clk', ZN='s1'),
+        X('u_sg2', 'nand2_1', A1='s1', A2='clk', ZN='s2'),
+        X('u_sfw', 'nand2_1', A1='sqb', A2='s1', ZN='q'),
+        X('u_skp', 'nand2_1', A1='q', A2='s2', ZN='sqb'),
+    ]
+
+DUT_SUBCKTS = OrderedDict([
+    ('meta_dut_baseline', nand_dut('nand2_2', 'nand2_1')),
+    ('meta_dut_keeper', nand_dut('nand2_2', 'nand2_2')),
+    ('meta_dut_forward', nand_dut('nand2_4', 'nand2_1')),
+])
+
+# Custom delay line (rtl blackbox meta_delay_analog); devices as simulated.
+DELAY_DEVICES = [
+    {'name': 'MP', 'd': 'slow', 'g': 'launch', 's': 'VDPWR', 'b': 'VDPWR', 'model': 'pfet_05v0', 'W': 1.22e-6, 'L': 0.5e-6, 'm': 1},
+    {'name': 'MN', 'd': 'slow', 'g': 'launch', 's': 'foot', 'b': 'VGND', 'model': 'nfet_05v0', 'W': 0.82e-6, 'L': 0.6e-6, 'm': 1},
+    {'name': 'MC', 'd': 'foot', 'g': 'control', 's': 'VGND', 'b': 'VGND', 'model': 'nfet_05v0', 'W': 0.36e-6, 'L': 0.6e-6, 'm': 1},
+    # Timing capacitor (2 fF in the pre-layout simulations), built as an NMOS gate capacitor: gate on node slow,
+    # drain, source and body on VGND. W x L = 0.82 x 1.0 um gives about 2.1 fF while slow is above threshold
+    # (Cox = 2.27 fF/um2 for the 15.2 nm 5 V oxide, plus overlap and fringe). Its gate is longer than the 5 V
+    # device's 0.6 um, so Magic extracts it as nfet_06v0, the same oxide and model card (nfet_05v0 wraps nfet_06v0).
+    {'name': 'MCT', 'd': 'VGND', 'g': 'slow', 's': 'VGND', 'b': 'VGND', 'model': 'nfet_06v0', 'W': 0.82e-6, 'L': 1.0e-6, 'm': 1},
+]
+DELAY_CELLS = [
+    X('XR0', 'inv_1', I='slow', ZN='r0'),
+    X('XR1', 'inv_2', I='r0', ZN='r1'),
+    X('XR2', 'inv_2', I='r1', ZN='sample_clk'),
+]
+
+# Top-level instances: (flow box, instance, kind, connections)
+TOP = [
+    ('Ring oscillator + divider (off chip): data input buffers', X('data0', 'inv_2', I='ui_in[6]', ZN='data_b')),
+    ('Ring oscillator + divider (off chip): data input buffers', X('data1', 'inv_2', I='data_b', ZN='data_local')),
+    ('Capture edge', X('cap0', 'inv_2', I='capture', ZN='capture_b')),
+    ('Capture edge', X('cap1', 'inv_2', I='capture_b', ZN='capture_local')),
+    ('Flip-flops under test', X('u_dut1', 'dffq_1', D='data_local', CLK='capture_local', Q='q[0]')),
+    ('Selector', X('select_dut', 'mux4_1', I0='q[0]', I1='q[1]', I2='q[2]', I3='q[3]', S0='cfg[0]', S1='cfg[1]', Z='selected_q')),
+    ('Adjustable delay', X('iso0', 'inv_1', I='capture_local', ZN='capture_iso_b')),
+    ('Adjustable delay', X('iso1', 'inv_2', I='capture_iso_b', ZN='capture_iso')),
+    # ua[0] reaches the delay line's control gate over about 170 um of metal and has no driver on the tile;
+    # the library's antenna cell (two reverse-biased diodes) protects that gate during fabrication
+    ('Adjustable delay', X('ant_ctrl', 'antenna', I='ua[0]')),
+    ('Early observer', X('early_observer', 'dffq_1', D='selected_q', CLK='early_clk', Q='early_q')),
+    ('Hold results + readout', X('monitor_capture_a', 'inv_1', I='capture_local', ZN='capmon_n')),
+    ('Hold results + readout', X('monitor_capture_b', 'inv_2', I='capmon_n', ZN='uio_out[4]')),
+    ('Hold results + readout', X('monitor_early_a', 'inv_1', I='early_clk', ZN='earlymon_n')),
+    ('Hold results + readout', X('monitor_early_b', 'inv_2', I='earlymon_n', ZN='uio_out[5]')),
+]
+# Pin drivers for rtl/meta_top.v's constant outputs:  assign uio_oe = ena ? 8'b00111110 : 8'b0;
+# assign uio_out = {2'b00, ..., 1'b0}.  Every output pin gets its own driver cell (a tie-low cell for a constant 0,
+# a buffer from ena for uio_oe[5:1]) so that no two tile pins are shorted together by metal: each pin is then a
+# distinct net, which keeps LVS port matching exact.
+PIN_DRIVERS = [X(f'oe_buf{k}', 'buf_1', I='ena', Z=f'uio_oe[{k}]') for k in range(1, 6)] + \
+              [X(f'tielo_{p.replace("[", "").replace("]", "")}', 'tiel', ZN=p)
+               for p in ('uio_oe[0]', 'uio_oe[6]', 'uio_oe[7]', 'uio_out[0]', 'uio_out[6]', 'uio_out[7]')]
+TOP += [('Hold results + readout', i) for i in PIN_DRIVERS]
+TOP_SUB = [
+    ('Flip-flops under test', 'u_dut2', 'meta_dut_baseline', ['data_local', 'capture_local', 'q[1]']),
+    ('Flip-flops under test', 'u_dut3', 'meta_dut_keeper', ['data_local', 'capture_local', 'q[2]']),
+    ('Flip-flops under test', 'u_dut4', 'meta_dut_forward', ['data_local', 'capture_local', 'q[3]']),
+    ('Adjustable delay', 'delay', 'meta_delay_analog', ['capture_iso', 'ua[0]', 'early_clk']),
+]
+CTRL_PORTS = ['clk', 'rst_n', 'enable_i', 'start_i', 'config_i[0]', 'config_i[1]', 'dut_q_i', 'early_sample_i',
+              'capture_o', 'config_o[0]', 'config_o[1]'] + [f'events_o[{k}]' for k in range(8)] + \
+             [f'trials_o[{k}]' for k in range(8)] + ['busy_o', 'done_o', 'fault_o']
+CTRL_MAP = {'clk': 'clk', 'rst_n': 'rst_n', 'enable_i': 'ena', 'start_i': 'ui_in[4]', 'config_i[0]': 'ui_in[3]',
+            'config_i[1]': 'uio_in[6]', 'dut_q_i': 'selected_q', 'early_sample_i': 'early_q', 'capture_o': 'capture',
+            'config_o[0]': 'cfg[0]', 'config_o[1]': 'cfg[1]', 'busy_o': 'uio_out[1]', 'done_o': 'uio_out[2]',
+            'fault_o': 'uio_out[3]'}
+CTRL_MAP.update({f'events_o[{k}]': f'uo_out[{k}]' for k in range(8)})
+CTRL_MAP.update({f'trials_o[{k}]': f'trials[{k}]' for k in range(8)})
+
+TOP_PORTS = ['VDPWR', 'VGND'] + [f'ui_in[{k}]' for k in range(8)] + [f'uo_out[{k}]' for k in range(8)] + \
+            [f'uio_in[{k}]' for k in range(8)] + [f'uio_out[{k}]' for k in range(8)] + \
+            [f'uio_oe[{k}]' for k in range(8)] + [f'ua[{k}]' for k in range(8)] + ['ena', 'clk', 'rst_n']
+TOP_NAME = 'tt_um_metastability_characterizer'
+
+# ------------------------------------------------------------------ writers
+def cell_line(inst, rename=lambda n: n):
+    cell = CELLS[inst['cell']]
+    nets = []
+    for p in cell['pins']:
+        if p in SUPPLY:
+            nets.append(SUPPLY[p])
+        else:
+            nets.append(rename(inst['conns'][p]))
+    return 'X' + inst['name'] + ' ' + ' '.join(nets) + ' ' + inst['cell']
+
+def dev_line(d, prefix='M'):
+    return f"{prefix}{d['name']} {d['d']} {d['g']} {d['s']} {d['b']} {d['model']} W={d['W']:.3g} L={d['L']:.3g}"
+
+def write_cdl():
+    used = sorted({i['cell'] for i in CTRL} | {i['cell'] for _, i in TOP} |
+                  {i['cell'] for s in DUT_SUBCKTS.values() for i in s} | {i['cell'] for i in DELAY_CELLS})
+    L = ['* Master netlist: metastability characterizer, GF180MCU (gf180mcu_fd_sc_mcu7t5v0, operated at 3.3 V)',
+         '* Generated by tools/build_master.py. Do not edit by hand.',
+         '* Standard cells: ' + ', '.join(c.replace(LIB, '') for c in used), '']
+    for c in used:
+        L.append(f'.include ../pdk_cells/cdl/{c}.cdl')
+    L.append('')
+    for name, insts in DUT_SUBCKTS.items():
+        L.append(f'.SUBCKT {name} d clk q VDPWR VGND')
+        L += [cell_line(i) for i in insts]
+        L += ['.ENDS', '']
+    L.append('.SUBCKT meta_delay_analog launch control sample_clk VDPWR VGND')
+    L.append('* MP, MN, MC: current-starved inverter. MCT: timing capacitor (NMOS gate capacitor on node slow).')
+    L += [dev_line(d) for d in DELAY_DEVICES]
+    L += [cell_line(i) for i in DELAY_CELLS]
+    L += ['.ENDS', '']
+    L.append('.SUBCKT meta_controller ' + ' '.join(CTRL_PORTS) + ' VDPWR VGND')
+    L += [cell_line(i) for i in CTRL]
+    L += ['.ENDS', '']
+    L.append(f'.SUBCKT {TOP_NAME} ' + ' '.join(TOP_PORTS))
+    L.append('Xcontroller ' + ' '.join(CTRL_MAP[p] for p in CTRL_PORTS) + ' VDPWR VGND meta_controller')
+    for _, i in TOP:
+        L.append(cell_line(i))
+    for _, name, sub, nets in TOP_SUB:
+        L.append(f'X{name} ' + ' '.join(nets) + f' VDPWR VGND {sub}')
+    L.append('* Constant outputs: tie-low cells (tielo_*) and ena buffers (oe_buf*), one driver per pin')
+    L += ['.ENDS', '']
+    (OUT / 'chip.cdl').write_text('\n'.join(L))
+
+def write_inventory():
+    rows, trans = [], []
+    def add(box, block, path, cell):
+        rows.append({'flow_box': box, 'block': block, 'instance': path, 'cell': cell.replace(LIB, ''),
+                     'transistors': ntran(cell)})
+        for d in CELLS[cell]['devices']:
+            trans.append({'flow_box': box, 'path': f'{path}/{d["name"]}', 'cell': cell.replace(LIB, ''),
+                          'type': 'PMOS' if d['model'].startswith('p') else 'NMOS', 'model': d['model'],
+                          'W_um': round(d['W'] * 1e6, 3), 'L_um': round(d['L'] * 1e6, 3),
+                          'drain': d['d'], 'gate': d['g'], 'source': d['s'], 'bulk': d['b']})
+    for box, i in TOP:
+        add(box.split(':')[0] if ':' in box else box, 'top', i['name'], i['cell'])
+    for box, name, sub, _ in TOP_SUB:
+        if sub.startswith('meta_dut'):
+            for i in DUT_SUBCKTS[sub]:
+                add(box, sub, f'{name}/{i["name"]}', i['cell'])
+        else:
+            for d in DELAY_DEVICES:
+                rows.append({'flow_box': box, 'block': sub, 'instance': f'{name}/{d["name"]}', 'cell': d['model'] + ' (custom)', 'transistors': 1})
+                trans.append({'flow_box': box, 'path': f'{name}/{d["name"]}', 'cell': 'custom',
+                              'type': 'PMOS' if d['model'].startswith('p') else 'NMOS', 'model': d['model'],
+                              'W_um': round(d['W'] * 1e6, 3), 'L_um': round(d['L'] * 1e6, 3),
+                              'drain': d['d'], 'gate': d['g'], 'source': d['s'], 'bulk': d['b']})
+            for i in DELAY_CELLS:
+                add(box, sub, f'{name}/{i["name"]}', i['cell'])
+    for i in CTRL:
+        blk = 'meta_controller/state_decode (shared)' if i in shared else 'meta_controller'
+        add(i['box'], blk, f'controller/{i["name"]}', i['cell'])
+    for r in rows:
+        r['flow_box'] = r['flow_box'].replace('Ring oscillator + divider (off chip)', 'Data input (ring oscillator off chip)')
+    for t in trans:
+        t['flow_box'] = t['flow_box'].replace('Ring oscillator + divider (off chip)', 'Data input (ring oscillator off chip)')
+    diodes = []
+    for box, i in TOP:
+        for dd in CELLS[i['cell']]['diodes']:
+            nets = {'VPW': 'VGND', 'VSS': 'VGND', 'VDD': 'VDPWR', 'VNW': 'VDPWR'}
+            conn = lambda n: nets.get(n, i['conns'].get(n, n))
+            diodes.append({'flow_box': box, 'path': f'{i["name"]}/{dd["name"]}', 'cell': i['cell'].replace(LIB, ''),
+                           'model': dd['model'], 'anode': conn(dd['a']), 'cathode': conn(dd['c']),
+                           'area_um2': round(dd['area'] * 1e12, 4), 'perimeter_um': round(dd['pj'] * 1e6, 3)})
+    with open(OUT / 'diodes.csv', 'w', newline='') as fh:
+        w = csv.DictWriter(fh, fieldnames=list(diodes[0])); w.writeheader(); w.writerows(diodes)
+    with open(OUT / 'inventory.csv', 'w', newline='') as fh:
+        w = csv.DictWriter(fh, fieldnames=list(rows[0])); w.writeheader(); w.writerows(rows)
+    with open(OUT / 'transistors.csv', 'w', newline='') as fh:
+        w = csv.DictWriter(fh, fieldnames=list(trans[0])); w.writeheader(); w.writerows(trans)
+    summ = OrderedDict()
+    for r in rows:
+        s = summ.setdefault(r['flow_box'], {'cells': 0, 'transistors': 0, 'types': Counter()})
+        s['cells'] += 1; s['transistors'] += r['transistors']; s['types'][r['cell']] += 1
+    with open(OUT / 'flowbox_summary.csv', 'w', newline='') as fh:
+        w = csv.writer(fh); w.writerow(['flow_box', 'cell_instances', 'transistors', 'cell_types'])
+        for k, s in summ.items():
+            w.writerow([k, s['cells'], s['transistors'], '; '.join(f'{c} x{n}' for c, n in sorted(s['types'].items()))])
+    return rows, trans, summ
+
+if __name__ == '__main__':
+    write_cdl()
+    rows, trans, summ = write_inventory()
+    print(f'{len(rows)} instances, {len(trans)} transistors')
+    for k, s in summ.items():
+        print(f'  {k:42s} {s["cells"]:4d} instances {s["transistors"]:5d} transistors')
+    print(f'shared controller cells assigned to Sequencer: {len(shared)}')
+    for c in shared:
+        print('   ', c['name'], c['cell'].replace(LIB, ''), '->', c['feeds'])
