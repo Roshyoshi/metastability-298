@@ -125,8 +125,8 @@ def blocks():
                                [{**m, **{t: ({'launch': 'launch', 'control': 'ua_0'}.get(m[t], m[t])) for t in 'dgsb'}}
                                 for m in BM.DELAY_DEVICES]),
                        ['capture_local', 'ua_0'], ['early_clk'], ['launch', 'slow', 'foot', 'r0', 'r1'])
-    B['selector'] = ('selector: mux4_1 at transistor level', ['Picks q[0..3] by cfg[1:0].'],
-                     flatten([top['select_dut']]), ['q[0]', 'q[1]', 'q[2]', 'q[3]', 'cfg[0]', 'cfg[1]'], ['selected_q'], [])
+    B['selector'] = ('selector: mux4_1 at transistor level', ['Picks q[0..3] by the pins ui_in[3] (S0) and uio_in[6] (S1).'],
+                     flatten([top['select_dut']]), ['q[0]', 'q[1]', 'q[2]', 'q[3]', 'ui_in[3]', 'uio_in[6]'], ['selected_q'], [])
     B['early_observer'] = ('early_observer: dffq_1 clocked by the delay line', ['Samples selected_q at time d after capture.'],
                            flatten([top['early_observer']]), ['selected_q', 'early_clk'], ['early_q'], [])
     B['data_and_capture'] = ('data input buffers and capture drivers', ['data0, data1: ui_in[6] to data_local. cap0, cap1: capture to capture_local.'],
@@ -135,25 +135,23 @@ def blocks():
     B['monitors'] = ('clock monitors', ['capture_local and early_clk buffered to pins uio_out[4], uio_out[5].'],
                      flatten([top[n] for n in ('monitor_capture_a', 'monitor_capture_b', 'monitor_early_a', 'monitor_early_b')]),
                      ['capture_local', 'early_clk'], ['uio_out[4]', 'uio_out[5]'], [])
-    # controller flow boxes, every cell opened up (port nets = nets shared with other boxes or pins)
+    # controller blocks, every cell opened up (port nets = nets shared with other blocks or pins)
     use = {}
     for i in BM.CTRL:
         for n in i['conns'].values():
-            use.setdefault(n, set()).add(i['box'])
+            use.setdefault(n, set()).add(i['block'])
     outpins = {'Z', 'ZN', 'Q'}
-    for box, nm in [('Late observers', 'ctrl_late_observers'), ('Compare', 'ctrl_compare'),
-                    ('Hold results + readout', 'ctrl_hold_status'), ('Sequencer', 'ctrl_sequencer'),
-                    ('Counters K and N', 'ctrl_counters')]:
-        mem = [i for i in BM.CTRL if i['box'] == box]
+    for blk, box, title, _ in BM.CTRL_BLOCKS:
+        nm = 'ctrl_' + blk
+        mem = [i for i in BM.CTRL if i['block'] == blk]
         cells = [(i['name'].strip('_'), i['cell'].replace(BM.LIB, ''),
                   {p: BM.CTRL_MAP.get(n, n) for p, n in i['conns'].items()}) for i in mem]
         drv = {BM.CTRL_MAP.get(n, n) for i in mem for p, n in i['conns'].items() if p in outpins}
-        nets = {BM.CTRL_MAP.get(n, n) for i in mem for n in i['conns'].values()} - {'VDPWR', 'VGND'}
-        ext = {n for n in nets if len(use.get(n, use.get(next((k for k, v in BM.CTRL_MAP.items() if v == n), n), set()))) > 1
-               or n in BM.CTRL_MAP.values() or n in ('clk', 'rst_n')}
+        ext = {BM.CTRL_MAP.get(n, n) for i in mem for n in i['conns'].values()
+               if len(use[n]) > 1 or n in BM.CTRL_MAP} - {'VDPWR', 'VGND'}
         ins = sorted(n for n in ext if n not in drv); outs = sorted(n for n in ext if n in drv)
-        B[nm] = (f'{nm}: controller flow box "{box}" at transistor level ({len(mem)} cells)',
-                 ['Synthesized from meta_controller.v; every cell opened up. Stage labels are the cell instance names.'],
+        B[nm] = (f'{nm}: controller block "{blk}" at transistor level ({len(mem)} cells)',
+                 [title, 'From src/gf180/compact_control.v; every cell opened up. Stage labels are the cell instance names.'],
                  flatten(cells), ins, outs, [])
     return B
 

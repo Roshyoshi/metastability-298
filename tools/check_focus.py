@@ -58,7 +58,7 @@ if __name__ == '__main__':
     cells += [(f'delay.{i}', c, {p: (n if n == 'early_clk' else f'delay.{n}') for p, n in cn.items()}) for i, c, cn in dl]
     mos = [{**m, **{t: {'launch': 'capture_iso', 'control': 'ua[0]'}.get(m[t], m[t] if m[t] in ('VDPWR', 'VGND') else f'delay.{m[t]}') for t in 'dgsb'}}
            for m in BM.DELAY_DEVICES]
-    cases['G04_front_end'] = (FB.flatten(cells, mos), ['ui_in[6]', 'capture', 'cfg[0]', 'cfg[1]', 'ua[0]'],
+    cases['G04_front_end'] = (FB.flatten(cells, mos), ['ui_in[6]', 'capture', 'ui_in[3]', 'uio_in[6]', 'ua[0]'],
                               ['selected_q', 'early_q', 'uio_out[4]', 'uio_out[5]'])
     bad = 0
     for sheet, (devs, ins, outs) in cases.items():

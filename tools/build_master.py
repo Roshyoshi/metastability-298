@@ -3,7 +3,8 @@
 
 Single source of truth for every diagram, schematic and layout:
   * the GF180 standard-cell CDL netlists in pdk_cells/cdl/
-  * the synthesized controller netlist netlist/controller_synth.v (Yosys 0.33)
+  * the controller netlist netlist/controller_synth.v: src/gf180/compact_control.v as a flat list of
+    cells, written by tools/controller_netlist.py
   * the front end, described below exactly as in rtl/meta_top.v and rtl/meta_duts.v
     (including the isolation buffer iso0/iso1)
 
@@ -82,28 +83,44 @@ def parse_yosys(path):
     return inst
 
 CTRL = parse_yosys(OUT / 'controller_synth.v')
-# Synthesis tied one flip-flop input (reset_release[0].D) to logic 1. A gate must not connect straight to the
-# supply rail, so a tie-high cell drives it, as the digital flow would insert.
+# A gate must not connect straight to the supply rail, so a tie-high cell drives any input the netlist
+# ties to logic 1, as the digital flow would insert. compact_control has none.
 _tied = [(i, p) for i in CTRL for p, n in i['conns'].items() if n == 'VDPWR']
 if _tied:
     CTRL.append({'cell': LIB + 'tieh', 'name': 'tie_hi', 'conns': OrderedDict([('Z', 'tie_hi_z')])})
     for i, p in _tied:
         i['conns'][p] = 'tie_hi_z'
 
-# Register -> flow box, from the RTL (rtl/meta_controller.v)
-REG_BOX = [
-    (r'^(state|reset_release|start_sync|start_previous|capture_o|config_o)', 'Sequencer'),
-    (r'^late[12]$', 'Late observers'),
-    (r'^(event_pending|reference_fault)$', 'Compare'),
-    (r'^(events_o|trials_o)', 'Counters K and N'),
-    (r'^(busy_o|done_o|fault_o)$', 'Hold results + readout'),
+# Controller instance -> block. The eight blocks are the eight parts of the design note at the top of
+# src/gf180/compact_control.v, in the same order. Each entry: block, flow box, title, instance pattern.
+CTRL_BLOCKS = [
+    ('trial_clock', 'Sequencer', 'Trial clock: a (= capture) and b step 00, 01, 11, 10 on clk; a_n = NOT a',
+     r'^(a_ff|a_inv|b_ff)$'),
+    ('start', 'Sequencer', 'Start: request = ena AND start, then start_meta and run, both clocked by a_n rising',
+     r'^(request_and|start_meta_ff|run_ff)$'),
+    ('readings', 'Late observers + compare',
+     'Later readings: l1 on b falling (50 ns), l2 on a_n rising (100 ns); event_bit = early XOR l2, bad_bit = l1 XOR l2',
+     r'^(l1_ff|l2_ff|event_xor|bad_xor)$'),
+    ('count_pulse', 'Sequencer',
+     'Count pulse: allow_count takes run AND NOT n_16 on b falling; tick_n = NOT (b AND allow_count)',
+     r'^(finished_inv|want_and|allow_ff|tick_nand)$'),
+    ('trial_counter', 'Counter N',
+     'Trial counter n: each bit clocked by the bit below, except n_1 by n_n_0; n_16 rises on count 65,535',
+     r'^n\d+_(ff|inv)$'),
+    ('event_counter', 'Counter K',
+     'Event counter k: bit 0 takes k_0 XOR event_bit on each count; each later bit is clocked by the bit below',
+     r'^(k0_xor|k\d+_(ff|inv))$'),
+    ('status', 'Status', 'Status: fault takes fault OR bad_bit on each count; done takes n_16 on b falling; busy = run AND NOT done',
+     r'^(fault_or|fault_ff|done_ff|done_inv|busy_and)$'),
+    ('readout', 'Readout', 'Readout: uo_out = k[7:0] when byte_sel (ui_in_0) is 0, k[15:8] when it is 1',
+     r'^byte\d+_mux$'),
 ]
 
-def reg_box(net):
-    for pat, box in REG_BOX:
-        if re.match(pat, net):
-            return box
-    raise ValueError('unmapped register output ' + net)
+def ctrl_block(inst):
+    for blk, box, title, pat in CTRL_BLOCKS:
+        if re.match(pat, inst):
+            return blk, box
+    raise ValueError('controller instance in no block: ' + inst)
 
 OUTPUT_PINS = {'Q', 'Z', 'ZN'}
 def outputs(i):
@@ -113,37 +130,9 @@ def inputs(i):
 
 flops = [i for i in CTRL if 'dff' in i['cell']]
 comb = [i for i in CTRL if 'dff' not in i['cell']]
-for f in flops:
-    f['box'] = reg_box(f['conns']['Q'])
-
-# Forward cone: which flops (and therefore boxes) each combinational cell feeds.
-readers = defaultdict(list)
 for i in CTRL:
-    for n in inputs(i):
-        readers[n].append(i)
-
-def boxes_fed(cell, seen=None):
-    seen = seen if seen is not None else set()
-    res = set()
-    for n in outputs(cell):
-        for r in readers[n]:
-            if 'dff' in r['cell']:
-                res.add(r['box'])
-            elif id(r) not in seen:
-                seen.add(id(r))
-                res |= boxes_fed(r, seen)
-    return res
-
+    i['block'], i['box'] = ctrl_block(i['name'])
 shared = []
-for c in comb:
-    fed = boxes_fed(c)
-    c['feeds'] = sorted(fed)
-    if len(fed) == 1:
-        c['box'] = next(iter(fed))
-    else:
-        # Logic that decodes the state for several blocks is control logic.
-        c['box'] = 'Sequencer'
-        shared.append(c)
 
 # ------------------------------------------------------------------ front end (rtl/meta_top.v, meta_duts.v)
 def X(name, cell, **pins):
@@ -192,7 +181,8 @@ TOP = [
     ('Capture edge', X('cap0', 'inv_2', I='capture', ZN='capture_b')),
     ('Capture edge', X('cap1', 'inv_2', I='capture_b', ZN='capture_local')),
     ('Flip-flops under test', X('u_dut1', 'dffq_1', D='data_local', CLK='capture_local', Q='q[0]')),
-    ('Selector', X('select_dut', 'mux4_1', I0='q[0]', I1='q[1]', I2='q[2]', I3='q[3]', S0='cfg[0]', S1='cfg[1]', Z='selected_q')),
+    # the selection bits come straight from the pins: compact_control does not latch them
+    ('Selector', X('select_dut', 'mux4_1', I0='q[0]', I1='q[1]', I2='q[2]', I3='q[3]', S0='ui_in[3]', S1='uio_in[6]', Z='selected_q')),
     ('Adjustable delay', X('iso0', 'inv_1', I='capture_local', ZN='capture_iso_b')),
     ('Adjustable delay', X('iso1', 'inv_2', I='capture_iso_b', ZN='capture_iso')),
     # ua[0] reaches the delay line's control gate over about 170 um of metal and has no driver on the tile;
@@ -218,15 +208,14 @@ TOP_SUB = [
     ('Flip-flops under test', 'u_dut4', 'meta_dut_forward', ['data_local', 'capture_local', 'q[3]']),
     ('Adjustable delay', 'delay', 'meta_delay_analog', ['capture_iso', 'ua[0]', 'early_clk']),
 ]
-CTRL_PORTS = ['clk', 'rst_n', 'enable_i', 'start_i', 'config_i[0]', 'config_i[1]', 'dut_q_i', 'early_sample_i',
-              'capture_o', 'config_o[0]', 'config_o[1]'] + [f'events_o[{k}]' for k in range(8)] + \
-             [f'trials_o[{k}]' for k in range(8)] + ['busy_o', 'done_o', 'fault_o']
-CTRL_MAP = {'clk': 'clk', 'rst_n': 'rst_n', 'enable_i': 'ena', 'start_i': 'ui_in[4]', 'config_i[0]': 'ui_in[3]',
-            'config_i[1]': 'uio_in[6]', 'dut_q_i': 'selected_q', 'early_sample_i': 'early_q', 'capture_o': 'capture',
-            'config_o[0]': 'cfg[0]', 'config_o[1]': 'cfg[1]', 'busy_o': 'uio_out[1]', 'done_o': 'uio_out[2]',
-            'fault_o': 'uio_out[3]'}
-CTRL_MAP.update({f'events_o[{k}]': f'uo_out[{k}]' for k in range(8)})
-CTRL_MAP.update({f'trials_o[{k}]': f'trials[{k}]' for k in range(8)})
+CTRL_NAME = 'compact_control'
+CTRL_PORTS = ['clk20', 'rst_n', 'ena', 'start', 'q_selected', 'early_e', 'byte_sel', 'capture', 'busy', 'done', 'fault'] + \
+             [f'result_byte[{k}]' for k in range(8)]
+# controller port -> net of the tile
+CTRL_MAP = {'clk20': 'clk', 'rst_n': 'rst_n', 'ena': 'ena', 'start': 'ui_in[4]', 'q_selected': 'selected_q',
+            'early_e': 'early_q', 'byte_sel': 'ui_in[0]', 'capture': 'capture', 'busy': 'uio_out[1]',
+            'done': 'uio_out[2]', 'fault': 'uio_out[3]'}
+CTRL_MAP.update({f'result_byte[{k}]': f'uo_out[{k}]' for k in range(8)})
 
 TOP_PORTS = ['VDPWR', 'VGND'] + [f'ui_in[{k}]' for k in range(8)] + [f'uo_out[{k}]' for k in range(8)] + \
             [f'uio_in[{k}]' for k in range(8)] + [f'uio_out[{k}]' for k in range(8)] + \
@@ -265,11 +254,11 @@ def write_cdl():
     L += [dev_line(d) for d in DELAY_DEVICES]
     L += [cell_line(i) for i in DELAY_CELLS]
     L += ['.ENDS', '']
-    L.append('.SUBCKT meta_controller ' + ' '.join(CTRL_PORTS) + ' VDPWR VGND')
+    L.append(f'.SUBCKT {CTRL_NAME} ' + ' '.join(CTRL_PORTS) + ' VDPWR VGND')
     L += [cell_line(i) for i in CTRL]
     L += ['.ENDS', '']
     L.append(f'.SUBCKT {TOP_NAME} ' + ' '.join(TOP_PORTS))
-    L.append('Xcontroller ' + ' '.join(CTRL_MAP[p] for p in CTRL_PORTS) + ' VDPWR VGND meta_controller')
+    L.append('Xcontroller ' + ' '.join(CTRL_MAP[p] for p in CTRL_PORTS) + f' VDPWR VGND {CTRL_NAME}')
     for _, i in TOP:
         L.append(cell_line(i))
     for _, name, sub, nets in TOP_SUB:
@@ -304,8 +293,7 @@ def write_inventory():
             for i in DELAY_CELLS:
                 add(box, sub, f'{name}/{i["name"]}', i['cell'])
     for i in CTRL:
-        blk = 'meta_controller/state_decode (shared)' if i in shared else 'meta_controller'
-        add(i['box'], blk, f'controller/{i["name"]}', i['cell'])
+        add(i['box'], f'{CTRL_NAME}/{i["block"]}', f'controller/{i["name"]}', i['cell'])
     for r in rows:
         r['flow_box'] = r['flow_box'].replace('Ring oscillator + divider (off chip)', 'Data input (ring oscillator off chip)')
     for t in trans:
@@ -340,6 +328,3 @@ if __name__ == '__main__':
     print(f'{len(rows)} instances, {len(trans)} transistors')
     for k, s in summ.items():
         print(f'  {k:42s} {s["cells"]:4d} instances {s["transistors"]:5d} transistors')
-    print(f'shared controller cells assigned to Sequencer: {len(shared)}')
-    for c in shared:
-        print('   ', c['name'], c['cell'].replace(LIB, ''), '->', c['feeds'])

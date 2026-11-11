@@ -3,7 +3,8 @@
 
 Each bench prints lines 'RESULT <name> <value>' and writes waveform files with wrdata, so run_round2.sh can
 collect everything. Expected values come from the earlier verified simulations (same devices, same
-junction geometry) or, for the controller, from tools/gatesim.py (RTL model = synthesized netlist).
+junction geometry) or, for the controller, from the logic simulation of src/gf180/compact_control.v with the
+same inputs (make check-control uses the same cells with 1 ns stand-in delays).
 """
 import sys, json
 from pathlib import Path
@@ -165,8 +166,8 @@ def tb_frontend(b):
     b.vsrc('vvdd', 'VDD', '3.3', -400, 0)
     b.vsrc('vcap', 'capture', TB_CLK, -280, 0)
     b.vsrc('vd', 'ui_in_6', 'PWL(0 0 2.975n 0 3.025n 3.3)', -160, 0)
-    b.vsrc('vs0', 'cfg_0', '3.3', -400, 140)
-    b.vsrc('vs1', 'cfg_1', '0', -280, 140)
+    b.vsrc('vs0', 'ui_in_3', '3.3', -400, 140)
+    b.vsrc('vs1', 'uio_in_6', '0', -280, 140)
     b.vsrc('vbias', 'ua_0', '3.0', -160, 140)
     x = 200
     for blk, xy in [('data_input', (200, 0)), ('capture_drivers', (200, 120)), ('duts', (500, 60)), ('selector', (800, 60)),
@@ -192,37 +193,43 @@ def tb_frontend(b):
        {'sel0_V': 3.3, 'sel1_V': 0.0, 'sel2_V': 3.3, 'sel3_V': 0.0})
 def tb_selector(b):
     b.vsrc('vvdd', 'VDD', '3.3', -300, 0)
-    b.vsrc('vs0', 'cfg_0', 'PWL(0 0 10n 0 10.1n 3.3 20n 3.3 20.1n 0 30n 0 30.1n 3.3)', -180, 0)
-    b.vsrc('vs1', 'cfg_1', 'PWL(0 0 20n 0 20.1n 3.3)', -60, 0)
+    b.vsrc('vs0', 'ui_in_3', 'PWL(0 0 10n 0 10.1n 3.3 20n 3.3 20.1n 0 30n 0 30.1n 3.3)', -180, 0)
+    b.vsrc('vs1', 'uio_in_6', 'PWL(0 0 20n 0 20.1n 3.3)', -60, 0)
     i, o = ports_of('selector')
     b.block(sym('blocks', 'selector'), 300, 0, 'xsel', i, o, {'q_0': 'VDD', 'q_1': '0', 'q_2': 'VDD', 'q_3': '0'})
     code = (MODELS + '.control\nset filetype=ascii\ntran 10p 40n\n' +
             '\n'.join(f'meas tran s{k} find v(selected_q) at={9 + 10 * k}n\necho RESULT sel{k}_V $&s{k}' for k in range(4)) +
-            '\nwrdata tb_selector.dat v(cfg_0) v(cfg_1) v(selected_q)\n.endc')
+            '\nwrdata tb_selector.dat v(ui_in_3) v(uio_in_6) v(selected_q)\n.endc')
     b.code(code, 700, -150)
 
-CTRL_EXPECT = {'events_after_6_trials': 6, 'busy_V': 3.3, 'done_V': 0.0, 'fault_V': 0.0,
-               'first_capture_ns': 'about 676 (clock edge at 675 ns plus clock-to-output)'}
+# compact_control with every trial an event (selected_q high, early_q low). Reset is held across two rising
+# clk edges and released at 100 ns. start rises at 300 ns and stays high: start_meta loads it at 475 ns, run
+# at 675 ns, allow_count at 825 ns, so the first count is the b rising edge at 925 ns and the eighth is at
+# 2,325 ns. A full block is 65,535 trials (13.1 ms), far too long to run here: the bench shows the start of
+# one, including the carry from k = 7 to k = 8.
+CTRL_EXPECT = {'events_after_8_trials': 8, 'busy_V': 3.3, 'done_V': 0.0, 'fault_V': 0.0,
+               'first_capture_ns': 'about 175 (clock edge at 174.6 ns plus clock-to-output)',
+               'first_count_ns': 'about 927 (clock edge at 924.6 ns, then four cells: b, the count-pulse gate, k[0], the output selector)'}
 
-@bench('tb_controller', 'Controller at transistor level: six trials after START (1,676 transistors)', CTRL_EXPECT)
+@bench('tb_controller', 'Controller at transistor level: the first eight counted trials of a block (1,388 transistors)', CTRL_EXPECT)
 def tb_controller(b):
     b.vsrc('vvdd', 'VDD', '3.3', -400, 0)
     b.vsrc('vclk', 'clk', 'PULSE(0 3.3 24.5n 0.1n 0.1n 24.9n 50n)', -280, 0)
-    b.vsrc('vrst', 'rst_n', 'PWL(0 0 60n 0 60.1n 3.3)', -160, 0)
-    b.vsrc('vstart', 'ui_in_4', 'PWL(0 0 210n 0 210.1n 3.3 510n 3.3 510.1n 0)', -400, 140)
+    b.vsrc('vrst', 'rst_n', 'PWL(0 0 100n 0 100.1n 3.3)', -160, 0)
+    b.vsrc('vstart', 'ui_in_4', 'PWL(0 0 300n 0 300.1n 3.3)', -400, 140)
     b.vsrc('vena', 'ena', '3.3', -280, 140)
-    b.vsrc('vs0', 'ui_in_3', '3.3', -160, 140)
-    b.vsrc('vs1', 'uio_in_6', '0', -400, 280)
-    b.vsrc('vdq', 'selected_q', '3.3', -280, 280)
-    b.vsrc('vea', 'early_q', '0', -160, 280)
+    b.vsrc('vbyte', 'ui_in_0', '0', -160, 140)
+    b.vsrc('vdq', 'selected_q', '3.3', -400, 280)
+    b.vsrc('vea', 'early_q', '0', -280, 280)
     i, o = ports_of('controller')
     b.block(sym('blocks', 'controller'), 300, 100, 'xctrl', i, o, {})
     bits = ' '.join(f'v(uo_out_{k})' for k in range(8))
     code = (MODELS + '.control\nset filetype=ascii\ntran 50p 2.5u\n'
-            'meas tran first_cap when v(capture)=1.65 rise=1\nlet a=first_cap*1e9\necho RESULT first_capture_ns $&a\n' +
+            'meas tran first_cap when v(capture)=1.65 rise=1\nlet a=first_cap*1e9\necho RESULT first_capture_ns $&a\n'
+            'meas tran first_cnt when v(uo_out_0)=1.65 rise=1\nlet a=first_cnt*1e9\necho RESULT first_count_ns $&a\n' +
             '\n'.join(f'meas tran b{k} find v(uo_out_{k}) at=2.49u' for k in range(8)) +
             '\nlet ev=(b0 gt 1.65)+2*(b1 gt 1.65)+4*(b2 gt 1.65)+8*(b3 gt 1.65)+16*(b4 gt 1.65)+32*(b5 gt 1.65)+64*(b6 gt 1.65)+128*(b7 gt 1.65)\n'
-            'echo RESULT events_after_6_trials $&ev\n'
+            'echo RESULT events_after_8_trials $&ev\n'
             'meas tran busy find v(uio_out_1) at=2.49u\nmeas tran done find v(uio_out_2) at=2.49u\nmeas tran fault find v(uio_out_3) at=2.49u\n'
             'echo RESULT busy_V $&busy\necho RESULT done_V $&done\necho RESULT fault_V $&fault\n'
             f'wrdata tb_controller.dat v(clk) v(capture) v(uio_out_1) {bits}\n.endc')

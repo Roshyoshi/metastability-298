@@ -232,7 +232,7 @@ def gate_sheets():
         'G04_front_end', 'G04 front end (gate level, wired): data in, capture edge, four flip-flops, selector, delay line, early sample',
         ['capture (from the controller) clocks all four flip-flops; the selector passes one output; the delay line makes '
          'early_clk a time d later; the early observer samples the selected output then. Monitors copy both clocks to pins.'],
-        fe, ['ui_in[6]', 'capture', 'cfg[0]', 'cfg[1]', 'ua[0]'], ['selected_q', 'early_q', 'uio_out[4]', 'uio_out[5]'],
+        fe, ['ui_in[6]', 'capture', 'ui_in[3]', 'uio_in[6]', 'ua[0]'], ['selected_q', 'early_q', 'uio_out[4]', 'uio_out[5]'],
         cols, [(0, 'input buffers'), (2, 'flip-flops under test'), (3, 'selector / isolation'), (4, 'delay line'),
                (5, 'early observer, monitors')])
     return made

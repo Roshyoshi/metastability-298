@@ -136,14 +136,14 @@ def sheets(only=None):
                 ('slow', 'green', 'slow ramp'), ('early_clk', 'yellow', 'early_clk out')])
     sel = FB.blocks()['selector']
     mk('F10_selector', 'F10  selector mux4_1: passes one of the four flip-flop outputs q[0..3] to selected_q',
-       ['cfg[0] (S0) picks one input of each pair with clocked inverters; cfg[1] (S1) picks the pair with two transmission gates',
+       ['ui_in[3] (S0) picks one input of each pair with clocked inverters; uio_in[6] (S1) picks the pair with two transmission gates',
         '(the floating transistors in the middle); the output inverter drives selected_q.'],
        strip(shortnames(sel[2], lib=True), 'select_dut.'), sel[3], sel[4],
        [('select inverters', devname('MN1', 'MP1', 'MN2', 'MP5'), GREY),
         ('S0 level: clocked inverters; S1 level: transmission gates', lambda d: 'MN' in d['name'] or 'MP' in d['name'], GREY),
         ('output inverter', devname('instance_22', 'instance_1'), GREY)],
-       colours=[(('cfg[0]', 'sel1_n'), 'yellow', 'S0 and its inverse'), (('cfg[1]', 'sel2_n'), 'magenta', 'S1 and its inverse')])
-    mk('F11_controller_register', 'F11  dffrnq_1: the flip-flop used for every controller register (34 of them)',
+       colours=[(('ui_in[3]', 'sel1_n'), 'yellow', 'S0 and its inverse'), (('uio_in[6]', 'sel2_n'), 'magenta', 'S1 and its inverse')])
+    mk('F11_controller_register', 'F11  dffrnq_1: controller flip-flop with reset (b, start_meta, run); the other 36 use dffnrnq_1',
        ['Same plan as F07 with a NAND in each loop: RN = 0 forces both NANDs to output 1, so net4 = 1 and Q = 0 whatever the clock does.',
         'Master loop: net1 -> inverter -> net2 -> NAND(net2, RN) -> net1. Slave: NAND(net8, RN) -> net4 -> Q = NOT net4.'],
        strip(shortnames(FB.flatten([('reg', 'dffrnq_1', {'D': 'D', 'RN': 'RN', 'CLK': 'CLK', 'Q': 'Q'})]), lib=True), 'reg.'),
@@ -192,10 +192,10 @@ def sheets(only=None):
              'early_observer', 'monitor_capture_a', 'monitor_early_a', 'monitor_capture_b', 'monitor_early_b']
     fe.sort(key=lambda t: order.index(t[0]))
     mg('G04_front_end', 'G04  front end (gate level): data in, capture edge, four flip-flops, selector, delay line, early sample',
-       ['capture (from the controller) clocks all four flip-flops at once; cfg[1:0] picks which one the selector passes on (selected_q).',
+       ['capture (from the controller) clocks all four flip-flops at once; pins ui_in[3] and uio_in[6] pick which one the selector passes on (selected_q).',
         'The same edge, delayed by d (set by ua[0]) in the delay line, becomes early_clk: the early observer samples selected_q then.',
         'The controller (not drawn) samples selected_q again 50 ns and 100 ns later and compares. Monitors copy both clocks to pins.'],
-       fe, ['ui_in[6]', 'capture', 'cfg[0]', 'cfg[1]', 'ua[0]'], ['selected_q', 'early_q', 'uio_out[4]', 'uio_out[5]'], fcols,
+       fe, ['ui_in[6]', 'capture', 'ui_in[3]', 'uio_in[6]', 'ua[0]'], ['selected_q', 'early_q', 'uio_out[4]', 'uio_out[5]'], fcols,
        [(0, 'input buffers', GREY), (2, 'flip-flops under test: DUT1-DUT4', GREY), (3, 'selector', GREY),
         (4, 'isolation', GREY), (5, 'delay line (F08, F09)', GREY), (6, 'early observer, monitors', GREY)],
        colours=[(('capture', 'capture_local'), 'orange', 'capture edge'), ('early_clk', 'yellow', 'early_clk: capture delayed by d'),

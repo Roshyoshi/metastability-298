@@ -72,6 +72,8 @@ FUNC = {
     'oai22': 'ZN = NOT ((A1 OR A2) AND (B1 OR B2))', 'xor2': 'Z = A1 XOR A2', 'xnor2': 'ZN = NOT (A1 XOR A2)',
     'mux2': 'Z = I1 if S else I0', 'mux4': 'Z = I0..I3 selected by S1 S0',
     'dffq': 'Q takes D on the rising CLK edge', 'tieh': 'Z = 1 (tie-high cell)',
+    'dffnq': 'Q takes D on the falling CLKN edge',
+    'dffnrnq': 'Q takes D on the falling CLKN edge; RN = 0 clears Q',
     'antenna': 'two reverse-biased diodes on I (protect the gate on I while the chip is fabricated)',
     'tiel': 'ZN = 0 (tie-low cell)', 'buf': 'Z = I (buffer)', 'dffrnq': 'Q takes D on the rising CLK edge; RN = 0 clears Q',
 }
@@ -290,19 +292,12 @@ def master_blocks():
         blocks['delay_line']['insts'].append((d['name'], 'mos', d, {'d': d['d'], 'g': d['g'], 's': d['s'], 'b': d['b']}))
     for i in BM.DELAY_CELLS:
         blocks['delay_line']['insts'].append((i['name'], 'cell', cellref(i['cell']), dict(i['conns'])))
-    # controller flow boxes
-    ctrl_names = OrderedDict([('Sequencer', 'sequencer'), ('Late observers', 'late_observers'), ('Compare', 'compare'),
-                              ('Counters K and N', 'counters'), ('Hold results + readout', 'hold_status')])
-    titles = {'sequencer': 'Sequencer: state register, START/reset synchronizers, shared state decode',
-              'late_observers': 'Late observers: late1 (50 ns) and late2 (100 ns) samples',
-              'compare': 'Compare: event = early XOR late2, fault = late1 XOR late2',
-              'counters': 'Counters: events K (uo_out) and trials N, 8 bits each',
-              'hold_status': 'Hold and readout status: busy, done, fault flags'}
-    for box, blk in ctrl_names.items():
-        add(blk, titles[blk], box)
+    # controller blocks: the eight parts of compact_control
+    for blk, box, title, _ in BM.CTRL_BLOCKS:
+        add(blk, title, box)
     for i in BM.CTRL:
         conns = {p: BM.CTRL_MAP.get(n, n) for p, n in i['conns'].items()}
-        blocks[ctrl_names[i['box']]]['insts'].append((i['name'], 'cell', cellref(i['cell']), conns))
+        blocks[i['block']]['insts'].append((i['name'], 'cell', cellref(i['cell']), conns))
     return blocks
 
 def pin_dirs(cellkind, ref):
@@ -381,6 +376,20 @@ PLACE = {
     'monitors': {'monitor_capture_a': (240, 0), 'monitor_capture_b': (440, 0),
                  'monitor_early_a': (240, 130), 'monitor_early_b': (440, 130)},
     'selector': {'select_dut': (300, 0)}, 'early_observer': {'early_observer': (300, 0)},
+    # controller: placed in signal order, left to right
+    'trial_clock': {'a_ff': (300, 0), 'a_inv': (560, 0), 'b_ff': (820, 20)},
+    'start': {'request_and': (300, 0), 'start_meta_ff': (560, 20), 'run_ff': (820, 20)},
+    'readings': {'l1_ff': (300, 0), 'l2_ff': (300, 150), 'bad_xor': (620, 0), 'event_xor': (620, 150)},
+    'count_pulse': {'finished_inv': (300, 0), 'want_and': (560, 0), 'allow_ff': (820, 20), 'tick_nand': (1080, 0)},
+    'status': {'fault_or': (300, 0), 'fault_ff': (560, 20), 'done_ff': (300, 190), 'done_inv': (560, 170),
+               'busy_and': (820, 170)},
+    # one counter bit per column, six bits per row: flip-flop above, its inverter below
+    'trial_counter': {**{f'n{i}_ff': (300 + 330 * (i % 6), 260 * (i // 6)) for i in range(17)},
+                      **{f'n{i}_inv': (300 + 330 * (i % 6), 260 * (i // 6) + 120) for i in range(17)}},
+    'event_counter': {'k0_xor': (300, 120), 'k0_ff': (300, 0),
+                      **{f'k{i}_ff': (300 + 330 * (i % 6), 260 * (i // 6)) for i in range(1, 16)},
+                      **{f'k{i}_inv': (300 + 330 * (i % 6), 260 * (i // 6) + 120) for i in range(1, 16)}},
+    'readout': {f'byte{i}_mux': (300 + 330 * (i % 4), 170 * (i // 4)) for i in range(8)},
 }
 COLUMN_TEXT = {
     'meta_dut_baseline': [(270, -20, 'master door'), (500, -20, 'master latch (measured)'), (730, -20, 'slave door'), (960, -20, 'slave latch')],
@@ -454,12 +463,12 @@ def block_scene(name, blk, ins, outs, symref):
 # ------------------------------------------------------------------ writers
 HIER = OrderedDict([
     ('chip', ['data_input', 'capture_drivers', 'delay', 'duts', 'selector', 'early_observer', 'controller', 'monitors', 'pin_drivers']),
-    ('controller', ['sequencer', 'late_observers', 'compare', 'counters', 'hold_status']),
+    ('controller', [b[0] for b in BM.CTRL_BLOCKS]),
 ])
 SUB_OF = {'meta_dut_baseline': 'duts', 'meta_dut_keeper': 'duts', 'meta_dut_forward': 'duts', 'delay_line': 'delay'}
 COMPOSITE_TITLE = {
     'chip': 'tt_um_metastability_characterizer: the whole tile (GF180, 1x2 analog template)',
-    'controller': 'Controller (Roshan\'s meta_controller.v after synthesis, 159 cells), split into its flow boxes',
+    'controller': 'Controller (src/gf180/compact_control.v, 93 cells, 1,388 transistors), split into its eight parts',
 }
 
 def composite_scene(name, children, ports, toplevel_pins=None):
