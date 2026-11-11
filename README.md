@@ -5,9 +5,12 @@ path. Its first implementation task is the ring oscillator and divided data
 source. The [design document](docs/design_doc.tex) contains the circuit plan and
 reported SPICE results.
 
-Current implementation: Tiny Tapeout interface scaffold with tied-off outputs
-and a standalone gated ring oscillator. Integration, the measurement circuit,
-and physical constraints are pending.
+Current implementation: Tiny Tapeout interface scaffold with tied-off outputs,
+a standalone gated ring oscillator, and the measurement controller
+(`src/gf180/compact_control.v`): 93 GF180 cells that run a block of 65,535
+trials and count events in 16 bits. The controller passes its logic tests but
+is not connected to the top level yet. Integration, the measurement circuit,
+transistor-level checks, and physical constraints are pending.
 
 ## Development
 
@@ -22,6 +25,11 @@ executes the interface harness, and runs `make check-ring`. The harness supplies
 a 20 MHz clock and reset, then finishes; it does not check instrument behavior
 yet. The ring check tests enable, disable, restart, and loop period with
 artificial cell delays, and checks that synthesis retains the selected cells.
+`make check-control` runs the controller's tests in `test/rtl/tb_compact_control.v`
+at block lengths of 15, 255 and 65,535 trials (about 45 seconds), and checks
+that the controller contains exactly the cells listed in
+`test/rtl/compact_control_cells.ys`, before and after synthesis. Its cell
+models also use 1 ns delays, so it checks wiring and edge order, not timing.
 
 `make sim` writes `build/rtl/tb.vcd`. `make synth` writes its netlist and report
 under `build/synth/`. These are tooling checks, not GF180 physical signoff.
@@ -38,10 +46,10 @@ repository root. GF180 simulations also need the separately installed
 | --- | --- |
 | `src/project.v` | Tiny Tapeout boundary and pin mapping |
 | `src/` | Instrument integration, stimulus control, sequencer, counters |
-| `src/gf180/` | Explicit standard-cell circuits |
+| `src/gf180/` | Explicit standard-cell circuits: ring oscillator, measurement controller |
 | `test/tb.v` | Top-level clock/reset and waveform harness |
 | `test/rtl/` | Digital block and protocol tests |
-| `test/models/` | Simulation-only oscillator and delay models |
+| `test/models/` | Simulation-only models of the GF180 cells and delays |
 | `test/gate/` | Mapped and post-layout netlist checks |
 | `spice/ring_osc/` | Oscillator characterization |
 | `spice/duts/` | Flip-flop metastability characterization |
