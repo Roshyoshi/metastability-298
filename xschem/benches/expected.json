@@ -44,10 +44,11 @@
   "sel3_V": 0.0
  },
  "tb_controller": {
-  "events_after_6_trials": 6,
+  "events_after_8_trials": 8,
   "busy_V": 3.3,
   "done_V": 0.0,
   "fault_V": 0.0,
-  "first_capture_ns": "about 676 (clock edge at 675 ns plus clock-to-output)"
+  "first_capture_ns": "about 175 (clock edge at 174.6 ns plus clock-to-output)",
+  "first_count_ns": "about 927 (clock edge at 924.6 ns, then four cells: b, the count-pulse gate, k[0], the output selector)"
  }
 }

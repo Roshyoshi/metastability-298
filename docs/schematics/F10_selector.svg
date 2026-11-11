@@ -161,7 +161,7 @@ text {font-family: Sans-Serif;}
 <text fill="#cccccc"  xml:space="preserve" font-size="6.91922" transform="translate(245.693, 88.0256)" >S0 level: clocked inverters; S1 level: transmission gates</text>
 <text fill="#cccccc"  xml:space="preserve" font-size="6.91922" transform="translate(471.898, 65.8487)" >output inverter</text>
 <text fill="#cccccc"  xml:space="preserve" font-size="10.3788" transform="translate(23.9232, 16.879)" >F10  selector mux4_1: passes one of the four flip-flop outputs q[0..3] to selected_q</text>
-<text fill="#cccccc"  xml:space="preserve" font-size="5.53537" transform="translate(23.9232, 31.4819)" >cfg[0] (S0) picks one input of each pair with clocked inverters; cfg[1] (S1) picks the pair with two transmission gates</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="5.53537" transform="translate(23.9232, 31.4819)" >ui_in[3] (S0) picks one input of each pair with clocked inverters; uio_in[6] (S1) picks the pair with two transmission gates</text>
 <text fill="#cccccc"  xml:space="preserve" font-size="5.53537" transform="translate(23.9232, 40.0533)" >(the floating transistors in the middle); the output inverter drives selected_q.</text>
 <text fill="#cccccc"  xml:space="preserve" font-size="5.53537" transform="translate(161.42, 451.685)" >S0 and its inverse</text>
 <text fill="#cccccc"  xml:space="preserve" font-size="5.53537" transform="translate(161.42, 469.427)" >S1 and its inverse</text>
@@ -172,14 +172,14 @@ text {font-family: Sans-Serif;}
 <text fill="#00ccee"  xml:space="preserve" font-size="7.61114" transform="translate(30.2192, 245.287)" >q_1</text>
 <text fill="#00ccee"  xml:space="preserve" font-size="7.61114" transform="translate(30.2192, 263.028)" >q_2</text>
 <text fill="#00ccee"  xml:space="preserve" font-size="7.61114" transform="translate(30.2192, 280.77)" >q_3</text>
-<text fill="#ff0000"  xml:space="preserve" font-size="7.61114" transform="translate(23.2192, 298.512)" >cfg_0</text>
-<text fill="#ffffff"  xml:space="preserve" font-size="7.61114" transform="translate(23.2192, 316.253)" >cfg_1</text>
+<text fill="#ff0000"  xml:space="preserve" font-size="7.61114" transform="translate(23.2192, 298.512)" >ui_in_3</text>
+<text fill="#ffffff"  xml:space="preserve" font-size="7.61114" transform="translate(23.2192, 316.253)" >uio_in_6</text>
 <text fill="#00ccee"  xml:space="preserve" font-size="7.61114" transform="translate(578.348, 271.899)" >selected_q</text>
 <text fill="#ffff00"  xml:space="preserve" font-size="6.2273" transform="translate(322.163, 382.147)" >sel1_n</text>
 <text fill="#ff00ff"  xml:space="preserve" font-size="6.2273" transform="translate(206.843, 280.133)" >sel2_n</text>
-<text fill="#ff0000"  xml:space="preserve" font-size="6.2273" transform="translate(77.7807, 448.678)" >cfg_0</text>
+<text fill="#ff0000"  xml:space="preserve" font-size="6.2273" transform="translate(77.7807, 448.678)" >ui_in_3</text>
 <text fill="#ffff00"  xml:space="preserve" font-size="6.2273" transform="translate(127.005, 448.678)" >sel1_n</text>
-<text fill="#ffffff"  xml:space="preserve" font-size="6.2273" transform="translate(77.7807, 466.419)" >cfg_1</text>
+<text fill="#ffffff"  xml:space="preserve" font-size="6.2273" transform="translate(77.7807, 466.419)" >uio_in_6</text>
 <text fill="#ff00ff"  xml:space="preserve" font-size="6.2273" transform="translate(127.005, 466.419)" >sel2_n</text>
 <path class="l3" d="M86.0187 91.4534L219.081 91.4534"/>
 <path class="l3" d="M86.0187 91.4534L86.0187 96.7759"/>

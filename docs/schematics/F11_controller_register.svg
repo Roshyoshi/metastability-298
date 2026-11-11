@@ -162,7 +162,7 @@ text {font-family: Sans-Serif;}
 <text fill="#cccccc"  xml:space="preserve" font-size="6.79267" transform="translate(415.617, 86.552)" >slave NAND(net8, RN)</text>
 <text fill="#cccccc"  xml:space="preserve" font-size="6.79267" transform="translate(541.892, 86.552)" >master inverter, pass gate, slave feedback</text>
 <text fill="#cccccc"  xml:space="preserve" font-size="6.79267" transform="translate(668.166, 64.7807)" >output</text>
-<text fill="#cccccc"  xml:space="preserve" font-size="10.189" transform="translate(23.7326, 16.7066)" >F11  dffrnq_1: the flip-flop used for every controller register (34 of them)</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="10.189" transform="translate(23.7326, 16.7066)" >F11  dffrnq_1: controller flip-flop with reset (b, start_meta, run); the other 36 use dffnrnq_1</text>
 <text fill="#cccccc"  xml:space="preserve" font-size="5.43414" transform="translate(23.7326, 31.0425)" >Same plan as F07 with a NAND in each loop: RN = 0 forces both NANDs to output 1, so net4 = 1 and Q = 0 whatever the clock does.</text>
 <text fill="#cccccc"  xml:space="preserve" font-size="5.43414" transform="translate(23.7326, 39.4571)" >Master loop: net1 -&gt; inverter -&gt; net2 -&gt; NAND(net2, RN) -&gt; net1. Slave: NAND(net8, RN) -&gt; net4 -&gt; Q = NOT net4.</text>
 <text fill="#cccccc"  xml:space="preserve" font-size="5.43414" transform="translate(158.715, 400.018)" >clock</text>

@@ -164,7 +164,7 @@ text {font-family: Sans-Serif;}
 <text fill="#cccccc"  xml:space="preserve" font-size="3.93863" transform="translate(571.915, 169.513)" >delay line (F08, F09)</text>
 <text fill="#cccccc"  xml:space="preserve" font-size="3.93863" transform="translate(665.331, 169.513)" >early observer, monitors</text>
 <text fill="#cccccc"  xml:space="preserve" font-size="5.90795" transform="translate(13.9418, 136.759)" >G04  front end (gate level): data in, capture edge, four flip-flops, selector, delay line, early sample</text>
-<text fill="#cccccc"  xml:space="preserve" font-size="3.1509" transform="translate(13.9418, 145.072)" >capture (from the controller) clocks all four flip-flops at once; cfg[1:0] picks which one the selector passes on (selected_q).</text>
+<text fill="#cccccc"  xml:space="preserve" font-size="3.1509" transform="translate(13.9418, 145.072)" >capture (from the controller) clocks all four flip-flops at once; pins ui_in[3] and uio_in[6] pick which one the selector passes on (selected_q).</text>
 <text fill="#cccccc"  xml:space="preserve" font-size="3.1509" transform="translate(13.9418, 149.951)" >The same edge, delayed by d (set by ua[0]) in the delay line, becomes early_clk: the early observer samples selected_q then.</text>
 <text fill="#cccccc"  xml:space="preserve" font-size="3.1509" transform="translate(13.9418, 154.83)" >The controller (not drawn) samples selected_q again 50 ns and 100 ns later and compares. Monitors copy both clocks to pins.</text>
 <text fill="#cccccc"  xml:space="preserve" font-size="3.1509" transform="translate(105.392, 447.212)" >capture edge</text>
@@ -174,8 +174,8 @@ text {font-family: Sans-Serif;}
 <text fill="#cccccc"  xml:space="preserve" font-size="2.62575" transform="translate(34.1399, 487.929)" >Each box is one cell (name, then cell type). Click a box and press e to see its transistors; Ctrl+e comes back. A dot marks a connection; wires that cross without a dot are not connected.</text>
 <text fill="#00ccee"  xml:space="preserve" font-size="4.33249" transform="translate(14.406, 296.903)" >ui_in_6</text>
 <text fill="#ff0000"  xml:space="preserve" font-size="4.33249" transform="translate(12.406, 309.526)" >capture</text>
-<text fill="#00ccee"  xml:space="preserve" font-size="4.33249" transform="translate(18.406, 322.15)" >cfg_0</text>
-<text fill="#00ccee"  xml:space="preserve" font-size="4.33249" transform="translate(19.406, 334.774)" >cfg_1</text>
+<text fill="#00ccee"  xml:space="preserve" font-size="4.33249" transform="translate(18.406, 322.15)" >ui_in_3</text>
+<text fill="#00ccee"  xml:space="preserve" font-size="4.33249" transform="translate(19.406, 334.774)" >uio_in_6</text>
 <text fill="#ff00ff"  xml:space="preserve" font-size="4.33249" transform="translate(19.406, 347.398)" >ua_0</text>
 <text fill="#00ff00"  xml:space="preserve" font-size="4.33249" transform="translate(864.787, 304.477)" >selected_q</text>
 <text fill="#00ccee"  xml:space="preserve" font-size="4.33249" transform="translate(864.787, 317.101)" >early_q</text>

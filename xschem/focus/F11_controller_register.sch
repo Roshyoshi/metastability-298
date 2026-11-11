@@ -196,7 +196,7 @@ L 3 1300 -90 1420 -90 {}
 L 3 1300 -90 1300 -78 {}
 L 3 1420 -90 1420 -78 {}
 T {output} 1300 -111.893 0 0 0.3 0.3 {layer=3}
-T {F11  dffrnq_1: the flip-flop used for every controller register (34 of them)} -180 -229.382 0 0 0.45 0.45 {}
+T {F11  dffrnq_1: controller flip-flop with reset (b, start_meta, run); the other 36 use dffnrnq_1} -180 -229.382 0 0 0.45 0.45 {}
 T {Same plan as F07 with a NAND in each loop: RN = 0 forces both NANDs to output 1, so net4 = 1 and Q = 0 whatever the clock does.} -180 -186.543 0 0 0.24 0.24 {}
 T {Master loop: net1 -> inverter -> net2 -> NAND(net2, RN) -> net1. Slave: NAND(net8, RN) -> net4 -> Q = NOT net4.} -180 -167.218 0 0 0.24 0.24 {}
 N -120 670 -20 670 {lab=CLK}

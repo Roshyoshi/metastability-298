@@ -1,0 +1,30 @@
+v {xschem version=3.4.4 file_version=1.2}
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+template="name=x1"
+}
+V {}
+S {}
+E {}
+L 4 -60 -40 60 -40 {}
+L 4 -60 40 60 40 {}
+L 4 -60 -40 -60 40 {}
+L 4 60 -40 60 40 {}
+L 4 -80 -20 -60 -20 {}
+B 5 -82.5 -22.5 -77.5 -17.5 {name=clk dir=in}
+T {clk} -57 -26 0 0 0.15 0.15 {}
+L 4 -80 0 -60 0 {}
+B 5 -82.5 -2.5 -77.5 2.5 {name=rst_n dir=in}
+T {rst_n} -57 -6 0 0 0.15 0.15 {}
+L 4 60 -20 80 -20 {}
+B 5 77.5 -22.5 82.5 -17.5 {name=a_n dir=out}
+T {a_n} 57 -26 0 1 0.15 0.15 {}
+L 4 60 0 80 0 {}
+B 5 77.5 -2.5 82.5 2.5 {name=b dir=out}
+T {b} 57 -6 0 1 0.15 0.15 {}
+L 4 60 20 80 20 {}
+B 5 77.5 17.5 82.5 22.5 {name=capture dir=out}
+T {capture} 57 14 0 1 0.15 0.15 {}
+T {trial_clock} -58 -56 0 0 0.2 0.2 {}
+T {@name} -58 44 0 0 0.15 0.15 {}

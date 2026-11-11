@@ -48,21 +48,21 @@ N 20 30 20 0 {lab=VDD}
 N 600 30 600 0 {lab=VDD}
 N 710 30 710 0 {lab=VDD}
 N 200 30 200 0 {lab=VDD}
-N 450 560 450 600 {lab=cfg_0}
-N 450 600 560 600 {lab=cfg_0}
-N 450 600 330 600 {lab=cfg_0}
-N 560 600 560 560 {lab=cfg_0}
-N 330 600 160 600 {lab=cfg_0}
-N 330 600 330 420 {lab=cfg_0}
-N 160 600 160 660 {lab=cfg_0}
-N 330 420 -120 420 {lab=cfg_0}
-N 330 420 330 200 {lab=cfg_0}
-N 330 200 670 200 {lab=cfg_0}
-N 330 200 330 160 {lab=cfg_0}
-N 330 160 340 160 {lab=cfg_0}
-N 330 160 160 160 {lab=cfg_0}
-N 670 200 670 160 {lab=cfg_0}
-N 160 160 160 60 {lab=cfg_0}
+N 450 560 450 600 {lab=ui_in_3}
+N 450 600 560 600 {lab=ui_in_3}
+N 450 600 330 600 {lab=ui_in_3}
+N 560 600 560 560 {lab=ui_in_3}
+N 330 600 160 600 {lab=ui_in_3}
+N 330 600 330 420 {lab=ui_in_3}
+N 160 600 160 660 {lab=ui_in_3}
+N 330 420 -120 420 {lab=ui_in_3}
+N 330 420 330 200 {lab=ui_in_3}
+N 330 200 670 200 {lab=ui_in_3}
+N 330 200 330 160 {lab=ui_in_3}
+N 330 160 340 160 {lab=ui_in_3}
+N 330 160 160 160 {lab=ui_in_3}
+N 670 200 670 160 {lab=ui_in_3}
+N 160 160 160 60 {lab=ui_in_3}
 N 340 560 200 560 {lab=sel1_n}
 N 200 560 200 620 {lab=sel1_n}
 N 200 620 430 620 {lab=sel1_n}
@@ -97,14 +97,14 @@ N 660 230 710 230 {lab=int04}
 N 660 230 600 230 {lab=int04}
 N 710 230 710 190 {lab=int04}
 N 600 230 600 190 {lab=int04}
-N 450 460 -20 460 {lab=cfg_1}
-N 450 460 450 410 {lab=cfg_1}
-N 450 410 540 410 {lab=cfg_1}
-N 540 410 540 260 {lab=cfg_1}
-N 540 260 670 260 {lab=cfg_1}
-N -20 460 -120 460 {lab=cfg_1}
-N -20 460 -20 60 {lab=cfg_1}
-N -20 460 -20 660 {lab=cfg_1}
+N 450 460 -20 460 {lab=uio_in_6}
+N 450 460 450 410 {lab=uio_in_6}
+N 450 410 540 410 {lab=uio_in_6}
+N 540 410 540 260 {lab=uio_in_6}
+N 540 260 670 260 {lab=uio_in_6}
+N -20 460 -120 460 {lab=uio_in_6}
+N -20 460 -20 60 {lab=uio_in_6}
+N -20 460 -20 660 {lab=uio_in_6}
 N 670 460 640 460 {lab=sel2_n}
 N 640 460 640 390 {lab=sel2_n}
 N 640 390 450 390 {lab=sel2_n}
@@ -182,8 +182,8 @@ C {devices/ipin.sym} -120 260 0 0 {name=p_q_0 lab=q_0}
 C {devices/ipin.sym} -120 300 0 0 {name=p_q_1 lab=q_1}
 C {devices/ipin.sym} -120 340 0 0 {name=p_q_2 lab=q_2}
 C {devices/ipin.sym} -120 380 0 0 {name=p_q_3 lab=q_3}
-C {devices/ipin.sym} -120 420 0 0 {name=p_cfg_0 lab=cfg_0}
-C {devices/ipin.sym} -120 460 0 0 {name=p_cfg_1 lab=cfg_1}
+C {devices/ipin.sym} -120 420 0 0 {name=p_ui_in_3 lab=ui_in_3}
+C {devices/ipin.sym} -120 460 0 0 {name=p_uio_in_6 lab=uio_in_6}
 C {devices/opin.sym} 1050 360 0 0 {name=p_selected_q lab=selected_q}
 C {devices/lab_wire.sym} 540 620 0 0 {name=l3 lab=sel1_n}
 C {devices/lab_wire.sym} 280 390 0 0 {name=l4 lab=sel2_n}
@@ -200,15 +200,15 @@ L 3 830 -90 830 -78 {}
 L 3 950 -90 950 -78 {}
 T {output inverter} 830 -111.893 0 0 0.3 0.3 {layer=3}
 T {F10  selector mux4_1: passes one of the four flip-flop outputs q[0..3] to selected_q} -180 -229.382 0 0 0.45 0.45 {}
-T {cfg[0] (S0) picks one input of each pair with clocked inverters; cfg[1] (S1) picks the pair with two transmission gates} -180 -186.543 0 0 0.24 0.24 {}
+T {ui_in[3] (S0) picks one input of each pair with clocked inverters; uio_in[6] (S1) picks the pair with two transmission gates} -180 -186.543 0 0 0.24 0.24 {}
 T {(the floating transistors in the middle); the output inverter drives selected_q.} -180 -167.218 0 0 0.24 0.24 {}
-N -120 770 -20 770 {lab=cfg_0}
-C {devices/lab_wire.sym} -20 770 0 0 {name=l5 lab=cfg_0}
+N -120 770 -20 770 {lab=ui_in_3}
+C {devices/lab_wire.sym} -20 770 0 0 {name=l5 lab=ui_in_3}
 N 0 770 100 770 {lab=sel1_n}
 C {devices/lab_wire.sym} 100 770 0 0 {name=l6 lab=sel1_n}
 T {S0 and its inverse} 130 760.843 0 0 0.24 0.24 {}
-N -120 810 -20 810 {lab=cfg_1}
-C {devices/lab_wire.sym} -20 810 0 0 {name=l7 lab=cfg_1}
+N -120 810 -20 810 {lab=uio_in_6}
+C {devices/lab_wire.sym} -20 810 0 0 {name=l7 lab=uio_in_6}
 N 0 810 100 810 {lab=sel2_n}
 C {devices/lab_wire.sym} 100 810 0 0 {name=l8 lab=sel2_n}
 T {S1 and its inverse} 130 800.843 0 0 0.24 0.24 {}
