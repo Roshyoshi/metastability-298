@@ -20,10 +20,10 @@ make check
 ```
 
 The shell provides Icarus Verilog, Verilator, Yosys, ngspice, and GNU Make.
-`make check` compiles and lints the current top, runs generic RTL synthesis,
-executes the interface harness, and runs `make check-ring`. The harness supplies
-a 20 MHz clock and reset, then finishes; it does not check instrument behavior
-yet. The ring check tests enable, disable, restart, and loop period with
+`make check` compiles the top, then runs `make check-ring` and
+`make check-control`. The top, `src/project.v`, is the black box of the analog
+tile: Tiny Tapeout reads only its port list, so it is compiled but not linted,
+synthesized or simulated. The ring check tests enable, disable, restart, and loop period with
 artificial cell delays, and checks that synthesis retains the selected cells.
 `make check-control` runs the controller's tests in `test/rtl/tb_compact_control.v`
 at block lengths of 15, 255 and 65,535 trials (about 45 seconds), and checks
@@ -31,9 +31,8 @@ that the controller contains exactly the cells listed in
 `test/rtl/compact_control_cells.ys`, before and after synthesis. Its cell
 models also use 1 ns delays, so it checks wiring and edge order, not timing.
 
-`make sim` writes `build/rtl/tb.vcd`. `make synth` writes its netlist and report
-under `build/synth/`. These are tooling checks, not GF180 physical signoff.
-Set `BUILD_DIR` to put generated files elsewhere.
+These are tooling checks, not GF180 physical signoff. Set `BUILD_DIR` to put
+generated files elsewhere.
 
 Once a SPICE deck exists, run it with `make spice DECK=path/to/deck.cir`.
 The log goes under `build/spice/`; paths inside the deck are resolved from the
@@ -44,10 +43,9 @@ repository root. GF180 simulations also need the separately installed
 
 | Path | Responsibility |
 | --- | --- |
-| `src/project.v` | Tiny Tapeout boundary and pin mapping |
+| `src/project.v` | Black box of the analog tile: the Tiny Tapeout port list |
 | `src/` | Instrument integration, stimulus control, sequencer, counters |
 | `src/gf180/` | Explicit standard-cell circuits: ring oscillator, measurement controller |
-| `test/tb.v` | Top-level clock/reset and waveform harness |
 | `test/rtl/` | Digital block and protocol tests |
 | `test/models/` | Simulation-only models of the GF180 cells and delays |
 | `test/gate/` | Mapped and post-layout netlist checks |

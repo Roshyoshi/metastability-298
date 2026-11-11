@@ -19,5 +19,6 @@ Define the external 20 MHz clock and the implemented generated-clock paths.
 Scope timing exceptions to the intended asynchronous paths and loops.
 Placement constraints must follow the characterized circuit topology.
 
-The current `make synth` target performs generic synthesis of the interface
-scaffold. GF180 libraries, physical constraints, and hardening are pending.
+The top, `src/project.v`, is the black box of the analog tile, and the layout
+in `layout/` was built outside this flow. GF180 libraries, physical
+constraints, and hardening here are pending.
