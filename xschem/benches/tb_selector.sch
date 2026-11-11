@@ -10,18 +10,18 @@ C {devices/vsource.sym} -300 0 0 0 {name=vvdd value="3.3"}
 C {devices/lab_pin.sym} -300 -30 0 0 {name=l1 lab=VDD}
 C {devices/gnd.sym} -300 30 0 0 {name=gvvdd}
 C {devices/vsource.sym} -180 0 0 0 {name=vs0 value="PWL(0 0 10n 0 10.1n 3.3 20n 3.3 20.1n 0 30n 0 30.1n 3.3)"}
-C {devices/lab_pin.sym} -180 -30 0 0 {name=l2 lab=cfg_0}
+C {devices/lab_pin.sym} -180 -30 0 0 {name=l2 lab=ui_in_3}
 C {devices/gnd.sym} -180 30 0 0 {name=gvs0}
 C {devices/vsource.sym} -60 0 0 0 {name=vs1 value="PWL(0 0 20n 0 20.1n 3.3)"}
-C {devices/lab_pin.sym} -60 -30 0 0 {name=l3 lab=cfg_1}
+C {devices/lab_pin.sym} -60 -30 0 0 {name=l3 lab=uio_in_6}
 C {devices/gnd.sym} -60 30 0 0 {name=gvs1}
 C {@@ROOT@@/blocks/selector.sym} 300 0 0 0 {name=xsel}
-C {devices/lab_pin.sym} 220 -50 0 0 {name=l4 lab=cfg_0}
-C {devices/lab_pin.sym} 220 -30 0 0 {name=l5 lab=cfg_1}
+C {devices/lab_pin.sym} 220 -50 0 0 {name=l4 lab=VDD}
+C {devices/lab_pin.sym} 220 -30 0 0 {name=l5 lab=0}
 C {devices/lab_pin.sym} 220 -10 0 0 {name=l6 lab=VDD}
 C {devices/lab_pin.sym} 220 10 0 0 {name=l7 lab=0}
-C {devices/lab_pin.sym} 220 30 0 0 {name=l8 lab=VDD}
-C {devices/lab_pin.sym} 220 50 0 0 {name=l9 lab=0}
+C {devices/lab_pin.sym} 220 30 0 0 {name=l8 lab=ui_in_3}
+C {devices/lab_pin.sym} 220 50 0 0 {name=l9 lab=uio_in_6}
 C {devices/lab_pin.sym} 380 -50 0 1 {name=l10 lab=selected_q}
 C {devices/code_shown.sym} 700 -150 0 0 {name=SIM only_toplevel=false value=".include /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/design.ngspice
 .lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
@@ -39,5 +39,5 @@ meas tran s2 find v(selected_q) at=29n
 echo RESULT sel2_V $&s2
 meas tran s3 find v(selected_q) at=39n
 echo RESULT sel3_V $&s3
-wrdata tb_selector.dat v(cfg_0) v(cfg_1) v(selected_q)
+wrdata tb_selector.dat v(ui_in_3) v(uio_in_6) v(selected_q)
 .endc"}

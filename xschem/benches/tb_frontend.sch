@@ -16,10 +16,10 @@ C {devices/vsource.sym} -160 0 0 0 {name=vd value="PWL(0 0 2.975n 0 3.025n 3.3)"
 C {devices/lab_pin.sym} -160 -30 0 0 {name=l3 lab=ui_in_6}
 C {devices/gnd.sym} -160 30 0 0 {name=gvd}
 C {devices/vsource.sym} -400 140 0 0 {name=vs0 value="3.3"}
-C {devices/lab_pin.sym} -400 110 0 0 {name=l4 lab=cfg_0}
+C {devices/lab_pin.sym} -400 110 0 0 {name=l4 lab=ui_in_3}
 C {devices/gnd.sym} -400 170 0 0 {name=gvs0}
 C {devices/vsource.sym} -280 140 0 0 {name=vs1 value="0"}
-C {devices/lab_pin.sym} -280 110 0 0 {name=l5 lab=cfg_1}
+C {devices/lab_pin.sym} -280 110 0 0 {name=l5 lab=uio_in_6}
 C {devices/gnd.sym} -280 170 0 0 {name=gvs1}
 C {devices/vsource.sym} -160 140 0 0 {name=vbias value="3.0"}
 C {devices/lab_pin.sym} -160 110 0 0 {name=l6 lab=ua_0}
@@ -38,12 +38,12 @@ C {devices/lab_pin.sym} 580 50 0 1 {name=l14 lab=q_1}
 C {devices/lab_pin.sym} 580 70 0 1 {name=l15 lab=q_2}
 C {devices/lab_pin.sym} 580 90 0 1 {name=l16 lab=q_3}
 C {@@ROOT@@/blocks/selector.sym} 800 60 0 0 {name=xselector}
-C {devices/lab_pin.sym} 720 10 0 0 {name=l17 lab=cfg_0}
-C {devices/lab_pin.sym} 720 30 0 0 {name=l18 lab=cfg_1}
-C {devices/lab_pin.sym} 720 50 0 0 {name=l19 lab=q_0}
-C {devices/lab_pin.sym} 720 70 0 0 {name=l20 lab=q_1}
-C {devices/lab_pin.sym} 720 90 0 0 {name=l21 lab=q_2}
-C {devices/lab_pin.sym} 720 110 0 0 {name=l22 lab=q_3}
+C {devices/lab_pin.sym} 720 10 0 0 {name=l17 lab=q_0}
+C {devices/lab_pin.sym} 720 30 0 0 {name=l18 lab=q_1}
+C {devices/lab_pin.sym} 720 50 0 0 {name=l19 lab=q_2}
+C {devices/lab_pin.sym} 720 70 0 0 {name=l20 lab=q_3}
+C {devices/lab_pin.sym} 720 90 0 0 {name=l21 lab=ui_in_3}
+C {devices/lab_pin.sym} 720 110 0 0 {name=l22 lab=uio_in_6}
 C {devices/lab_pin.sym} 880 10 0 1 {name=l23 lab=selected_q}
 C {@@ROOT@@/blocks/delay.sym} 500 300 0 0 {name=xdelay}
 C {devices/lab_pin.sym} 420 290 0 0 {name=l24 lab=capture_local}

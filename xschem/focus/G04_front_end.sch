@@ -61,13 +61,13 @@ N 1850 110 1850 430 {lab=ua_0}
 N 1850 430 690 430 {lab=ua_0}
 N 690 430 690 620 {lab=ua_0}
 N 690 620 -260 620 {lab=ua_0}
-N 1110 230 670 230 {lab=cfg_0}
-N 670 230 670 520 {lab=cfg_0}
-N 670 520 -260 520 {lab=cfg_0}
-N 1110 270 1110 450 {lab=cfg_1}
-N 1110 450 650 450 {lab=cfg_1}
-N 650 450 650 570 {lab=cfg_1}
-N 650 570 -260 570 {lab=cfg_1}
+N 1110 230 670 230 {lab=ui_in_3}
+N 670 230 670 520 {lab=ui_in_3}
+N 670 520 -260 520 {lab=ui_in_3}
+N 1110 270 1110 450 {lab=uio_in_6}
+N 1110 450 650 450 {lab=uio_in_6}
+N 650 450 650 570 {lab=uio_in_6}
+N 650 570 -260 570 {lab=uio_in_6}
 N 2430 90 2450 90 {lab=early_q}
 N 2450 90 2450 500 {lab=early_q}
 N 2450 500 3010 500 {lab=early_q}
@@ -107,8 +107,8 @@ N 2440 550 2610 550 {lab=earlymon_n}
 N 2610 550 2610 290 {lab=earlymon_n}
 C {devices/ipin.sym} -260 420 0 0 {name=p_ui_in_6 lab=ui_in_6}
 C {devices/ipin.sym} -260 470 0 0 {name=p_capture lab=capture}
-C {devices/ipin.sym} -260 520 0 0 {name=p_cfg_0 lab=cfg_0}
-C {devices/ipin.sym} -260 570 0 0 {name=p_cfg_1 lab=cfg_1}
+C {devices/ipin.sym} -260 520 0 0 {name=p_ui_in_3 lab=ui_in_3}
+C {devices/ipin.sym} -260 570 0 0 {name=p_uio_in_6 lab=uio_in_6}
 C {devices/ipin.sym} -260 620 0 0 {name=p_ua_0 lab=ua_0}
 C {devices/opin.sym} 3010 450 0 0 {name=p_selected_q lab=selected_q}
 C {devices/opin.sym} 3010 500 0 0 {name=p_early_q lab=early_q}
@@ -141,7 +141,7 @@ L 3 2240 -70 2240 -58 {}
 L 3 2420 -70 2420 -58 {}
 T {early observer, monitors} 2240 -91.8932 0 0 0.3 0.3 {layer=3}
 T {G04  front end (gate level): data in, capture edge, four flip-flops, selector, delay line, early sample} -340 -228.707 0 0 0.45 0.45 {}
-T {capture (from the controller) clocks all four flip-flops at once; cfg[1:0] picks which one the selector passes on (selected_q).} -340 -185.867 0 0 0.24 0.24 {}
+T {capture (from the controller) clocks all four flip-flops at once; pins ui_in[3] and uio_in[6] pick which one the selector passes on (selected_q).} -340 -185.867 0 0 0.24 0.24 {}
 T {The same edge, delayed by d (set by ua[0]) in the delay line, becomes early_clk: the early observer samples selected_q then.} -340 -166.543 0 0 0.24 0.24 {}
 T {The controller (not drawn) samples selected_q again 50 ns and 100 ns later and compares. Monitors copy both clocks to pins.} -340 -147.218 0 0 0.24 0.24 {}
 N -260 1020 -160 1020 {lab=capture}
