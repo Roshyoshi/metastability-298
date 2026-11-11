@@ -98,17 +98,20 @@ module compact_control #(
     wire b;
     wire a_n;
 
+    // @(posedge clk20) a <= b;
     gf180mcu_fd_sc_mcu7t5v0__dffq_1 a_ff (
         .D   (b),
         .CLK (clk20),
         .Q   (a)
     );
 
+    // assign a_n = ~a;
     gf180mcu_fd_sc_mcu7t5v0__inv_1 a_inv (
         .I  (a),
         .ZN (a_n)
     );
 
+    // @(posedge clk20, negedge rst_n) b <= rst_n ? ~a : 0;
     gf180mcu_fd_sc_mcu7t5v0__dffrnq_1 b_ff (
         .D   (a_n),
         .RN  (rst_n),
@@ -122,12 +125,15 @@ module compact_control #(
     wire start_meta;
     wire run;
 
+    // assign request = ena & start;
     gf180mcu_fd_sc_mcu7t5v0__and2_1 request_and (
         .A1 (ena),
         .A2 (start),
         .Z  (request)
     );
 
+    // @(posedge a_n, negedge rst_n)
+    //     start_meta <= rst_n ? request : 0;  // a_n rises at 100 ns
     gf180mcu_fd_sc_mcu7t5v0__dffrnq_1 start_meta_ff (
         .D   (request),
         .RN  (rst_n),
@@ -135,6 +141,8 @@ module compact_control #(
         .Q   (start_meta)
     );
 
+    // @(posedge a_n, negedge rst_n)
+    //     run <= rst_n ? start_meta : 0;  // a_n rises at 100 ns
     gf180mcu_fd_sc_mcu7t5v0__dffrnq_1 run_ff (
         .D   (start_meta),
         .RN  (rst_n),
@@ -147,24 +155,28 @@ module compact_control #(
     wire event_bit;
     wire bad_bit;
 
+    // @(negedge b) l1 <= q_selected;  // b falls at 50 ns
     gf180mcu_fd_sc_mcu7t5v0__dffnq_1 l1_ff (
         .D    (q_selected),
         .CLKN (b),
         .Q    (l1)
     );
 
+    // @(posedge a_n) l2 <= q_selected;  // a_n rises at 100 ns
     gf180mcu_fd_sc_mcu7t5v0__dffq_1 l2_ff (
         .D   (q_selected),
         .CLK (a_n),
         .Q   (l2)
     );
 
+    // assign event_bit = early_e ^ l2;
     gf180mcu_fd_sc_mcu7t5v0__xor2_1 event_xor (
         .A1 (early_e),
         .A2 (l2),
         .Z  (event_bit)
     );
 
+    // assign bad_bit = l1 ^ l2;
     gf180mcu_fd_sc_mcu7t5v0__xor2_1 bad_xor (
         .A1 (l1),
         .A2 (l2),
@@ -181,17 +193,21 @@ module compact_control #(
 
     assign finished = n[WIDTH];
 
+    // assign finished_n = ~finished;
     gf180mcu_fd_sc_mcu7t5v0__inv_1 finished_inv (
         .I  (finished),
         .ZN (finished_n)
     );
 
+    // assign want_count = run & finished_n;
     gf180mcu_fd_sc_mcu7t5v0__and2_1 want_and (
         .A1 (run),
         .A2 (finished_n),
         .Z  (want_count)
     );
 
+    // @(negedge b, negedge rst_n)
+    //     allow_count <= rst_n ? want_count : 0;  // b falls at 50 ns
     gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1 allow_ff (
         .D    (want_count),
         .RN   (rst_n),
@@ -199,23 +215,27 @@ module compact_control #(
         .Q    (allow_count)
     );
 
+    // assign tick_n = ~(b & allow_count);  // falls at 150 ns if counting
     gf180mcu_fd_sc_mcu7t5v0__nand2_1 tick_nand (
         .A1 (b),
         .A2 (allow_count),
         .ZN (tick_n)
     );
 
+    // n_clkn[0] = tick_n, n_clkn[1] = n_n[0], n_clkn[i] = n[i-1] for i >= 2
     wire [WIDTH:0] n_clkn = {n[WIDTH-1:1], n_n[0], tick_n};
 
     genvar i;
     generate
         for (i = 0; i <= WIDTH; i = i + 1) begin : g_n
+            // @(negedge n_clkn[i], negedge run) n[i] <= run ? n_n[i] : 0;
             gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1 bit_ff (
                 .D    (n_n[i]),
                 .RN   (run),
                 .CLKN (n_clkn[i]),
                 .Q    (n[i])
             );
+            // assign n_n[i] = ~n[i];
             gf180mcu_fd_sc_mcu7t5v0__inv_1 bit_inv (
                 .I  (n[i]),
                 .ZN (n_n[i])
@@ -227,12 +247,14 @@ module compact_control #(
     wire [WIDTH-1:1] k_n;
     wire k0_d;
 
+    // assign k0_d = k[0] ^ event_bit;
     gf180mcu_fd_sc_mcu7t5v0__xor2_1 k0_xor (
         .A1 (k[0]),
         .A2 (event_bit),
         .Z  (k0_d)
     );
 
+    // @(negedge tick_n, negedge run) k[0] <= run ? k0_d : 0;
     gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1 k0_ff (
         .D    (k0_d),
         .RN   (run),
@@ -242,12 +264,14 @@ module compact_control #(
 
     generate
         for (i = 1; i < WIDTH; i = i + 1) begin : g_k
+            // @(negedge k[i-1], negedge run) k[i] <= run ? k_n[i] : 0;
             gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1 bit_ff (
                 .D    (k_n[i]),
                 .RN   (run),
                 .CLKN (k[i-1]),
                 .Q    (k[i])
             );
+            // assign k_n[i] = ~k[i];
             gf180mcu_fd_sc_mcu7t5v0__inv_1 bit_inv (
                 .I  (k[i]),
                 .ZN (k_n[i])
@@ -260,12 +284,14 @@ module compact_control #(
     wire fault_d;
     wire done_n;
 
+    // assign fault_d = fault | bad_bit;
     gf180mcu_fd_sc_mcu7t5v0__or2_1 fault_or (
         .A1 (fault),
         .A2 (bad_bit),
         .Z  (fault_d)
     );
 
+    // @(negedge tick_n, negedge run) fault <= run ? fault_d : 0;
     gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1 fault_ff (
         .D    (fault_d),
         .RN   (run),
@@ -273,6 +299,7 @@ module compact_control #(
         .Q    (fault)
     );
 
+    // @(negedge b, negedge run) done <= run ? finished : 0;
     gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1 done_ff (
         .D    (finished),
         .RN   (run),
@@ -280,11 +307,13 @@ module compact_control #(
         .Q    (done)
     );
 
+    // assign done_n = ~done;
     gf180mcu_fd_sc_mcu7t5v0__inv_1 done_inv (
         .I  (done),
         .ZN (done_n)
     );
 
+    // assign busy = run & done_n;
     gf180mcu_fd_sc_mcu7t5v0__and2_1 busy_and (
         .A1 (run),
         .A2 (done_n),
@@ -302,6 +331,7 @@ module compact_control #(
             end
         end
         for (i = 0; i < 8; i = i + 1) begin : g_byte
+            // assign result_byte[i] = byte_sel ? k16[i+8] : k16[i];
             gf180mcu_fd_sc_mcu7t5v0__mux2_1 bit_mux (
                 .I0 (k16[i]),
                 .I1 (k16[i+8]),
