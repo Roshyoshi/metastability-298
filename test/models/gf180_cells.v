@@ -61,9 +61,9 @@ module gf180mcu_fd_sc_mcu7t5v0__dffq_1 (
     input  wire CLK,
     output wire Q
 );
-    reg q;
-    always @(posedge CLK) q <= D;
-    assign #1 Q = q;
+    reg stored;
+    always @(posedge CLK) stored <= D;
+    assign #1 Q = stored;
 endmodule
 
 module gf180mcu_fd_sc_mcu7t5v0__dffnq_1 (
@@ -71,9 +71,9 @@ module gf180mcu_fd_sc_mcu7t5v0__dffnq_1 (
     input  wire CLKN,
     output wire Q
 );
-    reg q;
-    always @(negedge CLKN) q <= D;
-    assign #1 Q = q;
+    reg stored;
+    always @(negedge CLKN) stored <= D;
+    assign #1 Q = stored;
 endmodule
 
 module gf180mcu_fd_sc_mcu7t5v0__dffrnq_1 (
@@ -82,12 +82,12 @@ module gf180mcu_fd_sc_mcu7t5v0__dffrnq_1 (
     input  wire CLK,
     output wire Q
 );
-    reg q;
+    reg stored;
     always @(posedge CLK or negedge RN) begin
-        if (!RN) q <= 1'b0;
-        else q <= D;
+        if (!RN) stored <= 1'b0;
+        else stored <= D;
     end
-    assign #1 Q = q;
+    assign #1 Q = stored;
 endmodule
 
 module gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1 (
@@ -96,12 +96,12 @@ module gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1 (
     input  wire CLKN,
     output wire Q
 );
-    reg q;
+    reg stored;
     always @(negedge CLKN or negedge RN) begin
-        if (!RN) q <= 1'b0;
-        else q <= D;
+        if (!RN) stored <= 1'b0;
+        else stored <= D;
     end
-    assign #1 Q = q;
+    assign #1 Q = stored;
 endmodule
 
 `default_nettype wire
