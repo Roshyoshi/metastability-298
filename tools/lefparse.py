@@ -1,9 +1,21 @@
 #!/usr/bin/env python3
 """Read GF180 standard-cell LEF abstracts: SIZE, signal/power pins (Metal1 polygons) and OBS."""
-import re
+import os, re
 from pathlib import Path
 
-SC = Path('/home/claude/eda/src/sc7/cells')
+def ext_path(var, what):
+    """Path of an input kept outside the repository, named by environment variable var."""
+    v = os.environ.get(var)
+    if not v:
+        raise SystemExit(f'{var} is not set: point it at {what}')
+    p = Path(v).expanduser()
+    if not p.exists():
+        raise SystemExit(f'{var}={v} does not exist: point it at {what}')
+    return p
+
+# The same checkout tools/pdk_cells.py reads: <lib>/cells/<family>/<cell>.lef
+# and .gds.
+SC = ext_path('GF180_SC_CELLS', 'the cells/ folder of a gf180mcu_fd_sc_mcu7t5v0 checkout')
 LIB = 'gf180mcu_fd_sc_mcu7t5v0__'
 
 def cell_dir(cell):

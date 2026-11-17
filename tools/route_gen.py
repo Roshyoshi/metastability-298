@@ -31,7 +31,7 @@ def trunk_x(xs):
     if b - a < MINLEN - EPS:
         a = g5((a + b) / 2 - MINLEN / 2); b = round(a + MINLEN, 3)
     return round(a, 3), round(b, 3)
-DEF = Path('/home/claude/eda/src/tt-support-tools/tech/gf180mcuD/def/analog/tt_analog_1x2.def')
+DEF = LG.TT_DEF
 
 def template_pins():
     t = DEF.read_text()

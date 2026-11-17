@@ -15,7 +15,8 @@ import route_gen as RG
 
 CHIP = Path(__file__).resolve().parent.parent
 TOP = 'tt_um_metastability_characterizer'
-TECH = Path('/home/claude/eda/src/open_pdks/gf180mcu/magic/gf180mcu.tech')
+# Only its "calma <layer> <datatype>" lines are read, for the valid layer list.
+TECH = RG.LG.LP.ext_path('GF180_MAGIC_TECH', "the PDK's libs.tech/magic/gf180mcuD.tech")
 ANALOG_PINS = 1                      # info.yaml analog_pins
 USED_ANALOG = {'ua[0]'}              # info.yaml pinout ua[0] non-empty
 

@@ -22,7 +22,10 @@ import lefparse as LP
 import gds
 
 CHIP = Path(__file__).resolve().parent.parent
-SC = Path('/home/claude/eda/src/sc7/cells')
+SC = LP.SC
+# Pin positions of the 1x2 analog tile, from TinyTapeout/tt-support-tools:
+# tech/gf180mcuD/def/analog/tt_analog_1x2.def
+TT_DEF = LP.ext_path('TT_ANALOG_DEF', "tt-support-tools' tech/gf180mcuD/def/analog/tt_analog_1x2.def")
 LIB = BM.LIB
 SITE, ROWH = 0.56, 3.92
 TILE_W, TILE_H = 346.64, 325.36
@@ -178,7 +181,14 @@ def row_plan(insts):
     # controller: flow box order, connectivity-ordered inside each box, packed into rows
     ctrl = [i for i in insts if i['name'].startswith('controller/')]
     order = []
-    for box in ['Hold results + readout', 'Counters K and N', 'Compare', 'Late observers', 'Sequencer']:
+    # Bottom to top, using the flow boxes of build_master.CTRL_BLOCKS: the
+    # readings sit next to the front end that feeds them, the readout under
+    # the uo_out pins at the top edge.
+    boxes = ['Late observers + compare', 'Sequencer', 'Counter N', 'Status', 'Counter K', 'Readout']
+    unplaced = sorted({i['box'] for i in ctrl} - set(boxes))
+    if unplaced:
+        raise ValueError(f'controller flow boxes with no row order: {unplaced}')
+    for box in boxes:
         members = [i for i in ctrl if i['box'] == box]
         order += connectivity_order(members)
     rows += pack_rows(order, 'C')
@@ -192,7 +202,7 @@ def row_plan(insts):
 
 def _pin_x():
     import re as _re
-    t = Path('/home/claude/eda/src/tt-support-tools/tech/gf180mcuD/def/analog/tt_analog_1x2.def').read_text()
+    t = TT_DEF.read_text()
     out = {}
     for n, x1, x2, px in _re.findall(r'- (\S+) \+ NET \S+ \+ DIRECTION \S+.*?LAYER \S+ \( (-?\d+) -?\d+ \) \( (-?\d+) -?\d+ \)\s+\+ PLACED \( (\d+) \d+ \)', t, _re.S):
         out[n] = (int(px) + (int(x1) + int(x2)) / 2) / 2000
