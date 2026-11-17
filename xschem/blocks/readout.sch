@@ -6,42 +6,42 @@ S {}
 E {}
 T {readout: Readout: uo_out = k[7:0] when byte_sel (ui_in_0) is 0, k[15:8] when it is 1   (flow box: Readout)} 0 -170 0 0 0.4 0.4 {}
 T {Press e on a cell to see its transistors; Ctrl+e returns here.} 0 -140 0 0 0.25 0.25 {}
-C {@@ROOT@@/cells_tx/mux2_1.sym} 300 0 0 0 {name=xbyte0_mux}
+C {/home/oshan/metastability-298/xschem/cells_tx/mux2_1.sym} 300 0 0 0 {name=xbyte0_mux}
 C {devices/lab_pin.sym} 250 -20 0 0 {name=l1 lab=k_0}
 C {devices/lab_pin.sym} 250 0 0 0 {name=l2 lab=k_8}
 C {devices/lab_pin.sym} 250 20 0 0 {name=l3 lab=ui_in_0}
 C {devices/lab_pin.sym} 350 -20 0 1 {name=l4 lab=uo_out_0}
-C {@@ROOT@@/cells_tx/mux2_1.sym} 630 0 0 0 {name=xbyte1_mux}
+C {/home/oshan/metastability-298/xschem/cells_tx/mux2_1.sym} 630 0 0 0 {name=xbyte1_mux}
 C {devices/lab_pin.sym} 580 -20 0 0 {name=l5 lab=k_1}
 C {devices/lab_pin.sym} 580 0 0 0 {name=l6 lab=k_9}
 C {devices/lab_pin.sym} 580 20 0 0 {name=l7 lab=ui_in_0}
 C {devices/lab_pin.sym} 680 -20 0 1 {name=l8 lab=uo_out_1}
-C {@@ROOT@@/cells_tx/mux2_1.sym} 960 0 0 0 {name=xbyte2_mux}
+C {/home/oshan/metastability-298/xschem/cells_tx/mux2_1.sym} 960 0 0 0 {name=xbyte2_mux}
 C {devices/lab_pin.sym} 910 -20 0 0 {name=l9 lab=k_2}
 C {devices/lab_pin.sym} 910 0 0 0 {name=l10 lab=k_10}
 C {devices/lab_pin.sym} 910 20 0 0 {name=l11 lab=ui_in_0}
 C {devices/lab_pin.sym} 1010 -20 0 1 {name=l12 lab=uo_out_2}
-C {@@ROOT@@/cells_tx/mux2_1.sym} 1290 0 0 0 {name=xbyte3_mux}
+C {/home/oshan/metastability-298/xschem/cells_tx/mux2_1.sym} 1290 0 0 0 {name=xbyte3_mux}
 C {devices/lab_pin.sym} 1240 -20 0 0 {name=l13 lab=k_3}
 C {devices/lab_pin.sym} 1240 0 0 0 {name=l14 lab=k_11}
 C {devices/lab_pin.sym} 1240 20 0 0 {name=l15 lab=ui_in_0}
 C {devices/lab_pin.sym} 1340 -20 0 1 {name=l16 lab=uo_out_3}
-C {@@ROOT@@/cells_tx/mux2_1.sym} 300 170 0 0 {name=xbyte4_mux}
+C {/home/oshan/metastability-298/xschem/cells_tx/mux2_1.sym} 300 170 0 0 {name=xbyte4_mux}
 C {devices/lab_pin.sym} 250 150 0 0 {name=l17 lab=k_4}
 C {devices/lab_pin.sym} 250 170 0 0 {name=l18 lab=k_12}
 C {devices/lab_pin.sym} 250 190 0 0 {name=l19 lab=ui_in_0}
 C {devices/lab_pin.sym} 350 150 0 1 {name=l20 lab=uo_out_4}
-C {@@ROOT@@/cells_tx/mux2_1.sym} 630 170 0 0 {name=xbyte5_mux}
+C {/home/oshan/metastability-298/xschem/cells_tx/mux2_1.sym} 630 170 0 0 {name=xbyte5_mux}
 C {devices/lab_pin.sym} 580 150 0 0 {name=l21 lab=k_5}
 C {devices/lab_pin.sym} 580 170 0 0 {name=l22 lab=k_13}
 C {devices/lab_pin.sym} 580 190 0 0 {name=l23 lab=ui_in_0}
 C {devices/lab_pin.sym} 680 150 0 1 {name=l24 lab=uo_out_5}
-C {@@ROOT@@/cells_tx/mux2_1.sym} 960 170 0 0 {name=xbyte6_mux}
+C {/home/oshan/metastability-298/xschem/cells_tx/mux2_1.sym} 960 170 0 0 {name=xbyte6_mux}
 C {devices/lab_pin.sym} 910 150 0 0 {name=l25 lab=k_6}
 C {devices/lab_pin.sym} 910 170 0 0 {name=l26 lab=k_14}
 C {devices/lab_pin.sym} 910 190 0 0 {name=l27 lab=ui_in_0}
 C {devices/lab_pin.sym} 1010 150 0 1 {name=l28 lab=uo_out_6}
-C {@@ROOT@@/cells_tx/mux2_1.sym} 1290 170 0 0 {name=xbyte7_mux}
+C {/home/oshan/metastability-298/xschem/cells_tx/mux2_1.sym} 1290 170 0 0 {name=xbyte7_mux}
 C {devices/lab_pin.sym} 1240 150 0 0 {name=l29 lab=k_7}
 C {devices/lab_pin.sym} 1240 170 0 0 {name=l30 lab=k_15}
 C {devices/lab_pin.sym} 1240 190 0 0 {name=l31 lab=ui_in_0}

@@ -4,15 +4,15 @@ K {}
 V {}
 S {}
 E {}
-C {@@ROOT@@/sym/g_G02_u_cki.sym} 100 60 0 0 {name=u_cki schematic=@@ROOT@@/cells_tx/inv_1.sch}
-C {@@ROOT@@/sym/g_G02_u_mg1.sym} 470 60 0 0 {name=u_mg1 schematic=@@ROOT@@/cells_tx/nand2_1.sch}
-C {@@ROOT@@/sym/g_G02_u_mg2.sym} 470 320 0 0 {name=u_mg2 schematic=@@ROOT@@/cells_tx/nand2_1.sch}
-C {@@ROOT@@/sym/g_G02_u_mfw.sym} 840 60 0 0 {name=u_mfw schematic=@@ROOT@@/cells_tx/nand2_2.sch}
-C {@@ROOT@@/sym/g_G02_u_mkp.sym} 840 320 0 0 {name=u_mkp schematic=@@ROOT@@/cells_tx/nand2_2.sch}
-C {@@ROOT@@/sym/g_G02_u_sg1.sym} 1210 60 0 0 {name=u_sg1 schematic=@@ROOT@@/cells_tx/nand2_1.sch}
-C {@@ROOT@@/sym/g_G02_u_sg2.sym} 1210 320 0 0 {name=u_sg2 schematic=@@ROOT@@/cells_tx/nand2_1.sch}
-C {@@ROOT@@/sym/g_G02_u_sfw.sym} 1580 60 0 0 {name=u_sfw schematic=@@ROOT@@/cells_tx/nand2_1.sch}
-C {@@ROOT@@/sym/g_G02_u_skp.sym} 1580 320 0 0 {name=u_skp schematic=@@ROOT@@/cells_tx/nand2_1.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G02_u_cki.sym} 100 60 0 0 {name=u_cki schematic=/home/oshan/metastability-298/xschem/cells_tx/inv_1.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G02_u_mg1.sym} 470 60 0 0 {name=u_mg1 schematic=/home/oshan/metastability-298/xschem/cells_tx/nand2_1.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G02_u_mg2.sym} 470 320 0 0 {name=u_mg2 schematic=/home/oshan/metastability-298/xschem/cells_tx/nand2_1.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G02_u_mfw.sym} 840 60 0 0 {name=u_mfw schematic=/home/oshan/metastability-298/xschem/cells_tx/nand2_2.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G02_u_mkp.sym} 840 320 0 0 {name=u_mkp schematic=/home/oshan/metastability-298/xschem/cells_tx/nand2_2.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G02_u_sg1.sym} 1210 60 0 0 {name=u_sg1 schematic=/home/oshan/metastability-298/xschem/cells_tx/nand2_1.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G02_u_sg2.sym} 1210 320 0 0 {name=u_sg2 schematic=/home/oshan/metastability-298/xschem/cells_tx/nand2_1.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G02_u_sfw.sym} 1580 60 0 0 {name=u_sfw schematic=/home/oshan/metastability-298/xschem/cells_tx/nand2_1.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G02_u_skp.sym} 1580 320 0 0 {name=u_skp schematic=/home/oshan/metastability-298/xschem/cells_tx/nand2_1.sch}
 N 0 70 0 170 {lab=clk}
 N 0 170 0 290 {lab=clk}
 N 0 170 1100 170 {lab=clk}

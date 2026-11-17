@@ -6,24 +6,24 @@ S {}
 E {}
 T {chip: tt_um_metastability_characterizer: the whole tile (GF180, 1x2 analog template)} 0 -200 0 0 0.45 0.45 {}
 T {Press e on a block to open it; Ctrl+e returns here. Blocks connect through equal net labels.} 0 -165 0 0 0.25 0.25 {}
-C {@@ROOT@@/blocks/data_input.sym} 260 20 0 0 {name=xdata_input}
+C {/home/oshan/metastability-298/xschem/blocks/data_input.sym} 260 20 0 0 {name=xdata_input}
 C {devices/lab_pin.sym} 180 20 0 0 {name=l1 lab=ui_in_6}
 C {devices/lab_pin.sym} 340 20 0 1 {name=l2 lab=data_local}
-C {@@ROOT@@/blocks/capture_drivers.sym} 780 20 0 0 {name=xcapture_drivers}
+C {/home/oshan/metastability-298/xschem/blocks/capture_drivers.sym} 780 20 0 0 {name=xcapture_drivers}
 C {devices/lab_pin.sym} 700 20 0 0 {name=l3 lab=capture}
 C {devices/lab_pin.sym} 860 20 0 1 {name=l4 lab=capture_local}
-C {@@ROOT@@/blocks/delay.sym} 1300 30 0 0 {name=xdelay}
+C {/home/oshan/metastability-298/xschem/blocks/delay.sym} 1300 30 0 0 {name=xdelay}
 C {devices/lab_pin.sym} 1220 20 0 0 {name=l5 lab=capture_local}
 C {devices/lab_pin.sym} 1220 40 0 0 {name=l6 lab=ua_0}
 C {devices/lab_pin.sym} 1380 20 0 1 {name=l7 lab=early_clk}
-C {@@ROOT@@/blocks/duts.sym} 260 230 0 0 {name=xduts}
+C {/home/oshan/metastability-298/xschem/blocks/duts.sym} 260 230 0 0 {name=xduts}
 C {devices/lab_pin.sym} 180 200 0 0 {name=l8 lab=capture_local}
 C {devices/lab_pin.sym} 180 220 0 0 {name=l9 lab=data_local}
 C {devices/lab_pin.sym} 340 200 0 1 {name=l10 lab=q_0}
 C {devices/lab_pin.sym} 340 220 0 1 {name=l11 lab=q_1}
 C {devices/lab_pin.sym} 340 240 0 1 {name=l12 lab=q_2}
 C {devices/lab_pin.sym} 340 260 0 1 {name=l13 lab=q_3}
-C {@@ROOT@@/blocks/selector.sym} 780 250 0 0 {name=xselector}
+C {/home/oshan/metastability-298/xschem/blocks/selector.sym} 780 250 0 0 {name=xselector}
 C {devices/lab_pin.sym} 700 200 0 0 {name=l14 lab=q_0}
 C {devices/lab_pin.sym} 700 220 0 0 {name=l15 lab=q_1}
 C {devices/lab_pin.sym} 700 240 0 0 {name=l16 lab=q_2}
@@ -31,11 +31,11 @@ C {devices/lab_pin.sym} 700 260 0 0 {name=l17 lab=q_3}
 C {devices/lab_pin.sym} 700 280 0 0 {name=l18 lab=ui_in_3}
 C {devices/lab_pin.sym} 700 300 0 0 {name=l19 lab=uio_in_6}
 C {devices/lab_pin.sym} 860 200 0 1 {name=l20 lab=selected_q}
-C {@@ROOT@@/blocks/early_observer.sym} 1300 210 0 0 {name=xearly_observer}
+C {/home/oshan/metastability-298/xschem/blocks/early_observer.sym} 1300 210 0 0 {name=xearly_observer}
 C {devices/lab_pin.sym} 1220 200 0 0 {name=l21 lab=early_clk}
 C {devices/lab_pin.sym} 1220 220 0 0 {name=l22 lab=selected_q}
 C {devices/lab_pin.sym} 1380 200 0 1 {name=l23 lab=early_q}
-C {@@ROOT@@/blocks/controller.sym} 260 570 0 0 {name=xcontroller}
+C {/home/oshan/metastability-298/xschem/blocks/controller.sym} 260 570 0 0 {name=xcontroller}
 C {devices/lab_pin.sym} 180 460 0 0 {name=l24 lab=clk}
 C {devices/lab_pin.sym} 180 480 0 0 {name=l25 lab=early_q}
 C {devices/lab_pin.sym} 180 500 0 0 {name=l26 lab=ena}
@@ -55,12 +55,12 @@ C {devices/lab_pin.sym} 340 620 0 1 {name=l39 lab=uo_out_4}
 C {devices/lab_pin.sym} 340 640 0 1 {name=l40 lab=uo_out_5}
 C {devices/lab_pin.sym} 340 660 0 1 {name=l41 lab=uo_out_6}
 C {devices/lab_pin.sym} 340 680 0 1 {name=l42 lab=uo_out_7}
-C {@@ROOT@@/blocks/monitors.sym} 780 470 0 0 {name=xmonitors}
+C {/home/oshan/metastability-298/xschem/blocks/monitors.sym} 780 470 0 0 {name=xmonitors}
 C {devices/lab_pin.sym} 700 460 0 0 {name=l43 lab=capture_local}
 C {devices/lab_pin.sym} 700 480 0 0 {name=l44 lab=early_clk}
 C {devices/lab_pin.sym} 860 460 0 1 {name=l45 lab=uio_out_4}
 C {devices/lab_pin.sym} 860 480 0 1 {name=l46 lab=uio_out_5}
-C {@@ROOT@@/blocks/pin_drivers.sym} 1300 560 0 0 {name=xpin_drivers}
+C {/home/oshan/metastability-298/xschem/blocks/pin_drivers.sym} 1300 560 0 0 {name=xpin_drivers}
 C {devices/lab_pin.sym} 1220 460 0 0 {name=l47 lab=ena}
 C {devices/lab_pin.sym} 1380 460 0 1 {name=l48 lab=uio_oe_0}
 C {devices/lab_pin.sym} 1380 480 0 1 {name=l49 lab=uio_oe_1}

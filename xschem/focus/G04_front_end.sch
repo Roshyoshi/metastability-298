@@ -4,23 +4,23 @@ K {}
 V {}
 S {}
 E {}
-C {@@ROOT@@/sym/g_G04_data0.sym} 100 60 0 0 {name=data0 schematic=@@ROOT@@/cells_tx/inv_2.sch}
-C {@@ROOT@@/sym/g_G04_cap0.sym} 100 280 0 0 {name=cap0 schematic=@@ROOT@@/cells_tx/inv_2.sch}
-C {@@ROOT@@/sym/g_G04_data1.sym} 470 60 0 0 {name=data1 schematic=@@ROOT@@/cells_tx/inv_2.sch}
-C {@@ROOT@@/sym/g_G04_cap1.sym} 470 280 0 0 {name=cap1 schematic=@@ROOT@@/cells_tx/inv_2.sch}
-C {@@ROOT@@/sym/g_G04_u_dut1.sym} 840 60 0 0 {name=u_dut1 schematic=@@ROOT@@/cells_tx/dffq_1.sch}
-C {@@ROOT@@/sym/g_G04_u_dut2.sym} 840 320 0 0 {name=u_dut2 schematic=@@ROOT@@/blocks/meta_dut_baseline.sch}
-C {@@ROOT@@/sym/g_G04_u_dut3.sym} 840 580 0 0 {name=u_dut3 schematic=@@ROOT@@/blocks/meta_dut_keeper.sch}
-C {@@ROOT@@/sym/g_G04_u_dut4.sym} 840 840 0 0 {name=u_dut4 schematic=@@ROOT@@/blocks/meta_dut_forward.sch}
-C {@@ROOT@@/sym/g_G04_select_dut.sym} 1210 60 0 0 {name=select_dut schematic=@@ROOT@@/cells_tx/mux4_1.sch}
-C {@@ROOT@@/sym/g_G04_iso0.sym} 1580 60 0 0 {name=iso0 schematic=@@ROOT@@/cells_tx/inv_1.sch}
-C {@@ROOT@@/sym/g_G04_iso1.sym} 1580 280 0 0 {name=iso1 schematic=@@ROOT@@/cells_tx/inv_2.sch}
-C {@@ROOT@@/sym/g_G04_delay.sym} 1950 60 0 0 {name=delay schematic=@@ROOT@@/blocks/delay_line.sch}
-C {@@ROOT@@/sym/g_G04_early_observer.sym} 2330 60 0 0 {name=early_observer schematic=@@ROOT@@/cells_tx/dffq_1.sch}
-C {@@ROOT@@/sym/g_G04_monitor_capture_a.sym} 2330 320 0 0 {name=monitor_capture_a schematic=@@ROOT@@/cells_tx/inv_1.sch}
-C {@@ROOT@@/sym/g_G04_monitor_early_a.sym} 2330 540 0 0 {name=monitor_early_a schematic=@@ROOT@@/cells_tx/inv_1.sch}
-C {@@ROOT@@/sym/g_G04_monitor_capture_b.sym} 2720 60 0 0 {name=monitor_capture_b schematic=@@ROOT@@/cells_tx/inv_2.sch}
-C {@@ROOT@@/sym/g_G04_monitor_early_b.sym} 2720 280 0 0 {name=monitor_early_b schematic=@@ROOT@@/cells_tx/inv_2.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G04_data0.sym} 100 60 0 0 {name=data0 schematic=/home/oshan/metastability-298/xschem/cells_tx/inv_2.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G04_cap0.sym} 100 280 0 0 {name=cap0 schematic=/home/oshan/metastability-298/xschem/cells_tx/inv_2.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G04_data1.sym} 470 60 0 0 {name=data1 schematic=/home/oshan/metastability-298/xschem/cells_tx/inv_2.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G04_cap1.sym} 470 280 0 0 {name=cap1 schematic=/home/oshan/metastability-298/xschem/cells_tx/inv_2.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G04_u_dut1.sym} 840 60 0 0 {name=u_dut1 schematic=/home/oshan/metastability-298/xschem/cells_tx/dffq_1.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G04_u_dut2.sym} 840 320 0 0 {name=u_dut2 schematic=/home/oshan/metastability-298/xschem/blocks/meta_dut_baseline.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G04_u_dut3.sym} 840 580 0 0 {name=u_dut3 schematic=/home/oshan/metastability-298/xschem/blocks/meta_dut_keeper.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G04_u_dut4.sym} 840 840 0 0 {name=u_dut4 schematic=/home/oshan/metastability-298/xschem/blocks/meta_dut_forward.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G04_select_dut.sym} 1210 60 0 0 {name=select_dut schematic=/home/oshan/metastability-298/xschem/cells_tx/mux4_1.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G04_iso0.sym} 1580 60 0 0 {name=iso0 schematic=/home/oshan/metastability-298/xschem/cells_tx/inv_1.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G04_iso1.sym} 1580 280 0 0 {name=iso1 schematic=/home/oshan/metastability-298/xschem/cells_tx/inv_2.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G04_delay.sym} 1950 60 0 0 {name=delay schematic=/home/oshan/metastability-298/xschem/blocks/delay_line.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G04_early_observer.sym} 2330 60 0 0 {name=early_observer schematic=/home/oshan/metastability-298/xschem/cells_tx/dffq_1.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G04_monitor_capture_a.sym} 2330 320 0 0 {name=monitor_capture_a schematic=/home/oshan/metastability-298/xschem/cells_tx/inv_1.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G04_monitor_early_a.sym} 2330 540 0 0 {name=monitor_early_a schematic=/home/oshan/metastability-298/xschem/cells_tx/inv_1.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G04_monitor_capture_b.sym} 2720 60 0 0 {name=monitor_capture_b schematic=/home/oshan/metastability-298/xschem/cells_tx/inv_2.sch}
+C {/home/oshan/metastability-298/xschem/sym/g_G04_monitor_early_b.sym} 2720 280 0 0 {name=monitor_early_b schematic=/home/oshan/metastability-298/xschem/cells_tx/inv_2.sch}
 N 570 290 570 370 {lab=capture_local}
 N 570 370 730 370 {lab=capture_local}
 N 730 370 730 110 {lab=capture_local}

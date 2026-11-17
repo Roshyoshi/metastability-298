@@ -15,13 +15,13 @@ C {devices/gnd.sym} -180 30 0 0 {name=gvcap}
 C {devices/vsource.sym} -60 0 0 0 {name=vd value="PWL(0 0 2.975n 0 3.025n 3.3)"}
 C {devices/lab_pin.sym} -60 -30 0 0 {name=l3 lab=ui_in_6}
 C {devices/gnd.sym} -60 30 0 0 {name=gvd}
-C {@@ROOT@@/blocks/data_input.sym} 200 0 0 0 {name=xdata}
+C {/home/oshan/metastability-298/xschem/blocks/data_input.sym} 200 0 0 0 {name=xdata}
 C {devices/lab_pin.sym} 120 0 0 0 {name=l4 lab=ui_in_6}
 C {devices/lab_pin.sym} 280 0 0 1 {name=l5 lab=data_local}
-C {@@ROOT@@/blocks/capture_drivers.sym} 200 120 0 0 {name=xcapd}
+C {/home/oshan/metastability-298/xschem/blocks/capture_drivers.sym} 200 120 0 0 {name=xcapd}
 C {devices/lab_pin.sym} 120 120 0 0 {name=l6 lab=capture}
 C {devices/lab_pin.sym} 280 120 0 1 {name=l7 lab=capture_local}
-C {@@ROOT@@/blocks/duts.sym} 520 60 0 0 {name=xduts}
+C {/home/oshan/metastability-298/xschem/blocks/duts.sym} 520 60 0 0 {name=xduts}
 C {devices/lab_pin.sym} 440 30 0 0 {name=l8 lab=capture_local}
 C {devices/lab_pin.sym} 440 50 0 0 {name=l9 lab=data_local}
 C {devices/lab_pin.sym} 600 30 0 1 {name=l10 lab=q_0}
@@ -40,9 +40,9 @@ C {devices/lab_pin.sym} 900 250 0 0 {name=l19 lab=0}
 C {devices/capa.sym} 970 220 0 0 {name=cl3 value=2f m=1}
 C {devices/lab_pin.sym} 970 190 0 0 {name=l20 lab=q_3}
 C {devices/lab_pin.sym} 970 250 0 0 {name=l21 lab=0}
-C {devices/code_shown.sym} 1000 -150 0 0 {name=SIM only_toplevel=false value=".include /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/design.ngspice
-.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
-.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice diode_typical
+C {devices/code_shown.sym} 1000 -150 0 0 {name=SIM only_toplevel=false value=".include /home/oshan/.ciel/ciel/gf180mcu/versions/5740c4a81c42f9fe4af5ef2ee258a99151053d28/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /home/oshan/.ciel/ciel/gf180mcu/versions/5740c4a81c42f9fe4af5ef2ee258a99151053d28/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.lib /home/oshan/.ciel/ciel/gf180mcu/versions/5740c4a81c42f9fe4af5ef2ee258a99151053d28/gf180mcuD/libs.tech/ngspice/sm141064.ngspice diode_typical
 .global VDD
 .param sw_stat_global=0 sw_stat_mismatch=0
 .control

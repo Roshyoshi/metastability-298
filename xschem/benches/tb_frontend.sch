@@ -24,20 +24,20 @@ C {devices/gnd.sym} -280 170 0 0 {name=gvs1}
 C {devices/vsource.sym} -160 140 0 0 {name=vbias value="3.0"}
 C {devices/lab_pin.sym} -160 110 0 0 {name=l6 lab=ua_0}
 C {devices/gnd.sym} -160 170 0 0 {name=gvbias}
-C {@@ROOT@@/blocks/data_input.sym} 200 0 0 0 {name=xdata_input}
+C {/home/oshan/metastability-298/xschem/blocks/data_input.sym} 200 0 0 0 {name=xdata_input}
 C {devices/lab_pin.sym} 120 0 0 0 {name=l7 lab=ui_in_6}
 C {devices/lab_pin.sym} 280 0 0 1 {name=l8 lab=data_local}
-C {@@ROOT@@/blocks/capture_drivers.sym} 200 120 0 0 {name=xcapture_drivers}
+C {/home/oshan/metastability-298/xschem/blocks/capture_drivers.sym} 200 120 0 0 {name=xcapture_drivers}
 C {devices/lab_pin.sym} 120 120 0 0 {name=l9 lab=capture}
 C {devices/lab_pin.sym} 280 120 0 1 {name=l10 lab=capture_local}
-C {@@ROOT@@/blocks/duts.sym} 500 60 0 0 {name=xduts}
+C {/home/oshan/metastability-298/xschem/blocks/duts.sym} 500 60 0 0 {name=xduts}
 C {devices/lab_pin.sym} 420 30 0 0 {name=l11 lab=capture_local}
 C {devices/lab_pin.sym} 420 50 0 0 {name=l12 lab=data_local}
 C {devices/lab_pin.sym} 580 30 0 1 {name=l13 lab=q_0}
 C {devices/lab_pin.sym} 580 50 0 1 {name=l14 lab=q_1}
 C {devices/lab_pin.sym} 580 70 0 1 {name=l15 lab=q_2}
 C {devices/lab_pin.sym} 580 90 0 1 {name=l16 lab=q_3}
-C {@@ROOT@@/blocks/selector.sym} 800 60 0 0 {name=xselector}
+C {/home/oshan/metastability-298/xschem/blocks/selector.sym} 800 60 0 0 {name=xselector}
 C {devices/lab_pin.sym} 720 10 0 0 {name=l17 lab=q_0}
 C {devices/lab_pin.sym} 720 30 0 0 {name=l18 lab=q_1}
 C {devices/lab_pin.sym} 720 50 0 0 {name=l19 lab=q_2}
@@ -45,22 +45,22 @@ C {devices/lab_pin.sym} 720 70 0 0 {name=l20 lab=q_3}
 C {devices/lab_pin.sym} 720 90 0 0 {name=l21 lab=ui_in_3}
 C {devices/lab_pin.sym} 720 110 0 0 {name=l22 lab=uio_in_6}
 C {devices/lab_pin.sym} 880 10 0 1 {name=l23 lab=selected_q}
-C {@@ROOT@@/blocks/delay.sym} 500 300 0 0 {name=xdelay}
+C {/home/oshan/metastability-298/xschem/blocks/delay.sym} 500 300 0 0 {name=xdelay}
 C {devices/lab_pin.sym} 420 290 0 0 {name=l24 lab=capture_local}
 C {devices/lab_pin.sym} 420 310 0 0 {name=l25 lab=ua_0}
 C {devices/lab_pin.sym} 580 290 0 1 {name=l26 lab=early_clk}
-C {@@ROOT@@/blocks/early_observer.sym} 1100 60 0 0 {name=xearly_observer}
+C {/home/oshan/metastability-298/xschem/blocks/early_observer.sym} 1100 60 0 0 {name=xearly_observer}
 C {devices/lab_pin.sym} 1020 50 0 0 {name=l27 lab=early_clk}
 C {devices/lab_pin.sym} 1020 70 0 0 {name=l28 lab=selected_q}
 C {devices/lab_pin.sym} 1180 50 0 1 {name=l29 lab=early_q}
-C {@@ROOT@@/blocks/monitors.sym} 800 300 0 0 {name=xmonitors}
+C {/home/oshan/metastability-298/xschem/blocks/monitors.sym} 800 300 0 0 {name=xmonitors}
 C {devices/lab_pin.sym} 720 290 0 0 {name=l30 lab=capture_local}
 C {devices/lab_pin.sym} 720 310 0 0 {name=l31 lab=early_clk}
 C {devices/lab_pin.sym} 880 290 0 1 {name=l32 lab=uio_out_4}
 C {devices/lab_pin.sym} 880 310 0 1 {name=l33 lab=uio_out_5}
-C {devices/code_shown.sym} 1400 -150 0 0 {name=SIM only_toplevel=false value=".include /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/design.ngspice
-.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
-.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice diode_typical
+C {devices/code_shown.sym} 1400 -150 0 0 {name=SIM only_toplevel=false value=".include /home/oshan/.ciel/ciel/gf180mcu/versions/5740c4a81c42f9fe4af5ef2ee258a99151053d28/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /home/oshan/.ciel/ciel/gf180mcu/versions/5740c4a81c42f9fe4af5ef2ee258a99151053d28/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.lib /home/oshan/.ciel/ciel/gf180mcu/versions/5740c4a81c42f9fe4af5ef2ee258a99151053d28/gf180mcuD/libs.tech/ngspice/sm141064.ngspice diode_typical
 .global VDD
 .param sw_stat_global=0 sw_stat_mismatch=0
 .control

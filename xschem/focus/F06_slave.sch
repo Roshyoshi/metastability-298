@@ -4,22 +4,22 @@ K {}
 V {}
 S {}
 E {}
-C {@@ROOT@@/sym/nmos3.sym} 0 360 0 0 {name=s1_N2 model=nfet_05v0 W=0.82u L=0.6u spiceprefix=X}
-C {@@ROOT@@/sym/nmos3.sym} 0 260 0 0 {name=s1_N1 model=nfet_05v0 W=0.82u L=0.6u spiceprefix=X}
-C {@@ROOT@@/sym/pmos3.sym} 0 60 0 0 {name=s1_P2 model=pfet_05v0 W=1.13u L=0.5u spiceprefix=X}
-C {@@ROOT@@/sym/pmos3.sym} 110 60 0 0 {name=s1_P1 model=pfet_05v0 W=1.13u L=0.5u spiceprefix=X}
-C {@@ROOT@@/sym/nmos3.sym} 290 360 0 0 {name=s2_N2 model=nfet_05v0 W=0.82u L=0.6u spiceprefix=X}
-C {@@ROOT@@/sym/nmos3.sym} 290 260 0 0 {name=s2_N1 model=nfet_05v0 W=0.82u L=0.6u spiceprefix=X}
-C {@@ROOT@@/sym/pmos3.sym} 290 60 0 0 {name=s2_P2 model=pfet_05v0 W=1.13u L=0.5u spiceprefix=X}
-C {@@ROOT@@/sym/pmos3.sym} 400 60 0 0 {name=s2_P1 model=pfet_05v0 W=1.13u L=0.5u spiceprefix=X}
-C {@@ROOT@@/sym/nmos3.sym} 580 360 0 0 {name=sf_N2 model=nfet_05v0 W=0.82u L=0.6u spiceprefix=X}
-C {@@ROOT@@/sym/nmos3.sym} 580 260 0 0 {name=sf_N1 model=nfet_05v0 W=0.82u L=0.6u spiceprefix=X}
-C {@@ROOT@@/sym/pmos3.sym} 580 60 0 0 {name=sf_P2 model=pfet_05v0 W=1.13u L=0.5u spiceprefix=X}
-C {@@ROOT@@/sym/pmos3.sym} 690 60 0 0 {name=sf_P1 model=pfet_05v0 W=1.13u L=0.5u spiceprefix=X}
-C {@@ROOT@@/sym/nmos3.sym} 870 360 0 0 {name=sk_N2 model=nfet_05v0 W=0.82u L=0.6u spiceprefix=X}
-C {@@ROOT@@/sym/nmos3.sym} 870 260 0 0 {name=sk_N1 model=nfet_05v0 W=0.82u L=0.6u spiceprefix=X}
-C {@@ROOT@@/sym/pmos3.sym} 870 60 0 0 {name=sk_P2 model=pfet_05v0 W=1.13u L=0.5u spiceprefix=X}
-C {@@ROOT@@/sym/pmos3.sym} 980 60 0 0 {name=sk_P1 model=pfet_05v0 W=1.13u L=0.5u spiceprefix=X}
+C {/home/oshan/metastability-298/xschem/sym/nmos3.sym} 0 360 0 0 {name=s1_N2 model=nfet_05v0 W=0.82u L=0.6u spiceprefix=X}
+C {/home/oshan/metastability-298/xschem/sym/nmos3.sym} 0 260 0 0 {name=s1_N1 model=nfet_05v0 W=0.82u L=0.6u spiceprefix=X}
+C {/home/oshan/metastability-298/xschem/sym/pmos3.sym} 0 60 0 0 {name=s1_P2 model=pfet_05v0 W=1.13u L=0.5u spiceprefix=X}
+C {/home/oshan/metastability-298/xschem/sym/pmos3.sym} 110 60 0 0 {name=s1_P1 model=pfet_05v0 W=1.13u L=0.5u spiceprefix=X}
+C {/home/oshan/metastability-298/xschem/sym/nmos3.sym} 290 360 0 0 {name=s2_N2 model=nfet_05v0 W=0.82u L=0.6u spiceprefix=X}
+C {/home/oshan/metastability-298/xschem/sym/nmos3.sym} 290 260 0 0 {name=s2_N1 model=nfet_05v0 W=0.82u L=0.6u spiceprefix=X}
+C {/home/oshan/metastability-298/xschem/sym/pmos3.sym} 290 60 0 0 {name=s2_P2 model=pfet_05v0 W=1.13u L=0.5u spiceprefix=X}
+C {/home/oshan/metastability-298/xschem/sym/pmos3.sym} 400 60 0 0 {name=s2_P1 model=pfet_05v0 W=1.13u L=0.5u spiceprefix=X}
+C {/home/oshan/metastability-298/xschem/sym/nmos3.sym} 580 360 0 0 {name=sf_N2 model=nfet_05v0 W=0.82u L=0.6u spiceprefix=X}
+C {/home/oshan/metastability-298/xschem/sym/nmos3.sym} 580 260 0 0 {name=sf_N1 model=nfet_05v0 W=0.82u L=0.6u spiceprefix=X}
+C {/home/oshan/metastability-298/xschem/sym/pmos3.sym} 580 60 0 0 {name=sf_P2 model=pfet_05v0 W=1.13u L=0.5u spiceprefix=X}
+C {/home/oshan/metastability-298/xschem/sym/pmos3.sym} 690 60 0 0 {name=sf_P1 model=pfet_05v0 W=1.13u L=0.5u spiceprefix=X}
+C {/home/oshan/metastability-298/xschem/sym/nmos3.sym} 870 360 0 0 {name=sk_N2 model=nfet_05v0 W=0.82u L=0.6u spiceprefix=X}
+C {/home/oshan/metastability-298/xschem/sym/nmos3.sym} 870 260 0 0 {name=sk_N1 model=nfet_05v0 W=0.82u L=0.6u spiceprefix=X}
+C {/home/oshan/metastability-298/xschem/sym/pmos3.sym} 870 60 0 0 {name=sk_P2 model=pfet_05v0 W=1.13u L=0.5u spiceprefix=X}
+C {/home/oshan/metastability-298/xschem/sym/pmos3.sym} 980 60 0 0 {name=sk_P1 model=pfet_05v0 W=1.13u L=0.5u spiceprefix=X}
 N -160 0 1200 0 {lab=VDD}
 C {devices/lab_pin.sym} -160 0 0 0 {name=l1 lab=VDD}
 N -160 420 1200 420 {lab=VSS}

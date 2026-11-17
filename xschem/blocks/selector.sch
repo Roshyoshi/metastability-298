@@ -6,7 +6,7 @@ S {}
 E {}
 T {selector: Selector (one of four flip-flop outputs)   (flow box: Selector)} 0 -170 0 0 0.4 0.4 {}
 T {Press e on a cell to see its transistors; Ctrl+e returns here.} 0 -140 0 0 0.25 0.25 {}
-C {@@ROOT@@/cells_tx/mux4_1.sym} 300 0 0 0 {name=xselect_dut}
+C {/home/oshan/metastability-298/xschem/cells_tx/mux4_1.sym} 300 0 0 0 {name=xselect_dut}
 C {devices/lab_pin.sym} 250 -50 0 0 {name=l1 lab=q_0}
 C {devices/lab_pin.sym} 250 -30 0 0 {name=l2 lab=q_1}
 C {devices/lab_pin.sym} 250 -10 0 0 {name=l3 lab=q_2}

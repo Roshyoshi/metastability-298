@@ -15,20 +15,20 @@ C {devices/gnd.sym} -180 30 0 0 {name=gvcap}
 C {devices/vsource.sym} -60 0 0 0 {name=vbias value="3.0"}
 C {devices/lab_pin.sym} -60 -30 0 0 {name=l3 lab=ua_0}
 C {devices/gnd.sym} -60 30 0 0 {name=gvbias}
-C {@@ROOT@@/blocks/capture_drivers.sym} 200 0 0 0 {name=xcapd}
+C {/home/oshan/metastability-298/xschem/blocks/capture_drivers.sym} 200 0 0 0 {name=xcapd}
 C {devices/lab_pin.sym} 120 0 0 0 {name=l4 lab=capture}
 C {devices/lab_pin.sym} 280 0 0 1 {name=l5 lab=capture_local}
-C {@@ROOT@@/blocks/delay.sym} 480 0 0 0 {name=xdelay}
+C {/home/oshan/metastability-298/xschem/blocks/delay.sym} 480 0 0 0 {name=xdelay}
 C {devices/lab_pin.sym} 400 -10 0 0 {name=l6 lab=capture_local}
 C {devices/lab_pin.sym} 400 10 0 0 {name=l7 lab=ua_0}
 C {devices/lab_pin.sym} 560 -10 0 1 {name=l8 lab=early_clk}
-C {@@ROOT@@/blocks/early_observer.sym} 760 0 0 0 {name=xearly}
+C {/home/oshan/metastability-298/xschem/blocks/early_observer.sym} 760 0 0 0 {name=xearly}
 C {devices/lab_pin.sym} 680 -10 0 0 {name=l9 lab=early_clk}
 C {devices/lab_pin.sym} 680 10 0 0 {name=l10 lab=0}
 C {devices/lab_pin.sym} 840 -10 0 1 {name=l11 lab=early_q}
-C {devices/code_shown.sym} 1000 -150 0 0 {name=SIM only_toplevel=false value=".include /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/design.ngspice
-.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
-.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice diode_typical
+C {devices/code_shown.sym} 1000 -150 0 0 {name=SIM only_toplevel=false value=".include /home/oshan/.ciel/ciel/gf180mcu/versions/5740c4a81c42f9fe4af5ef2ee258a99151053d28/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /home/oshan/.ciel/ciel/gf180mcu/versions/5740c4a81c42f9fe4af5ef2ee258a99151053d28/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.lib /home/oshan/.ciel/ciel/gf180mcu/versions/5740c4a81c42f9fe4af5ef2ee258a99151053d28/gf180mcuD/libs.tech/ngspice/sm141064.ngspice diode_typical
 .global VDD
 .param sw_stat_global=0 sw_stat_mismatch=0
 * ideal-capacitor reference copy of the delay line

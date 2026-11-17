@@ -30,7 +30,7 @@ C {devices/gnd.sym} -400 310 0 0 {name=gvdq}
 C {devices/vsource.sym} -280 280 0 0 {name=vea value="0"}
 C {devices/lab_pin.sym} -280 250 0 0 {name=l8 lab=early_q}
 C {devices/gnd.sym} -280 310 0 0 {name=gvea}
-C {@@ROOT@@/blocks/controller.sym} 300 100 0 0 {name=xctrl}
+C {/home/oshan/metastability-298/xschem/blocks/controller.sym} 300 100 0 0 {name=xctrl}
 C {devices/lab_pin.sym} 220 -10 0 0 {name=l9 lab=clk}
 C {devices/lab_pin.sym} 220 10 0 0 {name=l10 lab=early_q}
 C {devices/lab_pin.sym} 220 30 0 0 {name=l11 lab=ena}
@@ -50,9 +50,9 @@ C {devices/lab_pin.sym} 380 150 0 1 {name=l24 lab=uo_out_4}
 C {devices/lab_pin.sym} 380 170 0 1 {name=l25 lab=uo_out_5}
 C {devices/lab_pin.sym} 380 190 0 1 {name=l26 lab=uo_out_6}
 C {devices/lab_pin.sym} 380 210 0 1 {name=l27 lab=uo_out_7}
-C {devices/code_shown.sym} 800 -150 0 0 {name=SIM only_toplevel=false value=".include /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/design.ngspice
-.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
-.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice diode_typical
+C {devices/code_shown.sym} 800 -150 0 0 {name=SIM only_toplevel=false value=".include /home/oshan/.ciel/ciel/gf180mcu/versions/5740c4a81c42f9fe4af5ef2ee258a99151053d28/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /home/oshan/.ciel/ciel/gf180mcu/versions/5740c4a81c42f9fe4af5ef2ee258a99151053d28/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.lib /home/oshan/.ciel/ciel/gf180mcu/versions/5740c4a81c42f9fe4af5ef2ee258a99151053d28/gf180mcuD/libs.tech/ngspice/sm141064.ngspice diode_typical
 .global VDD
 .param sw_stat_global=0 sw_stat_mismatch=0
 .control

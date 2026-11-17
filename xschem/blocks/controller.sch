@@ -6,36 +6,36 @@ S {}
 E {}
 T {controller: Controller (src/gf180/compact_control.v, 93 cells, 1,388 transistors), split into its eight parts} 0 -200 0 0 0.45 0.45 {}
 T {Press e on a block to open it; Ctrl+e returns here. Blocks connect through equal net labels.} 0 -165 0 0 0.25 0.25 {}
-C {@@ROOT@@/blocks/trial_clock.sym} 260 40 0 0 {name=xtrial_clock}
+C {/home/oshan/metastability-298/xschem/blocks/trial_clock.sym} 260 40 0 0 {name=xtrial_clock}
 C {devices/lab_pin.sym} 180 20 0 0 {name=l1 lab=clk}
 C {devices/lab_pin.sym} 180 40 0 0 {name=l2 lab=rst_n}
 C {devices/lab_pin.sym} 340 20 0 1 {name=l3 lab=a_n}
 C {devices/lab_pin.sym} 340 40 0 1 {name=l4 lab=b}
 C {devices/lab_pin.sym} 340 60 0 1 {name=l5 lab=capture}
-C {@@ROOT@@/blocks/start.sym} 780 50 0 0 {name=xstart}
+C {/home/oshan/metastability-298/xschem/blocks/start.sym} 780 50 0 0 {name=xstart}
 C {devices/lab_pin.sym} 700 20 0 0 {name=l6 lab=a_n}
 C {devices/lab_pin.sym} 700 40 0 0 {name=l7 lab=ena}
 C {devices/lab_pin.sym} 700 60 0 0 {name=l8 lab=rst_n}
 C {devices/lab_pin.sym} 700 80 0 0 {name=l9 lab=ui_in_4}
 C {devices/lab_pin.sym} 860 20 0 1 {name=l10 lab=run}
-C {@@ROOT@@/blocks/readings.sym} 1300 50 0 0 {name=xreadings}
+C {/home/oshan/metastability-298/xschem/blocks/readings.sym} 1300 50 0 0 {name=xreadings}
 C {devices/lab_pin.sym} 1220 20 0 0 {name=l11 lab=a_n}
 C {devices/lab_pin.sym} 1220 40 0 0 {name=l12 lab=b}
 C {devices/lab_pin.sym} 1220 60 0 0 {name=l13 lab=early_q}
 C {devices/lab_pin.sym} 1220 80 0 0 {name=l14 lab=selected_q}
 C {devices/lab_pin.sym} 1380 20 0 1 {name=l15 lab=bad_bit}
 C {devices/lab_pin.sym} 1380 40 0 1 {name=l16 lab=event_bit}
-C {@@ROOT@@/blocks/count_pulse.sym} 260 270 0 0 {name=xcount_pulse}
+C {/home/oshan/metastability-298/xschem/blocks/count_pulse.sym} 260 270 0 0 {name=xcount_pulse}
 C {devices/lab_pin.sym} 180 240 0 0 {name=l17 lab=b}
 C {devices/lab_pin.sym} 180 260 0 0 {name=l18 lab=n_16}
 C {devices/lab_pin.sym} 180 280 0 0 {name=l19 lab=rst_n}
 C {devices/lab_pin.sym} 180 300 0 0 {name=l20 lab=run}
 C {devices/lab_pin.sym} 340 240 0 1 {name=l21 lab=tick_n}
-C {@@ROOT@@/blocks/trial_counter.sym} 780 250 0 0 {name=xtrial_counter}
+C {/home/oshan/metastability-298/xschem/blocks/trial_counter.sym} 780 250 0 0 {name=xtrial_counter}
 C {devices/lab_pin.sym} 700 240 0 0 {name=l22 lab=run}
 C {devices/lab_pin.sym} 700 260 0 0 {name=l23 lab=tick_n}
 C {devices/lab_pin.sym} 860 240 0 1 {name=l24 lab=n_16}
-C {@@ROOT@@/blocks/event_counter.sym} 1300 390 0 0 {name=xevent_counter}
+C {/home/oshan/metastability-298/xschem/blocks/event_counter.sym} 1300 390 0 0 {name=xevent_counter}
 C {devices/lab_pin.sym} 1220 240 0 0 {name=l25 lab=event_bit}
 C {devices/lab_pin.sym} 1220 260 0 0 {name=l26 lab=run}
 C {devices/lab_pin.sym} 1220 280 0 0 {name=l27 lab=tick_n}
@@ -55,7 +55,7 @@ C {devices/lab_pin.sym} 1380 480 0 1 {name=l40 lab=k_6}
 C {devices/lab_pin.sym} 1380 500 0 1 {name=l41 lab=k_7}
 C {devices/lab_pin.sym} 1380 520 0 1 {name=l42 lab=k_8}
 C {devices/lab_pin.sym} 1380 540 0 1 {name=l43 lab=k_9}
-C {@@ROOT@@/blocks/status.sym} 260 740 0 0 {name=xstatus}
+C {/home/oshan/metastability-298/xschem/blocks/status.sym} 260 740 0 0 {name=xstatus}
 C {devices/lab_pin.sym} 180 700 0 0 {name=l44 lab=b}
 C {devices/lab_pin.sym} 180 720 0 0 {name=l45 lab=bad_bit}
 C {devices/lab_pin.sym} 180 740 0 0 {name=l46 lab=n_16}
@@ -64,7 +64,7 @@ C {devices/lab_pin.sym} 180 780 0 0 {name=l48 lab=tick_n}
 C {devices/lab_pin.sym} 340 700 0 1 {name=l49 lab=uio_out_1}
 C {devices/lab_pin.sym} 340 720 0 1 {name=l50 lab=uio_out_2}
 C {devices/lab_pin.sym} 340 740 0 1 {name=l51 lab=uio_out_3}
-C {@@ROOT@@/blocks/readout.sym} 780 860 0 0 {name=xreadout}
+C {/home/oshan/metastability-298/xschem/blocks/readout.sym} 780 860 0 0 {name=xreadout}
 C {devices/lab_pin.sym} 700 700 0 0 {name=l52 lab=k_0}
 C {devices/lab_pin.sym} 700 720 0 0 {name=l53 lab=k_10}
 C {devices/lab_pin.sym} 700 740 0 0 {name=l54 lab=k_11}

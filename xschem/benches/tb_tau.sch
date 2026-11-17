@@ -9,69 +9,69 @@ T {Expected: tau_base_ps = 88.9; tau_keeper_ps = 80.5; tau_forward_ps = 102.3} -
 C {devices/vsource.sym} -200 0 0 0 {name=vvdd value="3.3"}
 C {devices/lab_pin.sym} -200 -30 0 0 {name=l1 lab=VDD}
 C {devices/gnd.sym} -200 30 0 0 {name=gvvdd}
-C {@@ROOT@@/blocks/meta_dut_baseline.sym} 200 0 0 0 {name=xbaseline0}
+C {/home/oshan/metastability-298/xschem/blocks/meta_dut_baseline.sym} 200 0 0 0 {name=xbaseline0}
 C {devices/lab_pin.sym} 150 -10 0 0 {name=l2 lab=0}
 C {devices/lab_pin.sym} 150 10 0 0 {name=l3 lab=VDD}
 C {devices/lab_pin.sym} 250 -10 0 1 {name=l4 lab=qbaseline0}
-C {@@ROOT@@/cells_tx/inv_1.sym} 340 0 0 0 {name=xobaseline0}
+C {/home/oshan/metastability-298/xschem/cells_tx/inv_1.sym} 340 0 0 0 {name=xobaseline0}
 C {devices/lab_pin.sym} 290 0 0 0 {name=l5 lab=qbaseline0}
 C {devices/lab_pin.sym} 390 0 0 1 {name=l6 lab=qobaseline0}
 C {devices/capa.sym} 310 70 0 0 {name=cqbaseline0 value=2f m=1}
 C {devices/lab_pin.sym} 310 40 0 0 {name=l7 lab=qbaseline0}
 C {devices/lab_pin.sym} 310 100 0 0 {name=l8 lab=0}
-C {@@ROOT@@/blocks/meta_dut_baseline.sym} 560 0 0 0 {name=xbaseline1}
+C {/home/oshan/metastability-298/xschem/blocks/meta_dut_baseline.sym} 560 0 0 0 {name=xbaseline1}
 C {devices/lab_pin.sym} 510 -10 0 0 {name=l9 lab=0}
 C {devices/lab_pin.sym} 510 10 0 0 {name=l10 lab=VDD}
 C {devices/lab_pin.sym} 610 -10 0 1 {name=l11 lab=qbaseline1}
-C {@@ROOT@@/cells_tx/inv_1.sym} 700 0 0 0 {name=xobaseline1}
+C {/home/oshan/metastability-298/xschem/cells_tx/inv_1.sym} 700 0 0 0 {name=xobaseline1}
 C {devices/lab_pin.sym} 650 0 0 0 {name=l12 lab=qbaseline1}
 C {devices/lab_pin.sym} 750 0 0 1 {name=l13 lab=qobaseline1}
 C {devices/capa.sym} 670 70 0 0 {name=cqbaseline1 value=2f m=1}
 C {devices/lab_pin.sym} 670 40 0 0 {name=l14 lab=qbaseline1}
 C {devices/lab_pin.sym} 670 100 0 0 {name=l15 lab=0}
-C {@@ROOT@@/blocks/meta_dut_keeper.sym} 200 160 0 0 {name=xkeeper0}
+C {/home/oshan/metastability-298/xschem/blocks/meta_dut_keeper.sym} 200 160 0 0 {name=xkeeper0}
 C {devices/lab_pin.sym} 150 150 0 0 {name=l16 lab=0}
 C {devices/lab_pin.sym} 150 170 0 0 {name=l17 lab=VDD}
 C {devices/lab_pin.sym} 250 150 0 1 {name=l18 lab=qkeeper0}
-C {@@ROOT@@/cells_tx/inv_1.sym} 340 160 0 0 {name=xokeeper0}
+C {/home/oshan/metastability-298/xschem/cells_tx/inv_1.sym} 340 160 0 0 {name=xokeeper0}
 C {devices/lab_pin.sym} 290 160 0 0 {name=l19 lab=qkeeper0}
 C {devices/lab_pin.sym} 390 160 0 1 {name=l20 lab=qokeeper0}
 C {devices/capa.sym} 310 230 0 0 {name=cqkeeper0 value=2f m=1}
 C {devices/lab_pin.sym} 310 200 0 0 {name=l21 lab=qkeeper0}
 C {devices/lab_pin.sym} 310 260 0 0 {name=l22 lab=0}
-C {@@ROOT@@/blocks/meta_dut_keeper.sym} 560 160 0 0 {name=xkeeper1}
+C {/home/oshan/metastability-298/xschem/blocks/meta_dut_keeper.sym} 560 160 0 0 {name=xkeeper1}
 C {devices/lab_pin.sym} 510 150 0 0 {name=l23 lab=0}
 C {devices/lab_pin.sym} 510 170 0 0 {name=l24 lab=VDD}
 C {devices/lab_pin.sym} 610 150 0 1 {name=l25 lab=qkeeper1}
-C {@@ROOT@@/cells_tx/inv_1.sym} 700 160 0 0 {name=xokeeper1}
+C {/home/oshan/metastability-298/xschem/cells_tx/inv_1.sym} 700 160 0 0 {name=xokeeper1}
 C {devices/lab_pin.sym} 650 160 0 0 {name=l26 lab=qkeeper1}
 C {devices/lab_pin.sym} 750 160 0 1 {name=l27 lab=qokeeper1}
 C {devices/capa.sym} 670 230 0 0 {name=cqkeeper1 value=2f m=1}
 C {devices/lab_pin.sym} 670 200 0 0 {name=l28 lab=qkeeper1}
 C {devices/lab_pin.sym} 670 260 0 0 {name=l29 lab=0}
-C {@@ROOT@@/blocks/meta_dut_forward.sym} 200 320 0 0 {name=xforward0}
+C {/home/oshan/metastability-298/xschem/blocks/meta_dut_forward.sym} 200 320 0 0 {name=xforward0}
 C {devices/lab_pin.sym} 150 310 0 0 {name=l30 lab=0}
 C {devices/lab_pin.sym} 150 330 0 0 {name=l31 lab=VDD}
 C {devices/lab_pin.sym} 250 310 0 1 {name=l32 lab=qforward0}
-C {@@ROOT@@/cells_tx/inv_1.sym} 340 320 0 0 {name=xoforward0}
+C {/home/oshan/metastability-298/xschem/cells_tx/inv_1.sym} 340 320 0 0 {name=xoforward0}
 C {devices/lab_pin.sym} 290 320 0 0 {name=l33 lab=qforward0}
 C {devices/lab_pin.sym} 390 320 0 1 {name=l34 lab=qoforward0}
 C {devices/capa.sym} 310 390 0 0 {name=cqforward0 value=2f m=1}
 C {devices/lab_pin.sym} 310 360 0 0 {name=l35 lab=qforward0}
 C {devices/lab_pin.sym} 310 420 0 0 {name=l36 lab=0}
-C {@@ROOT@@/blocks/meta_dut_forward.sym} 560 320 0 0 {name=xforward1}
+C {/home/oshan/metastability-298/xschem/blocks/meta_dut_forward.sym} 560 320 0 0 {name=xforward1}
 C {devices/lab_pin.sym} 510 310 0 0 {name=l37 lab=0}
 C {devices/lab_pin.sym} 510 330 0 0 {name=l38 lab=VDD}
 C {devices/lab_pin.sym} 610 310 0 1 {name=l39 lab=qforward1}
-C {@@ROOT@@/cells_tx/inv_1.sym} 700 320 0 0 {name=xoforward1}
+C {/home/oshan/metastability-298/xschem/cells_tx/inv_1.sym} 700 320 0 0 {name=xoforward1}
 C {devices/lab_pin.sym} 650 320 0 0 {name=l40 lab=qforward1}
 C {devices/lab_pin.sym} 750 320 0 1 {name=l41 lab=qoforward1}
 C {devices/capa.sym} 670 390 0 0 {name=cqforward1 value=2f m=1}
 C {devices/lab_pin.sym} 670 360 0 0 {name=l42 lab=qforward1}
 C {devices/lab_pin.sym} 670 420 0 0 {name=l43 lab=0}
-C {devices/code_shown.sym} 1000 -150 0 0 {name=SIM only_toplevel=false value=".include /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/design.ngspice
-.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
-.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice diode_typical
+C {devices/code_shown.sym} 1000 -150 0 0 {name=SIM only_toplevel=false value=".include /home/oshan/.ciel/ciel/gf180mcu/versions/5740c4a81c42f9fe4af5ef2ee258a99151053d28/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /home/oshan/.ciel/ciel/gf180mcu/versions/5740c4a81c42f9fe4af5ef2ee258a99151053d28/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.lib /home/oshan/.ciel/ciel/gf180mcu/versions/5740c4a81c42f9fe4af5ef2ee258a99151053d28/gf180mcuD/libs.tech/ngspice/sm141064.ngspice diode_typical
 .global VDD
 .param sw_stat_global=0 sw_stat_mismatch=0
 .options method=gear reltol=1e-6 abstol=1e-12 vntol=1e-12 chgtol=1e-14 trtol=1
