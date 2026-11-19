@@ -35,6 +35,7 @@ jobs:
         uses: TinyTapeout/tt-gds-action/precheck@ttgf26c
 
   viewer:
+    continue-on-error: true  # 3D viewer needs GitHub Pages; not required for submission
     needs: gds
     runs-on: ubuntu-24.04
     permissions:
