@@ -2,7 +2,7 @@
 # Run on ecetesla0. Checks the layout the way the Tiny Tapeout precheck and the course flow do.
 # 20 to 60 minutes. Produces results_round2_layout.tar.gz
 exec < /dev/null          # no tool may wait for keyboard input
-KIT="$(cd "$(dirname "$0")" && pwd)"
+KIT="$(cd "$(dirname "$0")/.." && pwd)"
 L="$KIT/layout"; R="$L/results"; mkdir -p "$R"; cd "$L"
 TOP=tt_um_metastability_characterizer
 PDKDIR="${PDK_ROOT:-/usr/local/share/pdk}/${PDK:-gf180mcuD}"
@@ -23,15 +23,15 @@ DECK=$(ls "$PDKDIR"/libs.tech/klayout/tech/drc/gf180mcu.drc "$PDKDIR"/libs.tech/
 RUNDRC=$(ls "$PDKDIR"/libs.tech/klayout/drc/run_drc.py 2>/dev/null | head -1)
 mkdir -p "$R/klayout_drc" "$R/klayout_antenna"
 if [ -n "$DECK" ] && command -v klayout >/dev/null; then
-  timeout 3600 klayout -b -r "$DECK" -rd input="$L/$TOP.gds" -rd topcell=$TOP -rd variant=gf180mcuD -rd run_mode=deep       -rd threads=1 -rd decks="all,-density,-antenna" -rd report="$R/klayout_drc/drc.lyrdb" > "$R/drc_klayout.log" 2>&1
-  timeout 3600 klayout -b -r "$DECK" -rd input="$L/$TOP.gds" -rd topcell=$TOP -rd variant=gf180mcuD -rd run_mode=deep       -rd threads=1 -rd decks=antenna -rd report="$R/klayout_antenna/antenna.lyrdb" > "$R/drc_antenna.log" 2>&1
+  timeout 3600 klayout -b -r "$DECK" -rd input="$KIT/gds/$TOP.gds" -rd topcell=$TOP -rd variant=gf180mcuD -rd run_mode=deep       -rd threads=1 -rd decks="all,-density,-antenna" -rd report="$R/klayout_drc/drc.lyrdb" > "$R/drc_klayout.log" 2>&1
+  timeout 3600 klayout -b -r "$DECK" -rd input="$KIT/gds/$TOP.gds" -rd topcell=$TOP -rd variant=gf180mcuD -rd run_mode=deep       -rd threads=1 -rd decks=antenna -rd report="$R/klayout_antenna/antenna.lyrdb" > "$R/drc_antenna.log" 2>&1
 elif [ -n "$RUNDRC" ]; then
   python3 "$RUNDRC" --help > "$R/run_drc_help.txt" 2>&1
   for opts in "--variant=D --run_dir=$R/klayout_drc" "--variant=D"; do
-    ( cd "$R/klayout_drc" && timeout 3600 python3 "$RUNDRC" --path="$L/$TOP.gds" $opts --topcell=$TOP --run_mode=deep --thr=4 ) > "$R/drc_klayout.log" 2>&1 && break
+    ( cd "$R/klayout_drc" && timeout 3600 python3 "$RUNDRC" --path="$KIT/gds/$TOP.gds" $opts --topcell=$TOP --run_mode=deep --thr=4 ) > "$R/drc_klayout.log" 2>&1 && break
   done
   for opts in "--variant=D --run_dir=$R/klayout_antenna" "--variant=D"; do
-    ( cd "$R/klayout_antenna" && timeout 3600 python3 "$RUNDRC" --path="$L/$TOP.gds" $opts --topcell=$TOP --run_mode=deep --thr=4 --antenna_only ) > "$R/drc_antenna.log" 2>&1 && break
+    ( cd "$R/klayout_antenna" && timeout 3600 python3 "$RUNDRC" --path="$KIT/gds/$TOP.gds" $opts --topcell=$TOP --run_mode=deep --thr=4 --antenna_only ) > "$R/drc_antenna.log" 2>&1 && break
   done
 else
   echo "   no KLayout deck or run_drc.py under $PDKDIR/libs.tech/klayout" | tee -a "$LOG"
@@ -43,7 +43,7 @@ echo "   violation items: $(cat $(find "$R/klayout_drc" "$R/klayout_antenna" -na
 RC=$(ls "$PDKDIR"/libs.tech/magic/*.magicrc 2>/dev/null | head -1)
 echo; echo "== 3. Magic DRC (full style), extraction for LVS and parasitic extraction (rc file: $RC)"
 if [ -n "$RC" ] && command -v magic >/dev/null; then
-  timeout 3600 magic -dnull -noconsole -rcfile "$RC" "$L/magic_checks.tcl" "$L/$TOP.gds" $TOP "$R" > "$R/magic.log" 2>&1
+  timeout 3600 magic -dnull -noconsole -rcfile "$RC" "$L/magic_checks.tcl" "$KIT/gds/$TOP.gds" $TOP "$R" > "$R/magic.log" 2>&1
   echo "   exit $? ; $(grep 'COUNT' "$R/drc_magic.txt" 2>/dev/null)"
   ls -la "$R"/*.spice 2>/dev/null
 else
