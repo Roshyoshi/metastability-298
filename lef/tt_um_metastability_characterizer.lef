@@ -33,7 +33,7 @@ MACRO tt_um_metastability_characterizer
   END rst_n
   PIN ua[0]
     DIRECTION INOUT ;
-    USE ANALOG ;
+    USE SIGNAL ;
     PORT
       LAYER Metal4 ;
         RECT 325.820 0.000 328.820 1.000 ;
@@ -41,7 +41,7 @@ MACRO tt_um_metastability_characterizer
   END ua[0]
   PIN ua[1]
     DIRECTION INOUT ;
-    USE ANALOG ;
+    USE SIGNAL ;
     PORT
       LAYER Metal4 ;
         RECT 282.140 0.000 285.140 1.000 ;
@@ -49,7 +49,7 @@ MACRO tt_um_metastability_characterizer
   END ua[1]
   PIN ua[2]
     DIRECTION INOUT ;
-    USE ANALOG ;
+    USE SIGNAL ;
     PORT
       LAYER Metal4 ;
         RECT 238.460 0.000 241.460 1.000 ;
@@ -57,7 +57,7 @@ MACRO tt_um_metastability_characterizer
   END ua[2]
   PIN ua[3]
     DIRECTION INOUT ;
-    USE ANALOG ;
+    USE SIGNAL ;
     PORT
       LAYER Metal4 ;
         RECT 194.780 0.000 197.780 1.000 ;
@@ -65,7 +65,7 @@ MACRO tt_um_metastability_characterizer
   END ua[3]
   PIN ua[4]
     DIRECTION INOUT ;
-    USE ANALOG ;
+    USE SIGNAL ;
     PORT
       LAYER Metal4 ;
         RECT 151.100 0.000 154.100 1.000 ;
@@ -73,7 +73,7 @@ MACRO tt_um_metastability_characterizer
   END ua[4]
   PIN ua[5]
     DIRECTION INOUT ;
-    USE ANALOG ;
+    USE SIGNAL ;
     PORT
       LAYER Metal4 ;
         RECT 107.420 0.000 110.420 1.000 ;
@@ -81,7 +81,7 @@ MACRO tt_um_metastability_characterizer
   END ua[5]
   PIN ua[6]
     DIRECTION INOUT ;
-    USE ANALOG ;
+    USE SIGNAL ;
     PORT
       LAYER Metal4 ;
         RECT 63.740 0.000 66.740 1.000 ;
@@ -89,7 +89,7 @@ MACRO tt_um_metastability_characterizer
   END ua[6]
   PIN ua[7]
     DIRECTION INOUT ;
-    USE ANALOG ;
+    USE SIGNAL ;
     PORT
       LAYER Metal4 ;
         RECT 20.060 0.000 23.060 1.000 ;
