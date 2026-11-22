@@ -38,6 +38,8 @@ jobs:
     continue-on-error: true  # 3D viewer needs GitHub Pages; not required for submission
     needs: gds
     runs-on: ubuntu-24.04
+    environment:
+      name: github-pages  # actions/deploy-pages refuses to deploy without one
     permissions:
       pages: write      # to deploy to Pages
       id-token: write   # to verify the deployment originates from an appropriate source
