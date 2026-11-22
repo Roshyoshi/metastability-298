@@ -1,37 +1,48 @@
 #!/bin/bash
-# Run on ecetesla0. Checks the layout the way the Tiny Tapeout precheck and the course flow do.
-# 20 to 60 minutes. Produces results_round2_layout.tar.gz
+# Checks the layout the way the Tiny Tapeout precheck and the course flow do: the KLayout GF180 rule deck and
+# antenna deck, Magic DRC, extraction, LVS against chip_lvs.spice, and the whole-tile simulation before and
+# after layout. About 20 minutes.
+#
+# usage: bash layout/run_layout.sh [results folder]          (default: build/layout)
+#        RECORD=1 bash layout/run_layout.sh                  also copies the logs to verification/layout
+#
+# Needs klayout, magic, netgen, ngspice and python3, and PDK_ROOT set to the folder that holds gf180mcuD
+# (on ecetesla0 that is /usr/local/share/pdk, which is also what is tried without PDK_ROOT).
 exec < /dev/null          # no tool may wait for keyboard input
-KIT="$(cd "$(dirname "$0")/.." && pwd)"
-L="$KIT/layout"; R="$L/results"; mkdir -p "$R"; cd "$L"
+L="$(cd "$(dirname "$0")" && pwd)"
+R="${1:-$L/../build/layout}"; mkdir -p "$R"; R="$(cd "$R" && pwd)"
 TOP=tt_um_metastability_characterizer
+GDS="$(cd "$L/../gds" && pwd)/$TOP.gds"
 PDKDIR="${PDK_ROOT:-/usr/local/share/pdk}/${PDK:-gf180mcuD}"
 [ -d "$PDKDIR" ] || PDKDIR=/usr/local/share/pdk/gf180mcuD
 [ -d "$PDKDIR" ] || PDKDIR=$(ls -d /usr/local/share/pdk/gf180mcu* /usr/share/pdk/gf180mcu* $HOME/pdk/gf180mcu* 2>/dev/null | head -1)
+cd "$R"
 
 LOG="$R/run_log.txt"
 {
   echo "== $(date)  PDK directory: $PDKDIR"
   for t in klayout magic netgen ngspice python3; do printf "%-8s " $t; command -v $t || echo "not found"; done
-  klayout -v 2>&1 | head -1; magic --version 2>&1 | head -1; netgen -batch quit 2>&1 | head -2
-  ls "$PDKDIR/libs.tech" 2>&1
+  klayout -v 2>&1 | head -1; magic --version 2>&1 | head -1; netgen -batch quit 2>&1 | head -1
+  ngspice --version 2>&1 | grep -m1 ngspice-
+  cat "$PDKDIR/SOURCES" 2>/dev/null
+  sed -n '/^version/,/^end/p' "$PDKDIR/libs.tech/magic/${PDK:-gf180mcuD}.tech" 2>/dev/null | grep -E ' version | requires '
 } > "$LOG" 2>&1
 cat "$LOG"
 
 echo; echo "== 1. KLayout: GF180 rule deck (no density), then 2. antenna"
 DECK=$(ls "$PDKDIR"/libs.tech/klayout/tech/drc/gf180mcu.drc "$PDKDIR"/libs.tech/klayout/drc/gf180mcu.drc 2>/dev/null | head -1)
 RUNDRC=$(ls "$PDKDIR"/libs.tech/klayout/drc/run_drc.py 2>/dev/null | head -1)
-mkdir -p "$R/klayout_drc" "$R/klayout_antenna"
+rm -rf "$R/klayout_drc" "$R/klayout_antenna"; mkdir -p "$R/klayout_drc" "$R/klayout_antenna"
 if [ -n "$DECK" ] && command -v klayout >/dev/null; then
-  timeout 3600 klayout -b -r "$DECK" -rd input="$KIT/gds/$TOP.gds" -rd topcell=$TOP -rd variant=gf180mcuD -rd run_mode=deep       -rd threads=1 -rd decks="all,-density,-antenna" -rd report="$R/klayout_drc/drc.lyrdb" > "$R/drc_klayout.log" 2>&1
-  timeout 3600 klayout -b -r "$DECK" -rd input="$KIT/gds/$TOP.gds" -rd topcell=$TOP -rd variant=gf180mcuD -rd run_mode=deep       -rd threads=1 -rd decks=antenna -rd report="$R/klayout_antenna/antenna.lyrdb" > "$R/drc_antenna.log" 2>&1
+  timeout 3600 klayout -b -r "$DECK" -rd input="$GDS" -rd topcell=$TOP -rd variant=gf180mcuD -rd run_mode=deep       -rd threads=1 -rd decks="all,-density,-antenna" -rd report="$R/klayout_drc/drc.lyrdb" > "$R/drc_klayout.log" 2>&1
+  timeout 3600 klayout -b -r "$DECK" -rd input="$GDS" -rd topcell=$TOP -rd variant=gf180mcuD -rd run_mode=deep       -rd threads=1 -rd decks=antenna -rd report="$R/klayout_antenna/antenna.lyrdb" > "$R/drc_antenna.log" 2>&1
 elif [ -n "$RUNDRC" ]; then
   python3 "$RUNDRC" --help > "$R/run_drc_help.txt" 2>&1
   for opts in "--variant=D --run_dir=$R/klayout_drc" "--variant=D"; do
-    ( cd "$R/klayout_drc" && timeout 3600 python3 "$RUNDRC" --path="$KIT/gds/$TOP.gds" $opts --topcell=$TOP --run_mode=deep --thr=4 ) > "$R/drc_klayout.log" 2>&1 && break
+    ( cd "$R/klayout_drc" && timeout 3600 python3 "$RUNDRC" --path="$GDS" $opts --topcell=$TOP --run_mode=deep --thr=4 ) > "$R/drc_klayout.log" 2>&1 && break
   done
   for opts in "--variant=D --run_dir=$R/klayout_antenna" "--variant=D"; do
-    ( cd "$R/klayout_antenna" && timeout 3600 python3 "$RUNDRC" --path="$KIT/gds/$TOP.gds" $opts --topcell=$TOP --run_mode=deep --thr=4 --antenna_only ) > "$R/drc_antenna.log" 2>&1 && break
+    ( cd "$R/klayout_antenna" && timeout 3600 python3 "$RUNDRC" --path="$GDS" $opts --topcell=$TOP --run_mode=deep --thr=4 --antenna_only ) > "$R/drc_antenna.log" 2>&1 && break
   done
 else
   echo "   no KLayout deck or run_drc.py under $PDKDIR/libs.tech/klayout" | tee -a "$LOG"
@@ -42,8 +53,9 @@ echo "   violation items: $(cat $(find "$R/klayout_drc" "$R/klayout_antenna" -na
 
 RC=$(ls "$PDKDIR"/libs.tech/magic/*.magicrc 2>/dev/null | head -1)
 echo; echo "== 3. Magic DRC (full style), extraction for LVS and parasitic extraction (rc file: $RC)"
+rm -rf "$R"/*.ext "$R/pex" "$R/${TOP}_lvs.spice" "$R/${TOP}_pex.spice" "$R/drc_magic.txt"
 if [ -n "$RC" ] && command -v magic >/dev/null; then
-  timeout 3600 magic -dnull -noconsole -rcfile "$RC" "$L/magic_checks.tcl" "$KIT/gds/$TOP.gds" $TOP "$R" > "$R/magic.log" 2>&1
+  timeout 3600 magic -dnull -noconsole -rcfile "$RC" "$L/magic_checks.tcl" "$GDS" $TOP "$R" > "$R/magic.log" 2>&1
   echo "   exit $? ; $(grep 'COUNT' "$R/drc_magic.txt" 2>/dev/null)"
   ls -la "$R"/*.spice 2>/dev/null
 else
@@ -52,6 +64,7 @@ fi
 
 SETUP=$(ls "$PDKDIR"/libs.tech/netgen/*setup*.tcl 2>/dev/null | head -1)
 echo; echo "== 4. LVS: layout (Magic extraction) against the master netlist (setup: $SETUP)"
+rm -f "$R/lvs_report.txt" "$R/lvs.log"
 if [ -f "$R/${TOP}_lvs.spice" ] && command -v netgen >/dev/null; then
   timeout 3600 netgen -batch lvs "$R/${TOP}_lvs.spice $TOP" "$L/chip_lvs.spice $TOP" "$SETUP" "$R/lvs_report.txt" > "$R/lvs.log" 2>&1
   echo "   exit $?"
@@ -60,16 +73,27 @@ else
   echo "   no extracted netlist or no netgen" | tee -a "$LOG"
 fi
 
-echo; echo "== 5. Pre- and post-layout simulation of the whole tile (1.6 us: reset, START, three trials)"
+echo; echo "== 5. Pre- and post-layout simulation of the whole tile (1.6 us: reset, START, four count pulses)"
 if command -v ngspice >/dev/null && command -v python3 >/dev/null; then
+  rm -f "$R"/tb_chip_pre.log "$R"/tb_chip_post.log
   python3 "$L/make_tb_chip.py" "$L/chip_sim.spice" "$R/tb_chip_pre.spice" "$PDKDIR" pre
-  ( cd "$R" && timeout 7200 ngspice -b tb_chip_pre.spice < /dev/null > tb_chip_pre.log 2>&1 )
+  ( cd "$R" && timeout 7200 ngspice -b tb_chip_pre.spice < /dev/null > tb_chip_pre.log 2>&1 ) &
   if [ -f "$R/${TOP}_pex.spice" ]; then
     python3 "$L/make_tb_chip.py" "$R/${TOP}_pex.spice" "$R/tb_chip_post.spice" "$PDKDIR" post
-    ( cd "$R" && timeout 7200 ngspice -b tb_chip_post.spice < /dev/null > tb_chip_post.log 2>&1 )
+    ( cd "$R" && timeout 7200 ngspice -b tb_chip_post.spice < /dev/null > tb_chip_post.log 2>&1 ) &
   fi
-  grep -h "^RESULT" "$R"/tb_chip_*.log
+  wait
+  grep -h "^RESULT" "$R"/tb_chip_pre.log "$R"/tb_chip_post.log
 fi
 
-cd "$KIT" && tar czf results_round2_layout.tar.gz layout/results
-echo; echo "Done. Bring back: $KIT/results_round2_layout.tar.gz"
+if [ "${RECORD:-0}" = 1 ]; then
+  V="$L/../verification/layout"
+  # The logs name this machine's folders: they are recorded with ~ for the home folder, and the two
+  # simulation logs without ngspice's progress lines.
+  for f in run_log.txt drc_klayout.log drc_antenna.log drc_magic.txt lvs.log lvs_report.txt tb_chip_pre.log tb_chip_post.log \
+           klayout_drc/drc.lyrdb:klayout_drc_main.lyrdb klayout_antenna/antenna.lyrdb:klayout_antenna.lyrdb; do
+    [ -f "$R/${f%%:*}" ] && tr '\r' '\n' < "$R/${f%%:*}" | grep -v '^ *Reference value' | sed "s#$HOME#~#g" > "$V/$(basename "${f##*:}")"
+  done
+  echo; echo "Recorded in $(cd "$V" && pwd)"
+fi
+echo; echo "Done. Results: $R"
