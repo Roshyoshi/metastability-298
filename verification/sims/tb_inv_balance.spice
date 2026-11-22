@@ -1,4 +1,4 @@
-** sch_path: ~/ece298a/round2/benches/tb_inv_balance.sch
+** sch_path: ~/metastability-298/build/sims/kit/benches/tb_inv_balance.sch
 **.subckt tb_inv_balance
 vvdd VDD GND 3.3
 vin vin GND 0
@@ -6,9 +6,9 @@ xinv vin vout_inv inv_1
 xnand vin VDD vout_nand nand2_1
 **** begin user architecture code
 
-.include /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/design.ngspice
-.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
-.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice diode_typical
+.include ~/.ciel/ciel/gf180mcu/versions/e8daeda73ca8f5814dbc0b11d1d05802251a3750/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib ~/.ciel/ciel/gf180mcu/versions/e8daeda73ca8f5814dbc0b11d1d05802251a3750/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.lib ~/.ciel/ciel/gf180mcu/versions/e8daeda73ca8f5814dbc0b11d1d05802251a3750/gf180mcuD/libs.tech/ngspice/sm141064.ngspice diode_typical
 .global VDD
 .param sw_stat_global=0 sw_stat_mismatch=0
 .control
@@ -24,9 +24,9 @@ wrdata tb_inv_balance.dat v(vout_inv) v(vout_nand)
 **** end user architecture code
 **.ends
 
-* expanding   symbol:  ~/ece298a/round2/cells_tx/inv_1.sym # of pins=2
-** sym_path: ~/ece298a/round2/cells_tx/inv_1.sym
-** sch_path: ~/ece298a/round2/cells_tx/inv_1.sch
+* expanding   symbol:  ~/metastability-298/build/sims/kit/cells_tx/inv_1.sym # of pins=2
+** sym_path: ~/metastability-298/build/sims/kit/cells_tx/inv_1.sym
+** sch_path: ~/metastability-298/build/sims/kit/cells_tx/inv_1.sch
 .subckt inv_1 I ZN
 *.ipin I
 *.opin ZN
@@ -37,9 +37,9 @@ XM_i_1 ZN I VDD VDD pfet_05v0 L=0.5u W=1.22u nf=1 ad=6.1e-13 as=6.1e-13 pd=3.44e
 .ends
 
 
-* expanding   symbol:  ~/ece298a/round2/cells_tx/nand2_1.sym # of pins=3
-** sym_path: ~/ece298a/round2/cells_tx/nand2_1.sym
-** sch_path: ~/ece298a/round2/cells_tx/nand2_1.sch
+* expanding   symbol:  ~/metastability-298/build/sims/kit/cells_tx/nand2_1.sym # of pins=3
+** sym_path: ~/metastability-298/build/sims/kit/cells_tx/nand2_1.sym
+** sch_path: ~/metastability-298/build/sims/kit/cells_tx/nand2_1.sch
 .subckt nand2_1 A1 A2 ZN
 *.ipin A1
 *.ipin A2

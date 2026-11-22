@@ -1,4 +1,4 @@
-** sch_path: ~/ece298a/round2/benches/tb_duts.sch
+** sch_path: ~/metastability-298/build/sims/kit/benches/tb_duts.sch
 **.subckt tb_duts
 vvdd VDD GND 3.3
 vcap capture GND PWL(0 0 1n 0 1.05n 3.3 2n 3.3 2.05n 0 5n 0 5.05n 3.3)
@@ -12,9 +12,9 @@ cl2 q_2 0 2f m=1
 cl3 q_3 0 2f m=1
 **** begin user architecture code
 
-.include /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/design.ngspice
-.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
-.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice diode_typical
+.include ~/.ciel/ciel/gf180mcu/versions/e8daeda73ca8f5814dbc0b11d1d05802251a3750/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib ~/.ciel/ciel/gf180mcu/versions/e8daeda73ca8f5814dbc0b11d1d05802251a3750/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.lib ~/.ciel/ciel/gf180mcu/versions/e8daeda73ca8f5814dbc0b11d1d05802251a3750/gf180mcuD/libs.tech/ngspice/sm141064.ngspice diode_typical
 .global VDD
 .param sw_stat_global=0 sw_stat_mismatch=0
 .control
@@ -38,9 +38,10 @@ wrdata tb_duts.dat v(capture_local) v(data_local) v(q_0) v(q_1) v(q_2) v(q_3)
 **** end user architecture code
 **.ends
 
-* expanding   symbol:  ~/ece298a/round2/blocks/data_input.sym # of pins=2
-** sym_path: ~/ece298a/round2/blocks/data_input.sym
-** sch_path: ~/ece298a/round2/blocks/data_input.sch
+* expanding   symbol:  ~/metastability-298/build/sims/kit/blocks/data_input.sym # of
+*+ pins=2
+** sym_path: ~/metastability-298/build/sims/kit/blocks/data_input.sym
+** sch_path: ~/metastability-298/build/sims/kit/blocks/data_input.sch
 .subckt data_input ui_in_6 data_local
 *.ipin ui_in_6
 *.opin data_local
@@ -49,9 +50,10 @@ xdata1 data_b data_local inv_2
 .ends
 
 
-* expanding   symbol:  ~/ece298a/round2/blocks/capture_drivers.sym # of pins=2
-** sym_path: ~/ece298a/round2/blocks/capture_drivers.sym
-** sch_path: ~/ece298a/round2/blocks/capture_drivers.sch
+* expanding   symbol:  ~/metastability-298/build/sims/kit/blocks/capture_drivers.sym # of
+*+ pins=2
+** sym_path: ~/metastability-298/build/sims/kit/blocks/capture_drivers.sym
+** sch_path: ~/metastability-298/build/sims/kit/blocks/capture_drivers.sch
 .subckt capture_drivers capture capture_local
 *.ipin capture
 *.opin capture_local
@@ -60,9 +62,9 @@ xcap1 capture_b capture_local inv_2
 .ends
 
 
-* expanding   symbol:  ~/ece298a/round2/blocks/duts.sym # of pins=6
-** sym_path: ~/ece298a/round2/blocks/duts.sym
-** sch_path: ~/ece298a/round2/blocks/duts.sch
+* expanding   symbol:  ~/metastability-298/build/sims/kit/blocks/duts.sym # of pins=6
+** sym_path: ~/metastability-298/build/sims/kit/blocks/duts.sym
+** sch_path: ~/metastability-298/build/sims/kit/blocks/duts.sch
 .subckt duts capture_local data_local q_0 q_1 q_2 q_3
 *.ipin capture_local
 *.ipin data_local
@@ -77,9 +79,9 @@ xu_dut4 data_local capture_local q_3 meta_dut_forward
 .ends
 
 
-* expanding   symbol:  ~/ece298a/round2/cells_tx/inv_2.sym # of pins=2
-** sym_path: ~/ece298a/round2/cells_tx/inv_2.sym
-** sch_path: ~/ece298a/round2/cells_tx/inv_2.sch
+* expanding   symbol:  ~/metastability-298/build/sims/kit/cells_tx/inv_2.sym # of pins=2
+** sym_path: ~/metastability-298/build/sims/kit/cells_tx/inv_2.sym
+** sch_path: ~/metastability-298/build/sims/kit/cells_tx/inv_2.sch
 .subckt inv_2 I ZN
 *.ipin I
 *.opin ZN
@@ -94,9 +96,9 @@ XM_i_1_1 ZN I VDD VDD pfet_05v0 L=0.5u W=1.22u nf=1 ad=6.1e-13 as=6.1e-13 pd=3.4
 .ends
 
 
-* expanding   symbol:  ~/ece298a/round2/cells_tx/dffq_1.sym # of pins=3
-** sym_path: ~/ece298a/round2/cells_tx/dffq_1.sym
-** sch_path: ~/ece298a/round2/cells_tx/dffq_1.sch
+* expanding   symbol:  ~/metastability-298/build/sims/kit/cells_tx/dffq_1.sym # of pins=3
+** sym_path: ~/metastability-298/build/sims/kit/cells_tx/dffq_1.sym
+** sch_path: ~/metastability-298/build/sims/kit/cells_tx/dffq_1.sch
 .subckt dffq_1 D CLK Q
 *.ipin D
 *.ipin CLK
@@ -152,9 +154,10 @@ XM_tp1 Q net3 VDD VDD pfet_05v0 L=0.5u W=1.22u nf=1 ad=6.1e-13 as=6.1e-13 pd=3.4
 .ends
 
 
-* expanding   symbol:  ~/ece298a/round2/blocks/meta_dut_baseline.sym # of pins=3
-** sym_path: ~/ece298a/round2/blocks/meta_dut_baseline.sym
-** sch_path: ~/ece298a/round2/blocks/meta_dut_baseline.sch
+* expanding   symbol:  ~/metastability-298/build/sims/kit/blocks/meta_dut_baseline.sym #
+*+ of pins=3
+** sym_path: ~/metastability-298/build/sims/kit/blocks/meta_dut_baseline.sym
+** sch_path: ~/metastability-298/build/sims/kit/blocks/meta_dut_baseline.sch
 .subckt meta_dut_baseline d clk q
 *.ipin d
 *.ipin clk
@@ -174,9 +177,10 @@ Cmut mq mqb 0.05f m=1
 .ends
 
 
-* expanding   symbol:  ~/ece298a/round2/blocks/meta_dut_keeper.sym # of pins=3
-** sym_path: ~/ece298a/round2/blocks/meta_dut_keeper.sym
-** sch_path: ~/ece298a/round2/blocks/meta_dut_keeper.sch
+* expanding   symbol:  ~/metastability-298/build/sims/kit/blocks/meta_dut_keeper.sym # of
+*+ pins=3
+** sym_path: ~/metastability-298/build/sims/kit/blocks/meta_dut_keeper.sym
+** sch_path: ~/metastability-298/build/sims/kit/blocks/meta_dut_keeper.sch
 .subckt meta_dut_keeper d clk q
 *.ipin d
 *.ipin clk
@@ -196,9 +200,10 @@ Cmut mq mqb 0.05f m=1
 .ends
 
 
-* expanding   symbol:  ~/ece298a/round2/blocks/meta_dut_forward.sym # of pins=3
-** sym_path: ~/ece298a/round2/blocks/meta_dut_forward.sym
-** sch_path: ~/ece298a/round2/blocks/meta_dut_forward.sch
+* expanding   symbol:  ~/metastability-298/build/sims/kit/blocks/meta_dut_forward.sym # of
+*+ pins=3
+** sym_path: ~/metastability-298/build/sims/kit/blocks/meta_dut_forward.sym
+** sch_path: ~/metastability-298/build/sims/kit/blocks/meta_dut_forward.sch
 .subckt meta_dut_forward d clk q
 *.ipin d
 *.ipin clk
@@ -218,9 +223,9 @@ Cmut mq mqb 0.05f m=1
 .ends
 
 
-* expanding   symbol:  ~/ece298a/round2/cells_tx/inv_1.sym # of pins=2
-** sym_path: ~/ece298a/round2/cells_tx/inv_1.sym
-** sch_path: ~/ece298a/round2/cells_tx/inv_1.sch
+* expanding   symbol:  ~/metastability-298/build/sims/kit/cells_tx/inv_1.sym # of pins=2
+** sym_path: ~/metastability-298/build/sims/kit/cells_tx/inv_1.sym
+** sch_path: ~/metastability-298/build/sims/kit/cells_tx/inv_1.sch
 .subckt inv_1 I ZN
 *.ipin I
 *.opin ZN
@@ -231,9 +236,9 @@ XM_i_1 ZN I VDD VDD pfet_05v0 L=0.5u W=1.22u nf=1 ad=6.1e-13 as=6.1e-13 pd=3.44e
 .ends
 
 
-* expanding   symbol:  ~/ece298a/round2/cells_tx/nand2_1.sym # of pins=3
-** sym_path: ~/ece298a/round2/cells_tx/nand2_1.sym
-** sch_path: ~/ece298a/round2/cells_tx/nand2_1.sch
+* expanding   symbol:  ~/metastability-298/build/sims/kit/cells_tx/nand2_1.sym # of pins=3
+** sym_path: ~/metastability-298/build/sims/kit/cells_tx/nand2_1.sym
+** sch_path: ~/metastability-298/build/sims/kit/cells_tx/nand2_1.sch
 .subckt nand2_1 A1 A2 ZN
 *.ipin A1
 *.ipin A2
@@ -249,9 +254,9 @@ XM_i_2 ZN A1 VDD VDD pfet_05v0 L=0.5u W=1.13u nf=1 ad=5.65e-13 as=5.65e-13 pd=3.
 .ends
 
 
-* expanding   symbol:  ~/ece298a/round2/cells_tx/nand2_2.sym # of pins=3
-** sym_path: ~/ece298a/round2/cells_tx/nand2_2.sym
-** sch_path: ~/ece298a/round2/cells_tx/nand2_2.sch
+* expanding   symbol:  ~/metastability-298/build/sims/kit/cells_tx/nand2_2.sym # of pins=3
+** sym_path: ~/metastability-298/build/sims/kit/cells_tx/nand2_2.sym
+** sch_path: ~/metastability-298/build/sims/kit/cells_tx/nand2_2.sch
 .subckt nand2_2 A1 A2 ZN
 *.ipin A1
 *.ipin A2
@@ -275,9 +280,9 @@ XM_i_3_0 ZN A2 VDD VDD pfet_05v0 L=0.5u W=1.13u nf=1 ad=5.65e-13 as=5.65e-13 pd=
 .ends
 
 
-* expanding   symbol:  ~/ece298a/round2/cells_tx/nand2_4.sym # of pins=3
-** sym_path: ~/ece298a/round2/cells_tx/nand2_4.sym
-** sch_path: ~/ece298a/round2/cells_tx/nand2_4.sch
+* expanding   symbol:  ~/metastability-298/build/sims/kit/cells_tx/nand2_4.sym # of pins=3
+** sym_path: ~/metastability-298/build/sims/kit/cells_tx/nand2_4.sym
+** sch_path: ~/metastability-298/build/sims/kit/cells_tx/nand2_4.sch
 .subckt nand2_4 A1 A2 ZN
 *.ipin A1
 *.ipin A2

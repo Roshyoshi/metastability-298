@@ -1,20 +1,13 @@
-== Sat Nov  7 11:57:53 AM EST 2026  PDK directory: /usr/local/share/pdk/gf180mcuD
-klayout  /usr/bin/klayout
-magic    /usr/local/bin/magic
-netgen   /usr/local/bin/netgen
+== Tue Nov 17 23:04:08 EST 2026  PDK directory: ~/.ciel/ciel/gf180mcu/versions/e8daeda73ca8f5814dbc0b11d1d05802251a3750/gf180mcuD
+klayout  ~/eda/tools/bin/klayout
+magic    ~/eda/tools/bin/magic
+netgen   ~/eda/tools/bin/netgen
 ngspice  /usr/bin/ngspice
 python3  /usr/bin/python3
-KLayout 0.30.5
-8.3.573
-Netgen 1.5.314 compiled on Tue Jan  6 11:16:30 AM EST 2026
-Warning: netgen command 'format' use fully-qualified name '::netgen::format'
-irsim
-klayout
-magic
-netgen
-ngspice
-openlane
-qflow
-xcircuit
-xschem
-xyce
+KLayout 0.30.12
+8.3.703
+Netgen 1.5.325 compiled on Thu Oct 15 12:42:27 UTC 2026
+** ngspice-42 : Circuit level simulation program
+open_pdks e8daeda73ca8f5814dbc0b11d1d05802251a3750
+ version 1.0.594-0-ge8daeda
+ requires magic-8.3.411

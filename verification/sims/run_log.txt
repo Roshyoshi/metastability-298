@@ -1,35 +1,23 @@
-== tool check Sat Nov  7 11:57:50 AM EST 2026
+== Tue Nov 17 23:09:27 EST 2026  PDK directory: ~/.ciel/ciel/gf180mcu/versions/e8daeda73ca8f5814dbc0b11d1d05802251a3750/gf180mcuD
 xschem   /usr/bin/xschem
 ngspice  /usr/bin/ngspice
-magic    /usr/local/bin/magic
-netgen   /usr/local/bin/netgen
-klayout  /usr/bin/klayout
 python3  /usr/bin/python3
-******
+XSCHEM V3.4.4
 ** ngspice-42 : Circuit level simulation program
-PDK_ROOT=/usr/local/share/pdk PDK=gf180mcuD
-pdk installation: using /usr/local/share/pdk
-180MCU_MODELS: /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice
-setup_tcp_bespice: success : listening to TCP port: 2024
-OK   netlist tb_inv_balance <- ~/ece298a/round2/sim/tb_inv_balance.spice
-OK   netlist tb_selector <- ~/ece298a/round2/sim/tb_selector.spice
-OK   netlist tb_duts <- ~/ece298a/round2/sim/tb_duts.spice
-OK   netlist tb_tau <- ~/ece298a/round2/sim/tb_tau.spice
-OK   netlist tb_delay <- ~/ece298a/round2/sim/tb_delay.spice
-OK   netlist tb_frontend <- ~/ece298a/round2/sim/tb_frontend.spice
-OK   netlist tb_controller <- ~/ece298a/round2/sim/tb_controller.spice
-
-== tb_inv_balance start 11:57:59
-== tb_inv_balance end 11:57:59 exit 0
-== tb_selector start 11:57:59
-== tb_selector end 11:57:59 exit 0
-== tb_duts start 11:57:59
-== tb_duts end 11:58:02 exit 0
-== tb_tau start 11:58:02
-== tb_tau end 11:58:04 exit 0
-== tb_delay start 11:58:04
-== tb_delay end 11:58:08 exit 0
-== tb_frontend start 11:58:08
-== tb_frontend end 11:58:15 exit 0
-== tb_controller start 11:58:15
-== tb_controller end 12:01:52 exit 0
+open_pdks e8daeda73ca8f5814dbc0b11d1d05802251a3750
+Kit ready at ~/metastability-298/build/sims/kit (49 schematics, 77 files updated)
+PDK paths now point at ~/.ciel/ciel/gf180mcu/versions/e8daeda73ca8f5814dbc0b11d1d05802251a3750/gf180mcuD
+netlisted tb_inv_balance
+netlisted tb_selector
+netlisted tb_duts
+netlisted tb_tau
+netlisted tb_delay
+netlisted tb_frontend
+netlisted tb_controller
+== tb_inv_balance exit 0 after 0 s
+== tb_selector exit 0 after 0 s
+== tb_tau exit 0 after 2 s
+== tb_duts exit 0 after 4 s
+== tb_delay exit 0 after 4 s
+== tb_frontend exit 0 after 8 s
+== tb_controller exit 0 after 174 s

@@ -3,7 +3,7 @@ Using SPARSE 1.3 as Direct Linear Solver
 Note: No compatibility mode selected!
 
 
-Circuit: ** sch_path: ~/ece298a/round2/benches/tb_duts.sch
+Circuit: ** sch_path: ~/metastability-298/build/sims/kit/benches/tb_duts.sch
 
 Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
 
@@ -94,7 +94,7 @@ vd#branch                                    0
 vcap#branch                                  0
 vvdd#branch                       -2.43725e-10
 
- Reference value :  1.35280e-10 Reference value :  4.70280e-10 Reference value :  8.13280e-10 Reference value :  1.17050e-09 Reference value :  1.54550e-09 Reference value :  1.91650e-09 Reference value :  2.28650e-09 Reference value :  2.65850e-09 Reference value :  3.02650e-09 Reference value :  3.39050e-09 Reference value :  3.75450e-09 Reference value :  4.11650e-09 Reference value :  4.48250e-09 Reference value :  4.84850e-09 Reference value :  5.21050e-09 Reference value :  5.57350e-09 Reference value :  5.93150e-09 Reference value :  6.29650e-09 Reference value :  6.66550e-09 Reference value :  7.03350e-09 Reference value :  7.40450e-09 Reference value :  7.77650e-09
+
 No. of Data Rows : 8032
 tcq0                =  7.124981e-10 targ=  6.035949e-09 trig=  5.323451e-09
 RESULT tcq_lib_ps 712.498

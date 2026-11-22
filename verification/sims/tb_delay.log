@@ -3,7 +3,7 @@ Using SPARSE 1.3 as Direct Linear Solver
 Note: No compatibility mode selected!
 
 
-Circuit: ** sch_path: ~/ece298a/round2/benches/tb_delay.sch
+Circuit: ** sch_path: ~/metastability-298/build/sims/kit/benches/tb_delay.sch
 
 Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
 
@@ -64,7 +64,7 @@ vbias#branch                           1.1e-12
 vcap#branch                                  0
 vvdd#branch                       -1.57978e-10
 
- Reference value :  1.92250e-09 Reference value :  5.03750e-09 Reference value :  8.14250e-09 Reference value :  1.12975e-08
+
 No. of Data Rows : 2826
 dly                 =  2.258591e-09 targ=  7.437686e-09 trig=  5.179096e-09
 Using SPARSE 1.3 as Direct Linear Solver
@@ -128,7 +128,7 @@ vbias#branch                       6.99999e-13
 vcap#branch                                  0
 vvdd#branch                       -1.57778e-10
 
- Reference value :  2.31400e-10 Reference value :  3.20750e-09 Reference value :  6.29750e-09 Reference value :  9.46750e-09 Reference value :  1.26825e-08
+
 No. of Data Rows : 2826
 dly                 =  1.613289e-09 targ=  6.792385e-09 trig=  5.179096e-09
 Using SPARSE 1.3 as Direct Linear Solver
@@ -192,7 +192,7 @@ vbias#branch                       2.99999e-13
 vcap#branch                                  0
 vvdd#branch                       -1.57578e-10
 
- Reference value :  1.66250e-09 Reference value :  4.75250e-09 Reference value :  7.83750e-09 Reference value :  1.10275e-08
+
 No. of Data Rows : 2826
 dly                 =  1.289635e-09 targ=  6.468731e-09 trig=  5.179096e-09
 Using SPARSE 1.3 as Direct Linear Solver
@@ -256,7 +256,7 @@ vbias#branch                      -3.00001e-13
 vcap#branch                                  0
 vvdd#branch                       -1.57278e-10
 
- Reference value :  1.01400e-10 Reference value :  3.06250e-09 Reference value :  6.14250e-09 Reference value :  9.33250e-09 Reference value :  1.25125e-08
+
 No. of Data Rows : 2826
 dly                 =  1.035174e-09 targ=  6.214270e-09 trig=  5.179096e-09
 Using SPARSE 1.3 as Direct Linear Solver
@@ -320,7 +320,7 @@ vbias#branch                          -1.5e-12
 vcap#branch                                  0
 vvdd#branch                       -1.56678e-10
 
- Reference value :  1.44250e-09 Reference value :  4.46250e-09 Reference value :  7.52250e-09 Reference value :  1.06425e-08 Reference value :  1.38475e-08
+
 No. of Data Rows : 2826
 dly                 =  8.233611e-10 targ=  6.002457e-09 trig=  5.179096e-09
 Using SPARSE 1.3 as Direct Linear Solver
@@ -384,7 +384,7 @@ vbias#branch                          -2.7e-12
 vcap#branch                                  0
 vvdd#branch                       -1.56078e-10
 
- Reference value :  2.68250e-09 Reference value :  5.71750e-09 Reference value :  8.86250e-09 Reference value :  1.20425e-08
+
 No. of Data Rows : 2826
 dly                 =  7.482015e-10 targ=  5.927297e-09 trig=  5.179096e-09
 dlr                 =  7.491615e-10 targ=  5.928257e-09 trig=  5.179096e-09

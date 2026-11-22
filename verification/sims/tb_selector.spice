@@ -1,14 +1,14 @@
-** sch_path: ~/ece298a/round2/benches/tb_selector.sch
+** sch_path: ~/metastability-298/build/sims/kit/benches/tb_selector.sch
 **.subckt tb_selector
 vvdd VDD GND 3.3
-vs0 cfg_0 GND PWL(0 0 10n 0 10.1n 3.3 20n 3.3 20.1n 0 30n 0 30.1n 3.3)
-vs1 cfg_1 GND PWL(0 0 20n 0 20.1n 3.3)
-xsel cfg_0 cfg_1 VDD 0 VDD 0 selected_q selector
+vs0 ui_in_3 GND PWL(0 0 10n 0 10.1n 3.3 20n 3.3 20.1n 0 30n 0 30.1n 3.3)
+vs1 uio_in_6 GND PWL(0 0 20n 0 20.1n 3.3)
+xsel VDD 0 VDD 0 ui_in_3 uio_in_6 selected_q selector
 **** begin user architecture code
 
-.include /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/design.ngspice
-.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
-.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice diode_typical
+.include ~/.ciel/ciel/gf180mcu/versions/e8daeda73ca8f5814dbc0b11d1d05802251a3750/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib ~/.ciel/ciel/gf180mcu/versions/e8daeda73ca8f5814dbc0b11d1d05802251a3750/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.lib ~/.ciel/ciel/gf180mcu/versions/e8daeda73ca8f5814dbc0b11d1d05802251a3750/gf180mcuD/libs.tech/ngspice/sm141064.ngspice diode_typical
 .global VDD
 .param sw_stat_global=0 sw_stat_mismatch=0
 .control
@@ -22,30 +22,30 @@ meas tran s2 find v(selected_q) at=29n
 echo RESULT sel2_V $&s2
 meas tran s3 find v(selected_q) at=39n
 echo RESULT sel3_V $&s3
-wrdata tb_selector.dat v(cfg_0) v(cfg_1) v(selected_q)
+wrdata tb_selector.dat v(ui_in_3) v(uio_in_6) v(selected_q)
 .endc
 
 **** end user architecture code
 **.ends
 
-* expanding   symbol:  ~/ece298a/round2/blocks/selector.sym # of pins=7
-** sym_path: ~/ece298a/round2/blocks/selector.sym
-** sch_path: ~/ece298a/round2/blocks/selector.sch
-.subckt selector cfg_0 cfg_1 q_0 q_1 q_2 q_3 selected_q
-*.ipin cfg_0
-*.ipin cfg_1
+* expanding   symbol:  ~/metastability-298/build/sims/kit/blocks/selector.sym # of pins=7
+** sym_path: ~/metastability-298/build/sims/kit/blocks/selector.sym
+** sch_path: ~/metastability-298/build/sims/kit/blocks/selector.sch
+.subckt selector q_0 q_1 q_2 q_3 ui_in_3 uio_in_6 selected_q
 *.ipin q_0
 *.ipin q_1
 *.ipin q_2
 *.ipin q_3
+*.ipin ui_in_3
+*.ipin uio_in_6
 *.opin selected_q
-xselect_dut q_0 q_1 q_2 q_3 cfg_0 cfg_1 selected_q mux4_1
+xselect_dut q_0 q_1 q_2 q_3 ui_in_3 uio_in_6 selected_q mux4_1
 .ends
 
 
-* expanding   symbol:  ~/ece298a/round2/cells_tx/mux4_1.sym # of pins=7
-** sym_path: ~/ece298a/round2/cells_tx/mux4_1.sym
-** sch_path: ~/ece298a/round2/cells_tx/mux4_1.sch
+* expanding   symbol:  ~/metastability-298/build/sims/kit/cells_tx/mux4_1.sym # of pins=7
+** sym_path: ~/metastability-298/build/sims/kit/cells_tx/mux4_1.sym
+** sch_path: ~/metastability-298/build/sims/kit/cells_tx/mux4_1.sch
 .subckt mux4_1 I0 I1 I2 I3 S0 S1 Z
 *.ipin I0
 *.ipin I1

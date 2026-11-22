@@ -1,37 +1,38 @@
-RESULT first_capture_ns 675.339
-RESULT events_after_6_trials 6
-RESULT busy_V 3.3
-RESULT done_V 1.05591E-08
-RESULT fault_V 1.62221E-08
-RESULT d_ns_at_ua0 1.1 2.25859
-RESULT d_ideal_ns_at_ua0 1.1 2.25121
-RESULT d_ns_at_ua0 1.3 1.61329
-RESULT d_ideal_ns_at_ua0 1.3 1.60883
-RESULT d_ns_at_ua0 1.5 1.28964
-RESULT d_ideal_ns_at_ua0 1.5 1.28677
-RESULT d_ns_at_ua0 1.8 1.03517
-RESULT d_ideal_ns_at_ua0 1.8 1.0339
-RESULT d_ns_at_ua0 2.4 0.823361
-RESULT d_ideal_ns_at_ua0 2.4 0.823711
-RESULT d_ns_at_ua0 3.0 0.748202
-RESULT d_ideal_ns_at_ua0 3.0 0.749162
-RESULT tcq_lib_ps 712.498
-RESULT tcq_base_ps 405.602
-RESULT tcq_keeper_ps 405.598
-RESULT tcq_forward_ps 405.371
-RESULT d_short_ps 815.948
-RESULT arrive_ps 903.769
-RESULT early_short_V 1.047E-08
-RESULT final_short_V 3.30001
-RESULT d_allowed_ps 1472.93
-RESULT early_allowed_V 3.3
-RESULT final_allowed_V 3.3
-RESULT inv1_switch_V 1.39121
-RESULT nand2_switch_V 1.44214
-RESULT sel0_V 3.3
-RESULT sel1_V 2.14992E-08
-RESULT sel2_V 3.3
-RESULT sel3_V 2.14993E-08
-RESULT tau_base_ps 88.8956
-RESULT tau_keeper_ps 80.4672
-RESULT tau_forward_ps 102.313
+RESULT tb_inv_balance inv1_switch_V 1.39121
+RESULT tb_inv_balance nand2_switch_V 1.44214
+RESULT tb_selector sel0_V 3.3
+RESULT tb_selector sel1_V 2.14992E-08
+RESULT tb_selector sel2_V 3.3
+RESULT tb_selector sel3_V 2.14993E-08
+RESULT tb_duts tcq_lib_ps 712.498
+RESULT tb_duts tcq_base_ps 405.602
+RESULT tb_duts tcq_keeper_ps 405.598
+RESULT tb_duts tcq_forward_ps 405.371
+RESULT tb_tau tau_base_ps 88.8956
+RESULT tb_tau tau_keeper_ps 80.4672
+RESULT tb_tau tau_forward_ps 102.313
+RESULT tb_delay d_ns_at_ua0 1.1 2.25859
+RESULT tb_delay d_ideal_ns_at_ua0 1.1 2.25121
+RESULT tb_delay d_ns_at_ua0 1.3 1.61329
+RESULT tb_delay d_ideal_ns_at_ua0 1.3 1.60883
+RESULT tb_delay d_ns_at_ua0 1.5 1.28964
+RESULT tb_delay d_ideal_ns_at_ua0 1.5 1.28677
+RESULT tb_delay d_ns_at_ua0 1.8 1.03517
+RESULT tb_delay d_ideal_ns_at_ua0 1.8 1.0339
+RESULT tb_delay d_ns_at_ua0 2.4 0.823361
+RESULT tb_delay d_ideal_ns_at_ua0 2.4 0.823711
+RESULT tb_delay d_ns_at_ua0 3.0 0.748202
+RESULT tb_delay d_ideal_ns_at_ua0 3.0 0.749162
+RESULT tb_frontend d_short_ps 815.948
+RESULT tb_frontend arrive_ps 903.769
+RESULT tb_frontend early_short_V 1.047E-08
+RESULT tb_frontend final_short_V 3.30001
+RESULT tb_frontend d_allowed_ps 1472.93
+RESULT tb_frontend early_allowed_V 3.3
+RESULT tb_frontend final_allowed_V 3.3
+RESULT tb_controller first_capture_ns 175.205
+RESULT tb_controller first_count_ns 926.897
+RESULT tb_controller events_after_8_trials 8
+RESULT tb_controller busy_V 3.3
+RESULT tb_controller done_V 1.07827E-08
+RESULT tb_controller fault_V 1.07827E-08

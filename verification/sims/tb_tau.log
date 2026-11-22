@@ -3,7 +3,7 @@ Using SPARSE 1.3 as Direct Linear Solver
 Note: No compatibility mode selected!
 
 
-Circuit: ** sch_path: ~/ece298a/round2/benches/tb_tau.sch
+Circuit: ** sch_path: ~/metastability-298/build/sims/kit/benches/tb_tau.sch
 
 Doing analysis at TEMP = 27.000000 and TNOM = 27.000000
 
@@ -136,7 +136,7 @@ xforward1.xu_skp.net1              0.000688443
 qoforward1                             3.29917
 vvdd#branch                        -0.00121303
 
- Reference value :  8.02800e-11 Reference value :  2.87280e-10 Reference value :  5.21280e-10 Reference value :  7.49499e-10 Reference value :  9.78499e-10 Reference value :  1.20843e-09 Reference value :  1.44384e-09 Reference value :  1.61184e-09 Reference value :  1.84884e-09 Reference value :  2.08784e-09 Reference value :  2.32484e-09 Reference value :  2.56384e-09 Reference value :  2.80184e-09
+
 No. of Data Rows : 3011
 t_baseline0         =  6.819447e-10
 t_baseline1         =  1.091324e-09
