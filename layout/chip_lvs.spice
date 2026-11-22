@@ -281,7 +281,7 @@ Xu_skp q s2 sqb VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
 XMMP slow launch VDPWR VDPWR pfet_05v0 w=1.22e-06 l=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
 XMMN slow launch foot VGND nfet_05v0 w=8.2e-07 l=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
 XMMC foot control VGND VGND nfet_05v0 w=3.6e-07 l=6e-07 ad=1.8e-13 as=1.8e-13 pd=1.72e-06 ps=1.72e-06
-XMMCT VGND slow VGND VGND nfet_06v0 w=8.2e-07 l=1e-06 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
+XMMCT VGND slow VGND VGND nfet_05v0 w=8.2e-07 l=1e-06 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
 XXR0 slow r0 VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_1
 XXR1 r0 r1 VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_2
 XXR2 r1 sample_clk VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_2

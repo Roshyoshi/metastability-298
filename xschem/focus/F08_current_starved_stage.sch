@@ -7,7 +7,7 @@ E {}
 C {@@ROOT@@/sym/pmos3.sym} 0 60 0 0 {name=MP model=pfet_05v0 W=1.22u L=0.5u spiceprefix=X}
 C {@@ROOT@@/sym/nmos3.sym} 0 260 0 0 {name=MN model=nfet_05v0 W=0.82u L=0.6u spiceprefix=X}
 C {@@ROOT@@/sym/nmos3.sym} 0 360 0 0 {name=MC model=nfet_05v0 W=0.36u L=0.6u spiceprefix=X}
-C {@@ROOT@@/sym/nmos3.sym} 180 360 0 0 {name=MCT model=nfet_06v0 W=0.82u L=1u spiceprefix=X}
+C {@@ROOT@@/sym/nmos3.sym} 180 360 0 0 {name=MCT model=nfet_05v0 W=0.82u L=1u spiceprefix=X}
 N -160 0 400 0 {lab=VDD}
 C {devices/lab_pin.sym} -160 0 0 0 {name=l1 lab=VDD}
 N -160 420 400 420 {lab=VSS}

@@ -21,7 +21,7 @@ C {devices/lab_pin.sym} 260 290 0 1 {name=l9 lab=foot}
 C {devices/lab_pin.sym} 220 320 0 0 {name=l10 lab=control}
 C {devices/lab_pin.sym} 260 350 0 1 {name=l11 lab=0}
 C {devices/lab_pin.sym} 260 320 0 1 {name=l12 lab=0}
-C {/usr/local/share/pdk/gf180mcuD/libs.tech/xschem/symbols/nfet_06v0.sym} 420 250 0 0 {name=MCT L=1u W=0.82u nf=1 m=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06 nrd=0 nrs=0 sa=0 sb=0 sd=0 model=nfet_06v0 spiceprefix=X}
+C {/usr/local/share/pdk/gf180mcuD/libs.tech/xschem/symbols/nfet_06v0.sym} 420 250 0 0 {name=MCT L=1u W=0.82u nf=1 m=1 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06 nrd=0 nrs=0 sa=0 sb=0 sd=0 model=nfet_05v0 spiceprefix=X}
 C {devices/lab_pin.sym} 440 220 0 1 {name=l13 lab=0}
 C {devices/lab_pin.sym} 400 250 0 0 {name=l14 lab=slow}
 C {devices/lab_pin.sym} 440 280 0 1 {name=l15 lab=0}
