@@ -3,3 +3,8 @@
 /result
 /result-*
 .DS_Store
+__pycache__/
+# The library's cell netlists, rebuilt by tools/pdk_cells.py
+/pdk_cells/
+# Written by xschem/export_svg.sh when it is run in the tracked folder
+/xschem/svg/
