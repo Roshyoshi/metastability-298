@@ -1,0 +1,18 @@
+* on-resistance of the Tiny Tapeout power switch tt_pg_3v3_hp_2 (pfet_03v3, W from its schematic)
+.include /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/design.ngspice
+.lib /usr/local/share/pdk/gf180mcuD/libs.tech/ngspice/sm141064.ngspice typical
+.param sw_stat_global=0 sw_stat_mismatch=0
+VDD vdd 0 3.3
+VG g 0 0
+VS out 0 3.25
+XM3 out g vdd vdd pfet_03v3 L=0.28u W=5.5u nf=1 m=610.4545
+.control
+set num_threads=1
+foreach tt 27 125
+  set temp=$tt
+  dc VS 3.29 3.19 -0.05
+  let r=(3.3-v(out))/(-i(VS))
+  print r
+end
+.endc
+.end

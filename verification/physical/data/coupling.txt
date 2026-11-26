@@ -1,0 +1,40 @@
+Coupling checks on the cut-out of the extraction (Magic 8.3.573), typical corner, 3.3 V, 25 C, DUT2 selected.
+Bench: that of the floor runs (three trials 10 ns apart, data toggled 2 ns before each capture edge); script tools/coup_d.py.
+Second trial: data rising. Third trial: data falling.
+
+1. Delay d (capture_local to early_clk, at half supply), ps
+   ua[0] (V)   data rising   data falling   difference
+   1.00        4551.19       4528.75        22.44
+   1.14        3383.53       3366.57        16.96
+   1.392       2434.43       2422.31        12.12
+   1.442       2325.08       2313.52        11.56
+   1.466       2276.00       2264.65        11.35
+   1.491       2230.18       2219.00        11.18
+   1.590       2074.00       2063.38        10.62
+   whole tile, ua[0] = 1.8 V, trials 200 ns apart (data/isup_core.results.txt): 1849.4 against 1840.8, difference 8.6;
+   delay between the monitor pins there: 1723.2 against 1722.2
+
+2. The same with the 14 extracted capacitors between {q_0, q_1, q_2, q_3, selected_q} and
+   {delay/slow, delay/r0, delay/r1, early_clk} removed (1.278 fF in all), ua[0] = 1.466 V
+   data rising 2259.54, data falling 2252.99, difference 6.55 (with them: 11.35)
+
+3. Where the difference arises, ua[0] = 1.00 V: time of each edge after the edge at the port `capture`, ps
+   node                         data rising   data falling   difference
+   capture_local, rising        656.16        653.57          2.59
+   capture_iso, rising          1089.07       1079.63         9.44
+   delay/slow, falling          3537.08       3512.03         25.05
+   early_clk, rising            5207.35       5182.32         25.03
+   uio_out[4], rising           2558.46       2548.57         9.89
+   uio_out[5], rising           7037.82       7011.45         26.37
+   d: 4551.19 against 4528.75 (22.44); monitor pins: 4479.36 against 4462.88 (16.48)
+
+4. Glitches on early_clk (ua[0] = 1.466 V), V
+   data input ui_in[6] rising in 0.1 ns, early_clk low:    highest value +0.346
+   data input falling in 0.1 ns, early_clk low:            lowest value  -0.251
+   capture_local rising, early_clk low:                    highest value +0.038
+   capture_local falling, early_clk high (3.3 V):          lowest value   2.983
+   delay/slow (at 3.3 V) while the data input switches:    3.2981 to 3.3010
+
+5. Extracted wire capacitance, fF
+   early_clk: 21.52 in all; to capture_local 7.55, to ui_in[6] 6.51, to VGND 1.78, to delay/r1 0.90
+   delay/slow: 1.17 in all; to VGND 0.86, to VDPWR 0.18, to capture_iso 0.040, to ua[0] 0.040, to delay/r0 0.030, to q_1 0.020

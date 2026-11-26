@@ -1,0 +1,4 @@
+devices: {'pfet_03v3': 52, 'nfet_03v3': 72, 'nfet_05v0': 932, 'pfet_05v0': 930, 'diode_nd2ps_06v0': 1, 'diode_pd2nw_06v0': 1}
+nets that reach a gate: 506
+of these, with no source, drain or diode and not a tile pin: 0 []
+driven only from a tile pin: ['clk', 'ena', 'rst_n', 'ui_in[0]', 'ui_in[1]', 'ui_in[2]', 'ui_in[3]', 'ui_in[4]', 'ui_in[5]', 'ui_in[6]', 'ui_in[7]', 'uio_in[0]', 'uio_in[6]']

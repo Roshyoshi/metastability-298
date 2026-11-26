@@ -1,0 +1,50 @@
+[
+ [
+  "as built",
+  {
+   "rise": 1043.48,
+   "delay": 608.179,
+   "fall": 510.5
+  }
+ ],
+ [
+  "second stage x3 (5 V devices)",
+  {
+   "rise": 401.796,
+   "delay": 345.519,
+   "fall": 255.739
+  }
+ ],
+ [
+  "second stage x5, first stage x2 (5 V devices)",
+  {
+   "rise": 261.603,
+   "delay": 244.969,
+   "fall": 167.188
+  }
+ ],
+ [
+  "second stage x9, first stage x3 (5 V devices)",
+  {
+   "rise": 174.107,
+   "delay": 210.648,
+   "fall": 130.76
+  }
+ ],
+ [
+  "added 3.3 V inverter on bank_cap, 4 x (1.0 / 1.38 um)",
+  {
+   "rise": 223.936,
+   "delay": 260.951,
+   "fall": 190.963
+  }
+ ],
+ [
+  "added 3.3 V inverters: 8 x on bank_cap, 2 x on the first stage",
+  {
+   "rise": 122.636,
+   "delay": 141.733,
+   "fall": 95.911
+  }
+ ]
+]

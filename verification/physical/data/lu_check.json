@@ -1,0 +1,38 @@
+{
+ "LU.3": {
+  "max_um": 14.308,
+  "at": [
+   249.148,
+   169.82
+  ],
+  "polygons": 287,
+  "over_12um": 5,
+  "over_15um": 0
+ },
+ "LU.4": {
+  "max_um": 14.387,
+  "at": [
+   249.147,
+   170.68
+  ],
+  "polygons": 324,
+  "pcomp_in_a_well_without_tap": 0,
+  "over_12um": 13,
+  "over_15um": 0
+ },
+ "y_um": {
+  "all": 0.43,
+  "outside_Dualgate_LV": 0.43
+ },
+ "LU.7": {
+  "tap_contact_area_um2": 107.45,
+  "channel_area_um2": 693.79,
+  "ratio_percent": 15.49
+ },
+ "taps": {
+  "substrate": 444,
+  "nwell": 444,
+  "substrate_area_um2": 246.7,
+  "nwell_area_um2": 288.2
+ }
+}

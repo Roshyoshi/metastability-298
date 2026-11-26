@@ -1,0 +1,224 @@
+{
+ "data pin": {
+  "flat_with_resistance_edges_ns": [
+   [
+    "fall",
+    275.05
+   ]
+  ],
+  "flat_without_resistance_edges_ns": [
+   [
+    "fall",
+    275.05
+   ]
+  ]
+ },
+ "data_local": {
+  "flat_with_resistance_edges_ns": [
+   [
+    "fall",
+    275.406
+   ]
+  ],
+  "flat_without_resistance_edges_ns": [
+   [
+    "fall",
+    275.3657
+   ]
+  ]
+ },
+ "capture_local": {
+  "flat_with_resistance_edges_ns": [
+   [
+    "rise",
+    176.3548
+   ],
+   [
+    "fall",
+    275.8698
+   ],
+   [
+    "rise",
+    376.3492
+   ]
+  ],
+  "flat_without_resistance_edges_ns": [
+   [
+    "rise",
+    176.5088
+   ],
+   [
+    "fall",
+    276.2347
+   ],
+   [
+    "rise",
+    376.505
+   ]
+  ]
+ },
+ "q[0] (DUT1)": {
+  "flat_with_resistance_edges_ns": [
+   [
+    "rise",
+    177.3421
+   ],
+   [
+    "fall",
+    377.1961
+   ]
+  ],
+  "flat_without_resistance_edges_ns": [
+   [
+    "rise",
+    177.7681
+   ],
+   [
+    "fall",
+    377.7366
+   ]
+  ]
+ },
+ "q[1] (DUT2)": {
+  "flat_with_resistance_edges_ns": [
+   [
+    "fall",
+    377.1581
+   ]
+  ],
+  "flat_without_resistance_edges_ns": [
+   [
+    "fall",
+    377.2832
+   ]
+  ]
+ },
+ "q[2] (DUT3)": {
+  "flat_with_resistance_edges_ns": [
+   [
+    "fall",
+    377.3047
+   ]
+  ],
+  "flat_without_resistance_edges_ns": [
+   [
+    "fall",
+    377.3498
+   ]
+  ]
+ },
+ "selected_q": {
+  "flat_with_resistance_edges_ns": [
+   [
+    "fall",
+    377.958
+   ]
+  ],
+  "flat_without_resistance_edges_ns": [
+   [
+    "fall",
+    378.3911
+   ]
+  ]
+ },
+ "ctrl_q": {
+  "flat_with_resistance_edges_ns": [
+   [
+    "fall",
+    378.5771
+   ]
+  ],
+  "flat_without_resistance_edges_ns": [
+   [
+    "fall",
+    379.2046
+   ]
+  ]
+ },
+ "early_q": {
+  "flat_with_resistance_edges_ns": [
+   [
+    "rise",
+    179.0373
+   ],
+   [
+    "fall",
+    378.9482
+   ]
+  ],
+  "flat_without_resistance_edges_ns": []
+ },
+ "ctrl_early": {
+  "flat_with_resistance_edges_ns": [
+   [
+    "rise",
+    179.5573
+   ],
+   [
+    "fall",
+    379.5517
+   ]
+  ],
+  "flat_without_resistance_edges_ns": []
+ },
+ "uio_out[4]": {
+  "flat_with_resistance_edges_ns": [
+   [
+    "rise",
+    178.3818
+   ],
+   [
+    "fall",
+    277.3041
+   ],
+   [
+    "rise",
+    378.37
+   ]
+  ],
+  "flat_without_resistance_edges_ns": [
+   [
+    "rise",
+    178.4194
+   ],
+   [
+    "fall",
+    277.5781
+   ],
+   [
+    "rise",
+    378.4084
+   ]
+  ]
+ },
+ "uio_out[5]": {
+  "flat_with_resistance_edges_ns": [
+   [
+    "rise",
+    180.1298
+   ],
+   [
+    "fall",
+    278.4142
+   ],
+   [
+    "rise",
+    380.1193
+   ]
+  ],
+  "flat_without_resistance_edges_ns": [
+   [
+    "rise",
+    180.0575
+   ],
+   [
+    "fall",
+    278.6096
+   ],
+   [
+    "rise",
+    380.045
+   ]
+  ]
+ }
+}

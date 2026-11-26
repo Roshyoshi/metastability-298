@@ -1,0 +1,20 @@
+nets with a resistor network and at least one gate: 506
+| Net (as the flat extraction names it) | Gates on it | Largest driver-to-gate resistance (ohm) | Capacitance (fF) | R x C (ps) |
+| --- | --- | --- | --- | --- |
+| `gf180mcu_fd_sc_mcu7t5v0__dffrnq_1_2.Q` | 144 | 300 | 232.7 | 69.73 |
+| `rst_n` | 20 | 354 | 67.2 | 23.79 |
+| `ui_in[1]` | 6 | 607 | 25.6 | 15.55 |
+| `ui_in[3]` | 6 | 607 | 25.1 | 15.24 |
+| `meta_j3a_0.clk` | 22 | 83 | 28.0 | 2.33 |
+| `ui_in[2]` | 4 | 75 | 29.4 | 2.21 |
+| `ena` | 12 | 28 | 50.1 | 1.42 |
+| `meta_j3a_0.d` | 12 | 96 | 14.6 | 1.40 |
+| `gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1_12.Q` | 6 | 41 | 33.0 | 1.35 |
+| `ui_in[0]` | 32 | 32 | 39.9 | 1.29 |
+| `gf180mcu_fd_sc_mcu7t5v0__dffq_1_5.CLK` | 24 | 31 | 39.9 | 1.25 |
+| `gf180mcu_fd_sc_mcu7t5v0__dffq_1_5.D` | 8 | 38 | 21.9 | 0.83 |
+| `ui_in[6]` | 4 | 25 | 23.7 | 0.59 |
+| `gf180mcu_fd_sc_mcu7t5v0__mux4_1_1.I1` | 4 | 36 | 11.6 | 0.41 |
+| `gf180mcu_fd_sc_mcu7t5v0__mux2_1_1.I0` | 4 | 39 | 10.1 | 0.39 |
+| `ua[0]` | 1 | 20 | 17.1 | 0.35 |
+median over all nets: 0.000 ps; nets above 1 ps: 15; above 5 ps: 4

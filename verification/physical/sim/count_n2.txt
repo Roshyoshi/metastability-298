@@ -1,0 +1,27 @@
+## N2, typical, 3.3 V, 27 C, Magic 8.3.573; the delay is that of the early clock after the bank capture edge: floors 1985.2 (rising) and 3008.6 ps (falling); latch tau 29.57 ps
+ordinary transition, last crossing after the capture edge: 1950.9 ps (rising), 2591.8 ps (falling)
+tail fit of the last crossing (captures at 1.5e-13 s and closer): 15.49 ps (rising, 7 points), 11.70 ps (falling, 7 points)
+crossings on the side where the new value is not taken: rising 0, falling 0
+time reference: the capture edge of the ordinary capture (ABS=1); captures whose last crossing is not later than the one before: 2 (rising), 0 (falling)
+capture edge at the flip-flop, later than in the ordinary capture when the data edge is within 1e-13 s of the critical time: -24.7 ps (rising), 15.0 ps (falling)
+straight part (local time constants within 5 % of the fit over 0.6 ns) begins at d = 3159 ps, 150 ps above the higher floor
+| d (ns) | above the higher floor (ns) | w (s) | share of rising data | events per block per MHz | local time constant (ps) |
+| --- | --- | --- | --- | --- | --- |
+| 3.10 | 0.09 | 7.29e-13 | 1.7e-32 | 0.0478 | 9.6 |
+| 3.30 | 0.29 | 1.38e-20 | 2.2e-30 | 9.06e-10 | 11.7 |
+| 3.50 | 0.49 | 5.22e-28 | 1.5e-28 | 3.42e-17 | 11.7 |
+| 3.70 | 0.69 | 1.97e-35 | 9.6e-27 | 1.29e-24 | 11.7 |
+| 3.90 | 0.89 | 7.46e-43 | 6.3e-25 | 4.89e-32 | 11.7 |
+| 4.10 | 1.09 | 2.82e-50 | 4.1e-23 | 1.85e-39 | 11.7 |
+| 4.30 | 1.29 | 1.06e-57 | 2.7e-21 | 6.97e-47 | 11.7 |
+| 4.50 | 1.49 | 4.02e-65 | 1.8e-19 | 2.63e-54 | 11.7 |
+| 4.70 | 1.69 | 1.52e-72 | 1.2e-17 | 9.96e-62 | 11.7 |
+| 4.90 | 1.89 | 5.74e-80 | 7.5e-16 | 3.76e-69 | 11.7 |
+| 5.10 | 2.09 | 2.17e-87 | 4.9e-14 | 1.42e-76 | 11.7 |
+| 5.30 | 2.29 | 8.19e-95 | 3.2e-12 | 5.37e-84 | 11.7 |
+| 5.50 | 2.49 | 3.1e-102 | 2.1e-10 | 2.03e-91 | 11.7 |
+| 5.70 | 2.69 | 1.17e-109 | 1.4e-08 | 7.66e-99 | 11.7 |
+| 5.90 | 2.89 | 4.42e-117 | 9.1e-07 | 2.9e-106 | 11.7 |
+| 6.10 | 3.09 | 1.67e-124 | 5.9e-05 | 1.09e-113 | 11.7 |
+counted time constant over d = 3.16 to 3.76 ns: 11.70 ps, 0.396 of the latch time constant
+counted time constant over d = 4.16 to 5.16 ns: 11.70 ps, 0.396 of the latch time constant

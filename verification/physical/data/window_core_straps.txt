@@ -1,0 +1,9 @@
+feed: straps ; capture_local rises at (ns): [ 176.63  376.62  576.63  776.62  976.63 1176.62 1376.63 1576.62]
+delay/MCS        VGND rise, mean over the delay interval, per trial (mV): [0.8455 0.791  0.9552 0.791  0.9552 0.791  0.9552 0.791 ]; largest 1.486 | VDPWR drop, mean (mV): [1.5504 1.6854 1.6001 1.6854 1.6001 1.6853 1.6001 1.6853]; largest 2.326
+delay/XR0        VGND rise, mean over the delay interval, per trial (mV): [0.819  0.7664 0.9229 0.7664 0.9228 0.7664 0.9228 0.7664]; largest 1.511 | VDPWR drop, mean (mV): [1.486  1.6124 1.5323 1.6124 1.5323 1.6124 1.5323 1.6124]; largest 2.260
+early_observer   VGND rise, mean over the delay interval, per trial (mV): [0.8687 0.8077 1.0144 0.8077 1.0143 0.8077 1.0143 0.8077]; largest 1.388 | VDPWR drop, mean (mV): [1.7109 1.8911 1.7899 1.8911 1.7899 1.8911 1.7899 1.8911]; largest 2.535
+u_dut2/u_mfw     VGND rise, mean over the delay interval, per trial (mV): [0.8546 0.7425 0.8595 0.7425 0.8595 0.7425 0.8595 0.7425]; largest 2.067 | VDPWR drop, mean (mV): [0.747  0.403  0.7436 0.4028 0.7434 0.4028 0.7434 0.4028]; largest 1.680
+u_dut1           VGND rise, mean over the delay interval, per trial (mV): [0.8978 0.9713 1.1135 0.9713 1.1135 0.9712 1.1135 0.9712]; largest 1.631 | VDPWR drop, mean (mV): [2.0822 2.3619 2.256  2.3619 2.256  2.3619 2.256  2.3619]; largest 2.909
+bank_n2          VGND rise, mean over the delay interval, per trial (mV): [2.6185 0.6913 0.6377 0.6913 0.6377 0.6913 0.6377 0.6913]; largest 10.017 | VDPWR drop, mean (mV): [1.9201 0.3384 0.2993 0.3384 0.2993 0.3384 0.2993 0.3384]; largest 7.589
+bank_n1          VGND rise, mean over the delay interval, per trial (mV): [1.8866 0.6255 0.5761 0.6255 0.5761 0.6255 0.5761 0.6255]; largest 9.042 | VDPWR drop, mean (mV): [1.342  0.3295 0.2923 0.3295 0.2923 0.3295 0.2923 0.3295]; largest 7.012
+delay d per trial (ps): [1849.6  1840.8  1849.37 1840.8  1849.37 1840.81 1849.37 1840.81]

@@ -1,0 +1,25 @@
+Two captures of DUT2 with rising data on the cut-out (Magic 8.3.573, typical, 3.3 V, 27 C), bench of tools/sim/tchar.py:
+capture pulses at the port `capture` at 1.0 to 2.5 ns and from 4.0 ns; ua[0] = 0.95 V. Times of the crossings of half the supply, ps.
+A: data edge 1.5 ns ahead of the critical time (an ordinary capture). B: data edge 0.474 ns ahead of it.
+
+capture        A: rise 1025.0, fall 2525.0, rise 4025.0
+               B: rise 1025.0, fall 2525.0, rise 4025.0
+data_local     A: rise 2769.4
+               B: rise 3802.1
+capture_local  A: rise 1702.4, fall 2986.6, rise 4705.4
+               B: rise 1702.4, fall 2965.4, rise 4667.7
+capture_iso    A: rise 2130.6, fall 3457.9, rise 5139.9
+               B: rise 2130.6, fall 3434.8, rise 5107.1
+u_dut2_clkn    A: fall 1935.7, rise 3342.7, fall 4942.1
+               B: fall 1935.7, rise 3322.3, fall 4905.1
+u_dut2_mq      A: rise 3943.8
+               B: rise 4454.9
+u_dut2_mqb     A: fall 4237.2
+               B: fall 4768.3
+q_1            A: rise 5396.7
+               B: rise 5376.6
+selected_q     A: rise 6391.4
+               B: rise 6370.8
+
+In B the master latch (u_dut2_mq, u_dut2_mqb) is still moving when the capture edge arrives. The capture edge at the flip-flops
+(capture_local) is then 37.7 ps earlier than in A, and the copy that feeds the delay line (capture_iso) 32.8 ps earlier.

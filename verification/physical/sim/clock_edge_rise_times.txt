@@ -1,0 +1,13 @@
+Rise time (10 to 90 %) of the clock edges inside the tile, whole extracted tile (Magic 8.3.573), trial at 776 ns.
+
+typical, 3.3 V, 27 C, bank off   capture edge at DUT1 to DUT4 (capture_local)    1218 ps
+typical, 3.3 V, 27 C, bank off   capture edge at N1 to N3 (bank_cap)             1047 ps
+typical, 3.3 V, 27 C, bank off   early clock of DUT1 to DUT4 (early_clk)          511 ps
+typical, 3.3 V, 27 C, bank on    capture edge at DUT1 to DUT4 (capture_local)    1254 ps
+typical, 3.3 V, 27 C, bank on    capture edge at N1 to N3 (bank_cap)             1056 ps
+typical, 3.3 V, 27 C, bank on    early clock of DUT1 to DUT4 (early_clk)          511 ps
+typical, 3.3 V, 27 C, bank on    early clock of the bank (bank_obs_clk)           201 ps
+ff, 3.6 V, -40 C, bank on        capture edge at DUT1 to DUT4 (capture_local)     741 ps
+ff, 3.6 V, -40 C, bank on        capture edge at N1 to N3 (bank_cap)              636 ps
+ff, 3.6 V, -40 C, bank on        early clock of DUT1 to DUT4 (early_clk)          307 ps
+ff, 3.6 V, -40 C, bank on        early clock of the bank (bank_obs_clk)           122 ps

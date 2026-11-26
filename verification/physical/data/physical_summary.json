@@ -1,0 +1,514 @@
+{
+ "core": {
+  "condition": "bank off, DUT2 data toggled, typical 3.3 V 27 C",
+  "window_ns": [
+   700.0,
+   1500.0
+  ],
+  "VDPWR": {
+   "avg_uA": 45.85,
+   "rms_uA": 162.4,
+   "peak_uA": 1645.41,
+   "t_peak_ns": 1376.62
+  },
+  "VGND": {
+   "avg_uA": 44.99,
+   "rms_uA": 175.2,
+   "peak_uA": 1653.01,
+   "t_peak_ns": 1376.61
+  },
+  "VDPWR_whole_run": {
+   "avg_uA": 42.95,
+   "rms_uA": 158.7,
+   "peak_uA": 1679.35
+  },
+  "charge_fC": {
+   "0.2ns": 308.7,
+   "1ns": 1269.7,
+   "5ns": 3256.0
+  },
+  "sum_of_cell_currents_uA": {
+   "sum_cells_VDPWR_avg_uA": 45.85,
+   "sum_cells_VGND_avg_uA": 44.99
+  },
+  "straps": {
+   "VDPWR": {
+    "worst_static_mV": 0.107,
+    "worst_static_cell": "gf180mcu_fd_sc_mcu7t5v0__inv_2_13",
+    "worst_peak_mV": 9.36,
+    "worst_peak_cell": "meta_j3a_0",
+    "worst_peak_t_ns": 476.45,
+    "max_avg_current_uA": {
+     "rail": 9.16,
+     "via_stack": 4.43,
+     "stripe_segment": 17.68
+    },
+    "per_stripe_avg_uA": [
+     1.02,
+     19.1,
+     27.29
+    ],
+    "em_ratio_125C": {
+     "rail": 0.0228,
+     "stripe": 0.0132,
+     "via": 0.0246
+    }
+   },
+   "VGND": {
+    "worst_static_mV": 0.114,
+    "worst_static_cell": "gf180mcu_fd_sc_mcu7t5v0__inv_2_13",
+    "worst_peak_mV": 10.8,
+    "worst_peak_cell": "meta_j3a_0",
+    "worst_peak_t_ns": 176.59,
+    "max_avg_current_uA": {
+     "rail": 9.16,
+     "via_stack": 4.45,
+     "stripe_segment": 10.39
+    },
+    "per_stripe_avg_uA": [
+     0.07,
+     18.41,
+     26.51
+    ],
+    "em_ratio_125C": {
+     "rail": 0.0228,
+     "stripe": 0.0078,
+     "via": 0.0247
+    }
+   }
+  },
+  "end": {
+   "VDPWR": {
+    "worst_static_mV": 0.27,
+    "worst_static_cell": "gf180mcu_fd_sc_mcu7t5v0__inv_2_13",
+    "worst_peak_mV": 16.1,
+    "worst_peak_cell": "meta_j3a_0",
+    "worst_peak_t_ns": 276.45,
+    "max_avg_current_uA": {
+     "rail": 9.16,
+     "via_stack": 4.8,
+     "stripe_segment": 20.88
+    },
+    "per_stripe_avg_uA": [
+     7.28,
+     26.7,
+     28.0
+    ],
+    "em_ratio_125C": {
+     "rail": 0.0228,
+     "stripe": 0.0156,
+     "via": 0.0267
+    }
+   },
+   "VGND": {
+    "worst_static_mV": 0.269,
+    "worst_static_cell": "gf180mcu_fd_sc_mcu7t5v0__inv_2_13",
+    "worst_peak_mV": 17.44,
+    "worst_peak_cell": "meta_j3a_0",
+    "worst_peak_t_ns": 176.6,
+    "max_avg_current_uA": {
+     "rail": 9.16,
+     "via_stack": 4.82,
+     "stripe_segment": 20.55
+    },
+    "per_stripe_avg_uA": [
+     7.03,
+     26.09,
+     27.34
+    ],
+    "em_ratio_125C": {
+     "rail": 0.0228,
+     "stripe": 0.0153,
+     "via": 0.0268
+    }
+   }
+  }
+ },
+ "b2": {
+  "condition": "bank on (N2), bank data toggled, typical 3.3 V 27 C",
+  "window_ns": [
+   700.0,
+   1500.0
+  ],
+  "VDPWR": {
+   "avg_uA": 52.32,
+   "rms_uA": 202.11,
+   "peak_uA": 2839.25,
+   "t_peak_ns": 876.73
+  },
+  "VGND": {
+   "avg_uA": 50.63,
+   "rms_uA": 211.18,
+   "peak_uA": 2980.24,
+   "t_peak_ns": 1276.74
+  },
+  "VDPWR_whole_run": {
+   "avg_uA": 49.13,
+   "rms_uA": 195.38,
+   "peak_uA": 2845.98
+  },
+  "charge_fC": {
+   "0.2ns": 528.4,
+   "1ns": 1652.1,
+   "5ns": 3674.6
+  },
+  "sum_of_cell_currents_uA": {
+   "sum_cells_VDPWR_avg_uA": 52.33,
+   "sum_cells_VGND_avg_uA": 50.62
+  },
+  "straps": {
+   "VDPWR": {
+    "worst_static_mV": 0.098,
+    "worst_static_cell": "gf180mcu_fd_sc_mcu7t5v0__inv_2_13",
+    "worst_peak_mV": 21.74,
+    "worst_peak_cell": "meta_j3a_0",
+    "worst_peak_t_ns": 476.67,
+    "max_avg_current_uA": {
+     "rail": 8.39,
+     "via_stack": 3.98,
+     "stripe_segment": 18.23
+    },
+    "per_stripe_avg_uA": [
+     1.15,
+     19.32,
+     33.8
+    ],
+    "em_ratio_125C": {
+     "rail": 0.0209,
+     "stripe": 0.0136,
+     "via": 0.0221
+    }
+   },
+   "VGND": {
+    "worst_static_mV": 0.105,
+    "worst_static_cell": "gf180mcu_fd_sc_mcu7t5v0__inv_2_13",
+    "worst_peak_mV": 22.16,
+    "worst_peak_cell": "meta_j3a_0",
+    "worst_peak_t_ns": 1476.65,
+    "max_avg_current_uA": {
+     "rail": 8.39,
+     "via_stack": 4.0,
+     "stripe_segment": 12.16
+    },
+    "per_stripe_avg_uA": [
+     0.07,
+     17.99,
+     32.57
+    ],
+    "em_ratio_125C": {
+     "rail": 0.0209,
+     "stripe": 0.0091,
+     "via": 0.0222
+    }
+   }
+  },
+  "end": {
+   "VDPWR": {
+    "worst_static_mV": 0.28,
+    "worst_static_cell": "gf180mcu_fd_sc_mcu7t5v0__inv_2_13",
+    "worst_peak_mV": 33.84,
+    "worst_peak_cell": "meta_j3a_0",
+    "worst_peak_t_ns": 476.68,
+    "max_avg_current_uA": {
+     "rail": 8.39,
+     "via_stack": 4.61,
+     "stripe_segment": 24.87
+    },
+    "per_stripe_avg_uA": [
+     8.15,
+     29.11,
+     34.38
+    ],
+    "em_ratio_125C": {
+     "rail": 0.0209,
+     "stripe": 0.0186,
+     "via": 0.0256
+    }
+   },
+   "VGND": {
+    "worst_static_mV": 0.275,
+    "worst_static_cell": "gf180mcu_fd_sc_mcu7t5v0__inv_2_13",
+    "worst_peak_mV": 33.34,
+    "worst_peak_cell": "meta_j3a_0",
+    "worst_peak_t_ns": 476.68,
+    "max_avg_current_uA": {
+     "rail": 8.39,
+     "via_stack": 4.63,
+     "stripe_segment": 24.24
+    },
+    "per_stripe_avg_uA": [
+     7.71,
+     27.81,
+     33.43
+    ],
+    "em_ratio_125C": {
+     "rail": 0.0209,
+     "stripe": 0.0181,
+     "via": 0.0257
+    }
+   }
+  }
+ },
+ "ff": {
+  "condition": "bank on (N2), both data inputs toggled, ff 3.6 V -40 C",
+  "window_ns": [
+   700.0,
+   1500.0
+  ],
+  "VDPWR": {
+   "avg_uA": 61.79,
+   "rms_uA": 305.45,
+   "peak_uA": 4914.47,
+   "t_peak_ns": 1275.87
+  },
+  "VGND": {
+   "avg_uA": 59.94,
+   "rms_uA": 317.76,
+   "peak_uA": 5218.85,
+   "t_peak_ns": 1275.91
+  },
+  "VDPWR_whole_run": {
+   "avg_uA": 58.48,
+   "rms_uA": 294.53,
+   "peak_uA": 4929.07
+  },
+  "charge_fC": {
+   "0.2ns": 874.5,
+   "1ns": 2719.5,
+   "5ns": 5161.6
+  },
+  "sum_of_cell_currents_uA": {
+   "sum_cells_VDPWR_avg_uA": 61.79,
+   "sum_cells_VGND_avg_uA": 59.93
+  },
+  "straps": {
+   "VDPWR": {
+    "worst_static_mV": 0.118,
+    "worst_static_cell": "gf180mcu_fd_sc_mcu7t5v0__inv_2_13",
+    "worst_peak_mV": 34.73,
+    "worst_peak_cell": "meta_j3a_0",
+    "worst_peak_t_ns": 875.85,
+    "max_avg_current_uA": {
+     "rail": 10.08,
+     "via_stack": 4.92,
+     "stripe_segment": 22.32
+    },
+    "per_stripe_avg_uA": [
+     1.32,
+     22.68,
+     39.94
+    ],
+    "em_ratio_125C": {
+     "rail": 0.0251,
+     "stripe": 0.0167,
+     "via": 0.0273
+    }
+   },
+   "VGND": {
+    "worst_static_mV": 0.126,
+    "worst_static_cell": "gf180mcu_fd_sc_mcu7t5v0__inv_2_13",
+    "worst_peak_mV": 35.31,
+    "worst_peak_cell": "meta_j3a_0",
+    "worst_peak_t_ns": 875.85,
+    "max_avg_current_uA": {
+     "rail": 10.08,
+     "via_stack": 4.94,
+     "stripe_segment": 14.01
+    },
+    "per_stripe_avg_uA": [
+     0.08,
+     21.21,
+     38.65
+    ],
+    "em_ratio_125C": {
+     "rail": 0.0251,
+     "stripe": 0.0105,
+     "via": 0.0275
+    }
+   }
+  },
+  "end": {
+   "VDPWR": {
+    "worst_static_mV": 0.333,
+    "worst_static_cell": "gf180mcu_fd_sc_mcu7t5v0__inv_2_13",
+    "worst_peak_mV": 55.39,
+    "worst_peak_cell": "meta_j3a_0",
+    "worst_peak_t_ns": 475.86,
+    "max_avg_current_uA": {
+     "rail": 10.08,
+     "via_stack": 5.66,
+     "stripe_segment": 29.32
+    },
+    "per_stripe_avg_uA": [
+     9.61,
+     34.35,
+     40.82
+    ],
+    "em_ratio_125C": {
+     "rail": 0.0251,
+     "stripe": 0.0219,
+     "via": 0.0314
+    }
+   },
+   "VGND": {
+    "worst_static_mV": 0.328,
+    "worst_static_cell": "gf180mcu_fd_sc_mcu7t5v0__inv_2_13",
+    "worst_peak_mV": 54.72,
+    "worst_peak_cell": "meta_j3a_0",
+    "worst_peak_t_ns": 475.87,
+    "max_avg_current_uA": {
+     "rail": 10.08,
+     "via_stack": 5.69,
+     "stripe_segment": 28.63
+    },
+    "per_stripe_avg_uA": [
+     9.13,
+     32.94,
+     39.77
+    ],
+    "em_ratio_125C": {
+     "rail": 0.0251,
+     "stripe": 0.0214,
+     "via": 0.0316
+    }
+   }
+  }
+ },
+ "model": {
+  "rs_ohm_sq": 0.09,
+  "rvia_ohm": 4.5,
+  "feeds": {
+   "straps": {
+    "VDPWR": [
+     [
+      111.64500000000001,
+      131.395
+     ],
+     [
+      152.805,
+      172.555
+     ],
+     [
+      193.965,
+      213.715
+     ]
+    ],
+    "VGND": [
+     [
+      14.245000000000005,
+      22.995000000000005
+     ],
+     [
+      55.405000000000015,
+      64.15500000000002
+     ],
+     [
+      96.56500000000001,
+      105.31500000000001
+     ],
+     [
+      137.72500000000002,
+      146.47500000000002
+     ],
+     [
+      178.885,
+      187.635
+     ],
+     [
+      220.04500000000002,
+      228.79500000000002
+     ],
+     [
+      261.205,
+      269.955
+     ],
+     [
+      302.365,
+      311.115
+     ]
+    ]
+   },
+   "end": {
+    "VDPWR": [
+     [
+      5.0,
+      5.0
+     ]
+    ],
+    "VGND": [
+     [
+      5.0,
+      5.0
+     ]
+    ]
+   }
+  },
+  "em_limits": {
+   "metal_mA_per_um": {
+    "85C": 2.09,
+    "110C": 1.0,
+    "125C": 0.67
+   },
+   "via_mA": {
+    "85C": 0.58,
+    "110C": 0.28,
+    "125C": 0.18
+   }
+  }
+ },
+ "geometry": {
+  "rails": "all 36 Metal1 rails 0.60 um bare width (build/e449/rail_geom.json)",
+  "stripes_um": 2.0
+ },
+ "supply_capacitance": {
+  "ac_reset_state_pF": {
+   "1MHz": 4.143,
+   "10MHz": 4.143,
+   "100MHz": 4.105,
+   "1GHz": 3.452
+  },
+  "direct_top_level_fF": 84.75,
+  "direct_inside_cells_fF": 549.6,
+  "nwell_area_um2": 4897.9,
+  "nwell_perimeter_um": 3918.4,
+  "nwell_sidewall_estimate_pF": 1.474
+ },
+ "latchup": {
+  "LU.3": {
+   "max_um": 14.308,
+   "at": [
+    249.148,
+    169.82
+   ],
+   "polygons": 287,
+   "over_12um": 5,
+   "over_15um": 0
+  },
+  "LU.4": {
+   "max_um": 14.387,
+   "at": [
+    249.147,
+    170.68
+   ],
+   "polygons": 324,
+   "pcomp_in_a_well_without_tap": 0,
+   "over_12um": 13,
+   "over_15um": 0
+  },
+  "y_um": {
+   "all": 0.43,
+   "outside_Dualgate_LV": 0.43
+  },
+  "LU.7": {
+   "tap_contact_area_um2": 107.45,
+   "channel_area_um2": 693.79,
+   "ratio_percent": 15.49
+  },
+  "taps": {
+   "substrate": 444,
+   "nwell": 444,
+   "substrate_area_um2": 246.7,
+   "nwell_area_um2": 288.2
+  }
+ }
+}

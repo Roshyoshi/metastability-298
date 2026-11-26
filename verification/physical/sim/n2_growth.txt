@@ -1,0 +1,33 @@
+Growth of the difference between two captures of N2 on opposite sides of the critical data time (rising data).
+Cut-out of the extraction by Magic 8.3.573, typical corner, 3.3 V, 27 C; bench of tools/sim/tchar.py; data edges 1.5e-16 s before
+(the new value is taken) and 1.5e-16 s after the critical time (it is not). x and y are the two nodes of the jamb latch.
+
+Capture edge at the flip-flops (bank_cap): 10 % at 229.8 ps, 50 % at 614.7 ps, 90 % at 1245.2 ps after the start of the ramp at the trial
+flip-flop's output: a rise time of 1015 ps.
+
+time after the 50 % point of bank_cap (ps) | x (V) | y (V) | difference of (x - y) between the two captures (V) | time constant of its growth over the next 50 ps (ps)
+  -300 | -0.0081 | 3.2305 | 1.278e-06 | 72.4
+  -250 | -0.0178 | 2.8664 | 2.548e-06 | 234.5
+  -200 | -0.0238 | 2.3778 | 3.154e-06 | no growth
+  -150 | -0.0062 | 1.8588 | 3.240e-06 | no growth
+  -100 | 0.0302 | 1.4495 | 3.262e-08 | 12.1
+   -50 | 0.1151 | 1.1914 | 2.039e-06 | 73.2
+     0 | 0.2670 | 1.0368 | 4.037e-06 | 225.8
+    50 | 0.4940 | 0.9589 | 5.038e-06 | 43.9
+   100 | 0.7511 | 0.9731 | 1.572e-05 | 35.6
+   150 | 1.0002 | 1.0473 | 6.405e-05 | 30.6
+   200 | 1.1168 | 1.1170 | 3.278e-04 | 29.7
+   250 | 1.1322 | 1.1315 | 1.766e-03 | 29.6
+   300 | 1.1362 | 1.1317 | 9.565e-03 | 29.6
+   350 | 1.1469 | 1.1217 | 5.186e-02 | 29.6
+   400 | 1.2028 | 1.0656 | 2.812e-01 | 29.9
+   450 | 1.4874 | 0.7554 | 1.498e+00 | 48.9
+   500 | 2.1927 | 0.1210 | 4.164e+00 | 171.6
+   550 | 2.8125 | 0.0284 | 5.572e+00 | 455.5
+   600 | 3.1202 | 0.0105 | 6.219e+00 | no growth
+
+The difference grows with the latch's time constant (29.6 ps) from about 200 ps after the 50 % point and reaches 1 V at about 440 ps.
+Output of N2 (bank_q[1]) crosses half the supply 1126 ps after the 50 % point, the bank selector output 2094 ps after it.
+In an ordinary capture (data edge 1.5 ns ahead of the critical time) these are 987 and 1951 ps after its own 50 % point. On a fixed time axis
+the output of N2 comes 114 ps later than in the ordinary capture, although its latch resolves about 440 ps after the edge: the slave, opened
+by the same slow edge, hides most of the latch's lateness.

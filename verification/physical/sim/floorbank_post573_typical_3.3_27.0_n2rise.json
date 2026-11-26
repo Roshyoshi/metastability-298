@@ -1,0 +1,20 @@
+{
+ "tag": "post573",
+ "ff": "n2",
+ "pol": "rise",
+ "corner": "typical",
+ "vdd": 3.3,
+ "temp": 27.0,
+ "body": "body_573.spice",
+ "x_floor_s": [
+  2.3063720703125e-09,
+  2.30675048828125e-09
+ ],
+ "t_floor_ps": [
+  1984.79,
+  1985.17
+ ],
+ "arrival_bank_selected_q_ps": 1925.02,
+ "simulations": 16,
+ "wall_s": 655.4
+}

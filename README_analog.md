@@ -23,6 +23,9 @@ The schematics, the netlists, the layout and the logs in `verification/` all hol
 | `tools/` | The Python generators that produced the netlist, schematics, layout and checks. They run from this repository; see "Regenerating" below. `kit2_gen.py`, which packed the earlier kits for ecetesla0, still points at the original build folder. |
 | `host/` | The measurement programs, not yet run on hardware: `metachar_host.py` (MicroPython for the demo board: blocks, bring-up checks, toggle scan, survey), `fit_tau.py` (Poisson fit of ln K against *d*, with a self-test on synthetic counts) and `test_host_mock.py` (the host program against a software model of the board and tile). See `host/README.md`. |
 | `verification/independent/` | A second check of this layout, 22 and 23 Nov 2026, made separately from `verification/layout/`: with the tool versions of ecetesla0 (Magic 8.3.573, Netgen 1.5.314) and with Magic 8.3.703. DRC, LVS, the extracted capacitance of both versions of Magic, tau, the delay line at three corners, the floors, the predicted count against *d* for DUT2, and predictions stated before silicon, with the data files they come from. See `verification/independent/README.md`. |
+| `verification/bank/` | Checks and simulations of the revised layout with the bank, 25 Nov 2026: Magic DRC, KLayout decks, Netgen LVS, the comparison with the layout before the bank, tau, floors and the whole-tile runs. See "Bank of faster flip-flops". |
+| `verification/physical/` | Physical-design audit of the revised layout, 26 Nov 2026 (`README.md`: supply current, voltage drop, current density, latch-up distances, coupling) and the simulations added the same day (`SIMULATIONS.md`: both extractions, three corners, floors, wire resistance, predicted count). See "Physical design" and "Testing". |
+| `verification/FAILURE_SPACE.md` | The ways the tile could fail, each with the check that excludes it, the number that bounds it, or the statement that it is open. |
 
 ## Using the schematics
 On ecetesla0: `cd xschem && bash setup.sh` once (it writes this folder's path into the `.sch`/`.sym` files),
@@ -242,7 +245,7 @@ schematic with the sheets' wiring estimates it gives 88.8, 80.6 and 102.0 ps whe
 80.5 and 102.3 ps. On the extracted netlist it takes the nine cells of each flip-flop with every wiring
 capacitor on their nets, and ties the far end of a capacitor to another net to ground.
 
-## Bank of faster flip-flops (added December 2026)
+## Bank of faster flip-flops (added 25 November 2026)
 
 The revision of 25 Nov 2026 adds a second set of flip-flops under test, the bank, below the existing rows of the
 tile. `docs/info.md` describes its pins and how to measure with it. Everything in the bank comes from the same
@@ -324,9 +327,161 @@ still low, because the 1.6 us simulated are a small part of one block. The bench
 1e12 ohm from every node to ground (ngspice `rshunt`), without which ngspice does not find the operating point of
 the tile with N1 in it.
 
-**Not repeated for the revised layout:** the extraction with Magic 8.3.703 and the sign-off run of
-`verification/layout/`, which describe 06823df; the predicted count against *d* of
-`verification/independent/` (Section 8), which moves with the floors; the corners of the floors.
+**Added on 26 Nov 2026** (`verification/physical/SIMULATIONS.md`; scripts in `verification/physical/tools/sim/`). The
+revised layout was extracted again with Magic 8.3.573 and with Magic 8.3.703. Both extractions have 0 DRC errors
+and match `layout/chip_lvs.spice` in Netgen (208 devices, 209 nets).
+
+| Quantity (typical corner unless stated) | Magic 8.3.573 | Magic 8.3.703 |
+| --- | --- | --- |
+| tau of DUT2, DUT3, DUT4 | 142.55, 119.22, 169.16 ps | 136.06, 113.80, 163.13 ps |
+| tau of N1, N2, N3 | 41.46, 29.57, 119.32 ps | 39.16, 28.28, 113.84 ps |
+| DUT3 / DUT2 and DUT4 / DUT2, over typical, ss 3.0 V 125 C and ff 3.6 V -40 C | 0.836 to 0.837; 1.184 to 1.187 | 0.836 to 0.837; 1.197 to 1.200 |
+| *d* at `ua[0]` = 1.0, 1.8, 3.0 V | 4539.8, 1842.6, 1428.4 ps | 4193.5, 1715.2, 1336.1 ps |
+| *d* at `ua[0]` = 1.0 and 3.0 V, ss 3.0 V 125 C | 8203.7, 2728.9 ps | |
+| *d* at `ua[0]` = 1.0 and 3.0 V, ff 3.6 V -40 C | 2574.5, 860.6 ps | |
+
+Floors in continuous operation at the corners (8.3.573; in brackets `ua[0]` at the floor), at ff 3.6 V -40 C: DUT1 1.35 ns rising (1.51 V) and 1.56 ns falling (1.34 V); DUT2 0.97 ns rising (2.24 V) and 1.28 ns falling (1.58 V); at ss 3.0 V 125 C: DUT1 4.66 ns rising (1.34 V) and 5.47 ns falling (1.20 V); DUT2 3.37 ns rising (1.80 V) and 4.55 ns falling (1.35 V). At the typical corner they are 1.69 and 2.25 ns for DUT2 and 2.35 and 2.73 ns for DUT1. For the bank, the floor is the delay from the bank's capture edge at the flip-flops to the clock of its early observer (typical corner): N1 1.24 ns rising and 1.81 ns falling; N2 1.99 ns rising and 3.01 ns falling; N3 1.77 ns rising and 2.47 ns falling.
+
+The predicted count of DUT2 was computed again (8.3.573): the straight part of ln K begins at *d* = 3.21 ns,
+0.95 ns above the falling-data floor (`ua[0]` near 1.17 V), with a counted time constant of 129.4 ps over 3.21 to
+3.81 ns and 135.3 ps over 4.21 to 5.21 ns, 0.91 and 0.95 of the latch's tau. For N2 the same model shows a limit of the bank as built: its count falls with a local time constant of 7 to 14 ps, not with the latch's 29.6 ps, because the bank's capture edge has a rise time of 1.05 ns and hides most of the latch's lateness; with a fast edge forced on `bank_cap` the same captures give 29.0 and 28.8 ps (falling and rising data).
+
+Wire resistance was extracted with Magic's `extresist` on the flattened tile. From the resistor networks, it adds
+at most 1.3 ps on the nets of the measurement path and at most 70 ps on `run`. The netlist written with resistance
+is not used for delays: in it the library flip-flop and the selector are 0.3 to 0.4 ns faster than in the same
+flat extraction without resistance, which resistance cannot cause. Without resistance, the flat extraction gives
+delays 3 to 5 % shorter than the hierarchical extraction used everywhere else.
+
+**Not repeated for the revised layout:** the sign-off run of `verification/layout/`, which describes 06823df, and
+any run on ecetesla0. Not computed: floors at the corners: DUT3 at ff 3.6 V -40 C, DUT4 at ff 3.6 V -40 C, DUT3 at ss 3.0 V 125 C, DUT4 at ss 3.0 V 125 C; predicted count against the delay: DUT1, DUT3, DUT4, N1, N3; time constants and floors on the flat extraction (Section 6) (`verification/physical/SIMULATIONS.md`, Section 8).
+
+## Physical design
+
+This section states, for each physical effect that a layout has to account for, what the effect is and what this
+tile does about it. The numbers come from the audit of 26 Nov 2026 in `verification/physical/README.md`, made on
+the layout of commit e449093. References: A. Hastings, *The Art of Analog Layout*, 2nd ed., 2006 (cited as
+Hastings); B. Razavi, *Design of Analog CMOS Integrated Circuits*, 2nd ed., 2017, Chapter 19 "Layout and
+Packaging" (Razavi); the GF180MCU design manual (the manual).
+
+**Substrate and wells.** In this process every NMOS transistor sits directly in the p-type substrate, which is
+common to the whole chip, and every PMOS transistor sits in an n-well. The substrate must be tied to the lowest
+potential and each well to the highest, through taps, so that no source or drain junction becomes forward
+biased; a current that flows through the substrate raises its potential locally, which shifts transistor
+thresholds and can forward-bias a junction (Hastings, Sections 4.4.1 and 4.4.3). *This tile:* no deep n-well and
+no isolated p-well; 444 substrate taps on `VGND` and 444 well taps on `VDPWR`, in tap cells along every row,
+with at most 28.8 um between neighbouring taps of a row.
+
+**Latch-up.** A PMOS source in a well, the well, the substrate and an NMOS source form a parasitic pnpn
+structure between the supplies. It switches on if injected current raises the voltage across the well or the
+substrate resistance by about 0.6 V, and then holds itself on (Hastings, Sections 4.4.2 and 11.1.2; Razavi,
+Chapter 19). The rules LU.1 to LU.4 of the manual limit the distance from any diffusion to a tap of its own well
+or of the substrate, which limits that resistance. *This tile:* the largest distance is 14.39 um against 15 um,
+inside the jamb latch N2; everywhere else it is at most 12.41 um. The PDK's KLayout rule deck does not contain
+these rules, so `verification/physical/tools/lu_check.py` measures them on the GDS.
+
+**Guard rings.** A ring of taps around a device collects carriers that a forward-biased junction injects, or
+holds the substrate around a sensitive device at a quiet potential (Hastings, Section 13.2). The manual requires
+them around diffusion that is connected directly to a pad (rules IO.1 and IO.3), where the voltage can go above
+the supply or below ground.
+*This tile:* none is drawn. No diffusion connects to a pad: all digital pins pass through the Tiny Tapeout
+multiplexer and `ua[0]` passes through the Tiny Tapeout analog switch, then to one transistor gate and an antenna
+diode. All cells are on one supply pair, and the measurement compares counts taken in the same state of the
+tile.
+
+**Supply distribution and voltage drop.** The supply current flows through the resistance of the supply wires,
+so a cell far from the supply connection sees less than the full supply; the drop moves the delay of every gate
+(Hastings, Section 14.3; Razavi, Chapter 19). *This tile:* three `VDPWR` and three `VGND` stripes on Metal4,
+2.00 um wide, cross the rows; each row has two Metal1 rails 0.60 um wide; two via stacks join a rail to each
+stripe it crosses. Simulated on the extracted layout, the tile draws 46 uA on average while counting (52 uA with
+the bank selected, 62 uA at the fast corner at 3.6 V), with peaks of 1.6 to 4.9 mA at the capture edge. The
+static drop at any cell is at most 0.33 mV. The largest instantaneous drop is 9 to 55 mV, at N2, at the far end
+of the row that holds N1 and N2 and reaches only one stripe. At the delay line the ground rail rises by 0.8 to
+1.0 mV on average during the delay interval if the tile is fed by the Tiny Tapeout straps.
+
+**Electromigration.** A sustained current density moves metal atoms and eventually opens the wire; the lifetime
+falls as the square of the current density and exponentially with temperature (J. R. Black, *IEEE Trans.
+Electron Devices*, vol. 16, pp. 338-347, 1969; Hastings, Sections 4.1.2 and 14.3.3). The manual allows 0.67 mA
+per um of wire width and 0.18 mA per via at 125 C. *This tile:* the largest average current is 10 uA in a rail
+(limit 402 uA), 6 uA in a via (180 uA) and 29 uA in a stripe (1340 uA): at most 3.2 % of a limit.
+
+**Decoupling.** A capacitor between the supplies close to a cell supplies its switching current locally, so the
+current does not have to come through the wire resistance and inductance. *This tile:* none is added. The tile
+has 4.1 pF between its supplies from its own transistors and wires. The drops above do not threaten function
+or lifetime; the one that is not small, at N2, is the same in every trial.
+
+**Coupling between wires.** A switching wire injects charge into its neighbours through the capacitance between
+them; the remedies are distance, a shield, or a low impedance on the victim (Hastings, Section 14.3.2; Razavi,
+Chapter 19). *This tile:* the router places wires by channel and does not separate noisy from sensitive ones.
+The extraction contains every coupling capacitance, so the simulations contain the effect. Three results: the
+data input couples 0.35 V onto the early clock for an edge of 0.1 ns at the pin, which the clocked flip-flop
+does not follow; the capture edge couples at most 0.32 V onto it; and *d* is about 0.5 % longer in trials in
+which the data is high at the capture edge than in those in which it is low (22 ps at `ua[0]` = 1.0 V), partly
+because wires that switch during the delay interval inject charge into the slow node of the delay line. The last
+changes a fitted tau by less than 0.1 %.
+
+**Matching.** Two devices drawn alike differ at random and systematically; matched devices are drawn with the
+same size, orientation and surroundings, close together (Hastings, Sections 12.3 and 12.4; Razavi, Chapter 19).
+*This tile:* nothing is measured as a difference between two devices. Mismatch inside a latch moves the data
+time at which it balances, not the rate at which it leaves balance, and the data edges arrive at random times.
+The three NAND flip-flops are built from the same nine cells in the same arrangement, in three adjacent rows,
+and are routed alike, so that their wiring differs as little as the router allows (2.4 to 2.7 fF on each latch
+node). N3 repeats DUT3 at another place with other wiring: simulated tau 119.32 against 119.22 ps.
+
+**Antenna effect.** During plasma etching a wire collects charge. If it connects only to a transistor gate at
+that stage of fabrication, the charge can damage the gate oxide; the rules limit the ratio of wire area to gate
+area, and the remedies are a short hop to a higher metal near the gate or a diode to the substrate (Hastings,
+Section 4.1.4). *This tile:* 0 violations in Magic's antenna check and in the PDK's KLayout antenna deck; the
+generator's own estimate gives a worst ratio of 188 against a limit of 400. `ua[0]`, the one net that leaves the
+tile towards an analog pad, has a diode cell.
+
+**What was decided.** The layout of e449093 is unchanged by the audit. The reasons are in
+`verification/physical/README.md`, Section 1.
+
+## Testing
+
+Every statement about the tile rests on a named check. This section lists the checks, what each one shows and
+what it cannot show, and then the order of work at the bench. `verification/FAILURE_SPACE.md` goes through the ways
+the tile could fail and names the check or the number that covers each.
+
+| Claim | Check | What it shows | What it cannot show |
+| --- | --- | --- | --- |
+| The layout obeys the foundry's rules | Magic DRC (8.3.573 and 8.3.703): 0 errors. KLayout GF180MCU deck and antenna deck in the `gds` workflow on GitHub (run 45730953549): 0 violations each | every shape meets the width, spacing, enclosure, area and antenna rules of the deck | anything electrical; rules that are not in the deck (latch-up, current density) |
+| The layout is the circuit of the netlist | Netgen on the Magic extraction against `layout/chip_lvs.spice`: "Circuits match uniquely", 208 devices, 209 nets | same devices, sizes and connections | that the netlist is the intended circuit; wire capacitance and resistance |
+| The netlist is the circuit of the schematics and of the Verilog | `tools/sch_check.py`, `tools/check_focus.py`, `tools/check_controller_netlist.py` | the drawn schematics and the controller's Verilog give the same transistors and nets as `netlist/chip.cdl` | that the design is right |
+| No gate is left undriven | `verification/physical/tools/gate_check.py` on the extracted netlist | each of the 506 nets that reach a gate also reaches a source, a drain or a diode, or is a pin of the tile | the logic level it is driven to |
+| The tile functions | transistor simulation of the whole extracted tile (`layout/make_tb_chip.py`): reset, start, capture, early sample, count, at the typical corner, and with the bank at the slow and fast corners | the blocks work together for the first trials of a block | a whole block of 65,535 trials (13.1 ms); every input sequence |
+| The timing is known | cut-out of the extraction: *d* against `ua[0]`, floors and arrival times, at three corners; wire resistance bounded from the extracted resistor networks | the delays of this netlist with these models | the delays of the silicon; they move by a factor of three between corners, hence the monitor pins |
+| The time constants are known | growth of the balanced latch on the cut-out, with two extractions and two separately written benches | tau of each master latch to 0.1 % for a given extraction; the extractions differ by about 5 % | which extraction is nearer the silicon; the model near the balance point |
+| The tile is electrically sound | `verification/physical/`: supply current per cell, resistive drop, current density, latch-up distances, coupling | margins against the manual's limits | the supply outside the tile; substrate noise; trigger current of latch-up |
+| The count measures tau | count model on clocked captures of the cut-out (`verification/independent/`, Section 8; `verification/physical/SIMULATIONS.md`) | where ln K is straight and what slope it has in simulation | the result on silicon |
+| The tile is accepted by Tiny Tapeout | precheck in the `gds` workflow: passed; revision e449093 submitted as pull request 65 | file formats, pins, layers, rule decks | that the pull request is merged before the shuttle closes |
+
+**The method behind the timing and tau numbers.** The whole tile takes many minutes per trial to simulate, so the
+benches run on a cut-out: the front end and the bank taken from the extracted netlist with every wire capacitance,
+and the controller replaced by sources at the nets where it meets them (`verification/bank/tools/cutout_bank.py`).
+The cut-out gives the same *d* as the recorded runs to 0.01 ps. The time constant is measured by releasing the
+balanced master latch with a small imbalance and timing the growth of the difference between its nodes; released
+to either side the values agree to 0.05 ps for DUT2.
+
+**What simulation leaves to the bench.** The models, the extracted capacitance and the ideal supply are
+assumptions. The order of work at the bench is therefore from checks that need no model to the measurement:
+
+1. Supply current. Measure the current of the tile in reset with the clock running and while it counts. Simulated:
+   20 uA and 46 uA at the typical corner (52 uA with the bank selected). A current many times larger points to a
+   fault before any count is read.
+2. Counts that need no model. With the data input held constant every block gives K = 0. With the data toggled
+   once per trial far from the capture edge, `ua[0]` = 2.5 V gives K = 65,535 and `ua[0]` = 1.0 V gives K = 0
+   (`docs/info.md`).
+3. The floors. Stepping `ua[0]` down, K falls to about half and then to 0 at the voltages listed in
+   `docs/info.md`. Their order among the four flip-flops is a test of the selector and of the arrival times.
+4. The delay. Measure the delay between `uio[4]` and `uio[5]` on an oscilloscope at each setting, separately for
+   trials with the data high and low (they differ by about 0.5 % of *d*; `verification/physical/README.md`,
+   Section 7).
+5. The measurement. With an asynchronous square wave on the data input, sum K over many blocks at each setting
+   in the straight part and fit ln K against *d*.
+6. The bank. Repeat 2 with the bank selected (input 11 gives K = 0; an early clock 0.2 ns after the clock edge
+   gives 65,535 and one 6 ns after it gives 0), then step the early clock and fit. N3 against DUT3 from the same
+   chip tests the two measurement paths against each other.
 
 ## Still open
 - **LVS on ecetesla0.** The delay line's timing capacitor `MCT` is `nfet_05v0` in the netlist since
@@ -336,11 +491,19 @@ the tile with N1 in it.
   parameters, so no simulation changes. If the checks are run on ecetesla0 before its PDK is updated, LVS
   will report that one device. A copy of the netlist with that one name changed is expected to match:
   Netgen 1.5.314 reported "Circuits match uniquely" against an extraction in which `MCT` was renamed to stand
-  for that of ecetesla0. The command is in `verification/independent/README.md`, Section 2; it has not been
-  run on ecetesla0 itself.
-- **The precheck on GitHub.** The template's workflows are in `.github/workflows`. Their run on this layout
-  is still to come: so far the precheck was run locally.
+  for that of ecetesla0, for 06823df and for the revised layout
+  (`verification/bank/layout/lvs_report_mct_as_nfet_06v0.txt`). The command is in
+  `verification/independent/README.md`, Section 2; it has not been run on ecetesla0 itself.
+- **Tiny Tapeout.** The precheck on GitHub passed for commit e449093 (`gds` workflow run 45730953549: KLayout
+  rule deck 0 violations, antenna 0). The commit was submitted on 25 Nov 2026 as a new revision of project 6616,
+  which opened pull request 65 on `TinyTapeout/tinytapeout-gf-26c`. Until Tiny Tapeout merges it, the shuttle
+  lists commit 22956c2, the layout with the old controller.
 - **Wiring on the latch nodes.** If tau nearer the schematic's is wanted, `mq` and `mqb` of each NAND
   flip-flop need a direct connection between neighbouring cells instead of a channel track. The router has
   no such case.
-- **Wire resistance** is not in the extracted netlist (estimated above at some 10 ps on the longest net).
+- **Wire resistance** is bounded from the extracted resistor networks, not simulated: the netlist that Magic
+  writes with `extresist` could not be used for delays (`verification/physical/SIMULATIONS.md`, Section 6).
+- **The extraction.** The two versions of Magic differ by 4 to 6 % in tau, and the flat and the hierarchical
+  extraction of one version by 3 to 5 % in delay. tau and the floors were not computed on the flat extraction.
+- **The supply outside the tile, the substrate and mismatch** are not modelled; `verification/FAILURE_SPACE.md`
+  lists these and the other open entries.

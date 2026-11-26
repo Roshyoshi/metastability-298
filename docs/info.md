@@ -142,7 +142,7 @@ the delay between the two pins is shorter than *d* by 0.074 ns at `ua[0]` =
 against the pin delay therefore comes out 0.9 to 1.7 % long, depending on the
 range of settings and the extraction. Ratios of τ are not affected.
 
-## Bank of faster flip-flops (added December 2026)
+## Bank of faster flip-flops (added 25 November 2026)
 
 The tile holds a second set of flip-flops under test, the bank, read by the
 same controller and counter as the four above:
@@ -205,6 +205,16 @@ edge at the typical corner, and the straight part of ln(K) lies above that.
 One step of 15 ps is half of τ for N2, so the fall from full count to less
 than one event per block takes some tens of steps.
 
+**Limit of the bank as built, found in simulation on 26 Nov 2026.** The bank's
+capture edge reaches N1, N2 and N3 with a rise time of about 1 ns at the
+typical corner. The slave of N2 is opened by this edge, and most of the
+lateness of its latch is hidden behind it: the simulated count of N2 falls
+with a local time constant of 7 to 14 ps, not with the 29.6 ps of the latch.
+A slope measured on N2 on this layout is therefore not its τ. N1: its last crossing moves by 39 to 46 ps per factor of √10, a local time constant of 34 to 40 ps where its latch has 41.5 ps, so it is affected much less. N3
+(119 ps) is not expected to be affected. With a fast edge forced on the
+capture net, the same simulation gives 29.0 and 28.8 ps (falling and rising data) for N2. Details:
+`verification/physical/SIMULATIONS.md`, Section 7, in the repository.
+
 Check the bank before measuring. With bank input 11 every block gives K = 0.
 With `uio[0]` changed once per trial, far from the capture edge, a `ui[5]`
 edge 0.2 ns after the clock edge gives K = 65,535 and one 6 ns after it gives
@@ -224,6 +234,27 @@ the arrival times of 1.7 to 2.4 ns, the start of the straight part near
 3.4 ns and the events per block at 3.5 and 4.0 ns were computed before the
 bank was added and were not repeated; the last three are expected to move
 down in *d* by about 0.1 ns with the floors.
+
+## Supply current and physical checks
+
+Simulated on the extracted layout at the typical corner, the tile draws about
+46 µA from the 3.3 V supply while it counts (52 µA with the bank selected),
+about 20 µA in reset with the clock running, and 5 nA with the clock stopped;
+the peaks at each capture edge are 1.6 to 4.9 mA. Measure the supply current
+before reading any count: a value many times larger points to a fault.
+
+In trials in which `data_in` is high at the capture edge, *d* is about 0.5 %
+longer than in trials in which it is low (22 ps at `ua[0]` = 1.0 V). When *d*
+is calibrated with the monitor pins, record the two cases separately. The
+effect on a fitted τ is below 0.1 %.
+
+The tile's supply is 3.3 V. N1 and N2 are built from 3.3 V transistors and
+must not be run above 3.6 V.
+
+The audit of the layout for supply voltage drop, current density, latch-up
+distances and coupling, and the list of ways the tile could fail with the
+check that covers each, are in the repository: `verification/physical/README.md`
+and `verification/FAILURE_SPACE.md`. The audit led to no change of the layout.
 
 ## External hardware
 
