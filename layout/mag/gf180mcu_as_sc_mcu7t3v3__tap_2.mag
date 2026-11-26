@@ -1,0 +1,45 @@
+magic
+tech gf180mcuD
+magscale 1 10
+timestamp 1624281511
+<< checkpaint >>
+rect -2096 -2096 2320 2880
+<< nwell >>
+rect -86 354 310 870
+<< pwell >>
+rect -86 -86 310 354
+<< psubdiff >>
+rect 56 245 168 258
+rect 56 105 86 245
+rect 132 105 168 245
+rect 56 92 168 105
+<< nsubdiff >>
+rect 72 691 152 704
+rect 72 457 86 691
+rect 132 457 152 691
+rect 72 444 152 457
+<< psubdiffcont >>
+rect 86 105 132 245
+<< nsubdiffcont >>
+rect 86 457 132 691
+<< metal1 >>
+rect 0 724 224 844
+rect 75 691 143 724
+rect 75 457 86 691
+rect 132 457 143 691
+rect 75 447 143 457
+rect 75 245 143 276
+rect 75 105 86 245
+rect 132 105 143 245
+rect 75 60 143 105
+rect 0 -60 224 60
+<< labels >>
+rlabel metal1 s 0 724 224 844 4 VDD
+port 3 nsew
+rlabel metal1 s 0 -60 224 60 4 VSS
+port 4 nsew
+<< properties >>
+string FIXED_BBOX 0 0 224 784
+string MASKHINTS_NPLUS 67 708 151 710 67 440 156 708 67 438 151 440
+string MASKHINTS_PPLUS 67 262 151 264 52 88 172 262 67 86 151 88
+<< end >>

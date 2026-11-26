@@ -1,0 +1,20 @@
+{
+ "tag": "rev2",
+ "ff": "n3",
+ "pol": "rise",
+ "corner": "typical",
+ "vdd": 3.3,
+ "temp": 27.0,
+ "body": "/home/claude/work/sim/rev2t/body.spice",
+ "x_floor_s": [
+  1.6819824218749997e-09,
+  1.6823608398437497e-09
+ ],
+ "t_floor_ps": [
+  1678.39,
+  1678.77
+ ],
+ "arrival_bank_selected_q_ps": 1618.16,
+ "simulations": 16,
+ "wall_s": 869.9
+}

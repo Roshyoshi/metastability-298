@@ -1,0 +1,17 @@
+PASS top cell unique and named tt_um_metastability_characterizer
+PASS boundary: bbox equals die
+PASS PR_bndry (0/0) rectangle of die size in the top cell
+PASS valid layers only (no Metal5)
+PASS cell names without # or /
+PASS no zero-area shapes
+PASS LEF macro name
+PASS LEF size equals die
+PASS every template pin in the LEF with the template rectangle
+PASS no extra LEF pins
+PASS power ports on Metal4, >= 0.8 um wide, within 10 um of bottom and top edges
+PASS power USE lines
+PASS no overlapping or abutting LEF pins
+PASS every LEF port covered by a Metal4_Label polygon in the GDS
+PASS analog pins: ua[0] connected, ua[1..7] free
+PASS Verilog has VDPWR and VGND, no VAPWR
+ALL PASS

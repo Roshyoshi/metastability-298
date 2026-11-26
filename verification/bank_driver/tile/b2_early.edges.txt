@@ -1,0 +1,13 @@
+rising clk edge at 774.550 ns; times after it, at vdd/2 = 1.650 V
+clk              rise       0.0 ps
+capture_local    rise    2077.2 ps
+                 rise 10 to 90 %:  1253.6 ps
+bank_cap         rise    1772.9 ps
+                 rise 10 to 90 %:   291.1 ps
+bank_obs_clk     rise     473.7 ps
+                 rise 10 to 90 %:   201.3 ps
+early_clk        rise    3926.2 ps
+                 rise 10 to 90 %:   510.6 ps
+selected_q       no edge in 25 ns
+bank_selected_q  fall    4016.5 ps
+bank_early_q     rise    1619.5 ps

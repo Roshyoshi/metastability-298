@@ -1,0 +1,5 @@
+Layout loaded from layout/mag/ (written by layout/gds2mag.tcl with Magic 8.3.703), checked with tools/magcopy_check.tcl:
+MAGCOPY DRC COUNT: 0
+Cell pin lists are equivalent.
+Device classes tt_um_metastability_characterizer and tt_um_metastability_characterizer are equivalent.
+Circuits match uniquely.

@@ -1,0 +1,17 @@
+layer 21/0 : above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 5 polygons
+layer 22/0 : above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 21 polygons
+layer 30/0 : above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 28 polygons
+layer 31/0 : above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 17 polygons
+layer 32/0 : above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 15 polygons
+layer 33/0 : above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 332 polygons
+layer 34/0 Metal1: above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 48 polygons
+layer 35/0 Via1: above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 32 polygons
+layer 36/0 Metal2: above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 38 polygons
+layer 38/0 Via2: above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 50 polygons
+layer 40/0 Via3: above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 10 polygons
+layer 42/0 Metal3: above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 28 polygons
+layer 46/0 Metal4: above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 5 polygons
+layer 55/0 : above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 1 polygons
+layer 112/1 : above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 1 polygons
+layer 204/0 : above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 5 polygons
+TOTAL XOR polygons above the cut: 0

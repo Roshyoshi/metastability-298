@@ -1,0 +1,10 @@
+window 700.0 to 1500.0 ns, 160542 points
+  VDPWR: average 62.4 uA, rms 309.0 uA, peak 4475.9 uA at 1275.86 ns
+  VGND: average 60.5 uA, rms 321.2 uA, peak 4642.5 uA at 1075.84 ns
+  VDPWR whole run: average 59.0 uA, rms 297.8, peak 4489.0 uA at 475.86 ns
+  charge: {'charge_fC_in_0.2ns': (np.float64(832.6), np.float64(1275.69)), 'charge_fC_in_1ns': (np.float64(2706.2), np.float64(1375.47)), 'charge_fC_in_5ns': (np.float64(5116.5), np.float64(974.61))}
+  sum of cell currents: {'sum_cells_VDPWR_avg_uA': 62.368956497898246, 'sum_cells_VGND_avg_uA': 60.50978563242873}
+  feed straps VDPWR: worst static 0.118 mV (d_sc_mcu7t5v0__inv_2_2), worst peak 33.95 mV (meta_j3a_0 at 1275.80 ns); avg current max: rail 10.1 uA, stack 5.0 uA, stripe segment 22.3 uA; EM ratios at 125 C: rail 0.0251, stripe 0.0167, via 0.0278
+  feed straps VGND: worst static 0.126 mV (_sc_mcu7t5v0__inv_2_11), worst peak 35.20 mV (meta_j3a_0 at 1275.81 ns); avg current max: rail 10.1 uA, stack 5.0 uA, stripe segment 16.0 uA; EM ratios at 125 C: rail 0.0251, stripe 0.0119, via 0.0278
+  feed end    VDPWR: worst static 0.354 mV (d_sc_mcu7t5v0__inv_2_2), worst peak 52.97 mV (meta_j3a_0 at 475.80 ns); avg current max: rail 10.1 uA, stack 5.7 uA, stripe segment 29.6 uA; EM ratios at 125 C: rail 0.0251, stripe 0.0221, via 0.0316
+  feed end    VGND: worst static 0.348 mV (d_sc_mcu7t5v0__inv_2_2), worst peak 52.53 mV (meta_j3a_0 at 475.81 ns); avg current max: rail 10.1 uA, stack 5.7 uA, stripe segment 28.9 uA; EM ratios at 125 C: rail 0.0251, stripe 0.0216, via 0.0317

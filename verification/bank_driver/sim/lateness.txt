@@ -1,0 +1,18 @@
+Step of the last output crossing per factor of sqrt(10) in the distance of the data edge from the critical time
+(distances 1.5e-12 to 1.5e-15 s), the local time constant step / ln(sqrt(10)), and the slope for distances of 1.5e-13 s and less (tools/lateness.py).
+Latch time constants at the typical corner: N2 29.57 ps, N1 41.46 ps; N2 at ss 3.0 V 125 C: 48.10 ps.
+
+layout of 25 Nov (e449093)                                 N2 falling  steps   7.5 to  15.7 ps   local time constant   6.5 to  13.7 ps   tail  11.70 ps
+layout of 25 Nov (e449093)                                 N2 rising   steps   8.1 to  18.9 ps   local time constant   7.0 to  16.4 ps   tail  15.49 ps
+layout of 25 Nov (e449093)                                 N1 falling  steps  38.8 to  43.9 ps   local time constant  33.7 to  38.2 ps   tail  37.89 ps
+layout of 25 Nov (e449093)                                 N1 rising   steps  45.2 to  45.5 ps   local time constant  39.3 to  39.5 ps   tail  39.38 ps
+layout of 26 Nov, 50 ps ramp at the input of the driver    N2 falling  steps  28.8 to  33.2 ps   local time constant  25.0 to  28.8 ps   tail  28.31 ps
+layout of 26 Nov, 50 ps ramp at the input of the driver    N2 rising   steps  28.3 to  34.0 ps   local time constant  24.5 to  29.5 ps   tail  28.82 ps
+layout of 26 Nov, edge of the bank's own divider           N2 falling  steps  28.6 to  33.4 ps   local time constant  24.8 to  29.0 ps   tail  28.65 ps
+layout of 26 Nov, edge of the bank's own divider           N2 rising   steps  28.0 to  33.4 ps   local time constant  24.4 to  29.0 ps   tail  28.80 ps
+layout of 26 Nov, edge of the bank's own divider           N1 falling  steps  39.1 to  43.8 ps   local time constant  33.9 to  38.0 ps   tail  37.81 ps
+layout of 26 Nov, edge of the bank's own divider           N1 rising   steps  45.1 to  47.3 ps   local time constant  39.2 to  41.1 ps   tail  39.96 ps
+layout of 25 Nov, 50 ps ramp forced on bank_cap itself     N2 falling  steps  31.8 to  33.8 ps   local time constant  27.7 to  29.3 ps   tail  28.95 ps
+layout of 25 Nov, 50 ps ramp forced on bank_cap itself     N2 rising   steps  30.9 to  33.8 ps   local time constant  26.8 to  29.4 ps   tail  28.81 ps
+26 Nov netlist with both inverters 1.5 times as strong, ramp N2 falling  steps  30.7 to  35.1 ps   local time constant  26.7 to  30.5 ps   tail  29.42 ps
+layout of 26 Nov, edge of the divider, ss 3.0 V 125 C      N2 falling  steps  45.1 to  53.9 ps   local time constant  39.2 to  46.8 ps   tail  46.42 ps

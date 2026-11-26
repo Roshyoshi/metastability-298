@@ -1,5 +1,9 @@
 # Checks and simulations of the revised layout with the bank (25 Nov 2026)
 
+> This document describes the layout of commit e449093 (25 Nov 2026). On 26 Nov the driver of the bank's capture edge
+> was strengthened; `../bank_driver/README.md` gives the reason, the checks of the new GDS and the numbers that changed.
+> Above y = 199 um the two layouts are identical.
+
 These files are the logs behind the section "Bank of faster flip-flops" of `README_analog.md` and of
 `docs/info.md`. They describe the GDS whose SHA-1 is in `layout/gds.sha1`. Tools: Magic 8.3.573, Netgen 1.5.314,
 KLayout 0.28.16, ngspice with the models of the PDK `gf180mcuD`. No chip has been measured. Paths inside the

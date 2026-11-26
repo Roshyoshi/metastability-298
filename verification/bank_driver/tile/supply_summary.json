@@ -1,0 +1,65 @@
+{
+ "core": {
+  "avg_uA": 46.69,
+  "peak_mA": 1.946,
+  "static_mV_max": 0.273,
+  "peak_mV_straps": [
+   11.51,
+   15.45
+  ],
+  "peak_mV_end": [
+   19.85,
+   24.25
+  ],
+  "peak_cell": [
+   "meta_j3a_0"
+  ],
+  "em_max": 0.027,
+  "rail_uA": 9.2,
+  "via_uA": 4.9,
+  "stripe_uA": 21.4,
+  "condition": "bank not selected, DUT2 data toggled, typical 3.3 V 27 C"
+ },
+ "b2": {
+  "avg_uA": 52.85,
+  "peak_mA": 2.629,
+  "static_mV_max": 0.304,
+  "peak_mV_straps": [
+   21.07,
+   21.98
+  ],
+  "peak_mV_end": [
+   32.56,
+   32.25
+  ],
+  "peak_cell": [
+   "meta_j3a_0"
+  ],
+  "em_max": 0.0259,
+  "rail_uA": 8.8,
+  "via_uA": 4.7,
+  "stripe_uA": 25.1,
+  "condition": "bank selected (N2), bank data toggled, typical 3.3 V 27 C"
+ },
+ "ff": {
+  "avg_uA": 62.36,
+  "peak_mA": 4.476,
+  "static_mV_max": 0.354,
+  "peak_mV_straps": [
+   33.95,
+   35.2
+  ],
+  "peak_mV_end": [
+   52.97,
+   52.53
+  ],
+  "peak_cell": [
+   "meta_j3a_0"
+  ],
+  "em_max": 0.0317,
+  "rail_uA": 10.1,
+  "via_uA": 5.7,
+  "stripe_uA": 29.6,
+  "condition": "bank selected (N2), both data inputs toggled, ff 3.6 V -40 C"
+ }
+}

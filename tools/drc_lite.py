@@ -15,7 +15,9 @@ Geometry (GF180MCU design manual, tables 22 and 23):
   M1 strap  the delay line's Metal1 strap against all other Metal1 of the two cells it touches
 Connectivity: union of all routing shapes, cell pins (LEF Metal1), cell rails (LEF power pins) and template
 pins; every component must carry exactly one net, and every net with two or more terminals must be one
-component.
+component. A pin that the library draws as separate Metal1 pieces (the input of inv_4 and inv_12) counts as one
+terminal only where the cell's own GDS joins the pieces through contacts and polysilicon; such pins are listed
+in the report under pins_joined_inside_cell.
 """
 import sys, math, json
 from collections import defaultdict
@@ -243,6 +245,58 @@ def check_strap(P):
                                 out.append({'kind': 'M1 strap', 'at': [round(t, 3) for t in rr], 'msg': f'{dd:.3f} from the strap ({cname})'})
     return out
 
+_JOIN_CACHE = {}
+JOINED_IN_CELL = []      # pins whose Metal1 pieces are joined by the cell's own polysilicon, filled by connectivity()
+
+def joined_inside_cell(cell, pin):
+    """True when every Metal1 piece of the pin is one conductor inside the standard cell itself.
+
+    The wide inverters of the foundry library (inv_4, inv_12) draw the input pin as two Metal1 pieces, each on
+    contacts to the single polysilicon shape that forms every gate; the library's LEF lists both pieces in one
+    PORT. Only one piece has to be reached by a route. The test here does not rely on the LEF: it reads the
+    cell's own GDS and follows Metal1, contact and polysilicon (diffusion is not followed)."""
+    key = (cell, pin)
+    if key in _JOIN_CACHE:
+        return _JOIN_CACHE[key]
+    ok = False
+    try:
+        src = gds.read(LG.LP.cell_dir(cell) / f'{LG.LIB}{cell}.gds').cells[LG.LIB + cell]
+        rs = []
+        for lay, dt, pts in src.polys:
+            for name in ('M1', 'CONT', 'POLY'):
+                if (lay, dt) == L[name]:
+                    for r in LP.poly_to_rects([(px / 1000, py / 1000) for px, py in pts]):
+                        rs.append((name, r))
+        par = list(range(len(rs)))
+        def ff(a):
+            while par[a] != a:
+                par[a] = par[par[a]]; a = par[a]
+            return a
+        for a in range(len(rs)):
+            for b in range(a + 1, len(rs)):
+                la, ra = rs[a]; lb, rb = rs[b]
+                if la == lb:
+                    hit = touching(ra, rb)
+                elif 'CONT' in (la, lb):
+                    gx, gy = gap(ra, rb)
+                    hit = gx < -EPS and gy < -EPS
+                else:
+                    hit = False                     # Metal1 and polysilicon meet only through a contact
+                if hit:
+                    par[ff(a)] = ff(b)
+        groups = set()
+        for pr in LG.pin_rects(cell, pin):
+            mine = {ff(k) for k, (name, r) in enumerate(rs)
+                    if name == 'M1' and gap(r, pr)[0] < -EPS and gap(r, pr)[1] < -EPS}
+            if len(mine) != 1:
+                groups = set(); break
+            groups |= mine
+        ok = len(groups) == 1
+    except Exception:
+        ok = False
+    _JOIN_CACHE[key] = ok
+    return ok
+
 def connectivity(P, shapes):
     n = len(shapes)
     parent = list(range(n))
@@ -275,6 +329,19 @@ def connectivity(P, shapes):
                     gx, gy = gap(shapes[k][1:5], shapes[j][1:5])
                     if gx < -EPS and gy < -EPS:
                         u(k, j)
+    # a pin drawn as separate Metal1 pieces: one terminal only where the cell's own polysilicon joins the pieces
+    del JOINED_IN_CELL[:]
+    cell_of = {inst['name']: cell for r, items, yb in all_rows(P) for x0, cell, inst in items if inst is not None}
+    pin_shapes = defaultdict(list)
+    for k, s in enumerate(shapes):
+        if s[6] != 'route' and s[6][0] == 'pin':
+            pin_shapes[s[6]].append(k)
+    for t, ks in sorted(pin_shapes.items()):
+        pieces = {f(k) for k in ks}
+        if len(pieces) > 1 and t[1] in cell_of and joined_inside_cell(cell_of[t[1]], t[2]):
+            JOINED_IN_CELL.append({'instance': t[1], 'pin': t[2], 'cell': cell_of[t[1]], 'metal1_pieces': len(pieces)})
+            for k in ks[1:]:
+                u(ks[0], k)
     comps = defaultdict(list)
     for k in range(n):
         comps[f(k)].append(k)
@@ -461,6 +528,7 @@ if __name__ == '__main__':
     print('M1 strap:', len(strap), strap[:5])
     print('shorts:', len(shorts), shorts[:5])
     print('opens:', len(opens), opens[:10])
+    print('pins joined inside their cell (two Metal1 pieces on one polysilicon shape):', JOINED_IN_CELL)
     bad = [a for a in ant if a['ratio'] > a['limit']]
     worst = sorted(ant, key=lambda a: -a['ratio'] / a['limit'])[:8]
     print('antenna: checked', len(ant), 'net/step pairs, over the limit:', len(bad))
@@ -468,4 +536,5 @@ if __name__ == '__main__':
         print('   ', a)
     out = LG.CHIP / 'layout' / 'drc_lite_report.json'
     out.write_text(json.dumps({'geometry': geo, 'strap': strap, 'shorts': shorts, 'opens': opens,
+                               'pins_joined_inside_cell': JOINED_IN_CELL,
                                'antenna_over': bad, 'antenna_worst': worst}, indent=1))

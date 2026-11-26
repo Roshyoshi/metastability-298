@@ -191,29 +191,28 @@ fast and the slow corner, from the runs with N2):
 
 | Quantity | Value |
 | --- | --- |
-| Clock pin to the bank's capture edge at the flip-flops | 1.92 ns (1.14 ns, 3.66 ns) |
+| Clock pin to the bank's capture edge at the flip-flops | 1.77 ns (1.05 ns, 3.40 ns) |
 | `ui[5]` pin to the clock of the early observer | 0.27 ns (0.17 ns, 0.49 ns) |
-| Capture edge to new value at the early observer, N1 | 1.23 ns rising, 1.40 ns falling |
-| Capture edge to new value at the early observer, N2 | 1.96 ns rising, 2.59 ns falling (1.21 and 1.62 ns, 3.71 and 4.83 ns) |
-| Capture edge to new value at the early observer, N3 | 1.74 ns rising, 2.05 ns falling |
+| Capture edge to new value at the early observer, N1 | 1.22 ns rising, 1.38 ns falling |
+| Capture edge to new value at the early observer, N2 | 1.63 ns rising, 2.24 ns falling (1.02 and 1.42 ns, 3.02 and 4.12 ns) |
+| Capture edge to new value at the early observer, N3 | 1.66 ns rising, 1.96 ns falling |
 
-The bank's capture edge comes 0.16 ns before the capture edge of DUT1
-to DUT4. An early sample taken before the new value arrives reads the old
+The bank's capture edge comes 0.30 ns before the capture edge of DUT1 to DUT4. An early sample taken before the new value arrives reads the old
 one, and K then counts every trial in which the output changed; so K starts
-to fall when the `ui[5]` edge is about 2.9 to 4.2 ns after the clock
-edge at the typical corner, and the straight part of ln(K) lies above that.
+to fall when the `ui[5]` edge is about 2.7 to 3.7 ns after the clock edge at the typical corner, and the straight part of ln(K) lies above that.
 One step of 15 ps is half of τ for N2, so the fall from full count to less
 than one event per block takes some tens of steps.
 
-**Limit of the bank as built, found in simulation on 26 Nov 2026.** The bank's
-capture edge reaches N1, N2 and N3 with a rise time of about 1 ns at the
-typical corner. The slave of N2 is opened by this edge, and most of the
-lateness of its latch is hidden behind it: the simulated count of N2 falls
-with a local time constant of 7 to 14 ps, not with the 29.6 ps of the latch.
-A slope measured on N2 on this layout is therefore not its τ. N1: its last crossing moves by 39 to 46 ps per factor of √10, a local time constant of 34 to 40 ps where its latch has 41.5 ps, so it is affected much less. N3
-(119 ps) is not expected to be affected. With a fast edge forced on the
-capture net, the same simulation gives 29.0 and 28.8 ps (falling and rising data) for N2. Details:
-`verification/physical/SIMULATIONS.md`, Section 7, in the repository.
+**Capture driver of the bank, changed on 26 Nov 2026.** On the layout of 25
+Nov the bank's capture edge reached N1, N2 and N3 with a rise time of about 1
+ns. The slave of N2 is opened by this edge, and most of the lateness of its
+latch was hidden behind it: the simulated count of N2 fell with a local time
+constant of 7 to 14 ps, not with the 29.6 ps of the latch. The two inverters
+that drive the edge were therefore replaced by stronger ones. The edge now
+rises in 0.29 ns, and in the same simulation the last output crossing of N2
+follows a time constant of 24 to 29 ps; the predicted count falls with 28.7
+ps. Nothing above the bank was changed, and τ of all six latches is the same
+as before. Details: `verification/bank_driver/README.md` in the repository.
 
 Check the bank before measuring. With bank input 11 every block gives K = 0.
 With `uio[0]` changed once per trial, far from the capture edge, a `ui[5]`
@@ -238,9 +237,9 @@ down in *d* by about 0.1 ns with the floors.
 ## Supply current and physical checks
 
 Simulated on the extracted layout at the typical corner, the tile draws about
-46 µA from the 3.3 V supply while it counts (52 µA with the bank selected),
+47 µA from the 3.3 V supply while it counts (53 µA with the bank selected),
 about 20 µA in reset with the clock running, and 5 nA with the clock stopped;
-the peaks at each capture edge are 1.6 to 4.9 mA. Measure the supply current
+the peaks at each capture edge are 1.9 to 4.5 mA. Measure the supply current
 before reading any count: a value many times larger points to a fault.
 
 In trials in which `data_in` is high at the capture edge, *d* is about 0.5 %
@@ -254,7 +253,7 @@ must not be run above 3.6 V.
 The audit of the layout for supply voltage drop, current density, latch-up
 distances and coupling, and the list of ways the tile could fail with the
 check that covers each, are in the repository: `verification/physical/README.md`
-and `verification/FAILURE_SPACE.md`. The audit led to no change of the layout.
+and `verification/FAILURE_SPACE.md`. The audit led to no change of the supply network; `verification/bank_driver/README.md` describes the one change made on 26 Nov, to the driver of the bank's capture edge.
 
 ## External hardware
 

@@ -1,5 +1,9 @@
 # Simulations of the revised layout added on 26 Nov 2026
 
+> This document describes the layout of commit e449093 (25 Nov 2026). On 26 Nov the driver of the bank's capture edge
+> was strengthened; `../bank_driver/README.md` gives the reason, the checks of the new GDS and the numbers that changed.
+> Above y = 199 um the two layouts are identical.
+
 Layout: commit e449093, GDS SHA-1 `4b6e7df96942da64c25916530b39da4a2fdb39d1`. These runs complete the list that
 `README_analog.md` gave as "not repeated for the revised layout". The audit of the supply, of latch-up and of
 coupling is in `README.md` of this folder.

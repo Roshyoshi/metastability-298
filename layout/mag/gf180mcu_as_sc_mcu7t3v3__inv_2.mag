@@ -1,0 +1,103 @@
+magic
+tech gf180mcuD
+magscale 1 10
+timestamp 1624281511
+<< checkpaint >>
+rect -2096 -2096 2544 2880
+<< nwell >>
+rect -86 354 534 870
+<< pwell >>
+rect -86 -86 534 354
+<< nmos >>
+rect 116 68 172 268
+rect 276 68 332 268
+<< pmos >>
+rect 116 440 172 716
+rect 276 440 332 716
+<< ndiff >>
+rect 28 222 116 268
+rect 28 82 41 222
+rect 87 82 116 222
+rect 28 68 116 82
+rect 172 209 276 268
+rect 172 163 201 209
+rect 247 163 276 209
+rect 172 68 276 163
+rect 332 228 420 268
+rect 332 88 361 228
+rect 407 88 420 228
+rect 332 68 420 88
+<< pdiff >>
+rect 28 662 116 716
+rect 28 522 41 662
+rect 87 522 116 662
+rect 28 440 116 522
+rect 172 629 276 716
+rect 172 489 201 629
+rect 247 489 276 629
+rect 172 440 276 489
+rect 332 656 420 716
+rect 332 516 361 656
+rect 407 516 420 656
+rect 332 440 420 516
+<< ndiffc >>
+rect 41 82 87 222
+rect 201 163 247 209
+rect 361 88 407 228
+<< pdiffc >>
+rect 41 522 87 662
+rect 201 489 247 629
+rect 361 516 407 656
+<< polysilicon >>
+rect 116 716 172 760
+rect 276 716 332 760
+rect 116 398 172 440
+rect 96 387 172 398
+rect 276 387 332 440
+rect 96 384 332 387
+rect 96 338 109 384
+rect 155 338 332 384
+rect 96 325 332 338
+rect 116 268 172 325
+rect 276 268 332 325
+rect 116 24 172 68
+rect 276 24 332 68
+<< polycontact >>
+rect 109 338 155 384
+<< metal1 >>
+rect 0 724 448 844
+rect 41 662 87 724
+rect 41 471 87 522
+rect 201 629 247 677
+rect 201 451 247 489
+rect 361 656 407 724
+rect 361 459 407 516
+rect 41 384 155 425
+rect 41 338 109 384
+rect 41 318 155 338
+rect 201 252 270 451
+rect 41 222 87 247
+rect 201 209 247 252
+rect 201 106 247 163
+rect 361 228 407 247
+rect 41 60 87 82
+rect 361 60 407 88
+rect 0 -60 448 60
+<< labels >>
+rlabel metal1 s 0 724 448 844 4 VDD
+port 7 nsew
+rlabel nwell s 10 734 110 834 4 VNW
+port 8 nsew
+rlabel pwell s 10 -50 110 50 4 VPW
+port 9 nsew
+rlabel metal1 s 0 -60 448 60 4 VSS
+port 10 nsew
+rlabel metal1 s 201 252 270 451 4 Y
+port 11 nsew
+rlabel metal1 s 41 318 155 425 4 A
+port 12 nsew
+<< properties >>
+string FIXED_BBOX 0 0 448 784
+string MASKHINTS_NPLUS -16 -46 464 354
+string MASKHINTS_PPLUS -16 354 464 830
+<< end >>

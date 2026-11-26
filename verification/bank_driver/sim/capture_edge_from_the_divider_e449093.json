@@ -1,0 +1,15 @@
+{
+ "body": "/home/claude/work/sim/cut/body_573.spice",
+ "corner": "typical",
+ "vdd": 3.3,
+ "temp": 27.0,
+ "clk_to_bank_a_ps": 1231.5,
+ "bank_a_rise_10_90_ps": 641.4,
+ "bank_cap_b_fall_90_10_ps": 216.2,
+ "bank_cap_rise_10_90_ps": 1046.5,
+ "bank_cap_rise_10_50_ps": 399.7,
+ "bank_cap_rise_50_90_ps": 646.8,
+ "bank_a_to_bank_cap_ps": 681.4,
+ "clk_to_bank_cap_ps": 1912.9,
+ "bank_cap_fall_90_10_ps": 552.5
+}

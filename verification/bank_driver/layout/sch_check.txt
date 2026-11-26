@@ -1,0 +1,8 @@
+Xschem hierarchy: 2002 transistors, 2 diodes (15 capacitors: pre-layout wiring estimates, not in the LVS netlist)
+master netlist:   2002 transistors, 2 diodes
+diodes equal: True
+device multisets equal: True
+chip pins and supplies with identical connections: 23 of 23
+graph hash Xschem : ef131ba43ef1ac48f8fb131c2a765e8c
+graph hash master : ef131ba43ef1ac48f8fb131c2a765e8c
+SAME CIRCUIT

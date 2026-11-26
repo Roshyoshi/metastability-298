@@ -3,6 +3,20 @@
  "strap": [],
  "shorts": [],
  "opens": [],
+ "pins_joined_inside_cell": [
+  {
+   "instance": "bank_cap0",
+   "pin": "I",
+   "cell": "inv_4",
+   "metal1_pieces": 2
+  },
+  {
+   "instance": "bank_cap1",
+   "pin": "I",
+   "cell": "inv_12",
+   "metal1_pieces": 2
+  }
+ ],
  "antenna_over": [],
  "antenna_worst": [
   {

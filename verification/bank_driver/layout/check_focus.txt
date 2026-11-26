@@ -1,0 +1,16 @@
+F01_master_latch_baseline            12/12   SAME
+F02_master_latch_keeper              16/16   SAME
+F03_master_latch_forward             20/20   SAME
+F04_master_latch_comparison          48/48   SAME
+F05_master_door                      10/10   SAME
+F06_slave                            16/16   SAME
+F07_library_flipflop                 24/24   SAME
+F08_current_starved_stage             4/4    SAME
+F09_delay_line                       20/20   SAME
+F10_selector                         26/26   SAME
+F11_controller_register              28/28   SAME
+G01_meta_dut_baseline_gates          38/38   SAME
+G02_meta_dut_keeper_gates            42/42   SAME
+G03_meta_dut_forward_gates           46/46   SAME
+G04_front_end                       248/248  SAME
+ALL SAME

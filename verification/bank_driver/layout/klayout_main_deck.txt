@@ -1,0 +1,14 @@
+KLayout 0.28.16, PDK main rule deck, flat mode, on a private copy of the deck patched for this KLayout version
+(verification/physical/README.md, Section 2, lists the three patched lines).
+2026-11-26 09:14:44 +0000: Memory Usage (590960K) : CONNECTIVITY_RULES section
+2026-11-26 09:14:44 +0000: Memory Usage (592864K) : CONNECTIVITY_RULES section
+2026-11-26 09:14:44 +0000: Memory Usage (592864K) : CONNECTIVITY_RULES section
+2026-11-26 09:14:47 +0000: Memory Usage (602620K) : Executing rule opc_drc_OFFGRID
+2026-11-26 09:14:47 +0000: Memory Usage (602620K) : Executing rule drc_bjt_OFFGRID
+2026-11-26 09:14:48 +0000: Memory Usage (606248K) : CONNECTIVITY_RULES section
+2026-11-26 09:14:48 +0000: Memory Usage (606248K) : CONNECTIVITY_RULES section
+2026-11-26 09:14:49 +0000: Memory Usage (606248K) : Starting Metal Slotting rules derivations
+2026-11-26 09:14:49 +0000: Memory Usage (606248K) : CONNECTIVITY_RULES section
+2026-11-26 09:14:51 +0000: Memory Usage (606440K) : main DRC Total Run time 7.227060756 seconds
+26-Nov-2026 09:14:51 | INFO    | Klayout DRC run is clean. GDS has no DRC violations.
+main exit 0

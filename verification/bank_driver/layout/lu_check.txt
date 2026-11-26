@@ -1,0 +1,9 @@
+DNWELL area 0.0 um2; NAT area 0.0 um2
+substrate taps: 445 polygons, 247.3 um2; n-well taps: 445 polygons, 288.9 um2
+NCOMP outside NWELL: 287 polygons; PCOMP inside NWELL: 324 polygons; n-well polygons: 18
+LU.3 (NCOMP outside NWELL to substrate tap): max 14.307 um at (249.15, 168.82); polygons over 12 um: 5; over 15 um: 0
+   five largest: [(14.31, 249.1, 168.8), (12.32, 292.6, 211.4), (12.03, 248.6, 243.6), (12.02, 248.6, 268.9), (12.01, 290.1, 219.2)]
+LU.4 (PCOMP inside NWELL to tap of the same n-well): max 14.387 um at (249.15, 170.68); polygons over 12 um: 13; over 15 um: 0; PCOMP in a well without any tap: 0
+   five largest: [(14.39, 249.1, 170.7), (12.41, 292.6, 214.6), (12.39, 293.2, 237.7), (12.13, 196.5, 278.6), (12.13, 290.1, 222.4)]
+y (NWELL to NCOMP outside NWELL): min 0.43 um; in the LV part (outside Dualgate): 0.43 um
+LU.7 guideline: contact area on taps 107.69 um2 / channel area 707.01 um2 = 15.2 % (guideline: more than 3 %)

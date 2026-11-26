@@ -1,0 +1,6 @@
+Reading "gf180mcu_fd_sc_mcu7t5v0__antenna".
+Processing gf180mcu_fd_sc_mcu7t5v0__antenna
+Extracting gf180mcu_fd_sc_mcu7t5v0__antenna into gf180mcu_fd_sc_mcu7t5v0__antenna.ext:
+Running antenna checks.
+antennacheck finished.
+ANTENNA FEEDBACK COUNT: 0

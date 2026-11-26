@@ -39,6 +39,8 @@ cells_tx/dffq_1.sch
 cells_tx/dffrnq_1.sch
 cells_tx/inv_1.sch
 cells_tx/inv_2.sch
+cells_tx/inv_4.sch
+cells_tx/inv_12.sch
 cells_tx/mux2_1.sch
 cells_tx/mux4_1.sch
 cells_tx/nand2_1.sch

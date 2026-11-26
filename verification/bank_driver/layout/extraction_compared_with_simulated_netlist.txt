@@ -1,0 +1,8 @@
+a: extraction (Magic 8.3.573) of the committed GDS; b: the netlist that was simulated (same generator sources, earlier run)
+a: 493 devices and instances, 7302 capacitors, 3813 capacitors of value 0
+b: 493 devices and instances, 7302 capacitors, 3815 capacitors of value 0
+subcircuits whose ports are the same set in another order: ['meta_n3ffb']
+subcircuits with different ports: []
+devices and instances only in a: 0; only in b: 0
+capacitors only in a: 0; only in b: 0
+total capacitance, a and b (fF): 2607.2645 2607.2645

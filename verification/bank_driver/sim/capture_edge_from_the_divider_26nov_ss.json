@@ -1,0 +1,15 @@
+{
+ "body": "/home/claude/work/sim/rev2t/body.spice",
+ "corner": "ss",
+ "vdd": 3.0,
+ "temp": 125.0,
+ "clk_to_bank_a_ps": 2543.2,
+ "bank_a_rise_10_90_ps": 1664.4,
+ "bank_cap_b_fall_90_10_ps": 748.5,
+ "bank_cap_rise_10_90_ps": 545.9,
+ "bank_cap_rise_10_50_ps": 232.4,
+ "bank_cap_rise_50_90_ps": 313.5,
+ "bank_a_to_bank_cap_ps": 861.9,
+ "clk_to_bank_cap_ps": 3405.1,
+ "bank_cap_fall_90_10_ps": 378.6
+}
