@@ -1,0 +1,37 @@
+layer 21/0 : above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 4 polygons
+layer 21/10 : above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 9 polygons
+layer 22/0 : above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 163 polygons
+layer 30/0 : above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 121 polygons
+layer 31/0 : above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 42 polygons
+layer 32/0 : above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 13 polygons
+layer 33/0 : above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 812 polygons
+layer 34/0 Metal1: above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 171 polygons
+layer 34/10 : above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 33 polygons
+layer 35/0 Via1: above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 133 polygons
+layer 36/0 Metal2: above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 128 polygons
+layer 38/0 Via2: above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 130 polygons
+layer 40/0 Via3: above y=199.0: XOR 4 polygons (0.270 um2); below: XOR 49 polygons
+    only in A (removed): x 243.190..243.450  y 205.590..205.850
+    only in A (removed): x 271.190..271.450  y 208.390..208.650
+    only in B (added): x 246.550..246.810  y 205.590..205.850
+    only in B (added): x 270.070..270.330  y 208.390..208.650
+layer 42/0 Metal3: above y=199.0: XOR 1 polygons (0.314 um2); below: XOR 74 polygons
+    only in B (added): x 270.010..271.130  y 208.380..208.660
+layer 42/10 : above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 5 polygons
+layer 46/0 Metal4: above y=199.0: XOR 11 polygons (259.890 um2); below: XOR 16 polygons
+    only in B (added): x 243.180..243.460  y 199.000..205.530
+    only in B (added): x 246.540..246.820  y 199.000..205.910
+    only in B (added): x 271.180..271.460  y 199.000..208.330
+    only in B (added): x 270.060..270.340  y 199.000..208.710
+    only in B (added): x 331.100..331.380  y 199.000..320.330
+    only in B (added): x 323.820..324.100  y 199.000..322.010
+    only in B (added): x 255.220..258.580  y 199.000..324.360
+    only in B (added): x 265.580..265.860  y 199.000..324.360
+    only in B (added): x 277.620..280.420  y 199.000..324.360
+    only in B (added): x 301.980..315.000  y 199.000..324.360
+    only in B (added): x 309.260..315.560  y 199.000..324.360
+layer 55/0 : above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 3 polygons
+layer 112/1 : above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 3 polygons
+layer 204/0 : above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 4 polygons
+layer 204/10 : above y=199.0: XOR 0 polygons (0.000 um2); below: XOR 9 polygons
+TOTAL XOR polygons above the cut: 16

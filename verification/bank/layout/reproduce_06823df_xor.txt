@@ -1,0 +1,23 @@
+top cells: tt_um_metastability_characterizer tt_um_metastability_characterizer
+layer 0/0: A 1 polygons, B 1 polygons, XOR 0 polygons, XOR area 0.000000 um2
+layer 21/0: A 14 polygons, B 14 polygons, XOR 0 polygons, XOR area 0.000000 um2
+layer 22/0: A 1336 polygons, B 1336 polygons, XOR 0 polygons, XOR area 0.000000 um2
+layer 30/0: A 754 polygons, B 754 polygons, XOR 0 polygons, XOR area 0.000000 um2
+layer 31/0: A 423 polygons, B 423 polygons, XOR 0 polygons, XOR area 0.000000 um2
+layer 32/0: A 14 polygons, B 14 polygons, XOR 0 polygons, XOR area 0.000000 um2
+layer 33/0: A 5212 polygons, B 5212 polygons, XOR 0 polygons, XOR area 0.000000 um2
+layer 34/0: A 924 polygons, B 924 polygons, XOR 0 polygons, XOR area 0.000000 um2
+layer 34/10: A 0 polygons, B 0 polygons, XOR 0 polygons, XOR area 0.000000 um2
+layer 35/0: A 534 polygons, B 534 polygons, XOR 0 polygons, XOR area 0.000000 um2
+layer 36/0: A 531 polygons, B 531 polygons, XOR 0 polygons, XOR area 0.000000 um2
+layer 38/0: A 531 polygons, B 531 polygons, XOR 0 polygons, XOR area 0.000000 um2
+layer 40/0: A 244 polygons, B 244 polygons, XOR 0 polygons, XOR area 0.000000 um2
+layer 42/0: A 322 polygons, B 322 polygons, XOR 0 polygons, XOR area 0.000000 um2
+layer 46/0: A 102 polygons, B 102 polygons, XOR 0 polygons, XOR area 0.000000 um2
+layer 46/10: A 57 polygons, B 57 polygons, XOR 0 polygons, XOR area 0.000000 um2
+layer 55/0: A 14 polygons, B 14 polygons, XOR 0 polygons, XOR area 0.000000 um2
+layer 63/63: A 0 polygons, B 0 polygons, XOR 0 polygons, XOR area 0.000000 um2
+layer 112/1: A 14 polygons, B 14 polygons, XOR 0 polygons, XOR area 0.000000 um2
+layer 115/5: A 1 polygons, B 1 polygons, XOR 0 polygons, XOR area 0.000000 um2
+layer 204/0: A 14 polygons, B 14 polygons, XOR 0 polygons, XOR area 0.000000 um2
+TOTAL XOR polygons: 0

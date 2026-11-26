@@ -1,0 +1,8 @@
+RESULT post_bank dut1 fall typical 3.3 25.0: floor d = 2734.3 .. 2734.1 ps at V = 1.28219 .. 1.28226
+RESULT post_bank dut1 rise typical 3.3 25.0: floor d = 2347.2 .. 2347.1 ps at V = 1.43114 .. 1.43122
+RESULT post_bank dut2 fall typical 3.3 25.0: floor d = 2255.0 .. 2254.9 ps at V = 1.47152 .. 1.47159
+RESULT post_bank dut2 rise typical 3.3 25.0: floor d = 1692.6 .. 1692.6 ps at V = 2.01104 .. 2.01111
+RESULT post_bank dut3 fall typical 3.3 25.0: floor d = 2451.8 .. 2451.7 ps at V = 1.38015 .. 1.38023
+RESULT post_bank dut3 rise typical 3.3 25.0: floor d = 1827.6 .. 1827.6 ps at V = 1.81712 .. 1.81719
+RESULT post_bank dut4 fall typical 3.3 25.0: floor d = 2391.6 .. 2391.4 ps at V = 1.40561 .. 1.40569
+RESULT post_bank dut4 rise typical 3.3 25.0: floor d = 1772.4 .. 1772.3 ps at V = 1.88783 .. 1.88791

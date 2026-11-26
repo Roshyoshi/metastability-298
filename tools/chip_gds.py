@@ -13,6 +13,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import layout_gen as LG
 import route_gen as RG
+import bank_layout as BL
 import gds
 from layout_gen import L, R, EXT, HW, HV, EPS, ROWH, nm
 
@@ -144,13 +145,17 @@ def build():
                 xr0 = items[k + 1][0]
                 S.add('M1', x + 2.945, yrow[r] + 1.55, xr0 + 0.71 + 0.1, yrow[r] + 1.85, inst['conns']['slow'])
     P.update(ych=ych, yrow=yrow, heights=heights, shapes=S, pins_drawn=pins_drawn, rails=rails, y_stripe_top=y_stripe_top, stripe_top=stripe_top)
+    # the flip-flop bank below the rows, its splices into channel 1 and its pin routes (tools/bank_layout.py)
+    BL.add_bank(P)
     return P
 
 def write(P):
     for d in (OUT, GDS_DIR, LEF_DIR):
         d.mkdir(exist_ok=True)
     lib = gds.Library('metastability', dbu_m=1e-9, user_unit=1e-3)
-    used = sorted({c for items in P['placed'] for x, c, i in items})
+    B = P['bank']
+    macros = {m['cell'] for m in BL.MACROS.values()}
+    used = sorted({c for items in P['placed'] + B['placed'] for x, c, i in items} - macros)
     for c in used:
         if c == 'meta_dly_cs':
             lib.add(LG.build_dly_cell())
@@ -158,10 +163,15 @@ def write(P):
         src = gds.read(LG.LP.cell_dir(c) / f'{LG.LIB}{c}.gds')
         for name, cell in src.cells.items():
             lib.add(cell)
+    for cell in BL.gds_cells():
+        lib.add(cell)
     top = lib.add(gds.Cell(TOP))
     for r, items in enumerate(P['placed']):
         for x, c, inst in items:
             top.ref(c if c == 'meta_dly_cs' else LG.LIB + c, nm(x), nm(P['yrow'][r]))
+    for r, items in enumerate(B['placed']):
+        for x, c, inst in items:
+            top.ref(c if c in macros else LG.LIB + c, nm(x), nm(B['yrow'][r]))
     for layer, rects in P['shapes'].r.items():
         for x1, y1, x2, y2, net in rects:
             top.rect(*L[layer], nm(x1), nm(y1), nm(x2), nm(y2))
@@ -179,7 +189,7 @@ def write(P):
     plan = {'rows': [{'name': P['rows'][r][0], 'y': P['yrow'][r], 'x0': P['placed'][r][0][0], 'x1': P['placed'][r][-1][0] + 1.12,
                       'cells': [(x, c, i['name'] if i else None) for x, c, i in P['placed'][r]]} for r in range(P['nrows'])],
             'channels': {c: {'y': P['ych'][c], 'h': P['heights'][c], 'tracks': P['chans'][c]['ntr'], 'nets': len(P['chans'][c]['nets'])} for c in P['chans']},
-            'feedthroughs': len(P['ft']), 'jumpers': len(P['jumpers']), 'stripes': LG.STRIPES}
+            'feedthroughs': len(P['ft']), 'jumpers': len(P['jumpers']), 'stripes': LG.STRIPES, 'bank': BL.plan_json(P)}
     (OUT / 'layout_plan.json').write_text(json.dumps(plan, indent=1))
     return path
 
@@ -200,7 +210,7 @@ def write_lef(P):
             if n == net:
                 L_.append(f'        RECT {xa:.3f} {STRIPE_Y0:.3f} {xb:.3f} {yt:.3f} ;')
         L_ += ['    END', f'  END {net}']
-    y0 = round(P['ych'][0], 3)
+    y0 = round(min(P['ych'][0], P['bank']['ych'][0]), 3)
     L_ += ['  OBS']
     for lay in ('Metal1', 'Metal2', 'Metal3'):
         L_ += [f'    LAYER {lay} ;', f'      RECT {LG.X_LEFT - 1:.3f} {y0:.3f} {LG.TILE_W - 1:.3f} {TOP_Y:.3f} ;']

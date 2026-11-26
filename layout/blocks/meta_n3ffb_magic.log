@@ -1,0 +1,42 @@
+
+Magic 8.3 revision 573 - Compiled on Sun Nov 22 20:56:11 UTC 2026.
+Starting magic under Tcl interpreter
+Using the terminal as the console.
+WARNING: RLIMIT_NOFILE is above 1024 and Tcl_Version<9 this may cause runtime issues [rlim_cur=20000]
+Using NULL graphics device.
+Processing system .magicrc file
+Switching to WIRING tool.
+Switching to NETLIST tool.
+Switching to PICK tool.
+Switching to BOX tool.
+Sourcing design .magicrc for technology gf180mcuD ...
+10 Magic internal units = 1 Lambda
+Input style import: scaleFactor=10, multiplier=2
+The following types are not handled by extraction and will be treated as non-electrical types:
+    obsactive mvobsactive filldiff fillpoly m1hole obsm1 fillm1 obsv1 m2hole obsm2 fillm2 obsv2 m3hole obsm3 fillm3 m4hole obsm4 fillm4 m5hole obsm5 fillm5 glass fillblock lvstext obscomment 
+Scaled tech values by 10 / 1 to match internal grid scaling
+Loading gf180mcuD Device Generator Menu ...
+Loading "/home/claude/r8/bank/repo/layout/blocks/meta_n3ffb.tcl" from command line.
+Cell meta_n3ffb read from current working directory
+Cell gf180mcu_as_sc_mcu7t3v3__tap_2 read from path /home/claude/ext/as7t3v3/src/pdk/libs.ref/gf180mcu_as_sc_mcu7t3v3/mag
+Cell gf180mcu_as_sc_mcu7t3v3__inv_2 read from path /home/claude/ext/as7t3v3/src/pdk/libs.ref/gf180mcu_as_sc_mcu7t3v3/mag
+Cell gf180mcu_as_sc_mcu7t3v3__nand2_2 read from path /home/claude/ext/as7t3v3/src/pdk/libs.ref/gf180mcu_as_sc_mcu7t3v3/mag
+Cell gf180mcu_as_sc_mcu7t3v3__nand2_4 read from path /home/claude/ext/as7t3v3/src/pdk/libs.ref/gf180mcu_as_sc_mcu7t3v3/mag
+   Generating output for cell gf180mcu_as_sc_mcu7t3v3__inv_2
+   Generating output for cell gf180mcu_as_sc_mcu7t3v3__nand2_2
+   Generating output for cell gf180mcu_as_sc_mcu7t3v3__tap_2
+   Generating output for cell gf180mcu_as_sc_mcu7t3v3__nand2_4
+   Generating output for cell meta_n3ffb
+Can't place a cell on an exact copy of itself.
+Can't place a cell on an exact copy of itself.
+Can't place a cell on an exact copy of itself.
+Can't place a cell on an exact copy of itself.
+Can't place a cell on an exact copy of itself.
+Can't place a cell on an exact copy of itself.
+Can't place a cell on an exact copy of itself.
+Can't place a cell on an exact copy of itself.
+Can't place a cell on an exact copy of itself.
+Can't place a cell on an exact copy of itself.
+Can't place a cell on an exact copy of itself.
+Can't place a cell on an exact copy of itself.
+Can't place a cell on an exact copy of itself.

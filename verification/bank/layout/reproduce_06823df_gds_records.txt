@@ -1,0 +1,3 @@
+records: 20297 20297
+date records that differ (BGNLIB/BGNSTR): 23
+other records that differ: 0

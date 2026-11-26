@@ -1,0 +1,8 @@
+* NGSPICE file created from tap.ext - technology: gf180mcuD
+
+.option scale=5n
+
+C0 VDPWR N 2.65097f
+C1 W VGND 7.09869f ; **FLOATING
+C2 N VGND 4.51857f
+C3 VDPWR VGND 48.2037f

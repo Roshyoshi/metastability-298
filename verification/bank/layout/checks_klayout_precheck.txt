@@ -1,0 +1,4 @@
+KLayout main: exit 0; rules executed 621; errors of the run 0; violations 0: none
+KLayout wells (conservative): exit 1; rules executed 112; errors of the run 2; violations 6: NW.2b_MV x6
+    ERROR: In /home/claude/r5/layout/kdeck_cons/gf180mcu.drc: Cannot call non-const method on a const reference in RdbCategory::each_sub_category
+precheck passes: 10

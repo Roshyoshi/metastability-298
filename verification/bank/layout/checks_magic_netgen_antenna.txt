@@ -1,0 +1,18 @@
+magic exit 0
+COUNT: 0
+netgen exit 0
+Netlists match uniquely.
+Cell pin lists for gf180mcu_fd_sc_mcu7t5v0__mux4_1 and gf180mcu_fd_sc_mcu7t5v0__mux4_1 altered to match.
+Resolving symmetries by property value.
+Netlists match uniquely.
+Cell pin lists are equivalent.
+Final result: Circuits match uniquely.
+renamed devices with l=1u in the extraction: 1
+netgen exit 0
+Netlists match uniquely.
+Cell pin lists for gf180mcu_fd_sc_mcu7t5v0__mux4_1 and gf180mcu_fd_sc_mcu7t5v0__mux4_1 altered to match.
+Resolving symmetries by property value.
+Netlists match uniquely.
+Cell pin lists are equivalent.
+Final result: Circuits match uniquely.
+Magic antenna: ANTENNA FEEDBACK COUNT: 0

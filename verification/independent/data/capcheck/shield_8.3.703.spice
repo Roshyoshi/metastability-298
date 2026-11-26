@@ -1,0 +1,8 @@
+* NGSPICE file created from shield.ext - technology: gf180mcuD
+
+.option scale=5n
+
+C0 P T 3.57456f
+C1 T VSUBS 4.64803f
+C2 R VSUBS 6.30364f ; **FLOATING
+C3 P VSUBS 19.9232f

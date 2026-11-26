@@ -47,3 +47,6 @@ cells_tx/nand2_4.sch
 cells_tx/or2_1.sch
 cells_tx/tiel.sch
 cells_tx/xor2_1.sch
+cells_tx/gf180mcu_as_sc_mcu7t3v3__inv_2.sch
+cells_tx/gf180mcu_as_sc_mcu7t3v3__nand2_2.sch
+cells_tx/gf180mcu_as_sc_mcu7t3v3__nand2_4.sch

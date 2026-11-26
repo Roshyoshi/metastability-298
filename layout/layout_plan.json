@@ -3078,5 +3078,360 @@
    314.44,
    "VGND"
   ]
- ]
+ ],
+ "bank": {
+  "rows": [
+   {
+    "name": "B0",
+    "y": 168.48,
+    "x0": 234.0,
+    "cells": [
+     [
+      234.0,
+      "meta_j3a",
+      "bank_n2"
+     ],
+     [
+      264.32,
+      "meta_n3ffb",
+      "bank_n1"
+     ]
+    ]
+   },
+   {
+    "name": "B1",
+    "y": 175.2,
+    "x0": 277.2,
+    "cells": [
+     [
+      277.2,
+      "endcap",
+      null
+     ],
+     [
+      278.32,
+      "inv_1",
+      "bank_n3/u_cki"
+     ],
+     [
+      280.56,
+      "nand2_1",
+      "bank_n3/u_mg1"
+     ],
+     [
+      283.36,
+      "nand2_1",
+      "bank_n3/u_mg2"
+     ],
+     [
+      286.16,
+      "nand2_2",
+      "bank_n3/u_mfw"
+     ],
+     [
+      291.2,
+      "nand2_2",
+      "bank_n3/u_mkp"
+     ],
+     [
+      296.24,
+      "nand2_1",
+      "bank_n3/u_sg1"
+     ],
+     [
+      299.04,
+      "nand2_1",
+      "bank_n3/u_sg2"
+     ],
+     [
+      301.84,
+      "filltie",
+      null
+     ],
+     [
+      302.96,
+      "nand2_1",
+      "bank_n3/u_sfw"
+     ],
+     [
+      305.76,
+      "nand2_1",
+      "bank_n3/u_skp"
+     ],
+     [
+      308.56,
+      "filltie",
+      null
+     ],
+     [
+      309.68,
+      "filltie",
+      null
+     ],
+     [
+      310.8,
+      "filltie",
+      null
+     ],
+     [
+      311.92,
+      "filltie",
+      null
+     ],
+     [
+      313.04,
+      "filltie",
+      null
+     ],
+     [
+      314.16,
+      "filltie",
+      null
+     ],
+     [
+      315.28,
+      "endcap",
+      null
+     ]
+    ]
+   },
+   {
+    "name": "B2",
+    "y": 183.04,
+    "x0": 254.24,
+    "cells": [
+     [
+      254.24,
+      "endcap",
+      null
+     ],
+     [
+      255.36,
+      "inv_2",
+      "bank_data0"
+     ],
+     [
+      258.72,
+      "inv_2",
+      "bank_data1"
+     ],
+     [
+      262.08,
+      "filltie",
+      null
+     ],
+     [
+      263.2,
+      "dffrnq_1",
+      "bank_b_ff"
+     ],
+     [
+      282.24,
+      "inv_1",
+      "bank_a_inv"
+     ],
+     [
+      284.48,
+      "filltie",
+      null
+     ],
+     [
+      285.6,
+      "dffq_1",
+      "bank_a_ff"
+     ],
+     [
+      301.84,
+      "inv_2",
+      "bank_cap0"
+     ],
+     [
+      305.2,
+      "inv_2",
+      "bank_cap1"
+     ],
+     [
+      308.56,
+      "filltie",
+      null
+     ],
+     [
+      309.68,
+      "filltie",
+      null
+     ],
+     [
+      310.8,
+      "filltie",
+      null
+     ],
+     [
+      311.92,
+      "filltie",
+      null
+     ],
+     [
+      313.04,
+      "filltie",
+      null
+     ],
+     [
+      314.16,
+      "filltie",
+      null
+     ],
+     [
+      315.28,
+      "endcap",
+      null
+     ]
+    ]
+   },
+   {
+    "name": "B3",
+    "y": 190.88,
+    "x0": 248.64,
+    "cells": [
+     [
+      248.64,
+      "endcap",
+      null
+     ],
+     [
+      249.76,
+      "mux2_1",
+      "join_q"
+     ],
+     [
+      257.04,
+      "mux2_1",
+      "join_e"
+     ],
+     [
+      264.32,
+      "filltie",
+      null
+     ],
+     [
+      265.44,
+      "dffq_1",
+      "bank_observer"
+     ],
+     [
+      281.68,
+      "inv_2",
+      "bank_obs1"
+     ],
+     [
+      285.04,
+      "inv_1",
+      "bank_obs0"
+     ],
+     [
+      287.28,
+      "filltie",
+      null
+     ],
+     [
+      288.4,
+      "mux4_1",
+      "bank_select"
+     ],
+     [
+      306.32,
+      "tiel",
+      "bank_tie"
+     ],
+     [
+      308.56,
+      "filltie",
+      null
+     ],
+     [
+      309.68,
+      "filltie",
+      null
+     ],
+     [
+      310.8,
+      "filltie",
+      null
+     ],
+     [
+      311.92,
+      "filltie",
+      null
+     ],
+     [
+      313.04,
+      "filltie",
+      null
+     ],
+     [
+      314.16,
+      "filltie",
+      null
+     ],
+     [
+      315.28,
+      "endcap",
+      null
+     ]
+    ]
+   }
+  ],
+  "channels": {
+   "0": {
+    "y": 166.8,
+    "h": 1.68,
+    "tracks": 1,
+    "nets": 0
+   },
+   "1": {
+    "y": 172.4,
+    "h": 2.8,
+    "tracks": 3,
+    "nets": 4
+   },
+   "2": {
+    "y": 179.12,
+    "h": 3.92,
+    "tracks": 5,
+    "nets": 11
+   },
+   "3": {
+    "y": 186.96,
+    "h": 3.92,
+    "tracks": 5,
+    "nets": 11
+   },
+   "4": {
+    "y": 194.8,
+    "h": 3.92,
+    "tracks": 5,
+    "nets": 13
+   }
+  },
+  "columns": {
+   "bank_q[1]": 299.88,
+   "bank_q[0]": 304.36,
+   "bank_cap": 297.08,
+   "bank_data": 270.76,
+   "bank_q[2]": 305.48
+  },
+  "jumpers": 0,
+  "pin_and_splice_columns": {
+   "ctrl_q": 243.32,
+   "selected_q": 246.68,
+   "ctrl_early": 271.32,
+   "early_q": 270.2,
+   "uio_in[0]": 255.36,
+   "ui_in[7]": 265.72,
+   "ui_in[5]": 277.76,
+   "ui_in[2]": 314.86,
+   "ui_in[1]": 315.42,
+   "clk": 331.24,
+   "rst_n": 323.96
+  }
+ }
 }

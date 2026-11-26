@@ -72,11 +72,13 @@ def instances():
                 extra = {'internal': {'I': True}, 'glue_prev': True} if i['name'] == 'XR0' else {}
                 out.append({'name': f'{name}/{i["name"]}', 'cell': i['cell'].replace(LIB, ''), 'conns': conns, 'box': box, **extra})
     for i in BM.CTRL:
-        conns = {p: BM.CTRL_MAP.get(n, n) for p, n in i['conns'].items()}
+        # the controller inputs that the flip-flop bank re-connects (build_master.SPLICE) are routed on the nets
+        # they had before the bank; tools/bank_layout.py splits those two nets afterwards
+        conns = {p: BM.SPLICE.get(BM.CTRL_MAP.get(n, n), BM.CTRL_MAP.get(n, n)) for p, n in i['conns'].items()}
         conns = {p: ('VDPWR' if n == 'VDPWR' else n) for p, n in conns.items()}
         out.append({'name': f'controller/{i["name"]}', 'cell': i['cell'].replace(LIB, ''), 'conns': conns, 'box': i['box']})
     # controller-internal nets get a prefix so they cannot collide with front-end nets
-    ctrl_ports = set(BM.CTRL_MAP.values())
+    ctrl_ports = {BM.SPLICE.get(n, n) for n in BM.CTRL_MAP.values()}
     for o in out:
         if o['name'].startswith('controller/'):
             o['conns'] = {p: (n if (n in ctrl_ports or n in ('VDPWR', 'VGND')) else f'controller/{n}') for p, n in o['conns'].items()}

@@ -1,0 +1,21 @@
+v {xschem version=3.4.4 file_version=1.2}
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+template="name=x1"
+}
+V {}
+S {}
+E {}
+L 4 -60 -20 60 -20 {}
+L 4 -60 20 60 20 {}
+L 4 -60 -20 -60 20 {}
+L 4 60 -20 60 20 {}
+L 4 -80 0 -60 0 {}
+B 5 -82.5 -2.5 -77.5 2.5 {name=bank_a dir=in}
+T {bank_a} -57 -6 0 0 0.15 0.15 {}
+L 4 60 0 80 0 {}
+B 5 77.5 -2.5 82.5 2.5 {name=bank_cap dir=out}
+T {bank_cap} 57 -6 0 1 0.15 0.15 {}
+T {bank_capture_drivers} -58 -36 0 0 0.2 0.2 {}
+T {@name} -58 24 0 0 0.15 0.15 {}

@@ -51,9 +51,12 @@ def parse_cdl(path):
             cur['devices'].append({'name': tok[0], 'd': d, 'g': g, 's': s_, 'b': b, 'model': model,
                                    'W': prm.get('W'), 'L': prm.get('L'), 'm': prm.get('M', 1.0)})
         elif cur is not None and tok[0][0] in 'Dd':
-            # diode: name anode cathode model area perimeter
+            # diode: name anode cathode model area perimeter (5 V library), or with area= / pj= (3.3 V library)
+            kv = {k.lower(): v for k, v in (t.split('=') for t in tok[4:] if '=' in t)}
+            area = kv['area'] if 'area' in kv else tok[4]
+            pj = kv['pj'] if 'pj' in kv else tok[5]
             cur.setdefault('diodes', []).append({'name': tok[0], 'a': tok[1], 'c': tok[2], 'model': tok[3],
-                                                 'area': _num(tok[4]), 'pj': _num(tok[5])})
+                                                 'area': _num(area), 'pj': _num(pj)})
     for c in cells.values():
         c.setdefault('diodes', [])
     return cells
@@ -210,12 +213,110 @@ TOP_SUB = [
     ('Flip-flops under test', 'u_dut4', 'meta_dut_forward', ['data_local', 'capture_local', 'q[3]']),
     ('Adjustable delay', 'delay', 'meta_delay_analog', ['capture_iso', 'ua[0]', 'early_clk']),
 ]
+# ------------------------------------------------------------------ flip-flop bank (revision of 25 Nov 2026)
+# A second set of flip-flops under test with its own capture copy, data input, selector and early observer.
+# The early observer of the bank is clocked from a pin (ui_in[5]) by the bench, not by the on-chip delay line.
+# Two 2:1 multiplexers (join_q, join_e), selected by ui_in[7], give the controller either the existing
+# selected output and early sample (ui_in[7] = 0: the tile as before) or those of the bank (ui_in[7] = 1).
+#   bank_n1  N1  NAND master-slave flip-flop of 3.3 V cells (gf180mcu_as_sc_mcu7t3v3), forward and keeper nand2_4
+#   bank_n2  N2  jamb-latch flip-flop of 3.3 V transistors (j3a); only when BANK_N2 is True
+#   bank_n3  N3  copy of DUT3 (meta_dut_keeper), the same circuit through the new path
+# Bank selection {ui_in[2], ui_in[1]}: 00 N1, 01 N2, 10 N3, 11 constant 0 (a control: no events possible).
+LIB3 = 'gf180mcu_as_sc_mcu7t3v3__'
+BANK_N2 = True
+
+def X3(name, cell, **pins):
+    return {'name': name, 'cell': LIB3 + cell, 'conns': OrderedDict(pins)}
+
+def nand3_dut():
+    """N1: the block n3ffb: NAND master-slave flip-flop of 3.3 V library cells,
+    forward and keeper gates nand2_4, the rest nand2_2 / inv_2. Pins of the 3.3 V cells: A, B -> Y."""
+    return [
+        X3('u_cki', 'inv_2', A='clk', Y='clkn'),
+        X3('u_mg1', 'nand2_2', A='clkn', B='d', Y='g1'),
+        X3('u_mg2', 'nand2_2', A='clkn', B='g1', Y='g2'),
+        X3('u_mfw', 'nand2_4', A='g1', B='mqb', Y='mq'),
+        X3('u_mkp', 'nand2_4', A='g2', B='mq', Y='mqb'),
+        X3('u_sg1', 'nand2_2', A='clk', B='mq', Y='s1'),
+        X3('u_sg2', 'nand2_2', A='clk', B='s1', Y='s2'),
+        X3('u_sfw', 'nand2_2', A='s1', B='sqb', Y='q'),
+        X3('u_skp', 'nand2_2', A='s2', B='q', Y='sqb'),
+    ]
+
+BANK_SUBCKTS = OrderedDict([('meta_dut_n3ffb', nand3_dut())])
+# N2: jamb-latch flip-flop j3a of 3.3 V transistors (L = 0.28 um), device for device as olib.build_jamb writes it for
+# the sizing 4/2/2/4 with the minimum slave (the reference netlist of the design study,
+# that the drawn block meta_j3a matched uniquely). Fields: name, drain, gate, source, bulk, model, W (um).
+J3A_DEVICES = [
+    ('ckin_0', 'ckb', 'clk', 'VGND', 'VGND', 'nfet_03v3', 1.0),
+    ('ckip_0', 'ckb', 'clk', 'VDPWR', 'VDPWR', 'pfet_03v3', 1.38),
+    ('din_0', 'db', 'd', 'VGND', 'VGND', 'nfet_03v3', 1.0),
+    ('dip_0', 'db', 'd', 'VDPWR', 'VDPWR', 'pfet_03v3', 1.38),
+    ('mn1_0', 'x', 'y', 'VGND', 'VGND', 'nfet_03v3', 1.0),
+    ('mn1_1', 'x', 'y', 'VGND', 'VGND', 'nfet_03v3', 1.0),
+    ('mn1_2', 'x', 'y', 'VGND', 'VGND', 'nfet_03v3', 1.0),
+    ('mn1_3', 'x', 'y', 'VGND', 'VGND', 'nfet_03v3', 1.0),
+    ('mp1_0', 'x', 'y', 'VDPWR', 'VDPWR', 'pfet_03v3', 1.0),
+    ('mp1_1', 'x', 'y', 'VDPWR', 'VDPWR', 'pfet_03v3', 1.0),
+    ('mn2_0', 'y', 'x', 'VGND', 'VGND', 'nfet_03v3', 1.0),
+    ('mn2_1', 'y', 'x', 'VGND', 'VGND', 'nfet_03v3', 1.0),
+    ('mn2_2', 'y', 'x', 'VGND', 'VGND', 'nfet_03v3', 1.0),
+    ('mn2_3', 'y', 'x', 'VGND', 'VGND', 'nfet_03v3', 1.0),
+    ('mp2_0', 'y', 'x', 'VDPWR', 'VDPWR', 'pfet_03v3', 1.0),
+    ('mp2_1', 'y', 'x', 'VDPWR', 'VDPWR', 'pfet_03v3', 1.0),
+    ('mwx_0', 'x', 'ckb', 'ax', 'VGND', 'nfet_03v3', 2.0),
+    ('mdx_0', 'ax', 'db', 'VGND', 'VGND', 'nfet_03v3', 4.0),
+    ('mwy_0', 'y', 'ckb', 'ay', 'VGND', 'nfet_03v3', 2.0),
+    ('mdy_0', 'ay', 'd', 'VGND', 'VGND', 'nfet_03v3', 4.0),
+    ('sn1_0', 's', 'sb', 'VGND', 'VGND', 'nfet_03v3', 0.5),
+    ('sp1_0', 's', 'sb', 'VDPWR', 'VDPWR', 'pfet_03v3', 0.3),
+    ('sn2_0', 'sb', 's', 'VGND', 'VGND', 'nfet_03v3', 0.5),
+    ('sp2_0', 'sb', 's', 'VDPWR', 'VDPWR', 'pfet_03v3', 0.3),
+    ('swa_0', 'sb', 'clk', 'c1', 'VGND', 'nfet_03v3', 0.3),
+    ('sda_0', 'c1', 'x', 'VGND', 'VGND', 'nfet_03v3', 0.3),
+    ('swb_0', 's', 'clk', 'c2', 'VGND', 'nfet_03v3', 0.3),
+    ('sdb_0', 'c2', 'y', 'VGND', 'VGND', 'nfet_03v3', 0.3),
+    ('qon_0', 'q', 'sb', 'VGND', 'VGND', 'nfet_03v3', 1.0),
+    ('qop_0', 'q', 'sb', 'VDPWR', 'VDPWR', 'pfet_03v3', 1.38),
+    ('qdn_0', 'qn', 's', 'VGND', 'VGND', 'nfet_03v3', 1.0),
+    ('qdp_0', 'qn', 's', 'VDPWR', 'VDPWR', 'pfet_03v3', 1.38),
+]
+BANK_DEVICE_SUBCKTS = OrderedDict([('meta_dut_j3a', [{'name': n, 'd': d, 'g': g, 's': s_, 'b': b, 'model': m, 'W': w * 1e-6,
+                                                      'L': 0.28e-6, 'm': 1} for n, d, g, s_, b, m, w in J3A_DEVICES])])
+BANK_ZERO = 'bank_zero'          # the tie-low net on the selector inputs without a flip-flop
+BANK = [
+    ('Bank: trial clock copy', X('bank_a_ff', 'dffq_1', D='bank_b', CLK='clk', Q='bank_a')),
+    ('Bank: trial clock copy', X('bank_a_inv', 'inv_1', I='bank_a', ZN='bank_a_n')),
+    ('Bank: trial clock copy', X('bank_b_ff', 'dffrnq_1', D='bank_a_n', RN='rst_n', CLK='clk', Q='bank_b')),
+    ('Bank: capture edge', X('bank_cap0', 'inv_2', I='bank_a', ZN='bank_cap_b')),
+    ('Bank: capture edge', X('bank_cap1', 'inv_2', I='bank_cap_b', ZN='bank_cap')),
+    ('Bank: data input', X('bank_data0', 'inv_2', I='uio_in[0]', ZN='bank_data_b')),
+    ('Bank: data input', X('bank_data1', 'inv_2', I='bank_data_b', ZN='bank_data')),
+    ('Bank: selector', X('bank_select', 'mux4_1', I0='bank_q[0]', I1='bank_q[1]' if BANK_N2 else BANK_ZERO,
+                         I2='bank_q[2]', I3=BANK_ZERO, S0='ui_in[1]', S1='ui_in[2]', Z='bank_selected_q')),
+    ('Bank: selector', X('bank_tie', 'tiel', ZN=BANK_ZERO)),
+    ('Bank: early observer', X('bank_obs0', 'inv_1', I='ui_in[5]', ZN='bank_obs_b')),
+    ('Bank: early observer', X('bank_obs1', 'inv_2', I='bank_obs_b', ZN='bank_obs_clk')),
+    ('Bank: early observer', X('bank_observer', 'dffq_1', D='bank_selected_q', CLK='bank_obs_clk', Q='bank_early_q')),
+    ('Bank: join', X('join_q', 'mux2_1', I0='selected_q', I1='bank_selected_q', S='ui_in[7]', Z='ctrl_q')),
+    ('Bank: join', X('join_e', 'mux2_1', I0='early_q', I1='bank_early_q', S='ui_in[7]', Z='ctrl_early')),
+]
+BANK_SUB = [
+    ('Bank: flip-flops under test', 'bank_n1', 'meta_dut_n3ffb', ['bank_data', 'bank_cap', 'bank_q[0]']),
+] + ([('Bank: flip-flops under test', 'bank_n2', 'meta_dut_j3a', ['bank_data', 'bank_cap', 'bank_q[1]'])] if BANK_N2 else []) + [
+    ('Bank: flip-flops under test', 'bank_n3', 'meta_dut_keeper', ['bank_data', 'bank_cap', 'bank_q[2]']),
+]
+# The layout of the existing part of the tile is generated exactly as before the bank: its router sees the two
+# controller inputs on the nets they had (selected_q, early_q). tools/bank_layout.py then splits each of these
+# two nets where its Metal4 column leaves channel 1, so that the controller side becomes the join output.
+SPLICE = {'ctrl_q': 'selected_q', 'ctrl_early': 'early_q'}
+
 CTRL_NAME = 'compact_control'
 CTRL_PORTS = ['clk20', 'rst_n', 'ena', 'start', 'q_selected', 'early_e', 'byte_sel', 'capture', 'busy', 'done', 'fault'] + \
              [f'result_byte[{k}]' for k in range(8)]
 # controller port -> net of the tile
-CTRL_MAP = {'clk20': 'clk', 'rst_n': 'rst_n', 'ena': 'ena', 'start': 'ui_in[4]', 'q_selected': 'selected_q',
-            'early_e': 'early_q', 'byte_sel': 'ui_in[0]', 'capture': 'capture', 'busy': 'uio_out[1]',
+CTRL_MAP = {'clk20': 'clk', 'rst_n': 'rst_n', 'ena': 'ena', 'start': 'ui_in[4]', 'q_selected': 'ctrl_q',
+            'early_e': 'ctrl_early', 'byte_sel': 'ui_in[0]', 'capture': 'capture', 'busy': 'uio_out[1]',
             'done': 'uio_out[2]', 'fault': 'uio_out[3]'}
 CTRL_MAP.update({f'result_byte[{k}]': f'uo_out[{k}]' for k in range(8)})
 
@@ -239,17 +340,24 @@ def dev_line(d, prefix='M'):
     return f"{prefix}{d['name']} {d['d']} {d['g']} {d['s']} {d['b']} {d['model']} W={d['W']:.3g} L={d['L']:.3g}"
 
 def write_cdl():
-    used = sorted({i['cell'] for i in CTRL} | {i['cell'] for _, i in TOP} |
-                  {i['cell'] for s in DUT_SUBCKTS.values() for i in s} | {i['cell'] for i in DELAY_CELLS})
-    L = ['* Master netlist: metastability characterizer, GF180MCU (gf180mcu_fd_sc_mcu7t5v0, operated at 3.3 V)',
+    used = sorted({i['cell'] for i in CTRL} | {i['cell'] for _, i in TOP} | {i['cell'] for _, i in BANK} |
+                  {i['cell'] for s in DUT_SUBCKTS.values() for i in s} | {i['cell'] for i in DELAY_CELLS} |
+                  {i['cell'] for s in BANK_SUBCKTS.values() for i in s})
+    L = ['* Master netlist: metastability characterizer, GF180MCU (gf180mcu_fd_sc_mcu7t5v0, operated at 3.3 V;',
+         '* the bank flip-flop N1 uses gf180mcu_as_sc_mcu7t3v3)',
          '* Generated by tools/build_master.py. Do not edit by hand.',
-         '* Standard cells: ' + ', '.join(c.replace(LIB, '') for c in used), '']
+         '* Standard cells: ' + ', '.join(c.replace(LIB, '') for c in used if c.startswith(LIB)),
+         '* 3.3 V cells: ' + ', '.join(c.replace(LIB3, '') for c in used if c.startswith(LIB3)), '']
     for c in used:
         L.append(f'.include ../pdk_cells/cdl/{c}.cdl')
     L.append('')
-    for name, insts in DUT_SUBCKTS.items():
+    for name, insts in list(DUT_SUBCKTS.items()) + list(BANK_SUBCKTS.items()):
         L.append(f'.SUBCKT {name} d clk q VDPWR VGND')
         L += [cell_line(i) for i in insts]
+        L += ['.ENDS', '']
+    for name, devs in BANK_DEVICE_SUBCKTS.items():
+        L.append(f'.SUBCKT {name} d clk q VDPWR VGND')
+        L += [dev_line(d) for d in devs]
         L += ['.ENDS', '']
     L.append('.SUBCKT meta_delay_analog launch control sample_clk VDPWR VGND')
     L.append('* MP, MN, MC: current-starved inverter. MCT: timing capacitor (NMOS gate capacitor on node slow).')
@@ -266,16 +374,21 @@ def write_cdl():
     for _, name, sub, nets in TOP_SUB:
         L.append(f'X{name} ' + ' '.join(nets) + f' VDPWR VGND {sub}')
     L.append('* Constant outputs: tie-low cells (tielo_*) and ena buffers (oe_buf*), one driver per pin')
+    L.append('* Flip-flop bank: trial clock copy, capture and data drivers, selector, early observer, joins')
+    for _, i in BANK:
+        L.append(cell_line(i))
+    for _, name, sub, nets in BANK_SUB:
+        L.append(f'X{name} ' + ' '.join(nets) + f' VDPWR VGND {sub}')
     L += ['.ENDS', '']
     (OUT / 'chip.cdl').write_text('\n'.join(L))
 
 def write_inventory():
     rows, trans = [], []
     def add(box, block, path, cell):
-        rows.append({'flow_box': box, 'block': block, 'instance': path, 'cell': cell.replace(LIB, ''),
+        rows.append({'flow_box': box, 'block': block, 'instance': path, 'cell': cell.replace(LIB, '').replace(LIB3, '3v3:'),
                      'transistors': ntran(cell)})
         for d in CELLS[cell]['devices']:
-            trans.append({'flow_box': box, 'path': f'{path}/{d["name"]}', 'cell': cell.replace(LIB, ''),
+            trans.append({'flow_box': box, 'path': f'{path}/{d["name"]}', 'cell': cell.replace(LIB, '').replace(LIB3, '3v3:'),
                           'type': 'PMOS' if d['model'].startswith('p') else 'NMOS', 'model': d['model'],
                           'W_um': round(d['W'] * 1e6, 3), 'L_um': round(d['L'] * 1e6, 3),
                           'drain': d['d'], 'gate': d['g'], 'source': d['s'], 'bulk': d['b']})
@@ -296,6 +409,19 @@ def write_inventory():
                 add(box, sub, f'{name}/{i["name"]}', i['cell'])
     for i in CTRL:
         add(i['box'], f'{CTRL_NAME}/{i["block"]}', f'controller/{i["name"]}', i['cell'])
+    for box, i in BANK:
+        add(box, 'bank', i['name'], i['cell'])
+    for box, name, sub, _ in BANK_SUB:
+        if sub in BANK_DEVICE_SUBCKTS:
+            for d in BANK_DEVICE_SUBCKTS[sub]:
+                rows.append({'flow_box': box, 'block': sub, 'instance': f'{name}/{d["name"]}', 'cell': d['model'] + ' (custom)', 'transistors': 1})
+                trans.append({'flow_box': box, 'path': f'{name}/{d["name"]}', 'cell': 'custom',
+                              'type': 'PMOS' if d['model'].startswith('p') else 'NMOS', 'model': d['model'],
+                              'W_um': round(d['W'] * 1e6, 3), 'L_um': round(d['L'] * 1e6, 3),
+                              'drain': d['d'], 'gate': d['g'], 'source': d['s'], 'bulk': d['b']})
+            continue
+        for i in (BANK_SUBCKTS.get(sub) or DUT_SUBCKTS[sub]):
+            add(box, sub, f'{name}/{i["name"]}', i['cell'])
     for r in rows:
         r['flow_box'] = r['flow_box'].replace('Ring oscillator + divider (off chip)', 'Data input (ring oscillator off chip)')
     for t in trans:

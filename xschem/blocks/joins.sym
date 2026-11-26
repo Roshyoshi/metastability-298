@@ -1,0 +1,36 @@
+v {xschem version=3.4.4 file_version=1.2}
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+template="name=x1"
+}
+V {}
+S {}
+E {}
+L 4 -60 -60 60 -60 {}
+L 4 -60 60 60 60 {}
+L 4 -60 -60 -60 60 {}
+L 4 60 -60 60 60 {}
+L 4 -80 -40 -60 -40 {}
+B 5 -82.5 -42.5 -77.5 -37.5 {name=bank_early_q dir=in}
+T {bank_early_q} -57 -46 0 0 0.15 0.15 {}
+L 4 -80 -20 -60 -20 {}
+B 5 -82.5 -22.5 -77.5 -17.5 {name=bank_selected_q dir=in}
+T {bank_selected_q} -57 -26 0 0 0.15 0.15 {}
+L 4 -80 0 -60 0 {}
+B 5 -82.5 -2.5 -77.5 2.5 {name=early_q dir=in}
+T {early_q} -57 -6 0 0 0.15 0.15 {}
+L 4 -80 20 -60 20 {}
+B 5 -82.5 17.5 -77.5 22.5 {name=selected_q dir=in}
+T {selected_q} -57 14 0 0 0.15 0.15 {}
+L 4 -80 40 -60 40 {}
+B 5 -82.5 37.5 -77.5 42.5 {name=ui_in_7 dir=in}
+T {ui_in_7} -57 34 0 0 0.15 0.15 {}
+L 4 60 -40 80 -40 {}
+B 5 77.5 -42.5 82.5 -37.5 {name=ctrl_early dir=out}
+T {ctrl_early} 57 -46 0 1 0.15 0.15 {}
+L 4 60 -20 80 -20 {}
+B 5 77.5 -22.5 82.5 -17.5 {name=ctrl_q dir=out}
+T {ctrl_q} 57 -26 0 1 0.15 0.15 {}
+T {joins} -58 -76 0 0 0.2 0.2 {}
+T {@name} -58 64 0 0 0.15 0.15 {}

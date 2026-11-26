@@ -1,4 +1,38 @@
 * LVS reference netlist of tt_um_metastability_characterizer (generated; PDK cell subcircuits with junction geometry)
+.SUBCKT gf180mcu_as_sc_mcu7t3v3__inv_2 VDD VNW VPW VSS Y A
+X_M0 VDD A Y VNW pfet_03v3 W=1.38e-06 L=2.8e-07 ad=6.072e-13 as=3.588e-13 pd=3.64e-06 ps=1.9e-06
+X_M1 Y A VSS VPW nfet_03v3 W=1e-06 L=2.8e-07 ad=2.6e-13 as=4.4e-13 pd=1.52e-06 ps=2.88e-06
+X_M2 Y A VDD VNW pfet_03v3 W=1.38e-06 L=2.8e-07 ad=3.588e-13 as=6.072e-13 pd=1.9e-06 ps=3.64e-06
+X_M3 VSS A Y VPW nfet_03v3 W=1e-06 L=2.8e-07 ad=4.4e-13 as=2.6e-13 pd=2.88e-06 ps=1.52e-06
+.ENDS
+.SUBCKT gf180mcu_as_sc_mcu7t3v3__nand2_2 VDD VNW VPW VSS Y B A
+X_M0 VDD A Y VNW pfet_03v3 W=1.38e-06 L=2.8e-07 ad=3.588e-13 as=3.588e-13 pd=1.9e-06 ps=1.9e-06
+X_M1 VSS A a_28_68# VPW nfet_03v3 W=1e-06 L=2.8e-07 ad=2.6e-13 as=4.4e-13 pd=1.52e-06 ps=2.88e-06
+X_M2 Y B VDD VNW pfet_03v3 W=1.38e-06 L=2.8e-07 ad=3.588e-13 as=3.588e-13 pd=1.9e-06 ps=1.9e-06
+X_M3 a_28_68# B Y VPW nfet_03v3 W=1e-06 L=2.8e-07 ad=5.15e-13 as=2.6e-13 pd=3.03e-06 ps=1.52e-06
+X_M4 VDD B Y VNW pfet_03v3 W=1.38e-06 L=2.8e-07 ad=7.176e-13 as=3.588e-13 pd=3.8e-06 ps=1.9e-06
+X_M5 Y B a_28_68# VPW nfet_03v3 W=1e-06 L=2.8e-07 ad=2.6e-13 as=2.6e-13 pd=1.52e-06 ps=1.52e-06
+X_M6 Y A VDD VNW pfet_03v3 W=1.38e-06 L=2.8e-07 ad=3.588e-13 as=6.072e-13 pd=1.9e-06 ps=3.64e-06
+X_M7 a_28_68# A VSS VPW nfet_03v3 W=1e-06 L=2.8e-07 ad=2.6e-13 as=2.6e-13 pd=1.52e-06 ps=1.52e-06
+.ENDS
+.SUBCKT gf180mcu_as_sc_mcu7t3v3__nand2_4 VDD VNW VPW VSS Y A B
+X_M0 a_28_68# B Y VPW nfet_03v3 W=1e-06 L=2.8e-07 ad=2.6e-13 as=2.6e-13 pd=1.52e-06 ps=1.52e-06
+X_M1 VDD A Y VNW pfet_03v3 W=1.38e-06 L=2.8e-07 ad=3.588e-13 as=3.588e-13 pd=1.9e-06 ps=1.9e-06
+X_M2 Y B VDD VNW pfet_03v3 W=1.38e-06 L=2.8e-07 ad=3.588e-13 as=3.588e-13 pd=1.9e-06 ps=1.9e-06
+X_M3 VSS A a_28_68# VPW nfet_03v3 W=1e-06 L=2.8e-07 ad=2.6e-13 as=4.4e-13 pd=1.52e-06 ps=2.88e-06
+X_M4 VDD B Y VNW pfet_03v3 W=1.38e-06 L=2.8e-07 ad=9.384e-13 as=3.588e-13 pd=4.12e-06 ps=1.9e-06
+X_M5 Y B a_28_68# VPW nfet_03v3 W=1e-06 L=2.8e-07 ad=2.6e-13 as=2.6e-13 pd=1.52e-06 ps=1.52e-06
+X_M6 Y A VDD VNW pfet_03v3 W=1.38e-06 L=2.8e-07 ad=3.588e-13 as=3.588e-13 pd=1.9e-06 ps=1.9e-06
+X_M7 VDD B Y VNW pfet_03v3 W=1.38e-06 L=2.8e-07 ad=3.588e-13 as=3.588e-13 pd=1.9e-06 ps=1.9e-06
+X_M8 a_28_68# A VSS VPW nfet_03v3 W=1e-06 L=2.8e-07 ad=2.6e-13 as=2.6e-13 pd=1.52e-06 ps=1.52e-06
+X_M9 a_28_68# B Y VPW nfet_03v3 W=1e-06 L=2.8e-07 ad=6.8e-13 as=2.6e-13 pd=3.36e-06 ps=1.52e-06
+X_M10 VDD A Y VNW pfet_03v3 W=1.38e-06 L=2.8e-07 ad=3.588e-13 as=3.588e-13 pd=1.9e-06 ps=1.9e-06
+X_M11 VSS A a_28_68# VPW nfet_03v3 W=1e-06 L=2.8e-07 ad=2.6e-13 as=2.6e-13 pd=1.52e-06 ps=1.52e-06
+X_M12 Y B VDD VNW pfet_03v3 W=1.38e-06 L=2.8e-07 ad=3.588e-13 as=3.588e-13 pd=1.9e-06 ps=1.9e-06
+X_M13 Y B a_28_68# VPW nfet_03v3 W=1e-06 L=2.8e-07 ad=2.6e-13 as=2.6e-13 pd=1.52e-06 ps=1.52e-06
+X_M14 Y A VDD VNW pfet_03v3 W=1.38e-06 L=2.8e-07 ad=3.588e-13 as=6.072e-13 pd=1.9e-06 ps=3.64e-06
+X_M15 a_28_68# A VSS VPW nfet_03v3 W=1e-06 L=2.8e-07 ad=2.6e-13 as=2.6e-13 pd=1.52e-06 ps=1.52e-06
+.ENDS
 .SUBCKT gf180mcu_fd_sc_mcu7t5v0__and2_1 A1 A2 Z VDD VNW VPW VSS
 X_i_2 net_0 A1 Z_neg VPW nfet_05v0 W=3.65e-07 L=6e-07 ad=1.825e-13 as=1.825e-13 pd=1.73e-06 ps=1.73e-06
 X_i_3 VSS A2 net_0 VPW nfet_05v0 W=3.65e-07 L=6e-07 ad=1.825e-13 as=1.825e-13 pd=1.73e-06 ps=1.73e-06
@@ -277,6 +311,53 @@ Xu_sfw sqb s1 q VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
 Xu_skp q s2 sqb VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__nand2_1
 .ENDS
 
+.SUBCKT meta_dut_n3ffb d clk q VDPWR VGND
+Xu_cki VDPWR VDPWR VGND VGND clkn clk gf180mcu_as_sc_mcu7t3v3__inv_2
+Xu_mg1 VDPWR VDPWR VGND VGND g1 d clkn gf180mcu_as_sc_mcu7t3v3__nand2_2
+Xu_mg2 VDPWR VDPWR VGND VGND g2 g1 clkn gf180mcu_as_sc_mcu7t3v3__nand2_2
+Xu_mfw VDPWR VDPWR VGND VGND mq g1 mqb gf180mcu_as_sc_mcu7t3v3__nand2_4
+Xu_mkp VDPWR VDPWR VGND VGND mqb g2 mq gf180mcu_as_sc_mcu7t3v3__nand2_4
+Xu_sg1 VDPWR VDPWR VGND VGND s1 mq clk gf180mcu_as_sc_mcu7t3v3__nand2_2
+Xu_sg2 VDPWR VDPWR VGND VGND s2 s1 clk gf180mcu_as_sc_mcu7t3v3__nand2_2
+Xu_sfw VDPWR VDPWR VGND VGND q sqb s1 gf180mcu_as_sc_mcu7t3v3__nand2_2
+Xu_skp VDPWR VDPWR VGND VGND sqb q s2 gf180mcu_as_sc_mcu7t3v3__nand2_2
+.ENDS
+
+.SUBCKT meta_dut_j3a d clk q VDPWR VGND
+XMckin_0 ckb clk VGND VGND nfet_03v3 w=1e-06 l=2.8e-07 ad=5e-13 as=5e-13 pd=3e-06 ps=3e-06
+XMckip_0 ckb clk VDPWR VDPWR pfet_03v3 w=1.38e-06 l=2.8e-07 ad=6.9e-13 as=6.9e-13 pd=3.76e-06 ps=3.76e-06
+XMdin_0 db d VGND VGND nfet_03v3 w=1e-06 l=2.8e-07 ad=5e-13 as=5e-13 pd=3e-06 ps=3e-06
+XMdip_0 db d VDPWR VDPWR pfet_03v3 w=1.38e-06 l=2.8e-07 ad=6.9e-13 as=6.9e-13 pd=3.76e-06 ps=3.76e-06
+XMmn1_0 x y VGND VGND nfet_03v3 w=1e-06 l=2.8e-07 ad=5e-13 as=5e-13 pd=3e-06 ps=3e-06
+XMmn1_1 x y VGND VGND nfet_03v3 w=1e-06 l=2.8e-07 ad=5e-13 as=5e-13 pd=3e-06 ps=3e-06
+XMmn1_2 x y VGND VGND nfet_03v3 w=1e-06 l=2.8e-07 ad=5e-13 as=5e-13 pd=3e-06 ps=3e-06
+XMmn1_3 x y VGND VGND nfet_03v3 w=1e-06 l=2.8e-07 ad=5e-13 as=5e-13 pd=3e-06 ps=3e-06
+XMmp1_0 x y VDPWR VDPWR pfet_03v3 w=1e-06 l=2.8e-07 ad=5e-13 as=5e-13 pd=3e-06 ps=3e-06
+XMmp1_1 x y VDPWR VDPWR pfet_03v3 w=1e-06 l=2.8e-07 ad=5e-13 as=5e-13 pd=3e-06 ps=3e-06
+XMmn2_0 y x VGND VGND nfet_03v3 w=1e-06 l=2.8e-07 ad=5e-13 as=5e-13 pd=3e-06 ps=3e-06
+XMmn2_1 y x VGND VGND nfet_03v3 w=1e-06 l=2.8e-07 ad=5e-13 as=5e-13 pd=3e-06 ps=3e-06
+XMmn2_2 y x VGND VGND nfet_03v3 w=1e-06 l=2.8e-07 ad=5e-13 as=5e-13 pd=3e-06 ps=3e-06
+XMmn2_3 y x VGND VGND nfet_03v3 w=1e-06 l=2.8e-07 ad=5e-13 as=5e-13 pd=3e-06 ps=3e-06
+XMmp2_0 y x VDPWR VDPWR pfet_03v3 w=1e-06 l=2.8e-07 ad=5e-13 as=5e-13 pd=3e-06 ps=3e-06
+XMmp2_1 y x VDPWR VDPWR pfet_03v3 w=1e-06 l=2.8e-07 ad=5e-13 as=5e-13 pd=3e-06 ps=3e-06
+XMmwx_0 x ckb ax VGND nfet_03v3 w=2e-06 l=2.8e-07 ad=1e-12 as=1e-12 pd=5e-06 ps=5e-06
+XMmdx_0 ax db VGND VGND nfet_03v3 w=4e-06 l=2.8e-07 ad=2e-12 as=2e-12 pd=9e-06 ps=9e-06
+XMmwy_0 y ckb ay VGND nfet_03v3 w=2e-06 l=2.8e-07 ad=1e-12 as=1e-12 pd=5e-06 ps=5e-06
+XMmdy_0 ay d VGND VGND nfet_03v3 w=4e-06 l=2.8e-07 ad=2e-12 as=2e-12 pd=9e-06 ps=9e-06
+XMsn1_0 s sb VGND VGND nfet_03v3 w=5e-07 l=2.8e-07 ad=2.5e-13 as=2.5e-13 pd=2e-06 ps=2e-06
+XMsp1_0 s sb VDPWR VDPWR pfet_03v3 w=3e-07 l=2.8e-07 ad=1.5e-13 as=1.5e-13 pd=1.6e-06 ps=1.6e-06
+XMsn2_0 sb s VGND VGND nfet_03v3 w=5e-07 l=2.8e-07 ad=2.5e-13 as=2.5e-13 pd=2e-06 ps=2e-06
+XMsp2_0 sb s VDPWR VDPWR pfet_03v3 w=3e-07 l=2.8e-07 ad=1.5e-13 as=1.5e-13 pd=1.6e-06 ps=1.6e-06
+XMswa_0 sb clk c1 VGND nfet_03v3 w=3e-07 l=2.8e-07 ad=1.5e-13 as=1.5e-13 pd=1.6e-06 ps=1.6e-06
+XMsda_0 c1 x VGND VGND nfet_03v3 w=3e-07 l=2.8e-07 ad=1.5e-13 as=1.5e-13 pd=1.6e-06 ps=1.6e-06
+XMswb_0 s clk c2 VGND nfet_03v3 w=3e-07 l=2.8e-07 ad=1.5e-13 as=1.5e-13 pd=1.6e-06 ps=1.6e-06
+XMsdb_0 c2 y VGND VGND nfet_03v3 w=3e-07 l=2.8e-07 ad=1.5e-13 as=1.5e-13 pd=1.6e-06 ps=1.6e-06
+XMqon_0 q sb VGND VGND nfet_03v3 w=1e-06 l=2.8e-07 ad=5e-13 as=5e-13 pd=3e-06 ps=3e-06
+XMqop_0 q sb VDPWR VDPWR pfet_03v3 w=1.38e-06 l=2.8e-07 ad=6.9e-13 as=6.9e-13 pd=3.76e-06 ps=3.76e-06
+XMqdn_0 qn s VGND VGND nfet_03v3 w=1e-06 l=2.8e-07 ad=5e-13 as=5e-13 pd=3e-06 ps=3e-06
+XMqdp_0 qn s VDPWR VDPWR pfet_03v3 w=1.38e-06 l=2.8e-07 ad=6.9e-13 as=6.9e-13 pd=3.76e-06 ps=3.76e-06
+.ENDS
+
 .SUBCKT meta_delay_analog launch control sample_clk VDPWR VGND
 XMMP slow launch VDPWR VDPWR pfet_05v0 w=1.22e-06 l=5e-07 ad=6.1e-13 as=6.1e-13 pd=3.44e-06 ps=3.44e-06
 XMMN slow launch foot VGND nfet_05v0 w=8.2e-07 l=6e-07 ad=4.1e-13 as=4.1e-13 pd=2.64e-06 ps=2.64e-06
@@ -384,7 +465,7 @@ Xwant_and run finished_n want_count VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v
 .ENDS
 
 .SUBCKT tt_um_metastability_characterizer VDPWR VGND ui_in[0] ui_in[1] ui_in[2] ui_in[3] ui_in[4] ui_in[5] ui_in[6] ui_in[7] uo_out[0] uo_out[1] uo_out[2] uo_out[3] uo_out[4] uo_out[5] uo_out[6] uo_out[7] uio_in[0] uio_in[1] uio_in[2] uio_in[3] uio_in[4] uio_in[5] uio_in[6] uio_in[7] uio_out[0] uio_out[1] uio_out[2] uio_out[3] uio_out[4] uio_out[5] uio_out[6] uio_out[7] uio_oe[0] uio_oe[1] uio_oe[2] uio_oe[3] uio_oe[4] uio_oe[5] uio_oe[6] uio_oe[7] ua[0] ua[1] ua[2] ua[3] ua[4] ua[5] ua[6] ua[7] ena clk rst_n
-Xcontroller clk rst_n ena ui_in[4] selected_q early_q ui_in[0] capture uio_out[1] uio_out[2] uio_out[3] uo_out[0] uo_out[1] uo_out[2] uo_out[3] uo_out[4] uo_out[5] uo_out[6] uo_out[7] VDPWR VGND compact_control
+Xcontroller clk rst_n ena ui_in[4] ctrl_q ctrl_early ui_in[0] capture uio_out[1] uio_out[2] uio_out[3] uo_out[0] uo_out[1] uo_out[2] uo_out[3] uo_out[4] uo_out[5] uo_out[6] uo_out[7] VDPWR VGND compact_control
 Xdata0 ui_in[6] data_b VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_2
 Xdata1 data_b data_local VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_2
 Xcap0 capture capture_b VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_2
@@ -414,4 +495,21 @@ Xu_dut2 data_local capture_local q[1] VDPWR VGND meta_dut_baseline
 Xu_dut3 data_local capture_local q[2] VDPWR VGND meta_dut_keeper
 Xu_dut4 data_local capture_local q[3] VDPWR VGND meta_dut_forward
 Xdelay capture_iso ua[0] early_clk VDPWR VGND meta_delay_analog
+Xbank_a_ff bank_b clk bank_a VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffq_1
+Xbank_a_inv bank_a bank_a_n VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_1
+Xbank_b_ff bank_a_n rst_n clk bank_b VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+Xbank_cap0 bank_a bank_cap_b VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_2
+Xbank_cap1 bank_cap_b bank_cap VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_2
+Xbank_data0 uio_in[0] bank_data_b VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_2
+Xbank_data1 bank_data_b bank_data VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_2
+Xbank_select bank_q[0] bank_q[1] bank_q[2] bank_zero ui_in[1] ui_in[2] bank_selected_q VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__mux4_1
+Xbank_tie bank_zero VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__tiel
+Xbank_obs0 ui_in[5] bank_obs_b VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_1
+Xbank_obs1 bank_obs_b bank_obs_clk VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__inv_2
+Xbank_observer bank_selected_q bank_obs_clk bank_early_q VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__dffq_1
+Xjoin_q selected_q bank_selected_q ui_in[7] ctrl_q VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__mux2_1
+Xjoin_e early_q bank_early_q ui_in[7] ctrl_early VDPWR VDPWR VGND VGND gf180mcu_fd_sc_mcu7t5v0__mux2_1
+Xbank_n1 bank_data bank_cap bank_q[0] VDPWR VGND meta_dut_n3ffb
+Xbank_n2 bank_data bank_cap bank_q[1] VDPWR VGND meta_dut_j3a
+Xbank_n3 bank_data bank_cap bank_q[2] VDPWR VGND meta_dut_keeper
 .ENDS

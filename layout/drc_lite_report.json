@@ -30,6 +30,14 @@
    "diff_um2": 0.0
   },
   {
+   "step": "M4",
+   "net": "ui_in[2]",
+   "ratio": 151.6,
+   "limit": 400.0,
+   "gate_um2": 1.003,
+   "diff_um2": 0.0
+  },
+  {
    "step": "M3",
    "net": "q[2]",
    "ratio": 148.5,
@@ -59,14 +67,6 @@
    "ratio": 136.5,
    "limit": 400.0,
    "gate_um2": 0.523,
-   "diff_um2": 0.0
-  },
-  {
-   "step": "M4",
-   "net": "uio_in[6]",
-   "ratio": 130.7,
-   "limit": 400.0,
-   "gate_um2": 1.003,
    "diff_um2": 0.0
   }
  ]

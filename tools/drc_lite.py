@@ -76,14 +76,20 @@ def union_area(rects):
         area += tot * (xb - xa)
     return area
 
+def all_rows(P):
+    """(row key, placed items, y of the row) for the existing rows and the rows of the flip-flop bank."""
+    rows = [(r, items, P['yrow'][r]) for r, items in enumerate(P['placed'])]
+    if 'bank' in P:
+        rows += [(('bank', r), items, P['bank']['yrow'][r]) for r, items in enumerate(P['bank']['placed'])]
+    return rows
+
 def collect(P):
     """All shapes as (layer, x1, y1, x2, y2, net, tag). tag: 'route', ('pin', inst, pin), ('rail', row, net), ('chip', pin)."""
     shapes = []
     for layer, rects in P['shapes'].r.items():
         for x1, y1, x2, y2, net in rects:
             shapes.append((layer, x1, y1, x2, y2, net, 'route'))
-    for r, items in enumerate(P['placed']):
-        yb = P['yrow'][r]
+    for r, items, yb in all_rows(P):
         for x0, cell, inst in items:
             lf = LG.lef(cell)
             for pin, info in lf['pins'].items():
@@ -101,6 +107,9 @@ def collect(P):
                     shapes.append(('M1', round(x0 + a, 3), round(yb + b, 3), round(x0 + c, 3), round(yb + d, 3), net, ('pin', inst['name'], pin)))
     for pin, net, (x1, y1, x2, y2) in P['pins_drawn']:
         shapes.append(('M4', x1, y1, x2, y2, net, ('chip', pin)))
+    # the Via1 of a bank block under each escape that starts on it (drawn in the block, not by the generator)
+    for x1, y1, x2, y2, net in P.get('bank', {}).get('block_vias', []):
+        shapes.append(('V1', x1, y1, x2, y2, net, 'route'))
     return shapes
 
 def check_geometry(P, shapes):
@@ -281,7 +290,7 @@ def connectivity(P, shapes):
                 net_comps[nt].add(c)
     # expected terminals per net
     expect = defaultdict(set)
-    for r, items in enumerate(P['placed']):
+    for r, items, yb in all_rows(P):
         for x0, cell, inst in items:
             if inst is None:
                 continue
@@ -365,7 +374,7 @@ def antenna(P, shapes):
     against that gate's area (plus 15x any diffusion already connected)."""
     order = ['M1', 'V1', 'M2', 'V2', 'M3', 'V3', 'M4']
     pinfo = {}
-    for r, items in enumerate(P['placed']):
+    for r, items, yb in all_rows(P):
         for x0, cell, inst in items:
             if inst is None:
                 continue

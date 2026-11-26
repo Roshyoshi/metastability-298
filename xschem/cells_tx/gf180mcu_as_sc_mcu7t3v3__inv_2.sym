@@ -1,0 +1,21 @@
+v {xschem version=3.4.4 file_version=1.2}
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+template="name=x1"
+}
+V {}
+S {}
+E {}
+L 4 -30 -20 30 -20 {}
+L 4 -30 20 30 20 {}
+L 4 -30 -20 -30 20 {}
+L 4 30 -20 30 20 {}
+L 4 -50 0 -30 0 {}
+B 5 -52.5 -2.5 -47.5 2.5 {name=A dir=in}
+T {A} -27 -6 0 0 0.15 0.15 {}
+L 4 30 0 50 0 {}
+B 5 47.5 -2.5 52.5 2.5 {name=Y dir=out}
+T {Y} 27 -6 0 1 0.15 0.15 {}
+T {gf180mcu_as_sc_mcu7t3v3__inv_2} -28 -36 0 0 0.2 0.2 {}
+T {@name} -28 24 0 0 0.15 0.15 {}

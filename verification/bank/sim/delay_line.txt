@@ -1,0 +1,13 @@
+RESULT post_bank typical 3.3 27.0 V=1.000 d=4539.76 dmon=4465.74
+RESULT post_bank typical 3.3 27.0 V=1.100 d=3634.58 dmon=3551.98
+RESULT post_bank typical 3.3 27.0 V=1.200 d=3069.25 dmon=2977.48
+RESULT post_bank typical 3.3 27.0 V=1.300 d=2687.54 dmon=2587.89
+RESULT post_bank typical 3.3 27.0 V=1.400 d=2415.55 dmon=2309.7
+RESULT post_bank typical 3.3 27.0 V=1.500 d=2213.86 dmon=2103.29
+RESULT post_bank typical 3.3 27.0 V=1.800 d=1842.56 dmon=1722.66
+RESULT post_bank typical 3.3 27.0 V=2.400 d=1535.9 dmon=1412.88
+RESULT post_bank typical 3.3 27.0 V=3.000 d=1428.38 dmon=1307.64
+RESULT post_bank typical 3.3 27.0 V=3.300 d=1401.69 dmon=1281.46
+RESULT post_old typical 3.3 27.0 V=1.000 d=4537.86 dmon=4463.79
+RESULT post_old typical 3.3 27.0 V=1.300 d=2685.74 dmon=2586.02
+RESULT post_old typical 3.3 27.0 V=3.300 d=1399.95 dmon=1279.72

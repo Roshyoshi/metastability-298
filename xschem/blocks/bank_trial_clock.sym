@@ -1,0 +1,24 @@
+v {xschem version=3.4.4 file_version=1.2}
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+template="name=x1"
+}
+V {}
+S {}
+E {}
+L 4 -60 -30 60 -30 {}
+L 4 -60 30 60 30 {}
+L 4 -60 -30 -60 30 {}
+L 4 60 -30 60 30 {}
+L 4 -80 -10 -60 -10 {}
+B 5 -82.5 -12.5 -77.5 -7.5 {name=clk dir=in}
+T {clk} -57 -16 0 0 0.15 0.15 {}
+L 4 -80 10 -60 10 {}
+B 5 -82.5 7.5 -77.5 12.5 {name=rst_n dir=in}
+T {rst_n} -57 4 0 0 0.15 0.15 {}
+L 4 60 -10 80 -10 {}
+B 5 77.5 -12.5 82.5 -7.5 {name=bank_a dir=out}
+T {bank_a} 57 -16 0 1 0.15 0.15 {}
+T {bank_trial_clock} -58 -46 0 0 0.2 0.2 {}
+T {@name} -58 34 0 0 0.15 0.15 {}

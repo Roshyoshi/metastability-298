@@ -77,10 +77,21 @@ FUNC = {
     'antenna': 'two reverse-biased diodes on I (protect the gate on I while the chip is fabricated)',
     'tiel': 'ZN = 0 (tie-low cell)', 'buf': 'Z = I (buffer)', 'dffrnq': 'Q takes D on the rising CLK edge; RN = 0 clears Q',
 }
+FUNC.update({BM.LIB3 + 'inv': 'Y = NOT A', BM.LIB3 + 'nand2': 'Y = NOT (A AND B)'})
 def family(cell):
     return re.sub(r'_\d+$', '', cell)
 
-OUTS = {'Z', 'ZN', 'Q'}
+def lib_text(cell):
+    """Library and device names of a cell, for the sheet titles."""
+    if cell.startswith(BM.LIB3):
+        return 'gf180mcu_as_sc_mcu7t3v3 ' + cell.replace(BM.LIB3, ''), 'nfet_03v3 / pfet_03v3'
+    return 'gf180mcu_fd_sc_mcu7t5v0 ' + cell, 'nfet_05v0 / pfet_05v0'
+
+def mos_sym(kind, model):
+    """PDK symbol of a MOSFET: the 3.3 V devices have their own symbols (same pins and netlist format)."""
+    return f'{PDKSYM}/{kind}_03v3.sym' if '03v3' in model else f'{PDKSYM}/{kind}_06v0.sym'
+
+OUTS = {'Z', 'ZN', 'Q', 'Y'}
 
 # ------------------------------------------------------------------ scene (shared by .sch writer and preview)
 class Scene:
@@ -135,7 +146,7 @@ def mos(sc, d, x, y, nets):
     mname = d['name'] if d['name'].upper().startswith('M') else 'M' + d['name']
     attrs = (f'name={mname} L={round(L, 4):g}u W={round(W, 4):g}u nf=1 m=1 ad={d["ad"]} as={d["as"]} pd={d["pd"]} ps={d["ps"]} '
              f'nrd=0 nrs=0 sa=0 sb=0 sd=0 model={d["model"]} spiceprefix=X')
-    sc.inst(f'{PDKSYM}/{kind}_06v0.sym', x, y, attrs, ('mos', kind, mname, W, L))
+    sc.inst(mos_sym(kind, d['model']), x, y, attrs, ('mos', kind, mname, W, L))
     for t, (dx, dy) in MOSPIN[kind].items():
         sc.lab(x + dx, y + dy, nets[t], right=dx > 0)
 
@@ -201,13 +212,14 @@ def wired_scene(cell):
     R = WC.wired_cell(dev, ins, outs, None)
     sc = Scene(cell)
     fam = family(cell)
-    sc.text(f'{cell}: {FUNC.get(fam, "")}   ({len(dev)} transistors, gf180mcu_fd_sc_mcu7t5v0 {cell}; '
-            f'nfet_05v0 / pfet_05v0, W and L in um)', 0, -140, 0.4)
+    lt, dt = lib_text(cell)
+    sc.text(f'{cell}: {FUNC.get(fam, "")}   ({len(dev)} transistors, {lt}; '
+            f'{dt}, W and L in um)', 0, -140, 0.4)
     sc.text('PMOS hang from VDD at the top, NMOS stand on ground at the bottom; stages run left to right in signal order. '
             'Crossing wires are not connected; a join has a dot.', 0, -110, 0.25)
     for kind, x, y, d in R['inst']:
         attrs, mname, W, L = mos_attrs(d)
-        sc.inst(f'{PDKSYM}/{kind}_06v0.sym', x, y, attrs, ('mos', kind, mname, W, L))
+        sc.inst(mos_sym(kind, d['model']), x, y, attrs, ('mos', kind, mname, W, L))
     for (x1, y1), (x2, y2), sup in R['supplies']:
         sc.wire(x1, y1, x2, y2, sup)
         sym = 'devices/vdd.sym' if sup == 'VDD' else 'devices/gnd.sym'
@@ -292,6 +304,32 @@ def master_blocks():
         blocks['delay_line']['insts'].append((d['name'], 'mos', d, {'d': d['d'], 'g': d['g'], 's': d['s'], 'b': d['b']}))
     for i in BM.DELAY_CELLS:
         blocks['delay_line']['insts'].append((i['name'], 'cell', cellref(i['cell']), dict(i['conns'])))
+    # flip-flop bank (revision of 25 Nov 2026): six blocks under the composite 'bank', the two joins at the top
+    add('bank_trial_clock', 'Bank: copy of the trial clock (a and b of the controller, clocked by clk, reset by rst_n)', 'Bank')
+    add('bank_capture_drivers', 'Bank: capture-edge drivers', 'Bank')
+    add('bank_data_input', 'Bank: data input buffers (uio_in[0])', 'Bank')
+    add('bank_duts', 'Bank: flip-flops under test N1 (3.3 V NAND), N2 (3.3 V jamb latch j3a), N3 (copy of DUT3)', 'Bank')
+    add('bank_selector', 'Bank: selector (ui_in[2:1]: 00 N1, 01 N2, 10 N3, 11 constant 0) and its tie cell', 'Bank')
+    add('bank_early_observer', 'Bank: early observer, clocked from the pin ui_in[5]', 'Bank')
+    add('joins', 'Joins: ui_in[7] = 0 gives the controller selected_q / early_q, ui_in[7] = 1 those of the bank', 'Joins')
+    BANKBLK = {'bank_a_ff': 'bank_trial_clock', 'bank_a_inv': 'bank_trial_clock', 'bank_b_ff': 'bank_trial_clock',
+               'bank_cap0': 'bank_capture_drivers', 'bank_cap1': 'bank_capture_drivers',
+               'bank_data0': 'bank_data_input', 'bank_data1': 'bank_data_input',
+               'bank_select': 'bank_selector', 'bank_tie': 'bank_selector',
+               'bank_obs0': 'bank_early_observer', 'bank_obs1': 'bank_early_observer', 'bank_observer': 'bank_early_observer',
+               'join_q': 'joins', 'join_e': 'joins'}
+    for box, i in BM.BANK:
+        blocks[BANKBLK[i['name']]]['insts'].append((i['name'], 'cell', cellref(i['cell']), dict(i['conns'])))
+    for box, name, sub, nets in BM.BANK_SUB:
+        blocks['bank_duts']['insts'].append((name, 'block', sub, dict(zip(['d', 'clk', 'q'], nets))))
+    add('meta_dut_n3ffb', 'N1: NAND flip-flop of 3.3 V cells (forward and keeper nand2_4, the rest nand2_2 / inv_2)', 'Bank')
+    for i in BM.BANK_SUBCKTS['meta_dut_n3ffb']:
+        blocks['meta_dut_n3ffb']['insts'].append((i['name'], 'cell', cellref(i['cell']), dict(i['conns'])))
+    for sub, devs in BM.BANK_DEVICE_SUBCKTS.items():
+        add(sub, 'N2: jamb-latch flip-flop j3a, 3.3 V transistors (master NMOS 4 x 1 um, PMOS 2 x 1 um, write 2 um, '
+                 'data 4 um; minimum slave; L = 0.28 um)', 'Bank')
+        for d in devs:
+            blocks[sub]['insts'].append((d['name'], 'mos', d, {'d': d['d'], 'g': d['g'], 's': d['s'], 'b': d['b']}))
     # controller blocks: the eight parts of compact_control
     for blk, box, title, _ in BM.CTRL_BLOCKS:
         add(blk, title, box)
@@ -306,7 +344,8 @@ def pin_dirs(cellkind, ref):
         return ins, outs
     if cellkind == 'block':
         return {'meta_dut_baseline': (['d', 'clk'], ['q']), 'meta_dut_keeper': (['d', 'clk'], ['q']),
-                'meta_dut_forward': (['d', 'clk'], ['q']), 'delay_line': (['launch', 'control'], ['sample_clk'])}[ref]
+                'meta_dut_forward': (['d', 'clk'], ['q']), 'delay_line': (['launch', 'control'], ['sample_clk']),
+                'meta_dut_n3ffb': (['d', 'clk'], ['q']), 'meta_dut_j3a': (['d', 'clk'], ['q'])}[ref]
     return [], []
 
 def block_ports(blocks, name, context_nets):
@@ -390,15 +429,25 @@ PLACE = {
                       **{f'k{i}_ff': (300 + 330 * (i % 6), 260 * (i // 6)) for i in range(1, 16)},
                       **{f'k{i}_inv': (300 + 330 * (i % 6), 260 * (i // 6) + 120) for i in range(1, 16)}},
     'readout': {f'byte{i}_mux': (300 + 330 * (i % 4), 170 * (i // 4)) for i in range(8)},
+    # flip-flop bank
+    'meta_dut_n3ffb': DUT_PLACE,
+    'meta_dut_j3a': {d[0]: (240 + 200 * (k % 8), 80 + 160 * (k // 8)) for k, d in enumerate(BM.J3A_DEVICES)},
+    'bank_trial_clock': {'bank_a_ff': (300, 0), 'bank_a_inv': (560, 0), 'bank_b_ff': (820, 20)},
+    'bank_capture_drivers': {'bank_cap0': (240, 0), 'bank_cap1': (440, 0)},
+    'bank_data_input': {'bank_data0': (240, 0), 'bank_data1': (440, 0)},
+    'bank_duts': {'bank_n1': (300, 0), 'bank_n2': (300, 130), 'bank_n3': (300, 260)},
+    'bank_selector': {'bank_tie': (240, 0), 'bank_select': (500, 60)},
+    'bank_early_observer': {'bank_obs0': (240, 0), 'bank_obs1': (440, 0), 'bank_observer': (700, 20)},
+    'joins': {'join_q': (300, 0), 'join_e': (300, 130)},
 }
 COLUMN_TEXT = {
     'meta_dut_baseline': [(270, -20, 'master door'), (500, -20, 'master latch (measured)'), (730, -20, 'slave door'), (960, -20, 'slave latch')],
 }
-for k in ('meta_dut_keeper', 'meta_dut_forward'):
+for k in ('meta_dut_keeper', 'meta_dut_forward', 'meta_dut_n3ffb'):
     COLUMN_TEXT[k] = COLUMN_TEXT['meta_dut_baseline']
 # Pre-layout wiring estimate on the master nodes (as in every reported simulation). Not part of
 # chip.cdl: after layout, extraction supplies the real wiring capacitance.
-WIRING = {'meta_dut_baseline': True, 'meta_dut_keeper': True, 'meta_dut_forward': True}
+WIRING = {'meta_dut_baseline': True, 'meta_dut_keeper': True, 'meta_dut_forward': True, 'meta_dut_n3ffb': True}
 
 def block_scene(name, blk, ins, outs, symref):
     sc = Scene(name)
@@ -462,13 +511,17 @@ def block_scene(name, blk, ins, outs, symref):
 
 # ------------------------------------------------------------------ writers
 HIER = OrderedDict([
-    ('chip', ['data_input', 'capture_drivers', 'delay', 'duts', 'selector', 'early_observer', 'controller', 'monitors', 'pin_drivers']),
+    ('chip', ['data_input', 'capture_drivers', 'delay', 'duts', 'selector', 'early_observer', 'controller', 'monitors', 'pin_drivers',
+              'joins', 'bank']),
     ('controller', [b[0] for b in BM.CTRL_BLOCKS]),
+    ('bank', ['bank_trial_clock', 'bank_capture_drivers', 'bank_data_input', 'bank_duts', 'bank_selector', 'bank_early_observer']),
 ])
-SUB_OF = {'meta_dut_baseline': 'duts', 'meta_dut_keeper': 'duts', 'meta_dut_forward': 'duts', 'delay_line': 'delay'}
+SUB_OF = {'meta_dut_baseline': 'duts', 'meta_dut_keeper': 'duts', 'meta_dut_forward': 'duts', 'delay_line': 'delay',
+          'meta_dut_n3ffb': 'bank_duts', 'meta_dut_j3a': 'bank_duts'}
 COMPOSITE_TITLE = {
     'chip': 'tt_um_metastability_characterizer: the whole tile (GF180, 1x2 analog template)',
     'controller': 'Controller (src/gf180/compact_control.v, 93 cells, 1,388 transistors), split into its eight parts',
+    'bank': 'Flip-flop bank: three more flip-flops under test, their own capture copy, selector and early observer',
 }
 
 def composite_scene(name, children, ports, toplevel_pins=None):
@@ -536,8 +589,8 @@ def compute_ports(blocks):
         ports[b] = (sorted(n for n in ext if b not in drv[n]), sorted(n for n in ext if b in drv[n]))
     for b in SUB_OF:
         ports[b] = pin_dirs('block', b)
-    # composites below the chip: controller
-    for comp in ['controller']:
+    # composites below the chip: controller, bank
+    for comp in ['controller', 'bank']:
         kids = set(HIER[comp])
         nets = {n for n in use if use[n] & kids}
         ext = {n for n in nets if (use[n] - kids) or n in chip_pins}
@@ -569,10 +622,11 @@ def build(out):
         write_box_sym(out / 'blocks' / f'{b}.sym', b, [san(p) for p in ins], [san(p) for p in outs], b)
         sc = block_scene(b, blk, ins, outs, ref); scenes[('block', b)] = sc
         (out / 'blocks' / f'{b}.sch').write_text(sc.sch())
-    ins, outs = ports['controller']
-    write_box_sym(out / 'blocks' / 'controller.sym', 'controller', [san(p) for p in ins], [san(p) for p in outs], 'controller')
-    sc = composite_scene('controller', HIER['controller'], ports); scenes[('block', 'controller')] = sc
-    (out / 'blocks' / 'controller.sch').write_text(sc.sch())
+    for comp in ('controller', 'bank'):
+        ins, outs = ports[comp]
+        write_box_sym(out / 'blocks' / f'{comp}.sym', comp, [san(p) for p in ins], [san(p) for p in outs], comp)
+        sc = composite_scene(comp, HIER[comp], ports); scenes[('block', comp)] = sc
+        (out / 'blocks' / f'{comp}.sch').write_text(sc.sch())
     pin_in, pin_out = ports['chip']
     write_box_sym(out / 'chip.sym', 'chip', [san(p) for p in pin_in], [san(p) for p in pin_out], 'tt_um_metastability_characterizer')
     sc = composite_scene('chip', HIER['chip'], ports, (pin_in, pin_out)); scenes[('top', 'chip')] = sc

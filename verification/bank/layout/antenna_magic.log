@@ -1,0 +1,133 @@
+
+Magic 8.3 revision 573 - Compiled on Sun Nov 22 20:56:11 UTC 2026.
+Starting magic under Tcl interpreter
+Using the terminal as the console.
+WARNING: RLIMIT_NOFILE is above 1024 and Tcl_Version<9 this may cause runtime issues [rlim_cur=20000]
+Using NULL graphics device.
+Processing system .magicrc file
+Switching to WIRING tool.
+Switching to NETLIST tool.
+Switching to PICK tool.
+Switching to BOX tool.
+Sourcing design .magicrc for technology gf180mcuD ...
+10 Magic internal units = 1 Lambda
+Input style import: scaleFactor=10, multiplier=2
+The following types are not handled by extraction and will be treated as non-electrical types:
+    obsactive mvobsactive filldiff fillpoly m1hole obsm1 fillm1 obsv1 m2hole obsm2 fillm2 obsv2 m3hole obsm3 fillm3 m4hole obsm4 fillm4 m5hole obsm5 fillm5 glass fillblock lvstext obscomment 
+Scaled tech values by 10 / 1 to match internal grid scaling
+Loading gf180mcuD Device Generator Menu ...
+Loading "/home/claude/r8/bank/s3/ant/ant.tcl" from command line.
+Warning: Calma reading is not undoable!  I hope that's OK.
+Library written using GDS-II Release 6.0
+Library name: metastability
+Reading "gf180mcu_fd_sc_mcu7t5v0__and2_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__antenna".
+Reading "gf180mcu_fd_sc_mcu7t5v0__buf_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dffnq_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dffq_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__dffrnq_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__endcap".
+Reading "gf180mcu_fd_sc_mcu7t5v0__fill_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__filltie".
+Reading "gf180mcu_fd_sc_mcu7t5v0__inv_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__inv_2".
+Reading "meta_dly_cs".
+Reading "gf180mcu_fd_sc_mcu7t5v0__mux2_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__mux4_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__nand2_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__nand2_2".
+Reading "gf180mcu_fd_sc_mcu7t5v0__nand2_4".
+Reading "gf180mcu_fd_sc_mcu7t5v0__or2_1".
+Reading "gf180mcu_fd_sc_mcu7t5v0__tiel".
+Reading "gf180mcu_fd_sc_mcu7t5v0__xor2_1".
+Reading "gf180mcu_as_sc_mcu7t3v3__inv_2".
+CIF file read warning: CIF style import: units rescaled by factor of 5 / 1
+Reading "gf180mcu_as_sc_mcu7t3v3__nand2_2".
+Reading "gf180mcu_as_sc_mcu7t3v3__tap_2".
+Reading "gf180mcu_as_sc_mcu7t3v3__nand2_4".
+Reading "meta_n3ffb".
+Moving label "clkn" from metal3 to via2 in cell meta_n3ffb.
+Moving label "g1" from metal3 to via2 in cell meta_n3ffb.
+Moving label "g2" from metal3 to via2 in cell meta_n3ffb.
+Moving label "mq" from metal3 to via2 in cell meta_n3ffb.
+Moving label "mqb" from metal3 to via2 in cell meta_n3ffb.
+Moving label "s1" from metal3 to via2 in cell meta_n3ffb.
+Moving label "s2" from metal3 to via2 in cell meta_n3ffb.
+Moving label "sqb" from metal3 to via2 in cell meta_n3ffb.
+Reading "meta_j3a".
+Moving label "sb" from metal3 to via2 in cell meta_j3a.
+Moving label "s" from metal3 to via2 in cell meta_j3a.
+Moving label "db" from metal3 to via2 in cell meta_j3a.
+Moving label "ckb" from metal3 to via2 in cell meta_j3a.
+Moving label "x" from metal2 to via1 in cell meta_j3a.
+Moving label "y" from metal2 to via1 in cell meta_j3a.
+Reading "tt_um_metastability_characterizer".
+Processing gf180mcu_as_sc_mcu7t3v3__tap_2
+Processing meta_j3a
+Processing gf180mcu_as_sc_mcu7t3v3__nand2_2
+Processing gf180mcu_as_sc_mcu7t3v3__nand2_4
+Processing gf180mcu_as_sc_mcu7t3v3__inv_2
+Processing meta_n3ffb
+Processing gf180mcu_fd_sc_mcu7t5v0__endcap
+Processing gf180mcu_fd_sc_mcu7t5v0__inv_1
+Processing gf180mcu_fd_sc_mcu7t5v0__nand2_1
+Processing gf180mcu_fd_sc_mcu7t5v0__nand2_2
+Processing gf180mcu_fd_sc_mcu7t5v0__filltie
+Processing gf180mcu_fd_sc_mcu7t5v0__inv_2
+Processing gf180mcu_fd_sc_mcu7t5v0__dffrnq_1
+Processing gf180mcu_fd_sc_mcu7t5v0__dffq_1
+Processing gf180mcu_fd_sc_mcu7t5v0__mux2_1
+Processing gf180mcu_fd_sc_mcu7t5v0__mux4_1
+Processing gf180mcu_fd_sc_mcu7t5v0__tiel
+Processing gf180mcu_fd_sc_mcu7t5v0__antenna
+Processing meta_dly_cs
+Processing gf180mcu_fd_sc_mcu7t5v0__nand2_4
+Processing gf180mcu_fd_sc_mcu7t5v0__dffnq_1
+Processing gf180mcu_fd_sc_mcu7t5v0__xor2_1
+Processing gf180mcu_fd_sc_mcu7t5v0__fill_1
+Processing gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1
+Processing gf180mcu_fd_sc_mcu7t5v0__and2_1
+Processing gf180mcu_fd_sc_mcu7t5v0__or2_1
+Processing gf180mcu_fd_sc_mcu7t5v0__buf_1
+Processing tt_um_metastability_characterizer
+Extracting gf180mcu_as_sc_mcu7t3v3__tap_2 into gf180mcu_as_sc_mcu7t3v3__tap_2.ext:
+Extracting meta_j3a into meta_j3a.ext:
+Extracting gf180mcu_as_sc_mcu7t3v3__nand2_2 into gf180mcu_as_sc_mcu7t3v3__nand2_2.ext:
+Extracting gf180mcu_as_sc_mcu7t3v3__nand2_4 into gf180mcu_as_sc_mcu7t3v3__nand2_4.ext:
+Extracting gf180mcu_as_sc_mcu7t3v3__inv_2 into gf180mcu_as_sc_mcu7t3v3__inv_2.ext:
+Extracting meta_n3ffb into meta_n3ffb.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__endcap into gf180mcu_fd_sc_mcu7t5v0__endcap.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__inv_1 into gf180mcu_fd_sc_mcu7t5v0__inv_1.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__nand2_1 into gf180mcu_fd_sc_mcu7t5v0__nand2_1.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__nand2_2 into gf180mcu_fd_sc_mcu7t5v0__nand2_2.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__filltie into gf180mcu_fd_sc_mcu7t5v0__filltie.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__inv_2 into gf180mcu_fd_sc_mcu7t5v0__inv_2.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__dffrnq_1 into gf180mcu_fd_sc_mcu7t5v0__dffrnq_1.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__dffq_1 into gf180mcu_fd_sc_mcu7t5v0__dffq_1.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__mux2_1 into gf180mcu_fd_sc_mcu7t5v0__mux2_1.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__mux4_1 into gf180mcu_fd_sc_mcu7t5v0__mux4_1.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__tiel into gf180mcu_fd_sc_mcu7t5v0__tiel.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__antenna into gf180mcu_fd_sc_mcu7t5v0__antenna.ext:
+Extracting meta_dly_cs into meta_dly_cs.ext:
+meta_dly_cs: 1 warning
+Extracting gf180mcu_fd_sc_mcu7t5v0__nand2_4 into gf180mcu_fd_sc_mcu7t5v0__nand2_4.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__dffnq_1 into gf180mcu_fd_sc_mcu7t5v0__dffnq_1.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__xor2_1 into gf180mcu_fd_sc_mcu7t5v0__xor2_1.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__fill_1 into gf180mcu_fd_sc_mcu7t5v0__fill_1.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1 into gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__and2_1 into gf180mcu_fd_sc_mcu7t5v0__and2_1.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__or2_1 into gf180mcu_fd_sc_mcu7t5v0__or2_1.ext:
+Extracting gf180mcu_fd_sc_mcu7t5v0__buf_1 into gf180mcu_fd_sc_mcu7t5v0__buf_1.ext:
+Extracting tt_um_metastability_characterizer into tt_um_metastability_characterizer.ext:
+Total of 1 warning.
+Reading extract file.
+Building flattened netlist.
+Running antenna checks.
+   100 gates analyzed.
+   200 gates analyzed.
+   300 gates analyzed.
+   400 gates analyzed.
+   500 gates analyzed.
+antennacheck finished.
+ANTENNA FEEDBACK COUNT: 0

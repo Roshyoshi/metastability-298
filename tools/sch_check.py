@@ -30,9 +30,9 @@ def read_sch(path, root):
     return insts
 
 def sym_pins(sym):
-    if sym.endswith('nfet_06v0.sym'):
+    if sym.endswith('nfet_06v0.sym') or sym.endswith('nfet_03v3.sym'):
         return list(MOSPIN['nfet'].items()), 'nfet'
-    if sym.endswith('pfet_06v0.sym'):
+    if sym.endswith('pfet_06v0.sym') or sym.endswith('pfet_03v3.sym'):
         return list(MOSPIN['pfet'].items()), 'pfet'
     if sym.endswith('nmos3.sym'):
         return [(k, v) for k, v in MOSPIN['nfet'].items() if k != 'B'], 'nfet3'
@@ -187,7 +187,7 @@ def cdl_mos():
                 a, c = [sup.get(n, mp.get(n, path + n)) for n in e[1:3]]
                 DIODES.append((path + e[0], e[3], e[4], a, c))
             elif e[0][0] in 'Mm':
-                prm = dict(t.split('=') for t in e[6:] if '=' in t)
+                prm = {k.upper(): v for k, v in (t.split('=') for t in e[6:] if '=' in t)}
                 nets = [mp.get(n, path + n) for n in e[1:5]]
                 nets = [{'VDD': 'VDPWR', 'VNW': 'VDPWR', 'VSS': 'VGND', 'VPW': 'VGND'}.get(n, n) for n in nets]
                 import build_master as BM

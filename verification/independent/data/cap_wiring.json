@@ -1,0 +1,228 @@
+{
+ "573": {
+  "nets": {
+   "xu_dut2/mq": {
+    "total": 3.3527000000000005,
+    "VGND": 0.74285,
+    "VDPWR": 0.23501
+   },
+   "xu_dut2/mqb": {
+    "total": 3.1347300000000002,
+    "VGND": 0.71496,
+    "VDPWR": 0.16048
+   },
+   "xu_dut3/mq": {
+    "total": 3.4341500000000003,
+    "VGND": 1.04007,
+    "VDPWR": 0.3194600000000001
+   },
+   "xu_dut3/mqb": {
+    "total": 3.1257,
+    "VGND": 0.67926,
+    "VDPWR": 0.16104
+   },
+   "xu_dut4/mq": {
+    "total": 3.48686,
+    "VGND": 0.8126800000000001,
+    "VDPWR": 0.29418000000000005
+   },
+   "xu_dut4/mqb": {
+    "total": 3.70065,
+    "VGND": 1.28134,
+    "VDPWR": 0.19573000000000002
+   },
+   "xdelay/slow": {
+    "total": 1.16833,
+    "VGND": 0.86222,
+    "VDPWR": 0.17576000000000003
+   },
+   "xdelay/r0": {
+    "total": 2.72796,
+    "VGND": 1.0471,
+    "VDPWR": 0.24829000000000004
+   },
+   "xdelay/r1": {
+    "total": 2.9630900000000002,
+    "VGND": 0.86406,
+    "VDPWR": 0.18152
+   },
+   "capture_local": {
+    "total": 32.28258,
+    "VGND": 6.863400000000001,
+    "VDPWR": 1.18764
+   },
+   "early_clk": {
+    "total": 21.385270000000002,
+    "VGND": 1.99046,
+    "VDPWR": 0.54675
+   },
+   "selected_q": {
+    "total": 10.6386,
+    "VGND": 3.9582100000000002,
+    "VDPWR": 0.6439900000000001
+   }
+  },
+  "between": {
+   "xu_dut2": 0.7821300000000001,
+   "xu_dut3": 0.70406,
+   "xu_dut4": 1.1698
+  },
+  "classes": {
+   "sig-sig": {
+    "count": 6858,
+    "sum_fF": 667.461270000002
+   },
+   "sig-VGND": {
+    "count": 635,
+    "sum_fF": 474.7765300000002
+   },
+   "sig-VDPWR": {
+    "count": 557,
+    "sum_fF": 82.27834000000001
+   },
+   "sup-sup": {
+    "count": 1,
+    "sum_fF": 675.6
+   }
+  },
+  "top_level_capacitors": 8051,
+  "negative_capacitors": 7,
+  "capacitors_in_cell_definitions": 880,
+  "instances": 149,
+  "transistors": 1668,
+  "std_cells": 148,
+  "cell_kinds": {
+   "gf180mcu_fd_sc_mcu7t5v0__tiel": 6,
+   "gf180mcu_fd_sc_mcu7t5v0__dffnq_1": 1,
+   "gf180mcu_fd_sc_mcu7t5v0__nand2_1": 21,
+   "gf180mcu_fd_sc_mcu7t5v0__buf_1": 5,
+   "gf180mcu_fd_sc_mcu7t5v0__inv_1": 42,
+   "gf180mcu_fd_sc_mcu7t5v0__nand2_4": 1,
+   "gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1": 36,
+   "meta_dly_cs": 1,
+   "gf180mcu_fd_sc_mcu7t5v0__nand2_2": 3,
+   "gf180mcu_fd_sc_mcu7t5v0__dffrnq_1": 3,
+   "gf180mcu_fd_sc_mcu7t5v0__antenna": 1,
+   "gf180mcu_fd_sc_mcu7t5v0__mux2_1": 8,
+   "gf180mcu_fd_sc_mcu7t5v0__xor2_1": 3,
+   "gf180mcu_fd_sc_mcu7t5v0__or2_1": 1,
+   "gf180mcu_fd_sc_mcu7t5v0__inv_2": 9,
+   "gf180mcu_fd_sc_mcu7t5v0__dffq_1": 4,
+   "gf180mcu_fd_sc_mcu7t5v0__and2_1": 3,
+   "gf180mcu_fd_sc_mcu7t5v0__mux4_1": 1
+  }
+ },
+ "703": {
+  "nets": {
+   "xu_dut2/mq": {
+    "total": 2.5845900000000004,
+    "VGND": 0.02889,
+    "VDPWR": 0.24955000000000002
+   },
+   "xu_dut2/mqb": {
+    "total": 2.44774,
+    "VGND": 0.08095000000000001,
+    "VDPWR": 0.16855000000000003
+   },
+   "xu_dut3/mq": {
+    "total": 2.45147,
+    "VGND": 0.09276000000000001,
+    "VDPWR": 0.33471
+   },
+   "xu_dut3/mqb": {
+    "total": 2.40674,
+    "VGND": 0.030700000000000005,
+    "VDPWR": 0.16749
+   },
+   "xu_dut4/mq": {
+    "total": 2.6991300000000003,
+    "VGND": 0.05512000000000001,
+    "VDPWR": 0.30872
+   },
+   "xu_dut4/mqb": {
+    "total": 2.49818,
+    "VGND": 0.10655000000000002,
+    "VDPWR": 0.20355000000000004
+   },
+   "xdelay/slow": {
+    "total": 0.40549,
+    "VGND": 0.09859,
+    "VDPWR": 0.17625000000000002
+   },
+   "xdelay/r0": {
+    "total": 1.9732,
+    "VGND": 0.32114000000000004,
+    "VDPWR": 0.25539000000000006
+   },
+   "xdelay/r1": {
+    "total": 2.16928,
+    "VGND": 0.14981,
+    "VDPWR": 0.18343000000000004
+   },
+   "capture_local": {
+    "total": 27.52016,
+    "VGND": 2.80484,
+    "VDPWR": 1.23786
+   },
+   "early_clk": {
+    "total": 19.922880000000003,
+    "VGND": 1.2473400000000001,
+    "VDPWR": 0.55586
+   },
+   "selected_q": {
+    "total": 9.67309,
+    "VGND": 3.11729,
+    "VDPWR": 0.6574400000000001
+   }
+  },
+  "between": {
+   "xu_dut2": 0.7661100000000001,
+   "xu_dut3": 0.6893100000000001,
+   "xu_dut4": 1.14085
+  },
+  "classes": {
+   "sig-sig": {
+    "count": 6890,
+    "sum_fF": 646.8090599999991
+   },
+   "sig-VGND": {
+    "count": 433,
+    "sum_fF": 140.08669999999998
+   },
+   "sig-VDPWR": {
+    "count": 565,
+    "sum_fF": 83.86379999999998
+   },
+   "sup-sup": {
+    "count": 1,
+    "sum_fF": -135.5
+   }
+  },
+  "top_level_capacitors": 7889,
+  "negative_capacitors": 9,
+  "capacitors_in_cell_definitions": 878,
+  "instances": 149,
+  "transistors": 1668,
+  "std_cells": 148,
+  "cell_kinds": {
+   "gf180mcu_fd_sc_mcu7t5v0__tiel": 6,
+   "gf180mcu_fd_sc_mcu7t5v0__dffnq_1": 1,
+   "gf180mcu_fd_sc_mcu7t5v0__nand2_1": 21,
+   "gf180mcu_fd_sc_mcu7t5v0__buf_1": 5,
+   "gf180mcu_fd_sc_mcu7t5v0__inv_1": 42,
+   "gf180mcu_fd_sc_mcu7t5v0__nand2_4": 1,
+   "gf180mcu_fd_sc_mcu7t5v0__dffnrnq_1": 36,
+   "meta_dly_cs": 1,
+   "gf180mcu_fd_sc_mcu7t5v0__nand2_2": 3,
+   "gf180mcu_fd_sc_mcu7t5v0__dffrnq_1": 3,
+   "gf180mcu_fd_sc_mcu7t5v0__antenna": 1,
+   "gf180mcu_fd_sc_mcu7t5v0__mux2_1": 8,
+   "gf180mcu_fd_sc_mcu7t5v0__xor2_1": 3,
+   "gf180mcu_fd_sc_mcu7t5v0__or2_1": 1,
+   "gf180mcu_fd_sc_mcu7t5v0__inv_2": 9,
+   "gf180mcu_fd_sc_mcu7t5v0__dffq_1": 4,
+   "gf180mcu_fd_sc_mcu7t5v0__and2_1": 3,
+   "gf180mcu_fd_sc_mcu7t5v0__mux4_1": 1
+  }
+ }
+}

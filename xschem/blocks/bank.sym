@@ -1,0 +1,39 @@
+v {xschem version=3.4.4 file_version=1.2}
+G {}
+K {type=subcircuit
+format="@name @pinlist @symname"
+template="name=x1"
+}
+V {}
+S {}
+E {}
+L 4 -60 -70 60 -70 {}
+L 4 -60 70 60 70 {}
+L 4 -60 -70 -60 70 {}
+L 4 60 -70 60 70 {}
+L 4 -80 -50 -60 -50 {}
+B 5 -82.5 -52.5 -77.5 -47.5 {name=clk dir=in}
+T {clk} -57 -56 0 0 0.15 0.15 {}
+L 4 -80 -30 -60 -30 {}
+B 5 -82.5 -32.5 -77.5 -27.5 {name=rst_n dir=in}
+T {rst_n} -57 -36 0 0 0.15 0.15 {}
+L 4 -80 -10 -60 -10 {}
+B 5 -82.5 -12.5 -77.5 -7.5 {name=ui_in_1 dir=in}
+T {ui_in_1} -57 -16 0 0 0.15 0.15 {}
+L 4 -80 10 -60 10 {}
+B 5 -82.5 7.5 -77.5 12.5 {name=ui_in_2 dir=in}
+T {ui_in_2} -57 4 0 0 0.15 0.15 {}
+L 4 -80 30 -60 30 {}
+B 5 -82.5 27.5 -77.5 32.5 {name=ui_in_5 dir=in}
+T {ui_in_5} -57 24 0 0 0.15 0.15 {}
+L 4 -80 50 -60 50 {}
+B 5 -82.5 47.5 -77.5 52.5 {name=uio_in_0 dir=in}
+T {uio_in_0} -57 44 0 0 0.15 0.15 {}
+L 4 60 -50 80 -50 {}
+B 5 77.5 -52.5 82.5 -47.5 {name=bank_early_q dir=out}
+T {bank_early_q} 57 -56 0 1 0.15 0.15 {}
+L 4 60 -30 80 -30 {}
+B 5 77.5 -32.5 82.5 -27.5 {name=bank_selected_q dir=out}
+T {bank_selected_q} 57 -36 0 1 0.15 0.15 {}
+T {bank} -58 -86 0 0 0.2 0.2 {}
+T {@name} -58 74 0 0 0.15 0.15 {}

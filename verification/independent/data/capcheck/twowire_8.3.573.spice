@@ -1,0 +1,8 @@
+* NGSPICE file created from twowire.ext - technology: gf180mcuD
+
+.option scale=5n
+
+C0 A B 8.81811f
+C1 A VSUBS 3.94673f
+C2 B VSUBS 3.94673f
+C3 C VSUBS 7.09869f $ **FLOATING

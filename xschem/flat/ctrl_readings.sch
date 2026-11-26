@@ -538,29 +538,29 @@ N 2400 240 2400 0 {lab=event_bit}
 N 2400 0 7200 0 {lab=event_bit}
 N 7200 0 7200 490 {lab=event_bit}
 N 7200 490 7540 490 {lab=event_bit}
-N 2680 770 2630 770 {lab=selected_q}
-N 2630 770 2630 700 {lab=selected_q}
-N 2630 700 2960 700 {lab=selected_q}
-N 2630 700 2630 530 {lab=selected_q}
-N 2630 530 -60 530 {lab=selected_q}
-N 2630 530 2630 60 {lab=selected_q}
-N 2630 60 2680 60 {lab=selected_q}
-N 2960 700 2960 620 {lab=selected_q}
-N 2960 620 3210 620 {lab=selected_q}
-N 3210 620 3240 620 {lab=selected_q}
-N 3210 620 3210 210 {lab=selected_q}
-N 3210 210 3240 210 {lab=selected_q}
-N 1760 770 1750 770 {lab=early_q}
-N 1750 770 1750 620 {lab=early_q}
-N 1750 620 1750 490 {lab=early_q}
-N 1750 620 2120 620 {lab=early_q}
-N 1750 490 -60 490 {lab=early_q}
-N 1750 490 1750 210 {lab=early_q}
-N 1750 210 2120 210 {lab=early_q}
-N 1750 210 1750 170 {lab=early_q}
-N 1750 170 1550 170 {lab=early_q}
-N 1550 170 1550 60 {lab=early_q}
-N 1550 60 1560 60 {lab=early_q}
+N 2680 770 2630 770 {lab=ctrl_q}
+N 2630 770 2630 700 {lab=ctrl_q}
+N 2630 700 2960 700 {lab=ctrl_q}
+N 2630 700 2630 530 {lab=ctrl_q}
+N 2630 530 -60 530 {lab=ctrl_q}
+N 2630 530 2630 60 {lab=ctrl_q}
+N 2630 60 2680 60 {lab=ctrl_q}
+N 2960 700 2960 620 {lab=ctrl_q}
+N 2960 620 3210 620 {lab=ctrl_q}
+N 3210 620 3240 620 {lab=ctrl_q}
+N 3210 620 3210 210 {lab=ctrl_q}
+N 3210 210 3240 210 {lab=ctrl_q}
+N 1760 770 1750 770 {lab=ctrl_early}
+N 1750 770 1750 620 {lab=ctrl_early}
+N 1750 620 1750 490 {lab=ctrl_early}
+N 1750 620 2120 620 {lab=ctrl_early}
+N 1750 490 -60 490 {lab=ctrl_early}
+N 1750 490 1750 210 {lab=ctrl_early}
+N 1750 210 2120 210 {lab=ctrl_early}
+N 1750 210 1750 170 {lab=ctrl_early}
+N 1750 170 1550 170 {lab=ctrl_early}
+N 1550 170 1550 60 {lab=ctrl_early}
+N 1550 60 1560 60 {lab=ctrl_early}
 N 5680 740 5680 650 {lab=bad_bit}
 N 5680 650 5740 650 {lab=bad_bit}
 N 5740 650 5740 450 {lab=bad_bit}
@@ -635,7 +635,7 @@ N 3480 180 3480 90 {lab=l2_ff.net8}
 N 6440 180 6440 90 {lab=l2_ff.net1x}
 C {devices/ipin.sym} -60 410 0 0 {name=p113 lab=a_n}
 C {devices/ipin.sym} -60 450 0 0 {name=p114 lab=b}
-C {devices/ipin.sym} -60 490 0 0 {name=p115 lab=early_q}
-C {devices/ipin.sym} -60 530 0 0 {name=p116 lab=selected_q}
+C {devices/ipin.sym} -60 490 0 0 {name=p115 lab=ctrl_early}
+C {devices/ipin.sym} -60 530 0 0 {name=p116 lab=ctrl_q}
 C {devices/opin.sym} 7540 450 0 0 {name=p117 lab=bad_bit}
 C {devices/opin.sym} 7540 490 0 0 {name=p118 lab=event_bit}

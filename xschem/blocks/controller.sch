@@ -21,8 +21,8 @@ C {devices/lab_pin.sym} 860 20 0 1 {name=l10 lab=run}
 C {@@ROOT@@/blocks/readings.sym} 1300 50 0 0 {name=xreadings}
 C {devices/lab_pin.sym} 1220 20 0 0 {name=l11 lab=a_n}
 C {devices/lab_pin.sym} 1220 40 0 0 {name=l12 lab=b}
-C {devices/lab_pin.sym} 1220 60 0 0 {name=l13 lab=early_q}
-C {devices/lab_pin.sym} 1220 80 0 0 {name=l14 lab=selected_q}
+C {devices/lab_pin.sym} 1220 60 0 0 {name=l13 lab=ctrl_early}
+C {devices/lab_pin.sym} 1220 80 0 0 {name=l14 lab=ctrl_q}
 C {devices/lab_pin.sym} 1380 20 0 1 {name=l15 lab=bad_bit}
 C {devices/lab_pin.sym} 1380 40 0 1 {name=l16 lab=event_bit}
 C {@@ROOT@@/blocks/count_pulse.sym} 260 270 0 0 {name=xcount_pulse}

@@ -1,0 +1,7 @@
+clk              rise       0.0 ps after the clk pin edge
+capture_local    rise    1245.8 ps after the clk pin edge
+bank_cap         rise    1143.7 ps after the clk pin edge
+bank_obs_clk     rise     372.9 ps after the clk pin edge
+early_clk        rise    2381.9 ps after the clk pin edge
+bank_selected_q  fall    2768.0 ps after the clk pin edge
+bank_early_q     no crossing in the window
